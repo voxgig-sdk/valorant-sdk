@@ -1,0 +1,160 @@
+# Entity: weapon
+
+main: kit: entity: weapon: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "asset_path"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "category"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "data"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "default_skin_uuid"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "display_icon"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "display_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "kill_stream_icon"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "shop_data"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "skin"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "uuid"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "weapon_stat"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "weapon"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/weapons"
+          parts: [
+            "v1"
+            "weapons"
+          ]
+          select: {
+            exist: [
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/weapons/{uuid}"
+          parts: [
+            "v1"
+            "weapons"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              uuid: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

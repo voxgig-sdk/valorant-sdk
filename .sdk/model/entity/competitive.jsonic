@@ -1,0 +1,70 @@
+# Entity: competitive
+
+main: kit: entity: competitive: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "asset_object_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "asset_path"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "tier"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "uuid"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "competitive"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/competitivetiers"
+          parts: [
+            "v1"
+            "competitivetiers"
+          ]
+          select: {
+            exist: [
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

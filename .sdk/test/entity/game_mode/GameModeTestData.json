@@ -1,0 +1,74 @@
+{
+  "existing": {
+    "game_mode": {
+      "GAME_MODE00": {
+        "allows_match_timeout": true,
+        "asset_path": "s8d",
+        "display_icon": "s8e",
+        "display_name": "s8f",
+        "duration": "s90",
+        "economy_type": "s91",
+        "game_feature_override": [],
+        "game_rule_bool_override": [],
+        "is_minimap_hidden": true,
+        "is_team_voice_allowed": false,
+        "orb_count": "s96",
+        "rounds_per_half": "s97",
+        "team_role": [],
+        "uuid": "s99"
+      },
+      "GAME_MODE01": {
+        "allows_match_timeout": true,
+        "asset_path": "s119",
+        "display_icon": "s11a",
+        "display_name": "s11b",
+        "duration": "s11c",
+        "economy_type": "s11d",
+        "game_feature_override": [],
+        "game_rule_bool_override": [],
+        "is_minimap_hidden": true,
+        "is_team_voice_allowed": false,
+        "orb_count": "s122",
+        "rounds_per_half": "s123",
+        "team_role": [],
+        "uuid": "s125"
+      },
+      "GAME_MODE02": {
+        "allows_match_timeout": true,
+        "asset_path": "s1a5",
+        "display_icon": "s1a6",
+        "display_name": "s1a7",
+        "duration": "s1a8",
+        "economy_type": "s1a9",
+        "game_feature_override": [],
+        "game_rule_bool_override": [],
+        "is_minimap_hidden": true,
+        "is_team_voice_allowed": false,
+        "orb_count": "s1ae",
+        "rounds_per_half": "s1af",
+        "team_role": [],
+        "uuid": "s1b1"
+      }
+    }
+  },
+  "new": {
+    "game_mode": {
+      "game_mode_ref01": {
+        "allows_match_timeout": true,
+        "asset_path": "s231",
+        "display_icon": "s232",
+        "display_name": "s233",
+        "duration": "s234",
+        "economy_type": "s235",
+        "game_feature_override": [],
+        "game_rule_bool_override": [],
+        "is_minimap_hidden": true,
+        "is_team_voice_allowed": false,
+        "orb_count": "s23a",
+        "rounds_per_half": "s23b",
+        "team_role": [],
+        "uuid": "s23d"
+      }
+    }
+  }
+}

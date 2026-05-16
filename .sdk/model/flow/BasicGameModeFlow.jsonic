@@ -1,0 +1,22 @@
+# BasicGameModeFlow
+
+main: kit: flow: BasicGameModeFlow:
+{
+  entity: "game_mode",
+  kind: "basic",
+  name: "BasicGameModeFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "game_mode_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGameModeFlow"
+}

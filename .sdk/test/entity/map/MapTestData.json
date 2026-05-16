@@ -1,0 +1,86 @@
+{
+  "existing": {
+    "map": {
+      "MAP00": {
+        "asset_path": "saa",
+        "callout": [],
+        "coordinate": "sac",
+        "data": {},
+        "display_icon": "sae",
+        "display_name": "saf",
+        "list_view_icon": "sb0",
+        "map_url": "sb1",
+        "narrative_description": "sb2",
+        "splash": "sb3",
+        "status": "sb4",
+        "tactical_description": "sb5",
+        "uuid": "sb6",
+        "x_multiplier": 183,
+        "x_scalar_to_add": 184,
+        "y_multiplier": 185,
+        "y_scalar_to_add": 186
+      },
+      "MAP01": {
+        "asset_path": "s154",
+        "callout": [],
+        "coordinate": "s156",
+        "data": {},
+        "display_icon": "s158",
+        "display_name": "s159",
+        "list_view_icon": "s15a",
+        "map_url": "s15b",
+        "narrative_description": "s15c",
+        "splash": "s15d",
+        "status": "s15e",
+        "tactical_description": "s15f",
+        "uuid": "s160",
+        "x_multiplier": 353,
+        "x_scalar_to_add": 354,
+        "y_multiplier": 355,
+        "y_scalar_to_add": 356
+      },
+      "MAP02": {
+        "asset_path": "s1fe",
+        "callout": [],
+        "coordinate": "s200",
+        "data": {},
+        "display_icon": "s202",
+        "display_name": "s203",
+        "list_view_icon": "s204",
+        "map_url": "s205",
+        "narrative_description": "s206",
+        "splash": "s207",
+        "status": "s208",
+        "tactical_description": "s209",
+        "uuid": "s20a",
+        "x_multiplier": 523,
+        "x_scalar_to_add": 524,
+        "y_multiplier": 525,
+        "y_scalar_to_add": 526
+      }
+    }
+  },
+  "new": {
+    "map": {
+      "map_ref01": {
+        "asset_path": "s2a8",
+        "callout": [],
+        "coordinate": "s2aa",
+        "data": {},
+        "display_icon": "s2ac",
+        "display_name": "s2ad",
+        "list_view_icon": "s2ae",
+        "map_url": "s2af",
+        "narrative_description": "s2b0",
+        "splash": "s2b1",
+        "status": "s2b2",
+        "tactical_description": "s2b3",
+        "uuid": "s2b4",
+        "x_multiplier": 693,
+        "x_scalar_to_add": 694,
+        "y_multiplier": 695,
+        "y_scalar_to_add": 696
+      }
+    }
+  }
+}

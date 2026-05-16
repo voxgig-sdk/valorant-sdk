@@ -1,0 +1,120 @@
+# Entity: game_mode
+
+main: kit: entity: game_mode: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "allows_match_timeout"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "asset_path"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "display_icon"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "display_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "duration"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "economy_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "game_feature_override"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "game_rule_bool_override"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "is_minimap_hidden"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_team_voice_allowed"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "orb_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "rounds_per_half"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "team_role"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "uuid"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "game_mode"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/gamemodes"
+          parts: [
+            "v1"
+            "gamemodes"
+          ]
+          select: {
+            exist: [
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

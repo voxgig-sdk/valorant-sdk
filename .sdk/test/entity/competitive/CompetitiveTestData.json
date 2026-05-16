@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "competitive": {
+      "COMPETITIVE00": {
+        "asset_object_name": "s28",
+        "asset_path": "s29",
+        "tier": [],
+        "uuid": "s2b"
+      },
+      "COMPETITIVE01": {
+        "asset_object_name": "s50",
+        "asset_path": "s51",
+        "tier": [],
+        "uuid": "s53"
+      },
+      "COMPETITIVE02": {
+        "asset_object_name": "s78",
+        "asset_path": "s79",
+        "tier": [],
+        "uuid": "s7b"
+      }
+    }
+  },
+  "new": {
+    "competitive": {
+      "competitive_ref01": {
+        "asset_object_name": "sa0",
+        "asset_path": "sa1",
+        "tier": [],
+        "uuid": "sa3"
+      }
+    }
+  }
+}

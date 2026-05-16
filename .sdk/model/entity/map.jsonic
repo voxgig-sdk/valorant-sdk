@@ -1,0 +1,185 @@
+# Entity: map
+
+main: kit: entity: map: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "asset_path"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "callout"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "coordinate"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "data"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "display_icon"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "display_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "list_view_icon"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "map_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "narrative_description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "splash"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "tactical_description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "uuid"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "x_multiplier"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "x_scalar_to_add"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "y_multiplier"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "y_scalar_to_add"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "map"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/maps"
+          parts: [
+            "v1"
+            "maps"
+          ]
+          select: {
+            exist: [
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/maps/{uuid}"
+          parts: [
+            "v1"
+            "maps"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              uuid: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

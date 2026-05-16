@@ -1,0 +1,66 @@
+{
+  "existing": {
+    "weapon": {
+      "WEAPON00": {
+        "asset_path": "s78",
+        "category": "s79",
+        "data": {},
+        "default_skin_uuid": "s7b",
+        "display_icon": "s7c",
+        "display_name": "s7d",
+        "kill_stream_icon": "s7e",
+        "shop_data": {},
+        "skin": [],
+        "status": "s81",
+        "uuid": "s82",
+        "weapon_stat": {}
+      },
+      "WEAPON01": {
+        "asset_path": "sf0",
+        "category": "sf1",
+        "data": {},
+        "default_skin_uuid": "sf3",
+        "display_icon": "sf4",
+        "display_name": "sf5",
+        "kill_stream_icon": "sf6",
+        "shop_data": {},
+        "skin": [],
+        "status": "sf9",
+        "uuid": "sfa",
+        "weapon_stat": {}
+      },
+      "WEAPON02": {
+        "asset_path": "s168",
+        "category": "s169",
+        "data": {},
+        "default_skin_uuid": "s16b",
+        "display_icon": "s16c",
+        "display_name": "s16d",
+        "kill_stream_icon": "s16e",
+        "shop_data": {},
+        "skin": [],
+        "status": "s171",
+        "uuid": "s172",
+        "weapon_stat": {}
+      }
+    }
+  },
+  "new": {
+    "weapon": {
+      "weapon_ref01": {
+        "asset_path": "s1e0",
+        "category": "s1e1",
+        "data": {},
+        "default_skin_uuid": "s1e3",
+        "display_icon": "s1e4",
+        "display_name": "s1e5",
+        "kill_stream_icon": "s1e6",
+        "shop_data": {},
+        "skin": [],
+        "status": "s1e9",
+        "uuid": "s1ea",
+        "weapon_stat": {}
+      }
+    }
+  }
+}

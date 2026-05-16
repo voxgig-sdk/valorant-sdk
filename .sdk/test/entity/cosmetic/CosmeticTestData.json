@@ -1,0 +1,86 @@
+{
+  "existing": {
+    "cosmetic": {
+      "COSMETIC00": {
+        "animation_gif": "saa",
+        "animation_png": "sab",
+        "asset_path": "sac",
+        "category": "sad",
+        "display_icon": "sae",
+        "display_name": "saf",
+        "full_icon": "sb0",
+        "full_transparent_icon": "sb1",
+        "hide_if_not_owned": true,
+        "is_hidden_if_not_owned": false,
+        "is_null_spray": true,
+        "large_art": "sb5",
+        "level": [],
+        "small_art": "sb7",
+        "theme_uuid": "sb8",
+        "uuid": "sb9",
+        "wide_art": "sba"
+      },
+      "COSMETIC01": {
+        "animation_gif": "s154",
+        "animation_png": "s155",
+        "asset_path": "s156",
+        "category": "s157",
+        "display_icon": "s158",
+        "display_name": "s159",
+        "full_icon": "s15a",
+        "full_transparent_icon": "s15b",
+        "hide_if_not_owned": true,
+        "is_hidden_if_not_owned": false,
+        "is_null_spray": true,
+        "large_art": "s15f",
+        "level": [],
+        "small_art": "s161",
+        "theme_uuid": "s162",
+        "uuid": "s163",
+        "wide_art": "s164"
+      },
+      "COSMETIC02": {
+        "animation_gif": "s1fe",
+        "animation_png": "s1ff",
+        "asset_path": "s200",
+        "category": "s201",
+        "display_icon": "s202",
+        "display_name": "s203",
+        "full_icon": "s204",
+        "full_transparent_icon": "s205",
+        "hide_if_not_owned": true,
+        "is_hidden_if_not_owned": false,
+        "is_null_spray": true,
+        "large_art": "s209",
+        "level": [],
+        "small_art": "s20b",
+        "theme_uuid": "s20c",
+        "uuid": "s20d",
+        "wide_art": "s20e"
+      }
+    }
+  },
+  "new": {
+    "cosmetic": {
+      "cosmetic_ref01": {
+        "animation_gif": "s2a8",
+        "animation_png": "s2a9",
+        "asset_path": "s2aa",
+        "category": "s2ab",
+        "display_icon": "s2ac",
+        "display_name": "s2ad",
+        "full_icon": "s2ae",
+        "full_transparent_icon": "s2af",
+        "hide_if_not_owned": true,
+        "is_hidden_if_not_owned": false,
+        "is_null_spray": true,
+        "large_art": "s2b3",
+        "level": [],
+        "small_art": "s2b5",
+        "theme_uuid": "s2b6",
+        "uuid": "s2b7",
+        "wide_art": "s2b8"
+      }
+    }
+  }
+}

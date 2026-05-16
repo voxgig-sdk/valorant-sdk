@@ -1,0 +1,8 @@
+# Entity Models
+
+@"agent.jsonic"
+@"competitive.jsonic"
+@"cosmetic.jsonic"
+@"game_mode.jsonic"
+@"map.jsonic"
+@"weapon.jsonic"

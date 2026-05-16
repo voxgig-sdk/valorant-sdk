@@ -1,0 +1,62 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 6
+  metrics: count: path: 11
+  metrics: count: method: 11
+
+  entity: agent: {
+    path: "/v1/agents": {
+      op: list: method: *GET
+    }
+    path: "/v1/agents/{uuid}": {
+      rename: param: "uuid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: competitive: {
+    path: "/v1/competitivetiers": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: cosmetic: {
+    path: "/v1/buddies": {
+      op: list: method: *GET
+    }
+    path: "/v1/cards": {
+      op: list: method: *GET
+    }
+    path: "/v1/sprays": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: game_mode: {
+    path: "/v1/gamemodes": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: map: {
+    path: "/v1/maps": {
+      op: list: method: *GET
+    }
+    path: "/v1/maps/{uuid}": {
+      rename: param: "uuid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: weapon: {
+    path: "/v1/weapons": {
+      op: list: method: *GET
+    }
+    path: "/v1/weapons/{uuid}": {
+      rename: param: "uuid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+}

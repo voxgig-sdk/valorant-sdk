@@ -1,0 +1,223 @@
+# Entity: agent
+
+main: kit: entity: agent: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ability"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "asset_path"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "background"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "background_gradient_color"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "bust_portrait"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "character_tag"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "data"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "developer_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "display_icon"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "display_icon_small"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "display_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "full_portrait"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "full_portrait_v2"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "is_available_for_test"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_base_content"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_full_portrait_right_facing"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_playable_character"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "killfeed_portrait"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "role"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "uuid"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "voice_line"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "agent"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "is_playable_character"
+                orig: "is_playable_character"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/agents"
+          parts: [
+            "v1"
+            "agents"
+          ]
+          select: {
+            exist: [
+              "is_playable_character"
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/agents/{uuid}"
+          parts: [
+            "v1"
+            "agents"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              uuid: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

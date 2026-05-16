@@ -1,0 +1,1325 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Valorant API",
+    "description": "The Valorant API provides extensive data related to in-game items, assets, and other game features, sourced directly from the Valorant game files. This API automatically updates with each game patch, ensuring accurate and up-to-date information for developers and fans alike.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://dash.valorant-api.com/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://valorant-api.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/v1/agents": {
+      "get": {
+        "summary": "Get all agents",
+        "description": "Retrieve a list of all Valorant agents with their abilities, role, and other details",
+        "operationId": "getAgents",
+        "tags": [
+          "Agents"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Language code for localized content (e.g., en-US, es-ES, fr-FR)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en-US"
+            }
+          },
+          {
+            "name": "isPlayableCharacter",
+            "in": "query",
+            "description": "Filter only playable characters",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of agents",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Agent"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/v1/agents/{uuid}": {
+      "get": {
+        "summary": "Get agent by UUID",
+        "description": "Retrieve detailed information about a specific agent by their UUID",
+        "operationId": "getAgentByUuid",
+        "tags": [
+          "Agents"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "UUID of the agent",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Language code for localized content",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en-US"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with agent details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Agent"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Agent not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/v1/weapons": {
+      "get": {
+        "summary": "Get all weapons",
+        "description": "Retrieve a list of all Valorant weapons with their stats, skins, and other details",
+        "operationId": "getWeapons",
+        "tags": [
+          "Weapons"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Language code for localized content",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en-US"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of weapons",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Weapon"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/v1/weapons/{uuid}": {
+      "get": {
+        "summary": "Get weapon by UUID",
+        "description": "Retrieve detailed information about a specific weapon by its UUID",
+        "operationId": "getWeaponByUuid",
+        "tags": [
+          "Weapons"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "UUID of the weapon",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Language code for localized content",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en-US"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with weapon details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Weapon"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Weapon not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/v1/maps": {
+      "get": {
+        "summary": "Get all maps",
+        "description": "Retrieve a list of all Valorant maps with their details and coordinates",
+        "operationId": "getMaps",
+        "tags": [
+          "Maps"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Language code for localized content",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en-US"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of maps",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Map"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/v1/maps/{uuid}": {
+      "get": {
+        "summary": "Get map by UUID",
+        "description": "Retrieve detailed information about a specific map by its UUID",
+        "operationId": "getMapByUuid",
+        "tags": [
+          "Maps"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "UUID of the map",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Language code for localized content",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en-US"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with map details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Map"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Map not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/v1/buddies": {
+      "get": {
+        "summary": "Get all weapon buddies",
+        "description": "Retrieve a list of all weapon buddy charms available in Valorant",
+        "operationId": "getBuddies",
+        "tags": [
+          "Cosmetics"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Language code for localized content",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en-US"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of buddies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Buddy"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/v1/sprays": {
+      "get": {
+        "summary": "Get all sprays",
+        "description": "Retrieve a list of all sprays available in Valorant",
+        "operationId": "getSprays",
+        "tags": [
+          "Cosmetics"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Language code for localized content",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en-US"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of sprays",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Spray"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/v1/cards": {
+      "get": {
+        "summary": "Get all player cards",
+        "description": "Retrieve a list of all player cards available in Valorant",
+        "operationId": "getCards",
+        "tags": [
+          "Cosmetics"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Language code for localized content",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en-US"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of player cards",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PlayerCard"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/v1/competitivetiers": {
+      "get": {
+        "summary": "Get competitive tiers",
+        "description": "Retrieve information about competitive ranking tiers and their divisions",
+        "operationId": "getCompetitiveTiers",
+        "tags": [
+          "Competitive"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Language code for localized content",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en-US"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with competitive tier information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CompetitiveTier"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/v1/gamemodes": {
+      "get": {
+        "summary": "Get all game modes",
+        "description": "Retrieve a list of all available game modes in Valorant",
+        "operationId": "getGameModes",
+        "tags": [
+          "Game Modes"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Language code for localized content",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en-US"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of game modes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/GameMode"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Agent": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the agent"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Display name of the agent"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the agent"
+          },
+          "developerName": {
+            "type": "string",
+            "description": "Internal developer name"
+          },
+          "characterTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tags associated with the character"
+          },
+          "displayIcon": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the agent's display icon"
+          },
+          "displayIconSmall": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the agent's small display icon"
+          },
+          "bustPortrait": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the agent's bust portrait"
+          },
+          "fullPortrait": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the agent's full portrait"
+          },
+          "fullPortraitV2": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the agent's full portrait version 2"
+          },
+          "killfeedPortrait": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the agent's killfeed portrait"
+          },
+          "background": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the agent's background image"
+          },
+          "backgroundGradientColors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Gradient colors for the agent's background"
+          },
+          "assetPath": {
+            "type": "string",
+            "description": "Asset path in game files"
+          },
+          "isFullPortraitRightFacing": {
+            "type": "boolean",
+            "description": "Whether the full portrait faces right"
+          },
+          "isPlayableCharacter": {
+            "type": "boolean",
+            "description": "Whether the agent is playable"
+          },
+          "isAvailableForTest": {
+            "type": "boolean",
+            "description": "Whether the agent is available for testing"
+          },
+          "isBaseContent": {
+            "type": "boolean",
+            "description": "Whether the agent is base content"
+          },
+          "role": {
+            "type": "object",
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "displayName": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "displayIcon": {
+                "type": "string",
+                "format": "uri"
+              },
+              "assetPath": {
+                "type": "string"
+              }
+            }
+          },
+          "abilities": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "slot": {
+                  "type": "string"
+                },
+                "displayName": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "displayIcon": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            }
+          },
+          "voiceLine": {
+            "type": "object",
+            "properties": {
+              "minDuration": {
+                "type": "number"
+              },
+              "maxDuration": {
+                "type": "number"
+              },
+              "mediaList": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Weapon": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the weapon"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Display name of the weapon"
+          },
+          "category": {
+            "type": "string",
+            "description": "Weapon category (e.g., Rifle, Pistol)"
+          },
+          "defaultSkinUuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "UUID of the default skin"
+          },
+          "displayIcon": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the weapon's display icon"
+          },
+          "killStreamIcon": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the weapon's kill stream icon"
+          },
+          "assetPath": {
+            "type": "string",
+            "description": "Asset path in game files"
+          },
+          "weaponStats": {
+            "type": "object",
+            "properties": {
+              "fireRate": {
+                "type": "number"
+              },
+              "magazineSize": {
+                "type": "integer"
+              },
+              "runSpeedMultiplier": {
+                "type": "number"
+              },
+              "equipTimeSeconds": {
+                "type": "number"
+              },
+              "reloadTimeSeconds": {
+                "type": "number"
+              },
+              "firstBulletAccuracy": {
+                "type": "number"
+              },
+              "shotgunPelletCount": {
+                "type": "integer"
+              },
+              "wallPenetration": {
+                "type": "string"
+              },
+              "feature": {
+                "type": "string"
+              },
+              "fireMode": {
+                "type": "string"
+              },
+              "altFireType": {
+                "type": "string"
+              },
+              "adsStats": {
+                "type": "object"
+              },
+              "altShotgunStats": {
+                "type": "object"
+              },
+              "airBurstStats": {
+                "type": "object"
+              },
+              "damageRanges": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "shopData": {
+            "type": "object",
+            "properties": {
+              "cost": {
+                "type": "integer"
+              },
+              "category": {
+                "type": "string"
+              },
+              "categoryText": {
+                "type": "string"
+              },
+              "gridPosition": {
+                "type": "object"
+              },
+              "canBeTrashed": {
+                "type": "boolean"
+              },
+              "newImage": {
+                "type": "string",
+                "format": "uri"
+              },
+              "newImage2": {
+                "type": "string",
+                "format": "uri"
+              },
+              "assetPath": {
+                "type": "string"
+              }
+            }
+          },
+          "skins": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "Map": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the map"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Display name of the map"
+          },
+          "narrativeDescription": {
+            "type": "string",
+            "description": "Narrative description of the map"
+          },
+          "tacticalDescription": {
+            "type": "string",
+            "description": "Tactical description of the map"
+          },
+          "coordinates": {
+            "type": "string",
+            "description": "Geographic coordinates of the map location"
+          },
+          "displayIcon": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the map's display icon"
+          },
+          "listViewIcon": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the map's list view icon"
+          },
+          "splash": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the map's splash image"
+          },
+          "assetPath": {
+            "type": "string",
+            "description": "Asset path in game files"
+          },
+          "mapUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the map overview"
+          },
+          "xMultiplier": {
+            "type": "number",
+            "description": "X coordinate multiplier"
+          },
+          "yMultiplier": {
+            "type": "number",
+            "description": "Y coordinate multiplier"
+          },
+          "xScalarToAdd": {
+            "type": "number",
+            "description": "X scalar to add"
+          },
+          "yScalarToAdd": {
+            "type": "number",
+            "description": "Y scalar to add"
+          },
+          "callouts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "regionName": {
+                  "type": "string"
+                },
+                "superRegionName": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Buddy": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the buddy"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Display name of the buddy"
+          },
+          "isHiddenIfNotOwned": {
+            "type": "boolean",
+            "description": "Whether the buddy is hidden if not owned"
+          },
+          "themeUuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "UUID of the theme"
+          },
+          "displayIcon": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the buddy's display icon"
+          },
+          "assetPath": {
+            "type": "string",
+            "description": "Asset path in game files"
+          },
+          "levels": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "uuid": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "charmLevel": {
+                  "type": "integer"
+                },
+                "hideIfNotOwned": {
+                  "type": "boolean"
+                },
+                "displayName": {
+                  "type": "string"
+                },
+                "displayIcon": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "assetPath": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Spray": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the spray"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Display name of the spray"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of the spray"
+          },
+          "themeUuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "UUID of the theme"
+          },
+          "isNullSpray": {
+            "type": "boolean",
+            "description": "Whether this is a null spray"
+          },
+          "hideIfNotOwned": {
+            "type": "boolean",
+            "description": "Whether the spray is hidden if not owned"
+          },
+          "displayIcon": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the spray's display icon"
+          },
+          "fullIcon": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the spray's full icon"
+          },
+          "fullTransparentIcon": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the spray's full transparent icon"
+          },
+          "animationPng": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the spray's animation PNG"
+          },
+          "animationGif": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the spray's animation GIF"
+          },
+          "assetPath": {
+            "type": "string",
+            "description": "Asset path in game files"
+          },
+          "levels": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "PlayerCard": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the player card"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Display name of the player card"
+          },
+          "isHiddenIfNotOwned": {
+            "type": "boolean",
+            "description": "Whether the card is hidden if not owned"
+          },
+          "themeUuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "UUID of the theme"
+          },
+          "displayIcon": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the card's display icon"
+          },
+          "smallArt": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the card's small art"
+          },
+          "wideArt": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the card's wide art"
+          },
+          "largeArt": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the card's large art"
+          },
+          "assetPath": {
+            "type": "string",
+            "description": "Asset path in game files"
+          }
+        }
+      },
+      "CompetitiveTier": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the competitive tier set"
+          },
+          "assetObjectName": {
+            "type": "string",
+            "description": "Asset object name"
+          },
+          "tiers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tier": {
+                  "type": "integer"
+                },
+                "tierName": {
+                  "type": "string"
+                },
+                "division": {
+                  "type": "string"
+                },
+                "divisionName": {
+                  "type": "string"
+                },
+                "color": {
+                  "type": "string"
+                },
+                "backgroundColor": {
+                  "type": "string"
+                },
+                "smallIcon": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "largeIcon": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "rankTriangleDownIcon": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "rankTriangleUpIcon": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            }
+          },
+          "assetPath": {
+            "type": "string",
+            "description": "Asset path in game files"
+          }
+        }
+      },
+      "GameMode": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the game mode"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Display name of the game mode"
+          },
+          "duration": {
+            "type": "string",
+            "description": "Duration of the game mode"
+          },
+          "economyType": {
+            "type": "string",
+            "description": "Type of economy system"
+          },
+          "allowsMatchTimeouts": {
+            "type": "boolean",
+            "description": "Whether match timeouts are allowed"
+          },
+          "isTeamVoiceAllowed": {
+            "type": "boolean",
+            "description": "Whether team voice chat is allowed"
+          },
+          "isMinimapHidden": {
+            "type": "boolean",
+            "description": "Whether the minimap is hidden"
+          },
+          "orbCount": {
+            "type": "integer",
+            "description": "Number of orbs in the game mode"
+          },
+          "roundsPerHalf": {
+            "type": "integer",
+            "description": "Number of rounds per half"
+          },
+          "teamRoles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Team roles in the game mode"
+          },
+          "gameFeatureOverrides": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Game feature overrides"
+          },
+          "gameRuleBoolOverrides": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Game rule boolean overrides"
+          },
+          "displayIcon": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the game mode's display icon"
+          },
+          "assetPath": {
+            "type": "string",
+            "description": "Asset path in game files"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Agents",
+      "description": "Operations related to Valorant agents"
+    },
+    {
+      "name": "Weapons",
+      "description": "Operations related to Valorant weapons"
+    },
+    {
+      "name": "Maps",
+      "description": "Operations related to Valorant maps"
+    },
+    {
+      "name": "Cosmetics",
+      "description": "Operations related to cosmetic items (buddies, sprays, cards)"
+    },
+    {
+      "name": "Competitive",
+      "description": "Operations related to competitive ranking"
+    },
+    {
+      "name": "Game Modes",
+      "description": "Operations related to game modes"
+    }
+  ]
+}

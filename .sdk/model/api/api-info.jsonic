@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://dash.valorant-api.com/"
+      }
+      description: "The Valorant API provides extensive data related to in-game items, assets, and other game features, sourced directly from the Valorant game files. This API automatically updates with each game patch, ensuring accurate and up-to-date information for developers and fans alike."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://valorant-api.com"
+        }
+      ]
+      title: "Valorant API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

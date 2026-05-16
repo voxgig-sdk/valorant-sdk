@@ -1,0 +1,22 @@
+# BasicCosmeticFlow
+
+main: kit: flow: BasicCosmeticFlow:
+{
+  entity: "cosmetic",
+  kind: "basic",
+  name: "BasicCosmeticFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "cosmetic_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCosmeticFlow"
+}
