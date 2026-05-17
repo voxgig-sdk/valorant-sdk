@@ -1,10 +1,10 @@
 package voxgigvalorantsdk
 
 import (
-	"github.com/voxgig-sdk/valorant-sdk/core"
-	"github.com/voxgig-sdk/valorant-sdk/entity"
-	"github.com/voxgig-sdk/valorant-sdk/feature"
-	_ "github.com/voxgig-sdk/valorant-sdk/utility"
+	"github.com/voxgig-sdk/valorant-sdk/go/core"
+	"github.com/voxgig-sdk/valorant-sdk/go/entity"
+	"github.com/voxgig-sdk/valorant-sdk/go/feature"
+	_ "github.com/voxgig-sdk/valorant-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

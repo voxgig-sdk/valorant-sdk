@@ -24,7 +24,8 @@
         "role": {},
         "status": "sfa",
         "uuid": "sfb",
-        "voice_line": {}
+        "voice_line": {},
+        "id": "AGENT00"
       },
       "AGENT01": {
         "ability": [],
@@ -49,7 +50,8 @@
         "role": {},
         "status": "s1e0",
         "uuid": "s1e1",
-        "voice_line": {}
+        "voice_line": {},
+        "id": "AGENT01"
       },
       "AGENT02": {
         "ability": [],
@@ -74,7 +76,8 @@
         "role": {},
         "status": "s2c6",
         "uuid": "s2c7",
-        "voice_line": {}
+        "voice_line": {},
+        "id": "AGENT02"
       }
     }
   },

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/valorant-sdk"
-	"github.com/voxgig-sdk/valorant-sdk/core"
+	sdk "github.com/voxgig-sdk/valorant-sdk/go"
+	"github.com/voxgig-sdk/valorant-sdk/go/core"
 )
 
 func TestAgentDirect(t *testing.T) {

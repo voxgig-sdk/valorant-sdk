@@ -13,7 +13,8 @@
         "skin": [],
         "status": "s81",
         "uuid": "s82",
-        "weapon_stat": {}
+        "weapon_stat": {},
+        "id": "WEAPON00"
       },
       "WEAPON01": {
         "asset_path": "sf0",
@@ -27,7 +28,8 @@
         "skin": [],
         "status": "sf9",
         "uuid": "sfa",
-        "weapon_stat": {}
+        "weapon_stat": {},
+        "id": "WEAPON01"
       },
       "WEAPON02": {
         "asset_path": "s168",
@@ -41,7 +43,8 @@
         "skin": [],
         "status": "s171",
         "uuid": "s172",
-        "weapon_stat": {}
+        "weapon_stat": {},
+        "id": "WEAPON02"
       }
     }
   },

@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/valorant-sdk/core"
+	"github.com/voxgig-sdk/valorant-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/valorant-sdk/go/utility/struct"
 )
 
 type WeaponEntity struct {

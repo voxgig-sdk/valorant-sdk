@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/valorant-sdk"
+	sdk "github.com/voxgig-sdk/valorant-sdk/go"
 )
 
 func TestExists(t *testing.T) {

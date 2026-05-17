@@ -18,7 +18,8 @@
         "x_multiplier": 183,
         "x_scalar_to_add": 184,
         "y_multiplier": 185,
-        "y_scalar_to_add": 186
+        "y_scalar_to_add": 186,
+        "id": "MAP00"
       },
       "MAP01": {
         "asset_path": "s154",
@@ -37,7 +38,8 @@
         "x_multiplier": 353,
         "x_scalar_to_add": 354,
         "y_multiplier": 355,
-        "y_scalar_to_add": 356
+        "y_scalar_to_add": 356,
+        "id": "MAP01"
       },
       "MAP02": {
         "asset_path": "s1fe",
@@ -56,7 +58,8 @@
         "x_multiplier": 523,
         "x_scalar_to_add": 524,
         "y_multiplier": 525,
-        "y_scalar_to_add": 526
+        "y_scalar_to_add": 526,
+        "id": "MAP02"
       }
     }
   },
