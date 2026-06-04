@@ -16,8 +16,34 @@ main: {
       ]
       title: "Valorant API"
       version: "1.0.0"
+      tagline: "Browse Valorant agents, weapons, maps, game modes, cosmetics, and competitive tiers sourced from the game's own files"
+      homepage: "https://valorant-api.com"
+      docs_url: "https://dash.valorant-api.com/"
+      license_short: "Unofficial community API; Valorant and related marks are trademarks of Riot Games, Inc."
+      license_md: `- Valorant-API is a non-official API and is not endorsed by Riot Games
+- Riot Games, Valorant, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
+- No explicit licence terms are published for the API itself; check the site before redistributing assets
+- Attribution to the underlying game data source (Riot Games) is expected when displaying assets`
+      about_md: `[Valorant-API](https://valorant-api.com) is a community-run, unofficial REST API that exposes in-game data and assets extracted directly from Valorant game files. The project auto-updates after each game patch so the data stays in sync with the live client.
+
+What you get from the API:
+- Playable agents and their abilities
+- Weapons, skins, and chromas
+- Maps and game modes
+- Competitive tiers / ranked information
+- Cosmetics such as weapon buddies, player cards, sprays, and titles
+- Seasons and in-game currencies
+
+The API is read-only and does not require authentication. CORS is disabled on the public endpoints, so calls are typically made server-side. Full endpoint reference is published at the dashboard at [dash.valorant-api.com](https://dash.valorant-api.com/).`
+      entity_desc: {
+        agent: "Playable Valorant agents and their ability data, exposed under `/v1/agents`"
+        competitive: "Ranked / competitive tier information used in Valorant matchmaking"
+        cosmetic: "Cosmetic items such as weapon buddies, player cards, sprays, and titles, e.g. `/v1/buddies`"
+        game_mode: "Valorant game modes available in the client"
+        map: "Playable maps in Valorant, including metadata and assets"
+        weapon: "Weapons along with their skins and chromas pulled from the game files"
+      }
+      auth: false
     }
   }
-}
-
 }

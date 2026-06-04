@@ -92,7 +92,6 @@ function game_mode_basic_setup(extra)
     ["VALORANT_TEST_GAME_MODE_ENTID"] = idmap,
     ["VALORANT_TEST_LIVE"] = "FALSE",
     ["VALORANT_TEST_EXPLAIN"] = "FALSE",
-    ["VALORANT_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function game_mode_basic_setup(extra)
   if env["VALORANT_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["VALORANT_APIKEY"],
       },
       extra or {},
     })

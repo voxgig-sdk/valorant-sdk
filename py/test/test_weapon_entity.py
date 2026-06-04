@@ -98,7 +98,6 @@ def _weapon_basic_setup(extra):
         "VALORANT_TEST_WEAPON_ENTID": idmap,
         "VALORANT_TEST_LIVE": "FALSE",
         "VALORANT_TEST_EXPLAIN": "FALSE",
-        "VALORANT_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +108,6 @@ def _weapon_basic_setup(extra):
     if env.get("VALORANT_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("VALORANT_APIKEY"),
             },
             extra or {},
         ])

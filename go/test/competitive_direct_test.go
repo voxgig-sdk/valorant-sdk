@@ -93,14 +93,12 @@ func competitiveDirectSetup(mockres any) *competitiveDirectSetupResult {
 	env := envOverride(map[string]any{
 		"VALORANT_TEST_COMPETITIVE_ENTID": map[string]any{},
 		"VALORANT_TEST_LIVE":    "FALSE",
-		"VALORANT_APIKEY":       "NONE",
 	})
 
 	live := env["VALORANT_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["VALORANT_APIKEY"],
 		}
 		client := sdk.NewValorantSDK(mergedOpts)
 

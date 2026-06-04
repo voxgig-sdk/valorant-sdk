@@ -62,14 +62,12 @@ def competitive_direct_setup(mockres)
   env = Runner.env_override({
     "VALORANT_TEST_COMPETITIVE_ENTID" => {},
     "VALORANT_TEST_LIVE" => "FALSE",
-    "VALORANT_APIKEY" => "NONE",
   })
 
   live = env["VALORANT_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["VALORANT_APIKEY"],
     }
     client = ValorantSDK.new(merged_opts)
     return {

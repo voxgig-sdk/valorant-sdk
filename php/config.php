@@ -20,9 +20,6 @@ class ValorantConfig
             ],
             "options" => [
                 "base" => "https://valorant-api.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

@@ -114,7 +114,6 @@ function basicSetup(extra?: any) {
     'VALORANT_TEST_WEAPON_ENTID': idmap,
     'VALORANT_TEST_LIVE': 'FALSE',
     'VALORANT_TEST_EXPLAIN': 'FALSE',
-    'VALORANT_APIKEY': 'NONE',
   })
 
   idmap = env['VALORANT_TEST_WEAPON_ENTID']
@@ -124,7 +123,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new ValorantSDK(merge([
       {
-        apikey: env.VALORANT_APIKEY,
       },
       extra
     ]))
