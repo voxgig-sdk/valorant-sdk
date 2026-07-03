@@ -1,22 +1,8 @@
 # Valorant SDK
 
-Browse Valorant agents, weapons, maps, game modes, cosmetics, and competitive tiers sourced from the game's own files
+Valorant API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Valorant API
-
-[Valorant-API](https://valorant-api.com) is a community-run, unofficial REST API that exposes in-game data and assets extracted directly from Valorant game files. The project auto-updates after each game patch so the data stays in sync with the live client.
-
-What you get from the API:
-- Playable agents and their abilities
-- Weapons, skins, and chromas
-- Maps and game modes
-- Competitive tiers / ranked information
-- Cosmetics such as weapon buddies, player cards, sprays, and titles
-- Seasons and in-game currencies
-
-The API is read-only and does not require authentication. CORS is disabled on the public endpoints, so calls are typically made server-side. Full endpoint reference is published at the dashboard at [dash.valorant-api.com](https://dash.valorant-api.com/).
 
 ## Try it
 
@@ -50,29 +36,31 @@ gem install valorant-sdk
 luarocks install valorant-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { ValorantSDK } from 'valorant'
 
-const client = new ValorantSDK({})
+const client = new ValorantSDK({
+  apikey: process.env.VALORANT_APIKEY,
+})
 
 // List all agents
 const agents = await client.Agent().list()
+console.log(agents.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,12 +90,12 @@ The API exposes 6 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Agent** | Playable Valorant agents and their ability data, exposed under `/v1/agents` | `/v1/agents` |
-| **Competitive** | Ranked / competitive tier information used in Valorant matchmaking | `/v1/competitivetiers` |
-| **Cosmetic** | Cosmetic items such as weapon buddies, player cards, sprays, and titles, e.g. `/v1/buddies` | `/v1/buddies` |
-| **GameMode** | Valorant game modes available in the client | `/v1/gamemodes` |
-| **Map** | Playable maps in Valorant, including metadata and assets | `/v1/maps` |
-| **Weapon** | Weapons along with their skins and chromas pulled from the game files | `/v1/weapons` |
+| **Agent** |  | `/v1/agents` |
+| **Competitive** |  | `/v1/competitivetiers` |
+| **Cosmetic** |  | `/v1/buddies` |
+| **GameMode** |  | `/v1/gamemodes` |
+| **Map** |  | `/v1/maps` |
+| **Weapon** |  | `/v1/weapons` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -117,17 +105,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from valorant_sdk import ValorantSDK
 
-client = ValorantSDK({})
+client = ValorantSDK({
+    "apikey": os.environ.get("VALORANT_APIKEY"),
+})
 
 # List all agents
-agents, err = client.Agent(None).list(None, None)
+agents, err = client.Agent().list()
+print(agents)
 
 # Load a specific agent
-agent, err = client.Agent(None).load(
-    {"id": "example_id"}, None
-)
+agent, err = client.Agent().load({"id": "example_id"})
+print(agent)
 ```
 
 ### PHP
@@ -136,15 +127,17 @@ agent, err = client.Agent(None).load(
 <?php
 require_once 'valorant_sdk.php';
 
-$client = new ValorantSDK([]);
+$client = new ValorantSDK([
+    "apikey" => getenv("VALORANT_APIKEY"),
+]);
 
 // List all agents
-[$agents, $err] = $client->Agent(null)->list(null, null);
+[$agents, $err] = $client->Agent()->list();
+print_r($agents);
 
 // Load a specific agent
-[$agent, $err] = $client->Agent(null)->load(
-    ["id" => "example_id"], null
-);
+[$agent, $err] = $client->Agent()->load(["id" => "example_id"]);
+print_r($agent);
 ```
 
 ### Golang
@@ -152,10 +145,13 @@ $client = new ValorantSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/valorant-sdk/go"
 
-client := sdk.NewValorantSDK(map[string]any{})
+client := sdk.NewValorantSDK(map[string]any{
+    "apikey": os.Getenv("VALORANT_APIKEY"),
+})
 
 // List all agents
 agents, err := client.Agent(nil).List(nil, nil)
+fmt.Println(agents)
 ```
 
 ### Ruby
@@ -163,15 +159,17 @@ agents, err := client.Agent(nil).List(nil, nil)
 ```ruby
 require_relative "Valorant_sdk"
 
-client = ValorantSDK.new({})
+client = ValorantSDK.new({
+  "apikey" => ENV["VALORANT_APIKEY"],
+})
 
 # List all agents
-agents, err = client.Agent(nil).list(nil, nil)
+agents, err = client.Agent().list
+puts agents
 
 # Load a specific agent
-agent, err = client.Agent(nil).load(
-  { "id" => "example_id" }, nil
-)
+agent, err = client.Agent().load({ "id" => "example_id" })
+puts agent
 ```
 
 ### Lua
@@ -179,15 +177,17 @@ agent, err = client.Agent(nil).load(
 ```lua
 local sdk = require("valorant_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("VALORANT_APIKEY"),
+})
 
 -- List all agents
-local agents, err = client:Agent(nil):list(nil, nil)
+local agents, err = client:Agent():list()
+print(agents)
 
 -- Load a specific agent
-local agent, err = client:Agent(nil):load(
-  { id = "example_id" }, nil
-)
+local agent, err = client:Agent():load({ id = "example_id" })
+print(agent)
 ```
 
 ## Unit testing in offline mode
@@ -206,25 +206,21 @@ const result = await client.Agent().load({ id: 'test01' })
 ### Python
 
 ```python
-client = ValorantSDK.test(None, None)
-result, err = client.Agent(None).load(
-    {"id": "test01"}, None
-)
+client = ValorantSDK.test()
+result, err = client.Agent().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = ValorantSDK::test(null, null);
-[$result, $err] = $client->Agent(null)->load(
-    ["id" => "test01"], null
-);
+$client = ValorantSDK::test();
+[$result, $err] = $client->Agent()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Agent(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -233,19 +229,15 @@ result, err := client.Agent(nil).Load(
 ### Ruby
 
 ```ruby
-client = ValorantSDK.test(nil, nil)
-result, err = client.Agent(nil).load(
-  { "id" => "test01" }, nil
-)
+client = ValorantSDK.test
+result, err = client.Agent().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Agent(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Agent():load({ id = "test01" })
 ```
 
 ## How it works
@@ -349,16 +341,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Valorant API
-
-- Upstream: [https://valorant-api.com](https://valorant-api.com)
-- API docs: [https://dash.valorant-api.com/](https://dash.valorant-api.com/)
-
-- Valorant-API is a non-official API and is not endorsed by Riot Games
-- Riot Games, Valorant, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
-- No explicit licence terms are published for the API itself; check the site before redistributing assets
-- Attribution to the underlying game data source (Riot Games) is expected when displaying assets
 
 ---
 

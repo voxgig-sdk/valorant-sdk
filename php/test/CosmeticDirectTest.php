@@ -68,12 +68,14 @@ function cosmetic_direct_setup($mockres)
     $env = Runner::env_override([
         "VALORANT_TEST_COSMETIC_ENTID" => [],
         "VALORANT_TEST_LIVE" => "FALSE",
+        "VALORANT_APIKEY" => "NONE",
     ]);
 
     $live = $env["VALORANT_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["VALORANT_APIKEY"],
         ];
         $client = new ValorantSDK($merged_opts);
         return [

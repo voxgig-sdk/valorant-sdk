@@ -109,12 +109,14 @@ def _agent_direct_setup(mockres):
     env = runner.env_override({
         "VALORANT_TEST_AGENT_ENTID": {},
         "VALORANT_TEST_LIVE": "FALSE",
+        "VALORANT_APIKEY": "NONE",
     })
 
     live = env.get("VALORANT_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("VALORANT_APIKEY"),
         }
         client = ValorantSDK(merged_opts)
         return {

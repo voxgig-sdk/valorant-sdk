@@ -136,12 +136,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'VALORANT_TEST_MAP_ENTID': {},
     'VALORANT_TEST_LIVE': 'FALSE',
+    'VALORANT_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.VALORANT_TEST_LIVE
 
   if (live) {
     const client = new ValorantSDK({
+      apikey: env.VALORANT_APIKEY,
     })
 
     let idmap: any = env['VALORANT_TEST_MAP_ENTID']

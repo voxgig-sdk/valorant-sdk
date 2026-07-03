@@ -63,12 +63,14 @@ function cosmetic_direct_setup(mockres)
   local env = runner.env_override({
     ["VALORANT_TEST_COSMETIC_ENTID"] = {},
     ["VALORANT_TEST_LIVE"] = "FALSE",
+    ["VALORANT_APIKEY"] = "NONE",
   })
 
   local live = env["VALORANT_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["VALORANT_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
