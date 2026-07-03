@@ -10,7 +10,7 @@ The TypeScript SDK for the Valorant API — a type-safe, entity-oriented client 
 
 ## Install
 ```bash
-npm install valorant
+npm install @voxgig-sdk/valorant
 ```
 ## Tutorial: your first API call
 

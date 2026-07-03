@@ -10,13 +10,13 @@ The Ruby SDK for the Valorant API — an entity-oriented client using idiomatic 
 
 ## Install
 ```bash
-gem install valorant-sdk
+gem install voxgig-sdk-valorant
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "valorant-sdk"
+gem "voxgig-sdk-valorant"
 ```
 
 Then run:

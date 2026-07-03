@@ -10,7 +10,7 @@ The Lua SDK for the Valorant API — an entity-oriented client using Lua convent
 
 ## Install
 ```bash
-luarocks install valorant-sdk
+luarocks install voxgig-sdk-valorant
 ```
 
 If the module is not yet published, add the source directory to

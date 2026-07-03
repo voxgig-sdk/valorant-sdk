@@ -10,7 +10,7 @@ The PHP SDK for the Valorant API — an entity-oriented client using PHP convent
 
 ## Install
 ```bash
-composer require voxgig/valorant-sdk
+composer require voxgig-sdk/valorant
 ```
 
 

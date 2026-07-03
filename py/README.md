@@ -10,7 +10,7 @@ The Python SDK for the Valorant API — an entity-oriented client following Pyth
 
 ## Install
 ```bash
-pip install valorant-sdk
+pip install voxgig-sdk-valorant
 ```
 
 Or install from source:
