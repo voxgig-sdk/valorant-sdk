@@ -7,6 +7,8 @@ import { GameModeEntity } from './entity/GameModeEntity'
 import { MapEntity } from './entity/MapEntity'
 import { WeaponEntity } from './entity/WeaponEntity'
 
+export type * from './ValorantTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -207,36 +209,84 @@ class ValorantSDK {
 
 
 
+  _agent?: AgentEntity
+
+  // Idiomatic facade: `client.agent.list()` / `client.agent.load({ id })`.
+  get agent(): AgentEntity {
+    return (this._agent ??= new AgentEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.agent` instead. */
   Agent(data?: any) {
     const self = this
     return new AgentEntity(self,data)
   }
 
 
+  _competitive?: CompetitiveEntity
+
+  // Idiomatic facade: `client.competitive.list()` / `client.competitive.load({ id })`.
+  get competitive(): CompetitiveEntity {
+    return (this._competitive ??= new CompetitiveEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.competitive` instead. */
   Competitive(data?: any) {
     const self = this
     return new CompetitiveEntity(self,data)
   }
 
 
+  _cosmetic?: CosmeticEntity
+
+  // Idiomatic facade: `client.cosmetic.list()` / `client.cosmetic.load({ id })`.
+  get cosmetic(): CosmeticEntity {
+    return (this._cosmetic ??= new CosmeticEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.cosmetic` instead. */
   Cosmetic(data?: any) {
     const self = this
     return new CosmeticEntity(self,data)
   }
 
 
+  _game_mode?: GameModeEntity
+
+  // Idiomatic facade: `client.game_mode.list()` / `client.game_mode.load({ id })`.
+  get game_mode(): GameModeEntity {
+    return (this._game_mode ??= new GameModeEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.game_mode` instead. */
   GameMode(data?: any) {
     const self = this
     return new GameModeEntity(self,data)
   }
 
 
+  _map?: MapEntity
+
+  // Idiomatic facade: `client.map.list()` / `client.map.load({ id })`.
+  get map(): MapEntity {
+    return (this._map ??= new MapEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.map` instead. */
   Map(data?: any) {
     const self = this
     return new MapEntity(self,data)
   }
 
 
+  _weapon?: WeaponEntity
+
+  // Idiomatic facade: `client.weapon.list()` / `client.weapon.load({ id })`.
+  get weapon(): WeaponEntity {
+    return (this._weapon ??= new WeaponEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.weapon` instead. */
   Weapon(data?: any) {
     const self = this
     return new WeaponEntity(self,data)

@@ -43,8 +43,7 @@ class GameModeEntityTest < Minitest::Test
     game_mode_ref01_ent = client.GameMode(nil)
     game_mode_ref01_match = {}
 
-    game_mode_ref01_list_result, err = game_mode_ref01_ent.list(game_mode_ref01_match, nil)
-    assert_nil err
+    game_mode_ref01_list_result = game_mode_ref01_ent.list(game_mode_ref01_match, nil)
     assert game_mode_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def game_mode_basic_setup(extra)
     "VALORANT_TEST_GAME_MODE_ENTID" => idmap,
     "VALORANT_TEST_LIVE" => "FALSE",
     "VALORANT_TEST_EXPLAIN" => "FALSE",
-    "VALORANT_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def game_mode_basic_setup(extra)
   if env["VALORANT_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["VALORANT_APIKEY"],
       },
       extra || {},
     ])

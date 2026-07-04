@@ -45,6 +45,7 @@ class AgentEntity
     end
   end
 
+  # @return [Agent, Hash] the current Agent data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class AgentEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Agent fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Agent.
+  #
+  # @param reqmatch [AgentLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Agent, Hash] the loaded Agent; raises ValorantError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class AgentEntity
 
 
   
+  # List Agent items matching the given filter.
+  #
+  # @param reqmatch [AgentListMatch, Hash, nil] match filter (any subset of Agent fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Agent>, Array] the matching Agent items; raises ValorantError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

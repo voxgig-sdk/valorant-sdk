@@ -43,14 +43,12 @@ class AgentEntityTest < Minitest::Test
     agent_ref01_ent = client.Agent(nil)
     agent_ref01_match = {}
 
-    agent_ref01_list_result, err = agent_ref01_ent.list(agent_ref01_match, nil)
-    assert_nil err
+    agent_ref01_list_result = agent_ref01_ent.list(agent_ref01_match, nil)
     assert agent_ref01_list_result.is_a?(Array)
 
     # LOAD
     agent_ref01_match_dt0 = {}
-    agent_ref01_data_dt0_loaded, err = agent_ref01_ent.load(agent_ref01_match_dt0, nil)
-    assert_nil err
+    agent_ref01_data_dt0_loaded = agent_ref01_ent.load(agent_ref01_match_dt0, nil)
     assert !agent_ref01_data_dt0_loaded.nil?
 
   end
@@ -89,7 +87,6 @@ def agent_basic_setup(extra)
     "VALORANT_TEST_AGENT_ENTID" => idmap,
     "VALORANT_TEST_LIVE" => "FALSE",
     "VALORANT_TEST_EXPLAIN" => "FALSE",
-    "VALORANT_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -101,7 +98,6 @@ def agent_basic_setup(extra)
   if env["VALORANT_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["VALORANT_APIKEY"],
       },
       extra || {},
     ])

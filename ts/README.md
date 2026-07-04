@@ -9,9 +9,12 @@ The TypeScript SDK for the Valorant API — a type-safe, entity-oriented client 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/valorant
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/valorant-sdk/releases](https://github.com/voxgig-sdk/valorant-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { ValorantSDK } from 'valorant'
+import { ValorantSDK } from '@voxgig-sdk/valorant'
 
-const client = new ValorantSDK({
-  apikey: process.env.VALORANT_APIKEY,
-})
+const client = new ValorantSDK()
 ```
 
 ### 2. List agents
 
 ```ts
-const result = await client.Agent().list()
+const result = await client.agent.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -39,10 +40,10 @@ if (result.ok) {
 }
 ```
 
-### 3. Load a agent
+### 3. Load an agent
 
 ```ts
-const result = await client.Agent().load({ id: 'example_id' })
+const result = await client.agent.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -91,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = ValorantSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.agent.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -99,7 +100,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new ValorantSDK({ apikey: '...' })
+const client = new ValorantSDK()
 const testClient = client.tester()
 ```
 
@@ -108,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.agent
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,7 +136,6 @@ const logger = {
 }
 
 const client = new ValorantSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -146,7 +146,6 @@ Create a `.env.local` file at the project root:
 
 ```
 VALORANT_TEST_LIVE=TRUE
-VALORANT_APIKEY=<your-key>
 ```
 
 Then run:
@@ -164,7 +163,6 @@ cd ts && npm test
 
 ```ts
 new ValorantSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -175,7 +173,6 @@ new ValorantSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -414,7 +411,7 @@ API path: `/v1/weapons`
 
 ### Agent
 
-Create an instance: `const agent = client.Agent()`
+Create an instance: `const agent = client.agent`
 
 #### Operations
 
@@ -454,19 +451,19 @@ Create an instance: `const agent = client.Agent()`
 #### Example: Load
 
 ```ts
-const agent = await client.Agent().load({ id: 'agent_id' })
+const agent = await client.agent.load({ id: 'agent_id' })
 ```
 
 #### Example: List
 
 ```ts
-const agents = await client.Agent().list()
+const agents = await client.agent.list()
 ```
 
 
 ### Competitive
 
-Create an instance: `const competitive = client.Competitive()`
+Create an instance: `const competitive = client.competitive`
 
 #### Operations
 
@@ -486,13 +483,13 @@ Create an instance: `const competitive = client.Competitive()`
 #### Example: List
 
 ```ts
-const competitives = await client.Competitive().list()
+const competitives = await client.competitive.list()
 ```
 
 
 ### Cosmetic
 
-Create an instance: `const cosmetic = client.Cosmetic()`
+Create an instance: `const cosmetic = client.cosmetic`
 
 #### Operations
 
@@ -525,13 +522,13 @@ Create an instance: `const cosmetic = client.Cosmetic()`
 #### Example: List
 
 ```ts
-const cosmetics = await client.Cosmetic().list()
+const cosmetics = await client.cosmetic.list()
 ```
 
 
 ### GameMode
 
-Create an instance: `const game_mode = client.GameMode()`
+Create an instance: `const game_mode = client.game_mode`
 
 #### Operations
 
@@ -561,13 +558,13 @@ Create an instance: `const game_mode = client.GameMode()`
 #### Example: List
 
 ```ts
-const game_modes = await client.GameMode().list()
+const game_modes = await client.game_mode.list()
 ```
 
 
 ### Map
 
-Create an instance: `const map = client.Map()`
+Create an instance: `const map = client.map`
 
 #### Operations
 
@@ -601,19 +598,19 @@ Create an instance: `const map = client.Map()`
 #### Example: Load
 
 ```ts
-const map = await client.Map().load({ id: 'map_id' })
+const map = await client.map.load({ id: 'map_id' })
 ```
 
 #### Example: List
 
 ```ts
-const maps = await client.Map().list()
+const maps = await client.map.list()
 ```
 
 
 ### Weapon
 
-Create an instance: `const weapon = client.Weapon()`
+Create an instance: `const weapon = client.weapon`
 
 #### Operations
 
@@ -642,13 +639,13 @@ Create an instance: `const weapon = client.Weapon()`
 #### Example: Load
 
 ```ts
-const weapon = await client.Weapon().load({ id: 'weapon_id' })
+const weapon = await client.weapon.load({ id: 'weapon_id' })
 ```
 
 #### Example: List
 
 ```ts
-const weapons = await client.Weapon().list()
+const weapons = await client.weapon.list()
 ```
 
 
@@ -709,7 +706,7 @@ valorant/
 Import the SDK from the package root:
 
 ```ts
-import { ValorantSDK } from 'valorant'
+import { ValorantSDK } from '@voxgig-sdk/valorant'
 ```
 
 ### Entity state
@@ -719,11 +716,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const agent = client.agent
+await agent.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// agent.data() now returns the loaded agent data
+// agent.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

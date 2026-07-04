@@ -43,14 +43,12 @@ class MapEntityTest < Minitest::Test
     map_ref01_ent = client.Map(nil)
     map_ref01_match = {}
 
-    map_ref01_list_result, err = map_ref01_ent.list(map_ref01_match, nil)
-    assert_nil err
+    map_ref01_list_result = map_ref01_ent.list(map_ref01_match, nil)
     assert map_ref01_list_result.is_a?(Array)
 
     # LOAD
     map_ref01_match_dt0 = {}
-    map_ref01_data_dt0_loaded, err = map_ref01_ent.load(map_ref01_match_dt0, nil)
-    assert_nil err
+    map_ref01_data_dt0_loaded = map_ref01_ent.load(map_ref01_match_dt0, nil)
     assert !map_ref01_data_dt0_loaded.nil?
 
   end
@@ -89,7 +87,6 @@ def map_basic_setup(extra)
     "VALORANT_TEST_MAP_ENTID" => idmap,
     "VALORANT_TEST_LIVE" => "FALSE",
     "VALORANT_TEST_EXPLAIN" => "FALSE",
-    "VALORANT_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -101,7 +98,6 @@ def map_basic_setup(extra)
   if env["VALORANT_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["VALORANT_APIKEY"],
       },
       extra || {},
     ])

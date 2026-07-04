@@ -1,7 +1,14 @@
 # Valorant SDK Agent entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from valorant_types import (
+    Agent,
+    AgentLoadMatch,
+    AgentListMatch,
+)
 
 
 class AgentEntity:
@@ -44,7 +51,7 @@ class AgentEntity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> Agent:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,12 +60,12 @@ class AgentEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> Agent:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch, ctrl=None):
+    def load(self, reqmatch: AgentLoadMatch, ctrl=None) -> Agent:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "load",
@@ -80,7 +87,7 @@ class AgentEntity:
 
 
     
-    def list(self, reqmatch, ctrl=None):
+    def list(self, reqmatch: AgentListMatch, ctrl=None) -> list[Agent]:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "list",

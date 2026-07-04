@@ -45,6 +45,7 @@ class CompetitiveEntity
     end
   end
 
+  # @return [Competitive, Hash] the current Competitive data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class CompetitiveEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Competitive fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class CompetitiveEntity
   
 
   
+  # List Competitive items matching the given filter.
+  #
+  # @param reqmatch [CompetitiveListMatch, Hash, nil] match filter (any subset of Competitive fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Competitive>, Array] the matching Competitive items; raises ValorantError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

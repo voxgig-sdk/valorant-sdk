@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CosmeticListMatch
+---@param ctrl? table
+---@return Cosmetic[]
+---@return string? err
 function CosmeticEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

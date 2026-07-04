@@ -50,14 +50,12 @@ class AgentEntityTest extends TestCase
         $agent_ref01_ent = $client->Agent(null);
         $agent_ref01_match = [];
 
-        [$agent_ref01_list_result, $err] = $agent_ref01_ent->list($agent_ref01_match, null);
-        $this->assertNull($err);
+        $agent_ref01_list_result = $agent_ref01_ent->list($agent_ref01_match, null);
         $this->assertIsArray($agent_ref01_list_result);
 
         // LOAD
         $agent_ref01_match_dt0 = [];
-        [$agent_ref01_data_dt0_loaded, $err] = $agent_ref01_ent->load($agent_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $agent_ref01_data_dt0_loaded = $agent_ref01_ent->load($agent_ref01_match_dt0, null);
         $this->assertNotNull($agent_ref01_data_dt0_loaded);
 
     }
@@ -92,7 +90,6 @@ function agent_basic_setup($extra)
         "VALORANT_TEST_AGENT_ENTID" => $idmap,
         "VALORANT_TEST_LIVE" => "FALSE",
         "VALORANT_TEST_EXPLAIN" => "FALSE",
-        "VALORANT_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -104,7 +101,6 @@ function agent_basic_setup($extra)
     if ($env["VALORANT_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["VALORANT_APIKEY"],
             ],
             $extra ?? [],
         ]);

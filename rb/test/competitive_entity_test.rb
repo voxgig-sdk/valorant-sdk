@@ -43,8 +43,7 @@ class CompetitiveEntityTest < Minitest::Test
     competitive_ref01_ent = client.Competitive(nil)
     competitive_ref01_match = {}
 
-    competitive_ref01_list_result, err = competitive_ref01_ent.list(competitive_ref01_match, nil)
-    assert_nil err
+    competitive_ref01_list_result = competitive_ref01_ent.list(competitive_ref01_match, nil)
     assert competitive_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def competitive_basic_setup(extra)
     "VALORANT_TEST_COMPETITIVE_ENTID" => idmap,
     "VALORANT_TEST_LIVE" => "FALSE",
     "VALORANT_TEST_EXPLAIN" => "FALSE",
-    "VALORANT_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def competitive_basic_setup(extra)
   if env["VALORANT_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["VALORANT_APIKEY"],
       },
       extra || {},
     ])

@@ -50,14 +50,12 @@ class TestAgentEntity:
         agent_ref01_ent = client.Agent(None)
         agent_ref01_match = {}
 
-        agent_ref01_list_result, err = agent_ref01_ent.list(agent_ref01_match, None)
-        assert err is None
+        agent_ref01_list_result = agent_ref01_ent.list(agent_ref01_match, None)
         assert isinstance(agent_ref01_list_result, list)
 
         # LOAD
         agent_ref01_match_dt0 = {}
-        agent_ref01_data_dt0_loaded, err = agent_ref01_ent.load(agent_ref01_match_dt0, None)
-        assert err is None
+        agent_ref01_data_dt0_loaded = agent_ref01_ent.load(agent_ref01_match_dt0, None)
         assert agent_ref01_data_dt0_loaded is not None
 
 
@@ -98,7 +96,6 @@ def _agent_basic_setup(extra):
         "VALORANT_TEST_AGENT_ENTID": idmap,
         "VALORANT_TEST_LIVE": "FALSE",
         "VALORANT_TEST_EXPLAIN": "FALSE",
-        "VALORANT_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +106,6 @@ def _agent_basic_setup(extra):
     if env.get("VALORANT_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("VALORANT_APIKEY"),
             },
             extra or {},
         ])

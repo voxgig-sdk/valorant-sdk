@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CompetitiveListMatch
+---@param ctrl? table
+---@return Competitive[]
+---@return string? err
 function CompetitiveEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

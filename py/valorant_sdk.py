@@ -144,16 +144,23 @@ class ValorantSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class ValorantSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,40 +212,106 @@ class ValorantSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def agent(self):
+        """Idiomatic facade: client.agent.list() / client.agent.load({"id": ...})."""
+        from entity.agent_entity import AgentEntity
+        cached = getattr(self, "_agent", None)
+        if cached is None:
+            cached = AgentEntity(self, None)
+            self._agent = cached
+        return cached
 
     def Agent(self, data=None):
+        # Deprecated: use client.agent instead.
         from entity.agent_entity import AgentEntity
         return AgentEntity(self, data)
 
 
+    @property
+    def competitive(self):
+        """Idiomatic facade: client.competitive.list() / client.competitive.load({"id": ...})."""
+        from entity.competitive_entity import CompetitiveEntity
+        cached = getattr(self, "_competitive", None)
+        if cached is None:
+            cached = CompetitiveEntity(self, None)
+            self._competitive = cached
+        return cached
+
     def Competitive(self, data=None):
+        # Deprecated: use client.competitive instead.
         from entity.competitive_entity import CompetitiveEntity
         return CompetitiveEntity(self, data)
 
 
+    @property
+    def cosmetic(self):
+        """Idiomatic facade: client.cosmetic.list() / client.cosmetic.load({"id": ...})."""
+        from entity.cosmetic_entity import CosmeticEntity
+        cached = getattr(self, "_cosmetic", None)
+        if cached is None:
+            cached = CosmeticEntity(self, None)
+            self._cosmetic = cached
+        return cached
+
     def Cosmetic(self, data=None):
+        # Deprecated: use client.cosmetic instead.
         from entity.cosmetic_entity import CosmeticEntity
         return CosmeticEntity(self, data)
 
 
+    @property
+    def game_mode(self):
+        """Idiomatic facade: client.game_mode.list() / client.game_mode.load({"id": ...})."""
+        from entity.game_mode_entity import GameModeEntity
+        cached = getattr(self, "_game_mode", None)
+        if cached is None:
+            cached = GameModeEntity(self, None)
+            self._game_mode = cached
+        return cached
+
     def GameMode(self, data=None):
+        # Deprecated: use client.game_mode instead.
         from entity.game_mode_entity import GameModeEntity
         return GameModeEntity(self, data)
 
 
+    @property
+    def map(self):
+        """Idiomatic facade: client.map.list() / client.map.load({"id": ...})."""
+        from entity.map_entity import MapEntity
+        cached = getattr(self, "_map", None)
+        if cached is None:
+            cached = MapEntity(self, None)
+            self._map = cached
+        return cached
+
     def Map(self, data=None):
+        # Deprecated: use client.map instead.
         from entity.map_entity import MapEntity
         return MapEntity(self, data)
 
 
+    @property
+    def weapon(self):
+        """Idiomatic facade: client.weapon.list() / client.weapon.load({"id": ...})."""
+        from entity.weapon_entity import WeaponEntity
+        cached = getattr(self, "_weapon", None)
+        if cached is None:
+            cached = WeaponEntity(self, None)
+            self._weapon = cached
+        return cached
+
     def Weapon(self, data=None):
+        # Deprecated: use client.weapon instead.
         from entity.weapon_entity import WeaponEntity
         return WeaponEntity(self, data)
 

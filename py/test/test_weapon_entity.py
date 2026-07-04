@@ -50,14 +50,12 @@ class TestWeaponEntity:
         weapon_ref01_ent = client.Weapon(None)
         weapon_ref01_match = {}
 
-        weapon_ref01_list_result, err = weapon_ref01_ent.list(weapon_ref01_match, None)
-        assert err is None
+        weapon_ref01_list_result = weapon_ref01_ent.list(weapon_ref01_match, None)
         assert isinstance(weapon_ref01_list_result, list)
 
         # LOAD
         weapon_ref01_match_dt0 = {}
-        weapon_ref01_data_dt0_loaded, err = weapon_ref01_ent.load(weapon_ref01_match_dt0, None)
-        assert err is None
+        weapon_ref01_data_dt0_loaded = weapon_ref01_ent.load(weapon_ref01_match_dt0, None)
         assert weapon_ref01_data_dt0_loaded is not None
 
 
@@ -98,7 +96,6 @@ def _weapon_basic_setup(extra):
         "VALORANT_TEST_WEAPON_ENTID": idmap,
         "VALORANT_TEST_LIVE": "FALSE",
         "VALORANT_TEST_EXPLAIN": "FALSE",
-        "VALORANT_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +106,6 @@ def _weapon_basic_setup(extra):
     if env.get("VALORANT_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("VALORANT_APIKEY"),
             },
             extra or {},
         ])

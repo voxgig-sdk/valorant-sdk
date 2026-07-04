@@ -9,12 +9,9 @@ The Lua SDK for the Valorant API — an entity-oriented client using Lua convent
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-valorant
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/valorant-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("valorant_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("VALORANT_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List agents
 
 ```lua
-local result, err = client:Agent():list()
+local result, err = client:agent():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -50,10 +45,10 @@ if type(result) == "table" then
 end
 ```
 
-### 3. Load a agent
+### 3. Load an agent
 
 ```lua
-local result, err = client:Agent():load({ id = "example_id" })
+local result, err = client:agent():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -101,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Valorant():load({ id = "test01" })
+local result, err = client:agent():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -135,7 +130,6 @@ Create a `.env.local` file at the project root:
 
 ```
 VALORANT_TEST_LIVE=TRUE
-VALORANT_APIKEY=<your-key>
 ```
 
 Then run:
@@ -158,7 +152,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -371,7 +364,7 @@ API path: `/v1/weapons`
 
 ### Agent
 
-Create an instance: `const agent = client.Agent()`
+Create an instance: `const agent = client.agent`
 
 #### Operations
 
@@ -411,19 +404,19 @@ Create an instance: `const agent = client.Agent()`
 #### Example: Load
 
 ```ts
-const agent = await client.Agent().load({ id: 'agent_id' })
+const agent = await client.agent.load({ id: 'agent_id' })
 ```
 
 #### Example: List
 
 ```ts
-const agents = await client.Agent().list()
+const agents = await client.agent.list()
 ```
 
 
 ### Competitive
 
-Create an instance: `const competitive = client.Competitive()`
+Create an instance: `const competitive = client.competitive`
 
 #### Operations
 
@@ -443,13 +436,13 @@ Create an instance: `const competitive = client.Competitive()`
 #### Example: List
 
 ```ts
-const competitives = await client.Competitive().list()
+const competitives = await client.competitive.list()
 ```
 
 
 ### Cosmetic
 
-Create an instance: `const cosmetic = client.Cosmetic()`
+Create an instance: `const cosmetic = client.cosmetic`
 
 #### Operations
 
@@ -482,13 +475,13 @@ Create an instance: `const cosmetic = client.Cosmetic()`
 #### Example: List
 
 ```ts
-const cosmetics = await client.Cosmetic().list()
+const cosmetics = await client.cosmetic.list()
 ```
 
 
 ### GameMode
 
-Create an instance: `const game_mode = client.GameMode()`
+Create an instance: `const game_mode = client.game_mode`
 
 #### Operations
 
@@ -518,13 +511,13 @@ Create an instance: `const game_mode = client.GameMode()`
 #### Example: List
 
 ```ts
-const game_modes = await client.GameMode().list()
+const game_modes = await client.game_mode.list()
 ```
 
 
 ### Map
 
-Create an instance: `const map = client.Map()`
+Create an instance: `const map = client.map`
 
 #### Operations
 
@@ -558,19 +551,19 @@ Create an instance: `const map = client.Map()`
 #### Example: Load
 
 ```ts
-const map = await client.Map().load({ id: 'map_id' })
+const map = await client.map.load({ id: 'map_id' })
 ```
 
 #### Example: List
 
 ```ts
-const maps = await client.Map().list()
+const maps = await client.map.list()
 ```
 
 
 ### Weapon
 
-Create an instance: `const weapon = client.Weapon()`
+Create an instance: `const weapon = client.weapon`
 
 #### Operations
 
@@ -599,13 +592,13 @@ Create an instance: `const weapon = client.Weapon()`
 #### Example: Load
 
 ```ts
-const weapon = await client.Weapon().load({ id: 'weapon_id' })
+const weapon = await client.weapon.load({ id: 'weapon_id' })
 ```
 
 #### Example: List
 
 ```ts
-const weapons = await client.Weapon().list()
+const weapons = await client.weapon.list()
 ```
 
 
@@ -680,11 +673,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local agent = client:agent()
+agent:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- agent:data_get() now returns the loaded agent data
+-- agent:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

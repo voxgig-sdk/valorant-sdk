@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GameMode,
+  GameModeListMatch,
+} from '../ValorantTypes'
 
 // TODO: needs Entity superclass
-class GameModeEntity extends ValorantEntityBase {
+class GameModeEntity extends ValorantEntityBase<GameMode> {
 
   constructor(client: ValorantSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class GameModeEntity extends ValorantEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: GameModeListMatch, ctrl?: Control): Promise<GameMode[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class GameModeEntity extends ValorantEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GameMode[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

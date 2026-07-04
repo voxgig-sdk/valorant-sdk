@@ -50,8 +50,7 @@ class TestCompetitiveEntity:
         competitive_ref01_ent = client.Competitive(None)
         competitive_ref01_match = {}
 
-        competitive_ref01_list_result, err = competitive_ref01_ent.list(competitive_ref01_match, None)
-        assert err is None
+        competitive_ref01_list_result = competitive_ref01_ent.list(competitive_ref01_match, None)
         assert isinstance(competitive_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _competitive_basic_setup(extra):
         "VALORANT_TEST_COMPETITIVE_ENTID": idmap,
         "VALORANT_TEST_LIVE": "FALSE",
         "VALORANT_TEST_EXPLAIN": "FALSE",
-        "VALORANT_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _competitive_basic_setup(extra):
     if env.get("VALORANT_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("VALORANT_APIKEY"),
             },
             extra or {},
         ])

@@ -50,14 +50,12 @@ class MapEntityTest extends TestCase
         $map_ref01_ent = $client->Map(null);
         $map_ref01_match = [];
 
-        [$map_ref01_list_result, $err] = $map_ref01_ent->list($map_ref01_match, null);
-        $this->assertNull($err);
+        $map_ref01_list_result = $map_ref01_ent->list($map_ref01_match, null);
         $this->assertIsArray($map_ref01_list_result);
 
         // LOAD
         $map_ref01_match_dt0 = [];
-        [$map_ref01_data_dt0_loaded, $err] = $map_ref01_ent->load($map_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $map_ref01_data_dt0_loaded = $map_ref01_ent->load($map_ref01_match_dt0, null);
         $this->assertNotNull($map_ref01_data_dt0_loaded);
 
     }
@@ -92,7 +90,6 @@ function map_basic_setup($extra)
         "VALORANT_TEST_MAP_ENTID" => $idmap,
         "VALORANT_TEST_LIVE" => "FALSE",
         "VALORANT_TEST_EXPLAIN" => "FALSE",
-        "VALORANT_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -104,7 +101,6 @@ function map_basic_setup($extra)
     if ($env["VALORANT_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["VALORANT_APIKEY"],
             ],
             $extra ?? [],
         ]);

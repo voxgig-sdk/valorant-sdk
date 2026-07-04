@@ -50,8 +50,7 @@ class GameModeEntityTest extends TestCase
         $game_mode_ref01_ent = $client->GameMode(null);
         $game_mode_ref01_match = [];
 
-        [$game_mode_ref01_list_result, $err] = $game_mode_ref01_ent->list($game_mode_ref01_match, null);
-        $this->assertNull($err);
+        $game_mode_ref01_list_result = $game_mode_ref01_ent->list($game_mode_ref01_match, null);
         $this->assertIsArray($game_mode_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function game_mode_basic_setup($extra)
         "VALORANT_TEST_GAME_MODE_ENTID" => $idmap,
         "VALORANT_TEST_LIVE" => "FALSE",
         "VALORANT_TEST_EXPLAIN" => "FALSE",
-        "VALORANT_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function game_mode_basic_setup($extra)
     if ($env["VALORANT_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["VALORANT_APIKEY"],
             ],
             $extra ?? [],
         ]);

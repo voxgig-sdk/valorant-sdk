@@ -245,31 +245,49 @@ func (sdk *ValorantSDK) Direct(fetchargs map[string]any) (map[string]any, error)
 }
 
 
+// Agent returns a Agent entity bound to this client.
+// Idiomatic usage: client.Agent(nil).List(nil, nil) or
+// client.Agent(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ValorantSDK) Agent(data map[string]any) ValorantEntity {
 	return NewAgentEntityFunc(sdk, data)
 }
 
 
+// Competitive returns a Competitive entity bound to this client.
+// Idiomatic usage: client.Competitive(nil).List(nil, nil) or
+// client.Competitive(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ValorantSDK) Competitive(data map[string]any) ValorantEntity {
 	return NewCompetitiveEntityFunc(sdk, data)
 }
 
 
+// Cosmetic returns a Cosmetic entity bound to this client.
+// Idiomatic usage: client.Cosmetic(nil).List(nil, nil) or
+// client.Cosmetic(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ValorantSDK) Cosmetic(data map[string]any) ValorantEntity {
 	return NewCosmeticEntityFunc(sdk, data)
 }
 
 
+// GameMode returns a GameMode entity bound to this client.
+// Idiomatic usage: client.GameMode(nil).List(nil, nil) or
+// client.GameMode(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ValorantSDK) GameMode(data map[string]any) ValorantEntity {
 	return NewGameModeEntityFunc(sdk, data)
 }
 
 
+// Map returns a Map entity bound to this client.
+// Idiomatic usage: client.Map(nil).List(nil, nil) or
+// client.Map(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ValorantSDK) Map(data map[string]any) ValorantEntity {
 	return NewMapEntityFunc(sdk, data)
 }
 
 
+// Weapon returns a Weapon entity bound to this client.
+// Idiomatic usage: client.Weapon(nil).List(nil, nil) or
+// client.Weapon(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ValorantSDK) Weapon(data map[string]any) ValorantEntity {
 	return NewWeaponEntityFunc(sdk, data)
 }

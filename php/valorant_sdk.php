@@ -103,7 +103,7 @@ class ValorantSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class ValorantSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class ValorantSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,59 +216,125 @@ class ValorantSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Agent($data = null)
+    private $_agent = null;
+
+    // Idiomatic facade: $client->agent()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Agent() (PHP method
+    // names are case-insensitive).
+    public function agent($data = null)
     {
         require_once __DIR__ . '/entity/agent_entity.php';
+        if ($data === null) {
+            if ($this->_agent === null) {
+                $this->_agent = new AgentEntity($this, null);
+            }
+            return $this->_agent;
+        }
         return new AgentEntity($this, $data);
     }
 
 
-    public function Competitive($data = null)
+    private $_competitive = null;
+
+    // Idiomatic facade: $client->competitive()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Competitive() (PHP method
+    // names are case-insensitive).
+    public function competitive($data = null)
     {
         require_once __DIR__ . '/entity/competitive_entity.php';
+        if ($data === null) {
+            if ($this->_competitive === null) {
+                $this->_competitive = new CompetitiveEntity($this, null);
+            }
+            return $this->_competitive;
+        }
         return new CompetitiveEntity($this, $data);
     }
 
 
-    public function Cosmetic($data = null)
+    private $_cosmetic = null;
+
+    // Idiomatic facade: $client->cosmetic()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Cosmetic() (PHP method
+    // names are case-insensitive).
+    public function cosmetic($data = null)
     {
         require_once __DIR__ . '/entity/cosmetic_entity.php';
+        if ($data === null) {
+            if ($this->_cosmetic === null) {
+                $this->_cosmetic = new CosmeticEntity($this, null);
+            }
+            return $this->_cosmetic;
+        }
         return new CosmeticEntity($this, $data);
     }
 
 
-    public function GameMode($data = null)
+    private $_game_mode = null;
+
+    // Idiomatic facade: $client->game_mode()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias GameMode() (PHP method
+    // names are case-insensitive).
+    public function game_mode($data = null)
     {
         require_once __DIR__ . '/entity/game_mode_entity.php';
+        if ($data === null) {
+            if ($this->_game_mode === null) {
+                $this->_game_mode = new GameModeEntity($this, null);
+            }
+            return $this->_game_mode;
+        }
         return new GameModeEntity($this, $data);
     }
 
 
-    public function Map($data = null)
+    private $_map = null;
+
+    // Idiomatic facade: $client->map()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Map() (PHP method
+    // names are case-insensitive).
+    public function map($data = null)
     {
         require_once __DIR__ . '/entity/map_entity.php';
+        if ($data === null) {
+            if ($this->_map === null) {
+                $this->_map = new MapEntity($this, null);
+            }
+            return $this->_map;
+        }
         return new MapEntity($this, $data);
     }
 
 
-    public function Weapon($data = null)
+    private $_weapon = null;
+
+    // Idiomatic facade: $client->weapon()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Weapon() (PHP method
+    // names are case-insensitive).
+    public function weapon($data = null)
     {
         require_once __DIR__ . '/entity/weapon_entity.php';
+        if ($data === null) {
+            if ($this->_weapon === null) {
+                $this->_weapon = new WeaponEntity($this, null);
+            }
+            return $this->_weapon;
+        }
         return new WeaponEntity($this, $data);
     }
 

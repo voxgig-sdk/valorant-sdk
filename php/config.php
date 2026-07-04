@@ -20,9 +20,6 @@ class ValorantConfig
             ],
             "options" => [
                 "base" => "https://valorant-api.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -265,6 +262,7 @@ class ValorantConfig
                         'orig' => 'uuid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -945,6 +943,7 @@ class ValorantConfig
                         'orig' => 'uuid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -1134,6 +1133,7 @@ class ValorantConfig
                         'orig' => 'uuid',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [

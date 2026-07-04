@@ -244,36 +244,114 @@ end
 
 
 
+-- Idiomatic facade: client:agent():list() / client:agent():load({ id = ... })
+function ValorantSDK:agent(data)
+  local EntityMod = require("entity.agent_entity")
+  if data == nil then
+    if self._agent == nil then
+      self._agent = EntityMod.new(self, nil)
+    end
+    return self._agent
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:agent() instead.
 function ValorantSDK:Agent(data)
   local EntityMod = require("entity.agent_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:competitive():list() / client:competitive():load({ id = ... })
+function ValorantSDK:competitive(data)
+  local EntityMod = require("entity.competitive_entity")
+  if data == nil then
+    if self._competitive == nil then
+      self._competitive = EntityMod.new(self, nil)
+    end
+    return self._competitive
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:competitive() instead.
 function ValorantSDK:Competitive(data)
   local EntityMod = require("entity.competitive_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:cosmetic():list() / client:cosmetic():load({ id = ... })
+function ValorantSDK:cosmetic(data)
+  local EntityMod = require("entity.cosmetic_entity")
+  if data == nil then
+    if self._cosmetic == nil then
+      self._cosmetic = EntityMod.new(self, nil)
+    end
+    return self._cosmetic
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:cosmetic() instead.
 function ValorantSDK:Cosmetic(data)
   local EntityMod = require("entity.cosmetic_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:game_mode():list() / client:game_mode():load({ id = ... })
+function ValorantSDK:game_mode(data)
+  local EntityMod = require("entity.game_mode_entity")
+  if data == nil then
+    if self._game_mode == nil then
+      self._game_mode = EntityMod.new(self, nil)
+    end
+    return self._game_mode
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:game_mode() instead.
 function ValorantSDK:GameMode(data)
   local EntityMod = require("entity.game_mode_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:map():list() / client:map():load({ id = ... })
+function ValorantSDK:map(data)
+  local EntityMod = require("entity.map_entity")
+  if data == nil then
+    if self._map == nil then
+      self._map = EntityMod.new(self, nil)
+    end
+    return self._map
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:map() instead.
 function ValorantSDK:Map(data)
   local EntityMod = require("entity.map_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:weapon():list() / client:weapon():load({ id = ... })
+function ValorantSDK:weapon(data)
+  local EntityMod = require("entity.weapon_entity")
+  if data == nil then
+    if self._weapon == nil then
+      self._weapon = EntityMod.new(self, nil)
+    end
+    return self._weapon
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:weapon() instead.
 function ValorantSDK:Weapon(data)
   local EntityMod = require("entity.weapon_entity")
   return EntityMod.new(self, data)

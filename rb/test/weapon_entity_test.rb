@@ -43,14 +43,12 @@ class WeaponEntityTest < Minitest::Test
     weapon_ref01_ent = client.Weapon(nil)
     weapon_ref01_match = {}
 
-    weapon_ref01_list_result, err = weapon_ref01_ent.list(weapon_ref01_match, nil)
-    assert_nil err
+    weapon_ref01_list_result = weapon_ref01_ent.list(weapon_ref01_match, nil)
     assert weapon_ref01_list_result.is_a?(Array)
 
     # LOAD
     weapon_ref01_match_dt0 = {}
-    weapon_ref01_data_dt0_loaded, err = weapon_ref01_ent.load(weapon_ref01_match_dt0, nil)
-    assert_nil err
+    weapon_ref01_data_dt0_loaded = weapon_ref01_ent.load(weapon_ref01_match_dt0, nil)
     assert !weapon_ref01_data_dt0_loaded.nil?
 
   end
@@ -89,7 +87,6 @@ def weapon_basic_setup(extra)
     "VALORANT_TEST_WEAPON_ENTID" => idmap,
     "VALORANT_TEST_LIVE" => "FALSE",
     "VALORANT_TEST_EXPLAIN" => "FALSE",
-    "VALORANT_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -101,7 +98,6 @@ def weapon_basic_setup(extra)
   if env["VALORANT_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["VALORANT_APIKEY"],
       },
       extra || {},
     ])

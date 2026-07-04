@@ -9,9 +9,10 @@ The PHP SDK for the Valorant API — an entity-oriented client using PHP convent
 
 
 ## Install
-```bash
-composer require voxgig-sdk/valorant
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/valorant-sdk/releases](https://github.com/voxgig-sdk/valorant-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,31 +26,34 @@ loading a specific record.
 <?php
 require_once 'valorant_sdk.php';
 
-$client = new ValorantSDK([
-    "apikey" => getenv("VALORANT_APIKEY"),
-]);
+$client = new ValorantSDK();
 ```
 
 ### 2. List agents
 
 ```php
-[$result, $err] = $client->Agent()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->agent()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
-### 3. Load a agent
+### 3. Load an agent
 
 ```php
-[$result, $err] = $client->Agent()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->agent()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -60,28 +64,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -95,7 +102,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = ValorantSDK::test();
 
-[$result, $err] = $client->Valorant()->load(["id" => "test01"]);
+$result = $client->agent()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -130,7 +137,6 @@ Create a `.env.local` file at the project root:
 
 ```
 VALORANT_TEST_LIVE=TRUE
-VALORANT_APIKEY=<your-key>
 ```
 
 Then run:
@@ -153,7 +159,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -204,8 +209,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -366,7 +375,7 @@ API path: `/v1/weapons`
 
 ### Agent
 
-Create an instance: `const agent = client.Agent()`
+Create an instance: `const agent = client.agent`
 
 #### Operations
 
@@ -406,19 +415,19 @@ Create an instance: `const agent = client.Agent()`
 #### Example: Load
 
 ```ts
-const agent = await client.Agent().load({ id: 'agent_id' })
+const agent = await client.agent.load({ id: 'agent_id' })
 ```
 
 #### Example: List
 
 ```ts
-const agents = await client.Agent().list()
+const agents = await client.agent.list()
 ```
 
 
 ### Competitive
 
-Create an instance: `const competitive = client.Competitive()`
+Create an instance: `const competitive = client.competitive`
 
 #### Operations
 
@@ -438,13 +447,13 @@ Create an instance: `const competitive = client.Competitive()`
 #### Example: List
 
 ```ts
-const competitives = await client.Competitive().list()
+const competitives = await client.competitive.list()
 ```
 
 
 ### Cosmetic
 
-Create an instance: `const cosmetic = client.Cosmetic()`
+Create an instance: `const cosmetic = client.cosmetic`
 
 #### Operations
 
@@ -477,13 +486,13 @@ Create an instance: `const cosmetic = client.Cosmetic()`
 #### Example: List
 
 ```ts
-const cosmetics = await client.Cosmetic().list()
+const cosmetics = await client.cosmetic.list()
 ```
 
 
 ### GameMode
 
-Create an instance: `const game_mode = client.GameMode()`
+Create an instance: `const game_mode = client.game_mode`
 
 #### Operations
 
@@ -513,13 +522,13 @@ Create an instance: `const game_mode = client.GameMode()`
 #### Example: List
 
 ```ts
-const game_modes = await client.GameMode().list()
+const game_modes = await client.game_mode.list()
 ```
 
 
 ### Map
 
-Create an instance: `const map = client.Map()`
+Create an instance: `const map = client.map`
 
 #### Operations
 
@@ -553,19 +562,19 @@ Create an instance: `const map = client.Map()`
 #### Example: Load
 
 ```ts
-const map = await client.Map().load({ id: 'map_id' })
+const map = await client.map.load({ id: 'map_id' })
 ```
 
 #### Example: List
 
 ```ts
-const maps = await client.Map().list()
+const maps = await client.map.list()
 ```
 
 
 ### Weapon
 
-Create an instance: `const weapon = client.Weapon()`
+Create an instance: `const weapon = client.weapon`
 
 #### Operations
 
@@ -594,13 +603,13 @@ Create an instance: `const weapon = client.Weapon()`
 #### Example: Load
 
 ```ts
-const weapon = await client.Weapon().load({ id: 'weapon_id' })
+const weapon = await client.weapon.load({ id: 'weapon_id' })
 ```
 
 #### Example: List
 
 ```ts
-const weapons = await client.Weapon().list()
+const weapons = await client.weapon.list()
 ```
 
 
@@ -675,11 +684,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$agent = $client->agent();
+$agent->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $agent->dataGet() now returns the loaded agent data
+// $agent->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

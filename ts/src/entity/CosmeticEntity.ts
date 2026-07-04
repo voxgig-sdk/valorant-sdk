@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Cosmetic,
+  CosmeticListMatch,
+} from '../ValorantTypes'
 
 // TODO: needs Entity superclass
-class CosmeticEntity extends ValorantEntityBase {
+class CosmeticEntity extends ValorantEntityBase<Cosmetic> {
 
   constructor(client: ValorantSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class CosmeticEntity extends ValorantEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CosmeticListMatch, ctrl?: Control): Promise<Cosmetic[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class CosmeticEntity extends ValorantEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Cosmetic[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

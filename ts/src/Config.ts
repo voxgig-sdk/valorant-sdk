@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://valorant-api.com',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -299,7 +295,8 @@ class Config {
                     "name": "id",
                     "orig": "uuid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -979,7 +976,8 @@ class Config {
                     "name": "id",
                     "orig": "uuid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -1168,7 +1166,8 @@ class Config {
                     "name": "id",
                     "orig": "uuid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

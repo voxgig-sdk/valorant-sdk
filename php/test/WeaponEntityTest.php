@@ -50,14 +50,12 @@ class WeaponEntityTest extends TestCase
         $weapon_ref01_ent = $client->Weapon(null);
         $weapon_ref01_match = [];
 
-        [$weapon_ref01_list_result, $err] = $weapon_ref01_ent->list($weapon_ref01_match, null);
-        $this->assertNull($err);
+        $weapon_ref01_list_result = $weapon_ref01_ent->list($weapon_ref01_match, null);
         $this->assertIsArray($weapon_ref01_list_result);
 
         // LOAD
         $weapon_ref01_match_dt0 = [];
-        [$weapon_ref01_data_dt0_loaded, $err] = $weapon_ref01_ent->load($weapon_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $weapon_ref01_data_dt0_loaded = $weapon_ref01_ent->load($weapon_ref01_match_dt0, null);
         $this->assertNotNull($weapon_ref01_data_dt0_loaded);
 
     }
@@ -92,7 +90,6 @@ function weapon_basic_setup($extra)
         "VALORANT_TEST_WEAPON_ENTID" => $idmap,
         "VALORANT_TEST_LIVE" => "FALSE",
         "VALORANT_TEST_EXPLAIN" => "FALSE",
-        "VALORANT_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -104,7 +101,6 @@ function weapon_basic_setup($extra)
     if ($env["VALORANT_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["VALORANT_APIKEY"],
             ],
             $extra ?? [],
         ]);

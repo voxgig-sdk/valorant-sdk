@@ -15,9 +15,6 @@ module ValorantConfig
       },
       "options" => {
         "base" => "https://valorant-api.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -260,6 +257,7 @@ module ValorantConfig
                         "orig" => "uuid",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -940,6 +938,7 @@ module ValorantConfig
                         "orig" => "uuid",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -1129,6 +1128,7 @@ module ValorantConfig
                         "orig" => "uuid",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [

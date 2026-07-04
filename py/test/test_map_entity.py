@@ -50,14 +50,12 @@ class TestMapEntity:
         map_ref01_ent = client.Map(None)
         map_ref01_match = {}
 
-        map_ref01_list_result, err = map_ref01_ent.list(map_ref01_match, None)
-        assert err is None
+        map_ref01_list_result = map_ref01_ent.list(map_ref01_match, None)
         assert isinstance(map_ref01_list_result, list)
 
         # LOAD
         map_ref01_match_dt0 = {}
-        map_ref01_data_dt0_loaded, err = map_ref01_ent.load(map_ref01_match_dt0, None)
-        assert err is None
+        map_ref01_data_dt0_loaded = map_ref01_ent.load(map_ref01_match_dt0, None)
         assert map_ref01_data_dt0_loaded is not None
 
 
@@ -98,7 +96,6 @@ def _map_basic_setup(extra):
         "VALORANT_TEST_MAP_ENTID": idmap,
         "VALORANT_TEST_LIVE": "FALSE",
         "VALORANT_TEST_EXPLAIN": "FALSE",
-        "VALORANT_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +106,6 @@ def _map_basic_setup(extra):
     if env.get("VALORANT_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("VALORANT_APIKEY"),
             },
             extra or {},
         ])

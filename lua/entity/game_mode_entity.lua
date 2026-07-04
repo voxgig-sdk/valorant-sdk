@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch GameModeListMatch
+---@param ctrl? table
+---@return GameMode[]
+---@return string? err
 function GameModeEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
