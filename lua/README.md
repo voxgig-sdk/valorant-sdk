@@ -31,26 +31,26 @@ local sdk = require("valorant_sdk")
 local client = sdk.new()
 ```
 
-### 2. List agents
+### 2. List agent records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:agent():list()
+local agents, err = client:Agent():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(agents) do
+  print(item["id"], item["name"])
 end
 ```
 
 ### 3. Load an agent
 
 ```lua
-local result, err = client:agent():load({ id = "example_id" })
+local agent, err = client:Agent():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(agent)
 ```
 
 
@@ -96,8 +96,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:agent():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Agent():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -175,7 +175,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Agent` | `(data) -> AgentEntity` | Create a Agent entity instance. |
+| `Agent` | `(data) -> AgentEntity` | Create an Agent entity instance. |
 | `Competitive` | `(data) -> CompetitiveEntity` | Create a Competitive entity instance. |
 | `Cosmetic` | `(data) -> CosmeticEntity` | Create a Cosmetic entity instance. |
 | `GameMode` | `(data) -> GameModeEntity` | Create a GameMode entity instance. |
@@ -202,17 +202,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local agent, err = client:Agent():load({ id = "example_id" })
+    if err then error(err) end
+    -- agent is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -364,7 +369,7 @@ API path: `/v1/weapons`
 
 ### Agent
 
-Create an instance: `const agent = client.agent`
+Create an instance: `local agent = client:Agent(nil)`
 
 #### Operations
 
@@ -403,20 +408,20 @@ Create an instance: `const agent = client.agent`
 
 #### Example: Load
 
-```ts
-const agent = await client.agent.load({ id: 'agent_id' })
+```lua
+local agent, err = client:Agent():load({ id = "agent_id" })
 ```
 
 #### Example: List
 
-```ts
-const agents = await client.agent.list()
+```lua
+local agents, err = client:Agent():list()
 ```
 
 
 ### Competitive
 
-Create an instance: `const competitive = client.competitive`
+Create an instance: `local competitive = client:Competitive(nil)`
 
 #### Operations
 
@@ -435,14 +440,14 @@ Create an instance: `const competitive = client.competitive`
 
 #### Example: List
 
-```ts
-const competitives = await client.competitive.list()
+```lua
+local competitives, err = client:Competitive():list()
 ```
 
 
 ### Cosmetic
 
-Create an instance: `const cosmetic = client.cosmetic`
+Create an instance: `local cosmetic = client:Cosmetic(nil)`
 
 #### Operations
 
@@ -474,14 +479,14 @@ Create an instance: `const cosmetic = client.cosmetic`
 
 #### Example: List
 
-```ts
-const cosmetics = await client.cosmetic.list()
+```lua
+local cosmetics, err = client:Cosmetic():list()
 ```
 
 
 ### GameMode
 
-Create an instance: `const game_mode = client.game_mode`
+Create an instance: `local game_mode = client:GameMode(nil)`
 
 #### Operations
 
@@ -510,14 +515,14 @@ Create an instance: `const game_mode = client.game_mode`
 
 #### Example: List
 
-```ts
-const game_modes = await client.game_mode.list()
+```lua
+local game_modes, err = client:GameMode():list()
 ```
 
 
 ### Map
 
-Create an instance: `const map = client.map`
+Create an instance: `local map = client:Map(nil)`
 
 #### Operations
 
@@ -550,20 +555,20 @@ Create an instance: `const map = client.map`
 
 #### Example: Load
 
-```ts
-const map = await client.map.load({ id: 'map_id' })
+```lua
+local map, err = client:Map():load({ id = "map_id" })
 ```
 
 #### Example: List
 
-```ts
-const maps = await client.map.list()
+```lua
+local maps, err = client:Map():list()
 ```
 
 
 ### Weapon
 
-Create an instance: `const weapon = client.weapon`
+Create an instance: `local weapon = client:Weapon(nil)`
 
 #### Operations
 
@@ -591,14 +596,14 @@ Create an instance: `const weapon = client.weapon`
 
 #### Example: Load
 
-```ts
-const weapon = await client.weapon.load({ id: 'weapon_id' })
+```lua
+local weapon, err = client:Weapon():load({ id = "weapon_id" })
 ```
 
 #### Example: List
 
-```ts
-const weapons = await client.weapon.list()
+```lua
+local weapons, err = client:Weapon():list()
 ```
 
 
@@ -673,7 +678,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local agent = client:agent()
+local agent = client:Agent()
 agent:load({ id = "example_id" })
 
 -- agent:data_get() now returns the loaded agent data

@@ -29,18 +29,16 @@ require_once 'valorant_sdk.php';
 $client = new ValorantSDK();
 ```
 
-### 2. List agents
+### 2. List agent records
 
 ```php
 try {
-    $result = $client->agent()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Agent records — iterate directly.
+    $agents = $client->Agent()->list();
+    foreach ($agents as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->agent()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Agent record (throws on error).
+    $agent = $client->Agent()->load(["id" => "example_id"]);
+    print_r($agent);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -97,13 +96,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = ValorantSDK::test();
+$client = ValorantSDK::test([
+    "entity" => ["agent" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->agent()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$agent = $client->Agent()->load(["id" => "test01"]);
+print_r($agent);
 ```
 
 ### Use a custom fetch function
@@ -182,7 +185,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Agent` | `($data): AgentEntity` | Create a Agent entity instance. |
+| `Agent` | `($data): AgentEntity` | Create an Agent entity instance. |
 | `Competitive` | `($data): CompetitiveEntity` | Create a Competitive entity instance. |
 | `Cosmetic` | `($data): CosmeticEntity` | Create a Cosmetic entity instance. |
 | `GameMode` | `($data): GameModeEntity` | Create a GameMode entity instance. |
@@ -375,7 +378,7 @@ API path: `/v1/weapons`
 
 ### Agent
 
-Create an instance: `const agent = client.agent`
+Create an instance: `$agent = $client->Agent();`
 
 #### Operations
 
@@ -414,20 +417,22 @@ Create an instance: `const agent = client.agent`
 
 #### Example: Load
 
-```ts
-const agent = await client.agent.load({ id: 'agent_id' })
+```php
+// load() returns the bare Agent record (throws on error).
+$agent = $client->Agent()->load(["id" => "agent_id"]);
 ```
 
 #### Example: List
 
-```ts
-const agents = await client.agent.list()
+```php
+// list() returns an array of Agent records (throws on error).
+$agents = $client->Agent()->list();
 ```
 
 
 ### Competitive
 
-Create an instance: `const competitive = client.competitive`
+Create an instance: `$competitive = $client->Competitive();`
 
 #### Operations
 
@@ -446,14 +451,15 @@ Create an instance: `const competitive = client.competitive`
 
 #### Example: List
 
-```ts
-const competitives = await client.competitive.list()
+```php
+// list() returns an array of Competitive records (throws on error).
+$competitives = $client->Competitive()->list();
 ```
 
 
 ### Cosmetic
 
-Create an instance: `const cosmetic = client.cosmetic`
+Create an instance: `$cosmetic = $client->Cosmetic();`
 
 #### Operations
 
@@ -485,14 +491,15 @@ Create an instance: `const cosmetic = client.cosmetic`
 
 #### Example: List
 
-```ts
-const cosmetics = await client.cosmetic.list()
+```php
+// list() returns an array of Cosmetic records (throws on error).
+$cosmetics = $client->Cosmetic()->list();
 ```
 
 
 ### GameMode
 
-Create an instance: `const game_mode = client.game_mode`
+Create an instance: `$game_mode = $client->GameMode();`
 
 #### Operations
 
@@ -521,14 +528,15 @@ Create an instance: `const game_mode = client.game_mode`
 
 #### Example: List
 
-```ts
-const game_modes = await client.game_mode.list()
+```php
+// list() returns an array of GameMode records (throws on error).
+$game_modes = $client->GameMode()->list();
 ```
 
 
 ### Map
 
-Create an instance: `const map = client.map`
+Create an instance: `$map = $client->Map();`
 
 #### Operations
 
@@ -561,20 +569,22 @@ Create an instance: `const map = client.map`
 
 #### Example: Load
 
-```ts
-const map = await client.map.load({ id: 'map_id' })
+```php
+// load() returns the bare Map record (throws on error).
+$map = $client->Map()->load(["id" => "map_id"]);
 ```
 
 #### Example: List
 
-```ts
-const maps = await client.map.list()
+```php
+// list() returns an array of Map records (throws on error).
+$maps = $client->Map()->list();
 ```
 
 
 ### Weapon
 
-Create an instance: `const weapon = client.weapon`
+Create an instance: `$weapon = $client->Weapon();`
 
 #### Operations
 
@@ -602,14 +612,16 @@ Create an instance: `const weapon = client.weapon`
 
 #### Example: Load
 
-```ts
-const weapon = await client.weapon.load({ id: 'weapon_id' })
+```php
+// load() returns the bare Weapon record (throws on error).
+$weapon = $client->Weapon()->load(["id" => "weapon_id"]);
 ```
 
 #### Example: List
 
-```ts
-const weapons = await client.weapon.list()
+```php
+// list() returns an array of Weapon records (throws on error).
+$weapons = $client->Weapon()->list();
 ```
 
 
@@ -684,7 +696,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$agent = $client->agent();
+$agent = $client->Agent();
 $agent->load(["id" => "example_id"]);
 
 // $agent->dataGet() now returns the loaded agent data

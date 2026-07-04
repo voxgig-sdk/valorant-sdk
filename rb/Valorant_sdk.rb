@@ -208,78 +208,42 @@ class ValorantSDK
   end
 
 
-  # Idiomatic facade: client.agent.list / client.agent.load({ "id" => ... })
-  def agent
-    require_relative 'entity/agent_entity'
-    @agent ||= AgentEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.agent instead.
+  # Canonical facade: client.Agent.list / client.Agent.load({ "id" => ... })
   def Agent(data = nil)
     require_relative 'entity/agent_entity'
     AgentEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.competitive.list / client.competitive.load({ "id" => ... })
-  def competitive
-    require_relative 'entity/competitive_entity'
-    @competitive ||= CompetitiveEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.competitive instead.
+  # Canonical facade: client.Competitive.list / client.Competitive.load({ "id" => ... })
   def Competitive(data = nil)
     require_relative 'entity/competitive_entity'
     CompetitiveEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.cosmetic.list / client.cosmetic.load({ "id" => ... })
-  def cosmetic
-    require_relative 'entity/cosmetic_entity'
-    @cosmetic ||= CosmeticEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.cosmetic instead.
+  # Canonical facade: client.Cosmetic.list / client.Cosmetic.load({ "id" => ... })
   def Cosmetic(data = nil)
     require_relative 'entity/cosmetic_entity'
     CosmeticEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.game_mode.list / client.game_mode.load({ "id" => ... })
-  def game_mode
-    require_relative 'entity/game_mode_entity'
-    @game_mode ||= GameModeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.game_mode instead.
+  # Canonical facade: client.GameMode.list / client.GameMode.load({ "id" => ... })
   def GameMode(data = nil)
     require_relative 'entity/game_mode_entity'
     GameModeEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.map.list / client.map.load({ "id" => ... })
-  def map
-    require_relative 'entity/map_entity'
-    @map ||= MapEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.map instead.
+  # Canonical facade: client.Map.list / client.Map.load({ "id" => ... })
   def Map(data = nil)
     require_relative 'entity/map_entity'
     MapEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.weapon.list / client.weapon.load({ "id" => ... })
-  def weapon
-    require_relative 'entity/weapon_entity'
-    @weapon ||= WeaponEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.weapon instead.
+  # Canonical facade: client.Weapon.list / client.Weapon.load({ "id" => ... })
   def Weapon(data = nil)
     require_relative 'entity/weapon_entity'
     WeaponEntity.new(self, data)

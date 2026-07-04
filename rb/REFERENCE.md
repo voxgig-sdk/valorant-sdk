@@ -106,7 +106,7 @@ same parameters as `direct()`. Raises on error.
 ## AgentEntity
 
 ```ruby
-agent = client.agent
+agent = client.Agent
 ```
 
 ### Fields
@@ -144,7 +144,7 @@ agent = client.agent
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.agent.list(nil)
+results = client.Agent.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -152,7 +152,7 @@ results = client.agent.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.agent.load({ "id" => "agent_id" })
+result = client.Agent.load({ "id" => "agent_id" })
 ```
 
 ### Common Methods
@@ -188,7 +188,7 @@ Return the entity name.
 ## CompetitiveEntity
 
 ```ruby
-competitive = client.competitive
+competitive = client.Competitive
 ```
 
 ### Fields
@@ -207,7 +207,7 @@ competitive = client.competitive
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.competitive.list(nil)
+results = client.Competitive.list(nil)
 ```
 
 ### Common Methods
@@ -243,7 +243,7 @@ Return the entity name.
 ## CosmeticEntity
 
 ```ruby
-cosmetic = client.cosmetic
+cosmetic = client.Cosmetic
 ```
 
 ### Fields
@@ -275,7 +275,7 @@ cosmetic = client.cosmetic
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.cosmetic.list(nil)
+results = client.Cosmetic.list(nil)
 ```
 
 ### Common Methods
@@ -311,7 +311,7 @@ Return the entity name.
 ## GameModeEntity
 
 ```ruby
-game_mode = client.game_mode
+game_mode = client.GameMode
 ```
 
 ### Fields
@@ -340,7 +340,7 @@ game_mode = client.game_mode
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.game_mode.list(nil)
+results = client.GameMode.list(nil)
 ```
 
 ### Common Methods
@@ -376,7 +376,7 @@ Return the entity name.
 ## MapEntity
 
 ```ruby
-map = client.map
+map = client.Map
 ```
 
 ### Fields
@@ -408,7 +408,7 @@ map = client.map
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.map.list(nil)
+results = client.Map.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -416,7 +416,7 @@ results = client.map.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.map.load({ "id" => "map_id" })
+result = client.Map.load({ "id" => "map_id" })
 ```
 
 ### Common Methods
@@ -452,7 +452,7 @@ Return the entity name.
 ## WeaponEntity
 
 ```ruby
-weapon = client.weapon
+weapon = client.Weapon
 ```
 
 ### Fields
@@ -479,7 +479,7 @@ weapon = client.weapon
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.weapon.list(nil)
+results = client.Weapon.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -487,7 +487,7 @@ results = client.weapon.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.weapon.load({ "id" => "weapon_id" })
+result = client.Weapon.load({ "id" => "weapon_id" })
 ```
 
 ### Common Methods

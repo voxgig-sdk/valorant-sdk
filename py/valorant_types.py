@@ -4,246 +4,235 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Agent:
-    ability: Optional[list] = None
-    asset_path: Optional[str] = None
-    background: Optional[str] = None
-    background_gradient_color: Optional[list] = None
-    bust_portrait: Optional[str] = None
-    character_tag: Optional[list] = None
-    data: Optional[dict] = None
-    description: Optional[str] = None
-    developer_name: Optional[str] = None
-    display_icon: Optional[str] = None
-    display_icon_small: Optional[str] = None
-    display_name: Optional[str] = None
-    full_portrait: Optional[str] = None
-    full_portrait_v2: Optional[str] = None
-    is_available_for_test: Optional[bool] = None
-    is_base_content: Optional[bool] = None
-    is_full_portrait_right_facing: Optional[bool] = None
-    is_playable_character: Optional[bool] = None
-    killfeed_portrait: Optional[str] = None
-    role: Optional[dict] = None
-    status: Optional[int] = None
-    uuid: Optional[str] = None
-    voice_line: Optional[dict] = None
+class Agent(TypedDict, total=False):
+    ability: list
+    asset_path: str
+    background: str
+    background_gradient_color: list
+    bust_portrait: str
+    character_tag: list
+    data: dict
+    description: str
+    developer_name: str
+    display_icon: str
+    display_icon_small: str
+    display_name: str
+    full_portrait: str
+    full_portrait_v2: str
+    is_available_for_test: bool
+    is_base_content: bool
+    is_full_portrait_right_facing: bool
+    is_playable_character: bool
+    killfeed_portrait: str
+    role: dict
+    status: int
+    uuid: str
+    voice_line: dict
 
 
-@dataclass
-class AgentLoadMatch:
+class AgentLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class AgentListMatch:
-    ability: Optional[list] = None
-    asset_path: Optional[str] = None
-    background: Optional[str] = None
-    background_gradient_color: Optional[list] = None
-    bust_portrait: Optional[str] = None
-    character_tag: Optional[list] = None
-    data: Optional[dict] = None
-    description: Optional[str] = None
-    developer_name: Optional[str] = None
-    display_icon: Optional[str] = None
-    display_icon_small: Optional[str] = None
-    display_name: Optional[str] = None
-    full_portrait: Optional[str] = None
-    full_portrait_v2: Optional[str] = None
-    is_available_for_test: Optional[bool] = None
-    is_base_content: Optional[bool] = None
-    is_full_portrait_right_facing: Optional[bool] = None
-    is_playable_character: Optional[bool] = None
-    killfeed_portrait: Optional[str] = None
-    role: Optional[dict] = None
-    status: Optional[int] = None
-    uuid: Optional[str] = None
-    voice_line: Optional[dict] = None
+class AgentListMatch(TypedDict, total=False):
+    ability: list
+    asset_path: str
+    background: str
+    background_gradient_color: list
+    bust_portrait: str
+    character_tag: list
+    data: dict
+    description: str
+    developer_name: str
+    display_icon: str
+    display_icon_small: str
+    display_name: str
+    full_portrait: str
+    full_portrait_v2: str
+    is_available_for_test: bool
+    is_base_content: bool
+    is_full_portrait_right_facing: bool
+    is_playable_character: bool
+    killfeed_portrait: str
+    role: dict
+    status: int
+    uuid: str
+    voice_line: dict
 
 
-@dataclass
-class Competitive:
-    asset_object_name: Optional[str] = None
-    asset_path: Optional[str] = None
-    tier: Optional[list] = None
-    uuid: Optional[str] = None
+class Competitive(TypedDict, total=False):
+    asset_object_name: str
+    asset_path: str
+    tier: list
+    uuid: str
 
 
-@dataclass
-class CompetitiveListMatch:
-    asset_object_name: Optional[str] = None
-    asset_path: Optional[str] = None
-    tier: Optional[list] = None
-    uuid: Optional[str] = None
+class CompetitiveListMatch(TypedDict, total=False):
+    asset_object_name: str
+    asset_path: str
+    tier: list
+    uuid: str
 
 
-@dataclass
-class Cosmetic:
-    animation_gif: Optional[str] = None
-    animation_png: Optional[str] = None
-    asset_path: Optional[str] = None
-    category: Optional[str] = None
-    display_icon: Optional[str] = None
-    display_name: Optional[str] = None
-    full_icon: Optional[str] = None
-    full_transparent_icon: Optional[str] = None
-    hide_if_not_owned: Optional[bool] = None
-    is_hidden_if_not_owned: Optional[bool] = None
-    is_null_spray: Optional[bool] = None
-    large_art: Optional[str] = None
-    level: Optional[list] = None
-    small_art: Optional[str] = None
-    theme_uuid: Optional[str] = None
-    uuid: Optional[str] = None
-    wide_art: Optional[str] = None
+class Cosmetic(TypedDict, total=False):
+    animation_gif: str
+    animation_png: str
+    asset_path: str
+    category: str
+    display_icon: str
+    display_name: str
+    full_icon: str
+    full_transparent_icon: str
+    hide_if_not_owned: bool
+    is_hidden_if_not_owned: bool
+    is_null_spray: bool
+    large_art: str
+    level: list
+    small_art: str
+    theme_uuid: str
+    uuid: str
+    wide_art: str
 
 
-@dataclass
-class CosmeticListMatch:
-    animation_gif: Optional[str] = None
-    animation_png: Optional[str] = None
-    asset_path: Optional[str] = None
-    category: Optional[str] = None
-    display_icon: Optional[str] = None
-    display_name: Optional[str] = None
-    full_icon: Optional[str] = None
-    full_transparent_icon: Optional[str] = None
-    hide_if_not_owned: Optional[bool] = None
-    is_hidden_if_not_owned: Optional[bool] = None
-    is_null_spray: Optional[bool] = None
-    large_art: Optional[str] = None
-    level: Optional[list] = None
-    small_art: Optional[str] = None
-    theme_uuid: Optional[str] = None
-    uuid: Optional[str] = None
-    wide_art: Optional[str] = None
+class CosmeticListMatch(TypedDict, total=False):
+    animation_gif: str
+    animation_png: str
+    asset_path: str
+    category: str
+    display_icon: str
+    display_name: str
+    full_icon: str
+    full_transparent_icon: str
+    hide_if_not_owned: bool
+    is_hidden_if_not_owned: bool
+    is_null_spray: bool
+    large_art: str
+    level: list
+    small_art: str
+    theme_uuid: str
+    uuid: str
+    wide_art: str
 
 
-@dataclass
-class GameMode:
-    allows_match_timeout: Optional[bool] = None
-    asset_path: Optional[str] = None
-    display_icon: Optional[str] = None
-    display_name: Optional[str] = None
-    duration: Optional[str] = None
-    economy_type: Optional[str] = None
-    game_feature_override: Optional[list] = None
-    game_rule_bool_override: Optional[list] = None
-    is_minimap_hidden: Optional[bool] = None
-    is_team_voice_allowed: Optional[bool] = None
-    orb_count: Optional[int] = None
-    rounds_per_half: Optional[int] = None
-    team_role: Optional[list] = None
-    uuid: Optional[str] = None
+class GameMode(TypedDict, total=False):
+    allows_match_timeout: bool
+    asset_path: str
+    display_icon: str
+    display_name: str
+    duration: str
+    economy_type: str
+    game_feature_override: list
+    game_rule_bool_override: list
+    is_minimap_hidden: bool
+    is_team_voice_allowed: bool
+    orb_count: int
+    rounds_per_half: int
+    team_role: list
+    uuid: str
 
 
-@dataclass
-class GameModeListMatch:
-    allows_match_timeout: Optional[bool] = None
-    asset_path: Optional[str] = None
-    display_icon: Optional[str] = None
-    display_name: Optional[str] = None
-    duration: Optional[str] = None
-    economy_type: Optional[str] = None
-    game_feature_override: Optional[list] = None
-    game_rule_bool_override: Optional[list] = None
-    is_minimap_hidden: Optional[bool] = None
-    is_team_voice_allowed: Optional[bool] = None
-    orb_count: Optional[int] = None
-    rounds_per_half: Optional[int] = None
-    team_role: Optional[list] = None
-    uuid: Optional[str] = None
+class GameModeListMatch(TypedDict, total=False):
+    allows_match_timeout: bool
+    asset_path: str
+    display_icon: str
+    display_name: str
+    duration: str
+    economy_type: str
+    game_feature_override: list
+    game_rule_bool_override: list
+    is_minimap_hidden: bool
+    is_team_voice_allowed: bool
+    orb_count: int
+    rounds_per_half: int
+    team_role: list
+    uuid: str
 
 
-@dataclass
-class Map:
-    asset_path: Optional[str] = None
-    callout: Optional[list] = None
-    coordinate: Optional[str] = None
-    data: Optional[dict] = None
-    display_icon: Optional[str] = None
-    display_name: Optional[str] = None
-    list_view_icon: Optional[str] = None
-    map_url: Optional[str] = None
-    narrative_description: Optional[str] = None
-    splash: Optional[str] = None
-    status: Optional[int] = None
-    tactical_description: Optional[str] = None
-    uuid: Optional[str] = None
-    x_multiplier: Optional[float] = None
-    x_scalar_to_add: Optional[float] = None
-    y_multiplier: Optional[float] = None
-    y_scalar_to_add: Optional[float] = None
+class Map(TypedDict, total=False):
+    asset_path: str
+    callout: list
+    coordinate: str
+    data: dict
+    display_icon: str
+    display_name: str
+    list_view_icon: str
+    map_url: str
+    narrative_description: str
+    splash: str
+    status: int
+    tactical_description: str
+    uuid: str
+    x_multiplier: float
+    x_scalar_to_add: float
+    y_multiplier: float
+    y_scalar_to_add: float
 
 
-@dataclass
-class MapLoadMatch:
+class MapLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class MapListMatch:
-    asset_path: Optional[str] = None
-    callout: Optional[list] = None
-    coordinate: Optional[str] = None
-    data: Optional[dict] = None
-    display_icon: Optional[str] = None
-    display_name: Optional[str] = None
-    list_view_icon: Optional[str] = None
-    map_url: Optional[str] = None
-    narrative_description: Optional[str] = None
-    splash: Optional[str] = None
-    status: Optional[int] = None
-    tactical_description: Optional[str] = None
-    uuid: Optional[str] = None
-    x_multiplier: Optional[float] = None
-    x_scalar_to_add: Optional[float] = None
-    y_multiplier: Optional[float] = None
-    y_scalar_to_add: Optional[float] = None
+class MapListMatch(TypedDict, total=False):
+    asset_path: str
+    callout: list
+    coordinate: str
+    data: dict
+    display_icon: str
+    display_name: str
+    list_view_icon: str
+    map_url: str
+    narrative_description: str
+    splash: str
+    status: int
+    tactical_description: str
+    uuid: str
+    x_multiplier: float
+    x_scalar_to_add: float
+    y_multiplier: float
+    y_scalar_to_add: float
 
 
-@dataclass
-class Weapon:
-    asset_path: Optional[str] = None
-    category: Optional[str] = None
-    data: Optional[dict] = None
-    default_skin_uuid: Optional[str] = None
-    display_icon: Optional[str] = None
-    display_name: Optional[str] = None
-    kill_stream_icon: Optional[str] = None
-    shop_data: Optional[dict] = None
-    skin: Optional[list] = None
-    status: Optional[int] = None
-    uuid: Optional[str] = None
-    weapon_stat: Optional[dict] = None
+class Weapon(TypedDict, total=False):
+    asset_path: str
+    category: str
+    data: dict
+    default_skin_uuid: str
+    display_icon: str
+    display_name: str
+    kill_stream_icon: str
+    shop_data: dict
+    skin: list
+    status: int
+    uuid: str
+    weapon_stat: dict
 
 
-@dataclass
-class WeaponLoadMatch:
+class WeaponLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class WeaponListMatch:
-    asset_path: Optional[str] = None
-    category: Optional[str] = None
-    data: Optional[dict] = None
-    default_skin_uuid: Optional[str] = None
-    display_icon: Optional[str] = None
-    display_name: Optional[str] = None
-    kill_stream_icon: Optional[str] = None
-    shop_data: Optional[dict] = None
-    skin: Optional[list] = None
-    status: Optional[int] = None
-    uuid: Optional[str] = None
-    weapon_stat: Optional[dict] = None
-
+class WeaponListMatch(TypedDict, total=False):
+    asset_path: str
+    category: str
+    data: dict
+    default_skin_uuid: str
+    display_icon: str
+    display_name: str
+    kill_stream_icon: str
+    shop_data: dict
+    skin: list
+    status: int
+    uuid: str
+    weapon_stat: dict

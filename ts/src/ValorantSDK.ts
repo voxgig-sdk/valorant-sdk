@@ -209,84 +209,42 @@ class ValorantSDK {
 
 
 
-  _agent?: AgentEntity
-
-  // Idiomatic facade: `client.agent.list()` / `client.agent.load({ id })`.
-  get agent(): AgentEntity {
-    return (this._agent ??= new AgentEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.agent` instead. */
+  // Entity access: `client.Agent().list()` / `client.Agent().load({ id })`.
   Agent(data?: any) {
     const self = this
     return new AgentEntity(self,data)
   }
 
 
-  _competitive?: CompetitiveEntity
-
-  // Idiomatic facade: `client.competitive.list()` / `client.competitive.load({ id })`.
-  get competitive(): CompetitiveEntity {
-    return (this._competitive ??= new CompetitiveEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.competitive` instead. */
+  // Entity access: `client.Competitive().list()` / `client.Competitive().load({ id })`.
   Competitive(data?: any) {
     const self = this
     return new CompetitiveEntity(self,data)
   }
 
 
-  _cosmetic?: CosmeticEntity
-
-  // Idiomatic facade: `client.cosmetic.list()` / `client.cosmetic.load({ id })`.
-  get cosmetic(): CosmeticEntity {
-    return (this._cosmetic ??= new CosmeticEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.cosmetic` instead. */
+  // Entity access: `client.Cosmetic().list()` / `client.Cosmetic().load({ id })`.
   Cosmetic(data?: any) {
     const self = this
     return new CosmeticEntity(self,data)
   }
 
 
-  _game_mode?: GameModeEntity
-
-  // Idiomatic facade: `client.game_mode.list()` / `client.game_mode.load({ id })`.
-  get game_mode(): GameModeEntity {
-    return (this._game_mode ??= new GameModeEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.game_mode` instead. */
+  // Entity access: `client.GameMode().list()` / `client.GameMode().load({ id })`.
   GameMode(data?: any) {
     const self = this
     return new GameModeEntity(self,data)
   }
 
 
-  _map?: MapEntity
-
-  // Idiomatic facade: `client.map.list()` / `client.map.load({ id })`.
-  get map(): MapEntity {
-    return (this._map ??= new MapEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.map` instead. */
+  // Entity access: `client.Map().list()` / `client.Map().load({ id })`.
   Map(data?: any) {
     const self = this
     return new MapEntity(self,data)
   }
 
 
-  _weapon?: WeaponEntity
-
-  // Idiomatic facade: `client.weapon.list()` / `client.weapon.load({ id })`.
-  get weapon(): WeaponEntity {
-    return (this._weapon ??= new WeaponEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.weapon` instead. */
+  // Entity access: `client.Weapon().list()` / `client.Weapon().load({ id })`.
   Weapon(data?: any) {
     const self = this
     return new WeaponEntity(self,data)

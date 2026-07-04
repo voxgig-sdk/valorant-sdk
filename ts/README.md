@@ -28,25 +28,28 @@ import { ValorantSDK } from '@voxgig-sdk/valorant'
 const client = new ValorantSDK()
 ```
 
-### 2. List agents
+### 2. List agent records
+
+`list()` resolves to an array of Agent objects — iterate it directly:
 
 ```ts
-const result = await client.agent.list()
+const agents = await client.Agent().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const agent of agents) {
+  console.log(agent)
 }
 ```
 
 ### 3. Load an agent
 
-```ts
-const result = await client.agent.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const agent = await client.Agent().load({ id: 'example_id' })
+  console.log(agent)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -64,6 +67,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -92,9 +98,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = ValorantSDK.test()
 
-const result = await client.agent.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const agent = await client.Agent().load({ id: 'test01' })
+// agent is a bare entity populated with mock response data
+console.log(agent)
 ```
 
 You can also use the instance method:
@@ -109,7 +115,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.agent
+const entity = client.Agent()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -187,7 +193,7 @@ new ValorantSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Agent(data?)` | `AgentEntity` | Create a Agent entity instance. |
+| `Agent(data?)` | `AgentEntity` | Create an Agent entity instance. |
 | `Competitive(data?)` | `CompetitiveEntity` | Create a Competitive entity instance. |
 | `Cosmetic(data?)` | `CosmeticEntity` | Create a Cosmetic entity instance. |
 | `GameMode(data?)` | `GameModeEntity` | Create a GameMode entity instance. |
@@ -209,29 +215,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): ValorantSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -411,7 +418,7 @@ API path: `/v1/weapons`
 
 ### Agent
 
-Create an instance: `const agent = client.agent`
+Create an instance: `const agent = client.Agent()`
 
 #### Operations
 
@@ -451,19 +458,19 @@ Create an instance: `const agent = client.agent`
 #### Example: Load
 
 ```ts
-const agent = await client.agent.load({ id: 'agent_id' })
+const agent = await client.Agent().load({ id: 'agent_id' })
 ```
 
 #### Example: List
 
 ```ts
-const agents = await client.agent.list()
+const agents = await client.Agent().list()
 ```
 
 
 ### Competitive
 
-Create an instance: `const competitive = client.competitive`
+Create an instance: `const competitive = client.Competitive()`
 
 #### Operations
 
@@ -483,13 +490,13 @@ Create an instance: `const competitive = client.competitive`
 #### Example: List
 
 ```ts
-const competitives = await client.competitive.list()
+const competitives = await client.Competitive().list()
 ```
 
 
 ### Cosmetic
 
-Create an instance: `const cosmetic = client.cosmetic`
+Create an instance: `const cosmetic = client.Cosmetic()`
 
 #### Operations
 
@@ -522,13 +529,13 @@ Create an instance: `const cosmetic = client.cosmetic`
 #### Example: List
 
 ```ts
-const cosmetics = await client.cosmetic.list()
+const cosmetics = await client.Cosmetic().list()
 ```
 
 
 ### GameMode
 
-Create an instance: `const game_mode = client.game_mode`
+Create an instance: `const game_mode = client.GameMode()`
 
 #### Operations
 
@@ -558,13 +565,13 @@ Create an instance: `const game_mode = client.game_mode`
 #### Example: List
 
 ```ts
-const game_modes = await client.game_mode.list()
+const game_modes = await client.GameMode().list()
 ```
 
 
 ### Map
 
-Create an instance: `const map = client.map`
+Create an instance: `const map = client.Map()`
 
 #### Operations
 
@@ -598,19 +605,19 @@ Create an instance: `const map = client.map`
 #### Example: Load
 
 ```ts
-const map = await client.map.load({ id: 'map_id' })
+const map = await client.Map().load({ id: 'map_id' })
 ```
 
 #### Example: List
 
 ```ts
-const maps = await client.map.list()
+const maps = await client.Map().list()
 ```
 
 
 ### Weapon
 
-Create an instance: `const weapon = client.weapon`
+Create an instance: `const weapon = client.Weapon()`
 
 #### Operations
 
@@ -639,13 +646,13 @@ Create an instance: `const weapon = client.weapon`
 #### Example: Load
 
 ```ts
-const weapon = await client.weapon.load({ id: 'weapon_id' })
+const weapon = await client.Weapon().load({ id: 'weapon_id' })
 ```
 
 #### Example: List
 
 ```ts
-const weapons = await client.weapon.list()
+const weapons = await client.Weapon().list()
 ```
 
 
@@ -716,7 +723,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const agent = client.agent
+const agent = client.Agent()
 await agent.load({ id: "example_id" })
 
 // agent.data() now returns the loaded agent data

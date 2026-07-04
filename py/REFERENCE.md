@@ -100,7 +100,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## AgentEntity
 
 ```python
-agent = client.agent
+agent = client.Agent()
 ```
 
 ### Fields
@@ -138,7 +138,9 @@ agent = client.agent
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.agent.list({})
+results = client.Agent().list({})
+for agent in results:
+    print(agent)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -146,7 +148,7 @@ results = client.agent.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.agent.load({"id": "agent_id"})
+result = client.Agent().load({"id": "agent_id"})
 ```
 
 ### Common Methods
@@ -181,7 +183,7 @@ Return the entity name.
 ## CompetitiveEntity
 
 ```python
-competitive = client.competitive
+competitive = client.Competitive()
 ```
 
 ### Fields
@@ -200,7 +202,9 @@ competitive = client.competitive
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.competitive.list({})
+results = client.Competitive().list({})
+for competitive in results:
+    print(competitive)
 ```
 
 ### Common Methods
@@ -235,7 +239,7 @@ Return the entity name.
 ## CosmeticEntity
 
 ```python
-cosmetic = client.cosmetic
+cosmetic = client.Cosmetic()
 ```
 
 ### Fields
@@ -267,7 +271,9 @@ cosmetic = client.cosmetic
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.cosmetic.list({})
+results = client.Cosmetic().list({})
+for cosmetic in results:
+    print(cosmetic)
 ```
 
 ### Common Methods
@@ -302,7 +308,7 @@ Return the entity name.
 ## GameModeEntity
 
 ```python
-game_mode = client.game_mode
+game_mode = client.GameMode()
 ```
 
 ### Fields
@@ -331,7 +337,9 @@ game_mode = client.game_mode
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.game_mode.list({})
+results = client.GameMode().list({})
+for game_mode in results:
+    print(game_mode)
 ```
 
 ### Common Methods
@@ -366,7 +374,7 @@ Return the entity name.
 ## MapEntity
 
 ```python
-map = client.map
+map = client.Map()
 ```
 
 ### Fields
@@ -398,7 +406,9 @@ map = client.map
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.map.list({})
+results = client.Map().list({})
+for map in results:
+    print(map)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -406,7 +416,7 @@ results = client.map.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.map.load({"id": "map_id"})
+result = client.Map().load({"id": "map_id"})
 ```
 
 ### Common Methods
@@ -441,7 +451,7 @@ Return the entity name.
 ## WeaponEntity
 
 ```python
-weapon = client.weapon
+weapon = client.Weapon()
 ```
 
 ### Fields
@@ -468,7 +478,9 @@ weapon = client.weapon
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.weapon.list({})
+results = client.Weapon().list({})
+for weapon in results:
+    print(weapon)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -476,7 +488,7 @@ results = client.weapon.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.weapon.load({"id": "weapon_id"})
+result = client.Weapon().load({"id": "weapon_id"})
 ```
 
 ### Common Methods

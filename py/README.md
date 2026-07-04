@@ -31,24 +31,28 @@ from valorant_sdk import ValorantSDK
 client = ValorantSDK()
 ```
 
-### 2. List agents
+### 2. List agent records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.agent.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    agents = client.Agent().list({})
+    for agent in agents:
+        print(agent)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load an agent
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.agent.load({"id": "example_id"})
-    print(result)
+    agent = client.Agent().load({"id": "example_id"})
+    print(agent)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -96,8 +100,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = ValorantSDK.test()
 
-result = client.agent.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+agent = client.Agent().load({"id": "test01"})
+# agent contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -173,7 +178,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Agent` | `(data) -> AgentEntity` | Create a Agent entity instance. |
+| `Agent` | `(data) -> AgentEntity` | Create an Agent entity instance. |
 | `Competitive` | `(data) -> CompetitiveEntity` | Create a Competitive entity instance. |
 | `Cosmetic` | `(data) -> CosmeticEntity` | Create a Cosmetic entity instance. |
 | `GameMode` | `(data) -> GameModeEntity` | Create a GameMode entity instance. |
@@ -366,7 +371,7 @@ API path: `/v1/weapons`
 
 ### Agent
 
-Create an instance: `const agent = client.agent`
+Create an instance: `agent = client.Agent()`
 
 #### Operations
 
@@ -405,20 +410,20 @@ Create an instance: `const agent = client.agent`
 
 #### Example: Load
 
-```ts
-const agent = await client.agent.load({ id: 'agent_id' })
+```python
+agent = client.Agent().load({"id": "agent_id"})
 ```
 
 #### Example: List
 
-```ts
-const agents = await client.agent.list()
+```python
+agents = client.Agent().list({})
 ```
 
 
 ### Competitive
 
-Create an instance: `const competitive = client.competitive`
+Create an instance: `competitive = client.Competitive()`
 
 #### Operations
 
@@ -437,14 +442,14 @@ Create an instance: `const competitive = client.competitive`
 
 #### Example: List
 
-```ts
-const competitives = await client.competitive.list()
+```python
+competitives = client.Competitive().list({})
 ```
 
 
 ### Cosmetic
 
-Create an instance: `const cosmetic = client.cosmetic`
+Create an instance: `cosmetic = client.Cosmetic()`
 
 #### Operations
 
@@ -476,14 +481,14 @@ Create an instance: `const cosmetic = client.cosmetic`
 
 #### Example: List
 
-```ts
-const cosmetics = await client.cosmetic.list()
+```python
+cosmetics = client.Cosmetic().list({})
 ```
 
 
 ### GameMode
 
-Create an instance: `const game_mode = client.game_mode`
+Create an instance: `game_mode = client.GameMode()`
 
 #### Operations
 
@@ -512,14 +517,14 @@ Create an instance: `const game_mode = client.game_mode`
 
 #### Example: List
 
-```ts
-const game_modes = await client.game_mode.list()
+```python
+game_modes = client.GameMode().list({})
 ```
 
 
 ### Map
 
-Create an instance: `const map = client.map`
+Create an instance: `map = client.Map()`
 
 #### Operations
 
@@ -552,20 +557,20 @@ Create an instance: `const map = client.map`
 
 #### Example: Load
 
-```ts
-const map = await client.map.load({ id: 'map_id' })
+```python
+map = client.Map().load({"id": "map_id"})
 ```
 
 #### Example: List
 
-```ts
-const maps = await client.map.list()
+```python
+maps = client.Map().list({})
 ```
 
 
 ### Weapon
 
-Create an instance: `const weapon = client.weapon`
+Create an instance: `weapon = client.Weapon()`
 
 #### Operations
 
@@ -593,14 +598,14 @@ Create an instance: `const weapon = client.weapon`
 
 #### Example: Load
 
-```ts
-const weapon = await client.weapon.load({ id: 'weapon_id' })
+```python
+weapon = client.Weapon().load({"id": "weapon_id"})
 ```
 
 #### Example: List
 
-```ts
-const weapons = await client.weapon.list()
+```python
+weapons = client.Weapon().list({})
 ```
 
 
@@ -674,7 +679,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-agent = client.agent
+agent = client.Agent()
 agent.load({"id": "example_id"})
 
 # agent.data_get() now returns the loaded agent data

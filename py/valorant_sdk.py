@@ -220,105 +220,45 @@ class ValorantSDK:
         }
 
 
-    @property
-    def agent(self):
-        """Idiomatic facade: client.agent.list() / client.agent.load({"id": ...})."""
-        from entity.agent_entity import AgentEntity
-        cached = getattr(self, "_agent", None)
-        if cached is None:
-            cached = AgentEntity(self, None)
-            self._agent = cached
-        return cached
-
-    def Agent(self, data=None):
-        # Deprecated: use client.agent instead.
+    def Agent(self, data=None) -> "AgentEntity":
+        """Entity factory: client.Agent().list({}) / client.Agent().load({"id": ...})."""
         from entity.agent_entity import AgentEntity
         return AgentEntity(self, data)
 
 
-    @property
-    def competitive(self):
-        """Idiomatic facade: client.competitive.list() / client.competitive.load({"id": ...})."""
-        from entity.competitive_entity import CompetitiveEntity
-        cached = getattr(self, "_competitive", None)
-        if cached is None:
-            cached = CompetitiveEntity(self, None)
-            self._competitive = cached
-        return cached
-
-    def Competitive(self, data=None):
-        # Deprecated: use client.competitive instead.
+    def Competitive(self, data=None) -> "CompetitiveEntity":
+        """Entity factory: client.Competitive().list({}) / client.Competitive().load({"id": ...})."""
         from entity.competitive_entity import CompetitiveEntity
         return CompetitiveEntity(self, data)
 
 
-    @property
-    def cosmetic(self):
-        """Idiomatic facade: client.cosmetic.list() / client.cosmetic.load({"id": ...})."""
-        from entity.cosmetic_entity import CosmeticEntity
-        cached = getattr(self, "_cosmetic", None)
-        if cached is None:
-            cached = CosmeticEntity(self, None)
-            self._cosmetic = cached
-        return cached
-
-    def Cosmetic(self, data=None):
-        # Deprecated: use client.cosmetic instead.
+    def Cosmetic(self, data=None) -> "CosmeticEntity":
+        """Entity factory: client.Cosmetic().list({}) / client.Cosmetic().load({"id": ...})."""
         from entity.cosmetic_entity import CosmeticEntity
         return CosmeticEntity(self, data)
 
 
-    @property
-    def game_mode(self):
-        """Idiomatic facade: client.game_mode.list() / client.game_mode.load({"id": ...})."""
-        from entity.game_mode_entity import GameModeEntity
-        cached = getattr(self, "_game_mode", None)
-        if cached is None:
-            cached = GameModeEntity(self, None)
-            self._game_mode = cached
-        return cached
-
-    def GameMode(self, data=None):
-        # Deprecated: use client.game_mode instead.
+    def GameMode(self, data=None) -> "GameModeEntity":
+        """Entity factory: client.GameMode().list({}) / client.GameMode().load({"id": ...})."""
         from entity.game_mode_entity import GameModeEntity
         return GameModeEntity(self, data)
 
 
-    @property
-    def map(self):
-        """Idiomatic facade: client.map.list() / client.map.load({"id": ...})."""
-        from entity.map_entity import MapEntity
-        cached = getattr(self, "_map", None)
-        if cached is None:
-            cached = MapEntity(self, None)
-            self._map = cached
-        return cached
-
-    def Map(self, data=None):
-        # Deprecated: use client.map instead.
+    def Map(self, data=None) -> "MapEntity":
+        """Entity factory: client.Map().list({}) / client.Map().load({"id": ...})."""
         from entity.map_entity import MapEntity
         return MapEntity(self, data)
 
 
-    @property
-    def weapon(self):
-        """Idiomatic facade: client.weapon.list() / client.weapon.load({"id": ...})."""
-        from entity.weapon_entity import WeaponEntity
-        cached = getattr(self, "_weapon", None)
-        if cached is None:
-            cached = WeaponEntity(self, None)
-            self._weapon = cached
-        return cached
-
-    def Weapon(self, data=None):
-        # Deprecated: use client.weapon instead.
+    def Weapon(self, data=None) -> "WeaponEntity":
+        """Entity factory: client.Weapon().list({}) / client.Weapon().load({"id": ...})."""
         from entity.weapon_entity import WeaponEntity
         return WeaponEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "ValorantSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -338,3 +278,14 @@ class ValorantSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.agent_entity import AgentEntity
+    from entity.competitive_entity import CompetitiveEntity
+    from entity.cosmetic_entity import CosmeticEntity
+    from entity.game_mode_entity import GameModeEntity
+    from entity.map_entity import MapEntity
+    from entity.weapon_entity import WeaponEntity

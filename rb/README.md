@@ -28,16 +28,14 @@ require_relative "Valorant_sdk"
 client = ValorantSDK.new
 ```
 
-### 2. List agents
+### 2. List agent records
 
 ```ruby
 begin
-  result = client.agent.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Agent records — iterate directly.
+  agents = client.Agent.list
+  agents.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.agent.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Agent record (raises on error).
+  agent = client.Agent.load({ "id" => "example_id" })
+  puts agent
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = ValorantSDK.test
+client = ValorantSDK.test({
+  "entity" => { "agent" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.agent.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+agent = client.Agent.load({ "id" => "test01" })
+puts agent
 ```
 
 ### Use a custom fetch function
@@ -178,7 +181,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Agent` | `(data) -> AgentEntity` | Create a Agent entity instance. |
+| `Agent` | `(data) -> AgentEntity` | Create an Agent entity instance. |
 | `Competitive` | `(data) -> CompetitiveEntity` | Create a Competitive entity instance. |
 | `Cosmetic` | `(data) -> CosmeticEntity` | Create a Cosmetic entity instance. |
 | `GameMode` | `(data) -> GameModeEntity` | Create a GameMode entity instance. |
@@ -370,7 +373,7 @@ API path: `/v1/weapons`
 
 ### Agent
 
-Create an instance: `const agent = client.agent`
+Create an instance: `agent = client.Agent`
 
 #### Operations
 
@@ -409,20 +412,22 @@ Create an instance: `const agent = client.agent`
 
 #### Example: Load
 
-```ts
-const agent = await client.agent.load({ id: 'agent_id' })
+```ruby
+# load returns the bare Agent record (raises on error).
+agent = client.Agent.load({ "id" => "agent_id" })
 ```
 
 #### Example: List
 
-```ts
-const agents = await client.agent.list()
+```ruby
+# list returns an Array of Agent records (raises on error).
+agents = client.Agent.list
 ```
 
 
 ### Competitive
 
-Create an instance: `const competitive = client.competitive`
+Create an instance: `competitive = client.Competitive`
 
 #### Operations
 
@@ -441,14 +446,15 @@ Create an instance: `const competitive = client.competitive`
 
 #### Example: List
 
-```ts
-const competitives = await client.competitive.list()
+```ruby
+# list returns an Array of Competitive records (raises on error).
+competitives = client.Competitive.list
 ```
 
 
 ### Cosmetic
 
-Create an instance: `const cosmetic = client.cosmetic`
+Create an instance: `cosmetic = client.Cosmetic`
 
 #### Operations
 
@@ -480,14 +486,15 @@ Create an instance: `const cosmetic = client.cosmetic`
 
 #### Example: List
 
-```ts
-const cosmetics = await client.cosmetic.list()
+```ruby
+# list returns an Array of Cosmetic records (raises on error).
+cosmetics = client.Cosmetic.list
 ```
 
 
 ### GameMode
 
-Create an instance: `const game_mode = client.game_mode`
+Create an instance: `game_mode = client.GameMode`
 
 #### Operations
 
@@ -516,14 +523,15 @@ Create an instance: `const game_mode = client.game_mode`
 
 #### Example: List
 
-```ts
-const game_modes = await client.game_mode.list()
+```ruby
+# list returns an Array of GameMode records (raises on error).
+game_modes = client.GameMode.list
 ```
 
 
 ### Map
 
-Create an instance: `const map = client.map`
+Create an instance: `map = client.Map`
 
 #### Operations
 
@@ -556,20 +564,22 @@ Create an instance: `const map = client.map`
 
 #### Example: Load
 
-```ts
-const map = await client.map.load({ id: 'map_id' })
+```ruby
+# load returns the bare Map record (raises on error).
+map = client.Map.load({ "id" => "map_id" })
 ```
 
 #### Example: List
 
-```ts
-const maps = await client.map.list()
+```ruby
+# list returns an Array of Map records (raises on error).
+maps = client.Map.list
 ```
 
 
 ### Weapon
 
-Create an instance: `const weapon = client.weapon`
+Create an instance: `weapon = client.Weapon`
 
 #### Operations
 
@@ -597,14 +607,16 @@ Create an instance: `const weapon = client.weapon`
 
 #### Example: Load
 
-```ts
-const weapon = await client.weapon.load({ id: 'weapon_id' })
+```ruby
+# load returns the bare Weapon record (raises on error).
+weapon = client.Weapon.load({ "id" => "weapon_id" })
 ```
 
 #### Example: List
 
-```ts
-const weapons = await client.weapon.list()
+```ruby
+# list returns an Array of Weapon records (raises on error).
+weapons = client.Weapon.list
 ```
 
 
@@ -679,7 +691,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-agent = client.agent
+agent = client.Agent
 agent.load({ "id" => "example_id" })
 
 # agent.data_get now returns the loaded agent data

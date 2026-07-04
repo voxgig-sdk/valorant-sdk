@@ -103,7 +103,7 @@ same parameters as `direct()`.
 ## AgentEntity
 
 ```lua
-local agent = client:agent(nil)
+local agent = client:Agent(nil)
 ```
 
 ### Fields
@@ -141,7 +141,7 @@ local agent = client:agent(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:agent():list()
+local results, err = client:Agent():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -149,7 +149,7 @@ local results, err = client:agent():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:agent():load({ id = "agent_id" })
+local result, err = client:Agent():load({ id = "agent_id" })
 ```
 
 ### Common Methods
@@ -185,7 +185,7 @@ Return the entity name.
 ## CompetitiveEntity
 
 ```lua
-local competitive = client:competitive(nil)
+local competitive = client:Competitive(nil)
 ```
 
 ### Fields
@@ -204,7 +204,7 @@ local competitive = client:competitive(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:competitive():list()
+local results, err = client:Competitive():list()
 ```
 
 ### Common Methods
@@ -240,7 +240,7 @@ Return the entity name.
 ## CosmeticEntity
 
 ```lua
-local cosmetic = client:cosmetic(nil)
+local cosmetic = client:Cosmetic(nil)
 ```
 
 ### Fields
@@ -272,7 +272,7 @@ local cosmetic = client:cosmetic(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:cosmetic():list()
+local results, err = client:Cosmetic():list()
 ```
 
 ### Common Methods
@@ -308,7 +308,7 @@ Return the entity name.
 ## GameModeEntity
 
 ```lua
-local game_mode = client:game_mode(nil)
+local game_mode = client:GameMode(nil)
 ```
 
 ### Fields
@@ -337,7 +337,7 @@ local game_mode = client:game_mode(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:game_mode():list()
+local results, err = client:GameMode():list()
 ```
 
 ### Common Methods
@@ -373,7 +373,7 @@ Return the entity name.
 ## MapEntity
 
 ```lua
-local map = client:map(nil)
+local map = client:Map(nil)
 ```
 
 ### Fields
@@ -405,7 +405,7 @@ local map = client:map(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:map():list()
+local results, err = client:Map():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -413,7 +413,7 @@ local results, err = client:map():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:map():load({ id = "map_id" })
+local result, err = client:Map():load({ id = "map_id" })
 ```
 
 ### Common Methods
@@ -449,7 +449,7 @@ Return the entity name.
 ## WeaponEntity
 
 ```lua
-local weapon = client:weapon(nil)
+local weapon = client:Weapon(nil)
 ```
 
 ### Fields
@@ -476,7 +476,7 @@ local weapon = client:weapon(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:weapon():list()
+local results, err = client:Weapon():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -484,7 +484,7 @@ local results, err = client:weapon():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:weapon():load({ id = "weapon_id" })
+local result, err = client:Weapon():load({ id = "weapon_id" })
 ```
 
 ### Common Methods

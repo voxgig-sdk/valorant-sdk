@@ -233,10 +233,10 @@ class ValorantSDK
 
     private $_agent = null;
 
-    // Idiomatic facade: $client->agent()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Agent() (PHP method
-    // names are case-insensitive).
-    public function agent($data = null)
+    // Canonical facade: $client->Agent()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->agent()
+    // resolves here too.
+    public function Agent($data = null)
     {
         require_once __DIR__ . '/entity/agent_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class ValorantSDK
 
     private $_competitive = null;
 
-    // Idiomatic facade: $client->competitive()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Competitive() (PHP method
-    // names are case-insensitive).
-    public function competitive($data = null)
+    // Canonical facade: $client->Competitive()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->competitive()
+    // resolves here too.
+    public function Competitive($data = null)
     {
         require_once __DIR__ . '/entity/competitive_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class ValorantSDK
 
     private $_cosmetic = null;
 
-    // Idiomatic facade: $client->cosmetic()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Cosmetic() (PHP method
-    // names are case-insensitive).
-    public function cosmetic($data = null)
+    // Canonical facade: $client->Cosmetic()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->cosmetic()
+    // resolves here too.
+    public function Cosmetic($data = null)
     {
         require_once __DIR__ . '/entity/cosmetic_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class ValorantSDK
 
     private $_game_mode = null;
 
-    // Idiomatic facade: $client->game_mode()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GameMode() (PHP method
-    // names are case-insensitive).
-    public function game_mode($data = null)
+    // Canonical facade: $client->GameMode()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->game_mode()
+    // resolves here too.
+    public function GameMode($data = null)
     {
         require_once __DIR__ . '/entity/game_mode_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class ValorantSDK
 
     private $_map = null;
 
-    // Idiomatic facade: $client->map()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Map() (PHP method
-    // names are case-insensitive).
-    public function map($data = null)
+    // Canonical facade: $client->Map()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->map()
+    // resolves here too.
+    public function Map($data = null)
     {
         require_once __DIR__ . '/entity/map_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class ValorantSDK
 
     private $_weapon = null;
 
-    // Idiomatic facade: $client->weapon()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Weapon() (PHP method
-    // names are case-insensitive).
-    public function weapon($data = null)
+    // Canonical facade: $client->Weapon()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->weapon()
+    // resolves here too.
+    public function Weapon($data = null)
     {
         require_once __DIR__ . '/entity/weapon_entity.php';
         if ($data === null) {

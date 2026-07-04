@@ -169,7 +169,7 @@ Alias for `ValorantSDK.test()`.
 ## AgentEntity
 
 ```ts
-const agent = client.agent
+const agent = client.Agent()
 ```
 
 ### Fields
@@ -207,7 +207,7 @@ const agent = client.agent
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.agent.list()
+const results = await client.Agent().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -215,7 +215,7 @@ const results = await client.agent.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.agent.load({ id: 'agent_id' })
+const result = await client.Agent().load({ id: 'agent_id' })
 ```
 
 ### Common Methods
@@ -249,7 +249,7 @@ Return a copy of the entity options.
 ## CompetitiveEntity
 
 ```ts
-const competitive = client.competitive
+const competitive = client.Competitive()
 ```
 
 ### Fields
@@ -268,7 +268,7 @@ const competitive = client.competitive
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.competitive.list()
+const results = await client.Competitive().list()
 ```
 
 ### Common Methods
@@ -302,7 +302,7 @@ Return a copy of the entity options.
 ## CosmeticEntity
 
 ```ts
-const cosmetic = client.cosmetic
+const cosmetic = client.Cosmetic()
 ```
 
 ### Fields
@@ -334,7 +334,7 @@ const cosmetic = client.cosmetic
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.cosmetic.list()
+const results = await client.Cosmetic().list()
 ```
 
 ### Common Methods
@@ -368,7 +368,7 @@ Return a copy of the entity options.
 ## GameModeEntity
 
 ```ts
-const game_mode = client.game_mode
+const game_mode = client.GameMode()
 ```
 
 ### Fields
@@ -397,7 +397,7 @@ const game_mode = client.game_mode
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.game_mode.list()
+const results = await client.GameMode().list()
 ```
 
 ### Common Methods
@@ -431,7 +431,7 @@ Return a copy of the entity options.
 ## MapEntity
 
 ```ts
-const map = client.map
+const map = client.Map()
 ```
 
 ### Fields
@@ -463,7 +463,7 @@ const map = client.map
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.map.list()
+const results = await client.Map().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -471,7 +471,7 @@ const results = await client.map.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.map.load({ id: 'map_id' })
+const result = await client.Map().load({ id: 'map_id' })
 ```
 
 ### Common Methods
@@ -505,7 +505,7 @@ Return a copy of the entity options.
 ## WeaponEntity
 
 ```ts
-const weapon = client.weapon
+const weapon = client.Weapon()
 ```
 
 ### Fields
@@ -532,7 +532,7 @@ const weapon = client.weapon
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.weapon.list()
+const results = await client.Weapon().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -540,7 +540,7 @@ const results = await client.weapon.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.weapon.load({ id: 'weapon_id' })
+const result = await client.Weapon().load({ id: 'weapon_id' })
 ```
 
 ### Common Methods
