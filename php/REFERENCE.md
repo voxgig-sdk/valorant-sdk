@@ -65,11 +65,11 @@ Create a new `MapEntity` instance. Pass `null` for no initial data.
 
 Create a new `WeaponEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): ValorantUtility`
 
 Return a copy of the SDK utility object.
 
@@ -112,38 +112,38 @@ $agent = $client->Agent();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability` | ``$ARRAY`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `background` | ``$STRING`` | No |  |
-| `background_gradient_color` | ``$ARRAY`` | No |  |
-| `bust_portrait` | ``$STRING`` | No |  |
-| `character_tag` | ``$ARRAY`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer_name` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_icon_small` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `full_portrait` | ``$STRING`` | No |  |
-| `full_portrait_v2` | ``$STRING`` | No |  |
-| `is_available_for_test` | ``$BOOLEAN`` | No |  |
-| `is_base_content` | ``$BOOLEAN`` | No |  |
-| `is_full_portrait_right_facing` | ``$BOOLEAN`` | No |  |
-| `is_playable_character` | ``$BOOLEAN`` | No |  |
-| `killfeed_portrait` | ``$STRING`` | No |  |
-| `role` | ``$OBJECT`` | No |  |
-| `status` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `voice_line` | ``$OBJECT`` | No |  |
+| `ability` | `array` | No |  |
+| `asset_path` | `string` | No |  |
+| `background` | `string` | No |  |
+| `background_gradient_color` | `array` | No |  |
+| `bust_portrait` | `string` | No |  |
+| `character_tag` | `array` | No |  |
+| `data` | `array` | No |  |
+| `description` | `string` | No |  |
+| `developer_name` | `string` | No |  |
+| `display_icon` | `string` | No |  |
+| `display_icon_small` | `string` | No |  |
+| `display_name` | `string` | No |  |
+| `full_portrait` | `string` | No |  |
+| `full_portrait_v2` | `string` | No |  |
+| `is_available_for_test` | `bool` | No |  |
+| `is_base_content` | `bool` | No |  |
+| `is_full_portrait_right_facing` | `bool` | No |  |
+| `is_playable_character` | `bool` | No |  |
+| `killfeed_portrait` | `string` | No |  |
+| `role` | `array` | No |  |
+| `status` | `int` | No |  |
+| `uuid` | `string` | No |  |
+| `voice_line` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Agent()->list([]);
+$results = $client->Agent()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -156,19 +156,19 @@ $result = $client->Agent()->load(["id" => "agent_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -177,7 +177,7 @@ Set the entity match criteria.
 Create a new `AgentEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -194,36 +194,36 @@ $competitive = $client->Competitive();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_object_name` | ``$STRING`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `tier` | ``$ARRAY`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `asset_object_name` | `string` | No |  |
+| `asset_path` | `string` | No |  |
+| `tier` | `array` | No |  |
+| `uuid` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Competitive()->list([]);
+$results = $client->Competitive()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -232,7 +232,7 @@ Set the entity match criteria.
 Create a new `CompetitiveEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -249,49 +249,49 @@ $cosmetic = $client->Cosmetic();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `animation_gif` | ``$STRING`` | No |  |
-| `animation_png` | ``$STRING`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `full_icon` | ``$STRING`` | No |  |
-| `full_transparent_icon` | ``$STRING`` | No |  |
-| `hide_if_not_owned` | ``$BOOLEAN`` | No |  |
-| `is_hidden_if_not_owned` | ``$BOOLEAN`` | No |  |
-| `is_null_spray` | ``$BOOLEAN`` | No |  |
-| `large_art` | ``$STRING`` | No |  |
-| `level` | ``$ARRAY`` | No |  |
-| `small_art` | ``$STRING`` | No |  |
-| `theme_uuid` | ``$STRING`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `wide_art` | ``$STRING`` | No |  |
+| `animation_gif` | `string` | No |  |
+| `animation_png` | `string` | No |  |
+| `asset_path` | `string` | No |  |
+| `category` | `string` | No |  |
+| `display_icon` | `string` | No |  |
+| `display_name` | `string` | No |  |
+| `full_icon` | `string` | No |  |
+| `full_transparent_icon` | `string` | No |  |
+| `hide_if_not_owned` | `bool` | No |  |
+| `is_hidden_if_not_owned` | `bool` | No |  |
+| `is_null_spray` | `bool` | No |  |
+| `large_art` | `string` | No |  |
+| `level` | `array` | No |  |
+| `small_art` | `string` | No |  |
+| `theme_uuid` | `string` | No |  |
+| `uuid` | `string` | No |  |
+| `wide_art` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Cosmetic()->list([]);
+$results = $client->Cosmetic()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -300,7 +300,7 @@ Set the entity match criteria.
 Create a new `CosmeticEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -317,46 +317,46 @@ $game_mode = $client->GameMode();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allows_match_timeout` | ``$BOOLEAN`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `duration` | ``$STRING`` | No |  |
-| `economy_type` | ``$STRING`` | No |  |
-| `game_feature_override` | ``$ARRAY`` | No |  |
-| `game_rule_bool_override` | ``$ARRAY`` | No |  |
-| `is_minimap_hidden` | ``$BOOLEAN`` | No |  |
-| `is_team_voice_allowed` | ``$BOOLEAN`` | No |  |
-| `orb_count` | ``$INTEGER`` | No |  |
-| `rounds_per_half` | ``$INTEGER`` | No |  |
-| `team_role` | ``$ARRAY`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `allows_match_timeout` | `bool` | No |  |
+| `asset_path` | `string` | No |  |
+| `display_icon` | `string` | No |  |
+| `display_name` | `string` | No |  |
+| `duration` | `string` | No |  |
+| `economy_type` | `string` | No |  |
+| `game_feature_override` | `array` | No |  |
+| `game_rule_bool_override` | `array` | No |  |
+| `is_minimap_hidden` | `bool` | No |  |
+| `is_team_voice_allowed` | `bool` | No |  |
+| `orb_count` | `int` | No |  |
+| `rounds_per_half` | `int` | No |  |
+| `team_role` | `array` | No |  |
+| `uuid` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->GameMode()->list([]);
+$results = $client->GameMode()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -365,7 +365,7 @@ Set the entity match criteria.
 Create a new `GameModeEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -382,32 +382,32 @@ $map = $client->Map();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | ``$STRING`` | No |  |
-| `callout` | ``$ARRAY`` | No |  |
-| `coordinate` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `list_view_icon` | ``$STRING`` | No |  |
-| `map_url` | ``$STRING`` | No |  |
-| `narrative_description` | ``$STRING`` | No |  |
-| `splash` | ``$STRING`` | No |  |
-| `status` | ``$INTEGER`` | No |  |
-| `tactical_description` | ``$STRING`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `x_multiplier` | ``$NUMBER`` | No |  |
-| `x_scalar_to_add` | ``$NUMBER`` | No |  |
-| `y_multiplier` | ``$NUMBER`` | No |  |
-| `y_scalar_to_add` | ``$NUMBER`` | No |  |
+| `asset_path` | `string` | No |  |
+| `callout` | `array` | No |  |
+| `coordinate` | `string` | No |  |
+| `data` | `array` | No |  |
+| `display_icon` | `string` | No |  |
+| `display_name` | `string` | No |  |
+| `list_view_icon` | `string` | No |  |
+| `map_url` | `string` | No |  |
+| `narrative_description` | `string` | No |  |
+| `splash` | `string` | No |  |
+| `status` | `int` | No |  |
+| `tactical_description` | `string` | No |  |
+| `uuid` | `string` | No |  |
+| `x_multiplier` | `float` | No |  |
+| `x_scalar_to_add` | `float` | No |  |
+| `y_multiplier` | `float` | No |  |
+| `y_scalar_to_add` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Map()->list([]);
+$results = $client->Map()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -420,19 +420,19 @@ $result = $client->Map()->load(["id" => "map_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -441,7 +441,7 @@ Set the entity match criteria.
 Create a new `MapEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -458,27 +458,27 @@ $weapon = $client->Weapon();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `default_skin_uuid` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `kill_stream_icon` | ``$STRING`` | No |  |
-| `shop_data` | ``$OBJECT`` | No |  |
-| `skin` | ``$ARRAY`` | No |  |
-| `status` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `weapon_stat` | ``$OBJECT`` | No |  |
+| `asset_path` | `string` | No |  |
+| `category` | `string` | No |  |
+| `data` | `array` | No |  |
+| `default_skin_uuid` | `string` | No |  |
+| `display_icon` | `string` | No |  |
+| `display_name` | `string` | No |  |
+| `kill_stream_icon` | `string` | No |  |
+| `shop_data` | `array` | No |  |
+| `skin` | `array` | No |  |
+| `status` | `int` | No |  |
+| `uuid` | `string` | No |  |
+| `weapon_stat` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Weapon()->list([]);
+$results = $client->Weapon()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -491,19 +491,19 @@ $result = $client->Weapon()->load(["id" => "weapon_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -512,7 +512,7 @@ Set the entity match criteria.
 Create a new `WeaponEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

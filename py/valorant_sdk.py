@@ -221,37 +221,37 @@ class ValorantSDK:
 
 
     def Agent(self, data=None) -> "AgentEntity":
-        """Entity factory: client.Agent().list({}) / client.Agent().load({"id": ...})."""
+        """Entity factory: client.Agent().list() / client.Agent().load({"id": ...})."""
         from entity.agent_entity import AgentEntity
         return AgentEntity(self, data)
 
 
     def Competitive(self, data=None) -> "CompetitiveEntity":
-        """Entity factory: client.Competitive().list({}) / client.Competitive().load({"id": ...})."""
+        """Entity factory: client.Competitive().list() / client.Competitive().load({"id": ...})."""
         from entity.competitive_entity import CompetitiveEntity
         return CompetitiveEntity(self, data)
 
 
     def Cosmetic(self, data=None) -> "CosmeticEntity":
-        """Entity factory: client.Cosmetic().list({}) / client.Cosmetic().load({"id": ...})."""
+        """Entity factory: client.Cosmetic().list() / client.Cosmetic().load({"id": ...})."""
         from entity.cosmetic_entity import CosmeticEntity
         return CosmeticEntity(self, data)
 
 
     def GameMode(self, data=None) -> "GameModeEntity":
-        """Entity factory: client.GameMode().list({}) / client.GameMode().load({"id": ...})."""
+        """Entity factory: client.GameMode().list() / client.GameMode().load({"id": ...})."""
         from entity.game_mode_entity import GameModeEntity
         return GameModeEntity(self, data)
 
 
     def Map(self, data=None) -> "MapEntity":
-        """Entity factory: client.Map().list({}) / client.Map().load({"id": ...})."""
+        """Entity factory: client.Map().list() / client.Map().load({"id": ...})."""
         from entity.map_entity import MapEntity
         return MapEntity(self, data)
 
 
     def Weapon(self, data=None) -> "WeaponEntity":
-        """Entity factory: client.Weapon().list({}) / client.Weapon().load({"id": ...})."""
+        """Entity factory: client.Weapon().list() / client.Weapon().load({"id": ...})."""
         from entity.weapon_entity import WeaponEntity
         return WeaponEntity(self, data)
 

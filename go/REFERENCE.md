@@ -117,29 +117,29 @@ agent := client.Agent(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability` | ``$ARRAY`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `background` | ``$STRING`` | No |  |
-| `background_gradient_color` | ``$ARRAY`` | No |  |
-| `bust_portrait` | ``$STRING`` | No |  |
-| `character_tag` | ``$ARRAY`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer_name` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_icon_small` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `full_portrait` | ``$STRING`` | No |  |
-| `full_portrait_v2` | ``$STRING`` | No |  |
-| `is_available_for_test` | ``$BOOLEAN`` | No |  |
-| `is_base_content` | ``$BOOLEAN`` | No |  |
-| `is_full_portrait_right_facing` | ``$BOOLEAN`` | No |  |
-| `is_playable_character` | ``$BOOLEAN`` | No |  |
-| `killfeed_portrait` | ``$STRING`` | No |  |
-| `role` | ``$OBJECT`` | No |  |
-| `status` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `voice_line` | ``$OBJECT`` | No |  |
+| `ability` | `[]any` | No |  |
+| `asset_path` | `string` | No |  |
+| `background` | `string` | No |  |
+| `background_gradient_color` | `[]any` | No |  |
+| `bust_portrait` | `string` | No |  |
+| `character_tag` | `[]any` | No |  |
+| `data` | `map[string]any` | No |  |
+| `description` | `string` | No |  |
+| `developer_name` | `string` | No |  |
+| `display_icon` | `string` | No |  |
+| `display_icon_small` | `string` | No |  |
+| `display_name` | `string` | No |  |
+| `full_portrait` | `string` | No |  |
+| `full_portrait_v2` | `string` | No |  |
+| `is_available_for_test` | `bool` | No |  |
+| `is_base_content` | `bool` | No |  |
+| `is_full_portrait_right_facing` | `bool` | No |  |
+| `is_playable_character` | `bool` | No |  |
+| `killfeed_portrait` | `string` | No |  |
+| `role` | `map[string]any` | No |  |
+| `status` | `int` | No |  |
+| `uuid` | `string` | No |  |
+| `voice_line` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -193,10 +193,10 @@ competitive := client.Competitive(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_object_name` | ``$STRING`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `tier` | ``$ARRAY`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `asset_object_name` | `string` | No |  |
+| `asset_path` | `string` | No |  |
+| `tier` | `[]any` | No |  |
+| `uuid` | `string` | No |  |
 
 ### Operations
 
@@ -242,23 +242,23 @@ cosmetic := client.Cosmetic(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `animation_gif` | ``$STRING`` | No |  |
-| `animation_png` | ``$STRING`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `full_icon` | ``$STRING`` | No |  |
-| `full_transparent_icon` | ``$STRING`` | No |  |
-| `hide_if_not_owned` | ``$BOOLEAN`` | No |  |
-| `is_hidden_if_not_owned` | ``$BOOLEAN`` | No |  |
-| `is_null_spray` | ``$BOOLEAN`` | No |  |
-| `large_art` | ``$STRING`` | No |  |
-| `level` | ``$ARRAY`` | No |  |
-| `small_art` | ``$STRING`` | No |  |
-| `theme_uuid` | ``$STRING`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `wide_art` | ``$STRING`` | No |  |
+| `animation_gif` | `string` | No |  |
+| `animation_png` | `string` | No |  |
+| `asset_path` | `string` | No |  |
+| `category` | `string` | No |  |
+| `display_icon` | `string` | No |  |
+| `display_name` | `string` | No |  |
+| `full_icon` | `string` | No |  |
+| `full_transparent_icon` | `string` | No |  |
+| `hide_if_not_owned` | `bool` | No |  |
+| `is_hidden_if_not_owned` | `bool` | No |  |
+| `is_null_spray` | `bool` | No |  |
+| `large_art` | `string` | No |  |
+| `level` | `[]any` | No |  |
+| `small_art` | `string` | No |  |
+| `theme_uuid` | `string` | No |  |
+| `uuid` | `string` | No |  |
+| `wide_art` | `string` | No |  |
 
 ### Operations
 
@@ -304,20 +304,20 @@ game_mode := client.GameMode(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allows_match_timeout` | ``$BOOLEAN`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `duration` | ``$STRING`` | No |  |
-| `economy_type` | ``$STRING`` | No |  |
-| `game_feature_override` | ``$ARRAY`` | No |  |
-| `game_rule_bool_override` | ``$ARRAY`` | No |  |
-| `is_minimap_hidden` | ``$BOOLEAN`` | No |  |
-| `is_team_voice_allowed` | ``$BOOLEAN`` | No |  |
-| `orb_count` | ``$INTEGER`` | No |  |
-| `rounds_per_half` | ``$INTEGER`` | No |  |
-| `team_role` | ``$ARRAY`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `allows_match_timeout` | `bool` | No |  |
+| `asset_path` | `string` | No |  |
+| `display_icon` | `string` | No |  |
+| `display_name` | `string` | No |  |
+| `duration` | `string` | No |  |
+| `economy_type` | `string` | No |  |
+| `game_feature_override` | `[]any` | No |  |
+| `game_rule_bool_override` | `[]any` | No |  |
+| `is_minimap_hidden` | `bool` | No |  |
+| `is_team_voice_allowed` | `bool` | No |  |
+| `orb_count` | `int` | No |  |
+| `rounds_per_half` | `int` | No |  |
+| `team_role` | `[]any` | No |  |
+| `uuid` | `string` | No |  |
 
 ### Operations
 
@@ -363,23 +363,23 @@ map := client.Map(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | ``$STRING`` | No |  |
-| `callout` | ``$ARRAY`` | No |  |
-| `coordinate` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `list_view_icon` | ``$STRING`` | No |  |
-| `map_url` | ``$STRING`` | No |  |
-| `narrative_description` | ``$STRING`` | No |  |
-| `splash` | ``$STRING`` | No |  |
-| `status` | ``$INTEGER`` | No |  |
-| `tactical_description` | ``$STRING`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `x_multiplier` | ``$NUMBER`` | No |  |
-| `x_scalar_to_add` | ``$NUMBER`` | No |  |
-| `y_multiplier` | ``$NUMBER`` | No |  |
-| `y_scalar_to_add` | ``$NUMBER`` | No |  |
+| `asset_path` | `string` | No |  |
+| `callout` | `[]any` | No |  |
+| `coordinate` | `string` | No |  |
+| `data` | `map[string]any` | No |  |
+| `display_icon` | `string` | No |  |
+| `display_name` | `string` | No |  |
+| `list_view_icon` | `string` | No |  |
+| `map_url` | `string` | No |  |
+| `narrative_description` | `string` | No |  |
+| `splash` | `string` | No |  |
+| `status` | `int` | No |  |
+| `tactical_description` | `string` | No |  |
+| `uuid` | `string` | No |  |
+| `x_multiplier` | `float64` | No |  |
+| `x_scalar_to_add` | `float64` | No |  |
+| `y_multiplier` | `float64` | No |  |
+| `y_scalar_to_add` | `float64` | No |  |
 
 ### Operations
 
@@ -433,18 +433,18 @@ weapon := client.Weapon(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `default_skin_uuid` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `kill_stream_icon` | ``$STRING`` | No |  |
-| `shop_data` | ``$OBJECT`` | No |  |
-| `skin` | ``$ARRAY`` | No |  |
-| `status` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `weapon_stat` | ``$OBJECT`` | No |  |
+| `asset_path` | `string` | No |  |
+| `category` | `string` | No |  |
+| `data` | `map[string]any` | No |  |
+| `default_skin_uuid` | `string` | No |  |
+| `display_icon` | `string` | No |  |
+| `display_name` | `string` | No |  |
+| `kill_stream_icon` | `string` | No |  |
+| `shop_data` | `map[string]any` | No |  |
+| `skin` | `[]any` | No |  |
+| `status` | `int` | No |  |
+| `uuid` | `string` | No |  |
+| `weapon_stat` | `map[string]any` | No |  |
 
 ### Operations
 

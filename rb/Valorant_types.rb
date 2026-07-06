@@ -114,7 +114,7 @@ AgentLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Agent#list (any subset of Agent fields).
+# Request payload for Agent#list.
 #
 # @!attribute [rw] ability
 #   @return [Array, nil]
@@ -232,7 +232,7 @@ Competitive = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Competitive#list (any subset of Competitive fields).
+# Request payload for Competitive#list.
 #
 # @!attribute [rw] asset_object_name
 #   @return [String, nil]
@@ -326,7 +326,7 @@ Cosmetic = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Cosmetic#list (any subset of Cosmetic fields).
+# Request payload for Cosmetic#list.
 #
 # @!attribute [rw] animation_gif
 #   @return [String, nil]
@@ -460,7 +460,7 @@ GameMode = Struct.new(
   keyword_init: true
 )
 
-# Match filter for GameMode#list (any subset of GameMode fields).
+# Request payload for GameMode#list.
 #
 # @!attribute [rw] allows_match_timeout
 #   @return [Boolean, nil]
@@ -603,7 +603,7 @@ MapLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Map#list (any subset of Map fields).
+# Request payload for Map#list.
 #
 # @!attribute [rw] asset_path
 #   @return [String, nil]
@@ -738,7 +738,7 @@ WeaponLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Weapon#list (any subset of Weapon fields).
+# Request payload for Weapon#list.
 #
 # @!attribute [rw] asset_path
 #   @return [String, nil]

@@ -8,7 +8,7 @@ Complete API reference for the Valorant Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'valorant_sdk'
+require_relative 'Valorant_sdk'
 
 client = ValorantSDK.new(options)
 ```
@@ -113,38 +113,38 @@ agent = client.Agent
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability` | ``$ARRAY`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `background` | ``$STRING`` | No |  |
-| `background_gradient_color` | ``$ARRAY`` | No |  |
-| `bust_portrait` | ``$STRING`` | No |  |
-| `character_tag` | ``$ARRAY`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer_name` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_icon_small` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `full_portrait` | ``$STRING`` | No |  |
-| `full_portrait_v2` | ``$STRING`` | No |  |
-| `is_available_for_test` | ``$BOOLEAN`` | No |  |
-| `is_base_content` | ``$BOOLEAN`` | No |  |
-| `is_full_portrait_right_facing` | ``$BOOLEAN`` | No |  |
-| `is_playable_character` | ``$BOOLEAN`` | No |  |
-| `killfeed_portrait` | ``$STRING`` | No |  |
-| `role` | ``$OBJECT`` | No |  |
-| `status` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `voice_line` | ``$OBJECT`` | No |  |
+| `ability` | `Array` | No |  |
+| `asset_path` | `String` | No |  |
+| `background` | `String` | No |  |
+| `background_gradient_color` | `Array` | No |  |
+| `bust_portrait` | `String` | No |  |
+| `character_tag` | `Array` | No |  |
+| `data` | `Hash` | No |  |
+| `description` | `String` | No |  |
+| `developer_name` | `String` | No |  |
+| `display_icon` | `String` | No |  |
+| `display_icon_small` | `String` | No |  |
+| `display_name` | `String` | No |  |
+| `full_portrait` | `String` | No |  |
+| `full_portrait_v2` | `String` | No |  |
+| `is_available_for_test` | `Boolean` | No |  |
+| `is_base_content` | `Boolean` | No |  |
+| `is_full_portrait_right_facing` | `Boolean` | No |  |
+| `is_playable_character` | `Boolean` | No |  |
+| `killfeed_portrait` | `String` | No |  |
+| `role` | `Hash` | No |  |
+| `status` | `Integer` | No |  |
+| `uuid` | `String` | No |  |
+| `voice_line` | `Hash` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Agent.list(nil)
+results = client.Agent.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -195,19 +195,19 @@ competitive = client.Competitive
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_object_name` | ``$STRING`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `tier` | ``$ARRAY`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `asset_object_name` | `String` | No |  |
+| `asset_path` | `String` | No |  |
+| `tier` | `Array` | No |  |
+| `uuid` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Competitive.list(nil)
+results = client.Competitive.list
 ```
 
 ### Common Methods
@@ -250,32 +250,32 @@ cosmetic = client.Cosmetic
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `animation_gif` | ``$STRING`` | No |  |
-| `animation_png` | ``$STRING`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `full_icon` | ``$STRING`` | No |  |
-| `full_transparent_icon` | ``$STRING`` | No |  |
-| `hide_if_not_owned` | ``$BOOLEAN`` | No |  |
-| `is_hidden_if_not_owned` | ``$BOOLEAN`` | No |  |
-| `is_null_spray` | ``$BOOLEAN`` | No |  |
-| `large_art` | ``$STRING`` | No |  |
-| `level` | ``$ARRAY`` | No |  |
-| `small_art` | ``$STRING`` | No |  |
-| `theme_uuid` | ``$STRING`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `wide_art` | ``$STRING`` | No |  |
+| `animation_gif` | `String` | No |  |
+| `animation_png` | `String` | No |  |
+| `asset_path` | `String` | No |  |
+| `category` | `String` | No |  |
+| `display_icon` | `String` | No |  |
+| `display_name` | `String` | No |  |
+| `full_icon` | `String` | No |  |
+| `full_transparent_icon` | `String` | No |  |
+| `hide_if_not_owned` | `Boolean` | No |  |
+| `is_hidden_if_not_owned` | `Boolean` | No |  |
+| `is_null_spray` | `Boolean` | No |  |
+| `large_art` | `String` | No |  |
+| `level` | `Array` | No |  |
+| `small_art` | `String` | No |  |
+| `theme_uuid` | `String` | No |  |
+| `uuid` | `String` | No |  |
+| `wide_art` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Cosmetic.list(nil)
+results = client.Cosmetic.list
 ```
 
 ### Common Methods
@@ -318,29 +318,29 @@ game_mode = client.GameMode
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allows_match_timeout` | ``$BOOLEAN`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `duration` | ``$STRING`` | No |  |
-| `economy_type` | ``$STRING`` | No |  |
-| `game_feature_override` | ``$ARRAY`` | No |  |
-| `game_rule_bool_override` | ``$ARRAY`` | No |  |
-| `is_minimap_hidden` | ``$BOOLEAN`` | No |  |
-| `is_team_voice_allowed` | ``$BOOLEAN`` | No |  |
-| `orb_count` | ``$INTEGER`` | No |  |
-| `rounds_per_half` | ``$INTEGER`` | No |  |
-| `team_role` | ``$ARRAY`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `allows_match_timeout` | `Boolean` | No |  |
+| `asset_path` | `String` | No |  |
+| `display_icon` | `String` | No |  |
+| `display_name` | `String` | No |  |
+| `duration` | `String` | No |  |
+| `economy_type` | `String` | No |  |
+| `game_feature_override` | `Array` | No |  |
+| `game_rule_bool_override` | `Array` | No |  |
+| `is_minimap_hidden` | `Boolean` | No |  |
+| `is_team_voice_allowed` | `Boolean` | No |  |
+| `orb_count` | `Integer` | No |  |
+| `rounds_per_half` | `Integer` | No |  |
+| `team_role` | `Array` | No |  |
+| `uuid` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.GameMode.list(nil)
+results = client.GameMode.list
 ```
 
 ### Common Methods
@@ -383,32 +383,32 @@ map = client.Map
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | ``$STRING`` | No |  |
-| `callout` | ``$ARRAY`` | No |  |
-| `coordinate` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `list_view_icon` | ``$STRING`` | No |  |
-| `map_url` | ``$STRING`` | No |  |
-| `narrative_description` | ``$STRING`` | No |  |
-| `splash` | ``$STRING`` | No |  |
-| `status` | ``$INTEGER`` | No |  |
-| `tactical_description` | ``$STRING`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `x_multiplier` | ``$NUMBER`` | No |  |
-| `x_scalar_to_add` | ``$NUMBER`` | No |  |
-| `y_multiplier` | ``$NUMBER`` | No |  |
-| `y_scalar_to_add` | ``$NUMBER`` | No |  |
+| `asset_path` | `String` | No |  |
+| `callout` | `Array` | No |  |
+| `coordinate` | `String` | No |  |
+| `data` | `Hash` | No |  |
+| `display_icon` | `String` | No |  |
+| `display_name` | `String` | No |  |
+| `list_view_icon` | `String` | No |  |
+| `map_url` | `String` | No |  |
+| `narrative_description` | `String` | No |  |
+| `splash` | `String` | No |  |
+| `status` | `Integer` | No |  |
+| `tactical_description` | `String` | No |  |
+| `uuid` | `String` | No |  |
+| `x_multiplier` | `Float` | No |  |
+| `x_scalar_to_add` | `Float` | No |  |
+| `y_multiplier` | `Float` | No |  |
+| `y_scalar_to_add` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Map.list(nil)
+results = client.Map.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -459,27 +459,27 @@ weapon = client.Weapon
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `default_skin_uuid` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `kill_stream_icon` | ``$STRING`` | No |  |
-| `shop_data` | ``$OBJECT`` | No |  |
-| `skin` | ``$ARRAY`` | No |  |
-| `status` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `weapon_stat` | ``$OBJECT`` | No |  |
+| `asset_path` | `String` | No |  |
+| `category` | `String` | No |  |
+| `data` | `Hash` | No |  |
+| `default_skin_uuid` | `String` | No |  |
+| `display_icon` | `String` | No |  |
+| `display_name` | `String` | No |  |
+| `kill_stream_icon` | `String` | No |  |
+| `shop_data` | `Hash` | No |  |
+| `skin` | `Array` | No |  |
+| `status` | `Integer` | No |  |
+| `uuid` | `String` | No |  |
+| `weapon_stat` | `Hash` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Weapon.list(nil)
+results = client.Weapon.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`

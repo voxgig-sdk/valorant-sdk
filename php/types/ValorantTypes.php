@@ -46,7 +46,7 @@ class AgentLoadMatch
     public string $id;
 }
 
-/** Match filter for Agent#list (any subset of Agent fields). */
+/** Request payload for Agent#list. */
 class AgentListMatch
 {
     public ?array $ability = null;
@@ -83,7 +83,7 @@ class Competitive
     public ?string $uuid = null;
 }
 
-/** Match filter for Competitive#list (any subset of Competitive fields). */
+/** Request payload for Competitive#list. */
 class CompetitiveListMatch
 {
     public ?string $asset_object_name = null;
@@ -114,7 +114,7 @@ class Cosmetic
     public ?string $wide_art = null;
 }
 
-/** Match filter for Cosmetic#list (any subset of Cosmetic fields). */
+/** Request payload for Cosmetic#list. */
 class CosmeticListMatch
 {
     public ?string $animation_gif = null;
@@ -155,7 +155,7 @@ class GameMode
     public ?string $uuid = null;
 }
 
-/** Match filter for GameMode#list (any subset of GameMode fields). */
+/** Request payload for GameMode#list. */
 class GameModeListMatch
 {
     public ?bool $allows_match_timeout = null;
@@ -202,7 +202,7 @@ class MapLoadMatch
     public string $id;
 }
 
-/** Match filter for Map#list (any subset of Map fields). */
+/** Request payload for Map#list. */
 class MapListMatch
 {
     public ?string $asset_path = null;
@@ -247,7 +247,7 @@ class WeaponLoadMatch
     public string $id;
 }
 
-/** Match filter for Weapon#list (any subset of Weapon fields). */
+/** Request payload for Weapon#list. */
 class WeaponListMatch
 {
     public ?string $asset_path = null;

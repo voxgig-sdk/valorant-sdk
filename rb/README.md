@@ -4,6 +4,8 @@
 
 The Ruby SDK for the Valorant API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Agent` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,7 +37,7 @@ begin
   # list returns an Array of Agent records — iterate directly.
   agents = client.Agent.list
   agents.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["ability"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -52,6 +54,33 @@ begin
 rescue => err
   warn "load failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  agents = client.Agent.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -72,7 +101,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -103,8 +134,8 @@ client = ValorantSDK.test({
   "entity" => { "agent" => { "test01" => { "id" => "test01" } } },
 })
 
-# load returns the bare mock record (raises on error).
-agent = client.Agent.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+agent = client.Agent.list()
 puts agent
 ```
 
@@ -195,10 +226,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -386,29 +414,29 @@ Create an instance: `agent = client.Agent`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability` | ``$ARRAY`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `background` | ``$STRING`` |  |
-| `background_gradient_color` | ``$ARRAY`` |  |
-| `bust_portrait` | ``$STRING`` |  |
-| `character_tag` | ``$ARRAY`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer_name` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_icon_small` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `full_portrait` | ``$STRING`` |  |
-| `full_portrait_v2` | ``$STRING`` |  |
-| `is_available_for_test` | ``$BOOLEAN`` |  |
-| `is_base_content` | ``$BOOLEAN`` |  |
-| `is_full_portrait_right_facing` | ``$BOOLEAN`` |  |
-| `is_playable_character` | ``$BOOLEAN`` |  |
-| `killfeed_portrait` | ``$STRING`` |  |
-| `role` | ``$OBJECT`` |  |
-| `status` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `voice_line` | ``$OBJECT`` |  |
+| `ability` | `Array` |  |
+| `asset_path` | `String` |  |
+| `background` | `String` |  |
+| `background_gradient_color` | `Array` |  |
+| `bust_portrait` | `String` |  |
+| `character_tag` | `Array` |  |
+| `data` | `Hash` |  |
+| `description` | `String` |  |
+| `developer_name` | `String` |  |
+| `display_icon` | `String` |  |
+| `display_icon_small` | `String` |  |
+| `display_name` | `String` |  |
+| `full_portrait` | `String` |  |
+| `full_portrait_v2` | `String` |  |
+| `is_available_for_test` | `Boolean` |  |
+| `is_base_content` | `Boolean` |  |
+| `is_full_portrait_right_facing` | `Boolean` |  |
+| `is_playable_character` | `Boolean` |  |
+| `killfeed_portrait` | `String` |  |
+| `role` | `Hash` |  |
+| `status` | `Integer` |  |
+| `uuid` | `String` |  |
+| `voice_line` | `Hash` |  |
 
 #### Example: Load
 
@@ -439,10 +467,10 @@ Create an instance: `competitive = client.Competitive`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_object_name` | ``$STRING`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `tier` | ``$ARRAY`` |  |
-| `uuid` | ``$STRING`` |  |
+| `asset_object_name` | `String` |  |
+| `asset_path` | `String` |  |
+| `tier` | `Array` |  |
+| `uuid` | `String` |  |
 
 #### Example: List
 
@@ -466,23 +494,23 @@ Create an instance: `cosmetic = client.Cosmetic`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `animation_gif` | ``$STRING`` |  |
-| `animation_png` | ``$STRING`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `full_icon` | ``$STRING`` |  |
-| `full_transparent_icon` | ``$STRING`` |  |
-| `hide_if_not_owned` | ``$BOOLEAN`` |  |
-| `is_hidden_if_not_owned` | ``$BOOLEAN`` |  |
-| `is_null_spray` | ``$BOOLEAN`` |  |
-| `large_art` | ``$STRING`` |  |
-| `level` | ``$ARRAY`` |  |
-| `small_art` | ``$STRING`` |  |
-| `theme_uuid` | ``$STRING`` |  |
-| `uuid` | ``$STRING`` |  |
-| `wide_art` | ``$STRING`` |  |
+| `animation_gif` | `String` |  |
+| `animation_png` | `String` |  |
+| `asset_path` | `String` |  |
+| `category` | `String` |  |
+| `display_icon` | `String` |  |
+| `display_name` | `String` |  |
+| `full_icon` | `String` |  |
+| `full_transparent_icon` | `String` |  |
+| `hide_if_not_owned` | `Boolean` |  |
+| `is_hidden_if_not_owned` | `Boolean` |  |
+| `is_null_spray` | `Boolean` |  |
+| `large_art` | `String` |  |
+| `level` | `Array` |  |
+| `small_art` | `String` |  |
+| `theme_uuid` | `String` |  |
+| `uuid` | `String` |  |
+| `wide_art` | `String` |  |
 
 #### Example: List
 
@@ -506,20 +534,20 @@ Create an instance: `game_mode = client.GameMode`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allows_match_timeout` | ``$BOOLEAN`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `duration` | ``$STRING`` |  |
-| `economy_type` | ``$STRING`` |  |
-| `game_feature_override` | ``$ARRAY`` |  |
-| `game_rule_bool_override` | ``$ARRAY`` |  |
-| `is_minimap_hidden` | ``$BOOLEAN`` |  |
-| `is_team_voice_allowed` | ``$BOOLEAN`` |  |
-| `orb_count` | ``$INTEGER`` |  |
-| `rounds_per_half` | ``$INTEGER`` |  |
-| `team_role` | ``$ARRAY`` |  |
-| `uuid` | ``$STRING`` |  |
+| `allows_match_timeout` | `Boolean` |  |
+| `asset_path` | `String` |  |
+| `display_icon` | `String` |  |
+| `display_name` | `String` |  |
+| `duration` | `String` |  |
+| `economy_type` | `String` |  |
+| `game_feature_override` | `Array` |  |
+| `game_rule_bool_override` | `Array` |  |
+| `is_minimap_hidden` | `Boolean` |  |
+| `is_team_voice_allowed` | `Boolean` |  |
+| `orb_count` | `Integer` |  |
+| `rounds_per_half` | `Integer` |  |
+| `team_role` | `Array` |  |
+| `uuid` | `String` |  |
 
 #### Example: List
 
@@ -544,23 +572,23 @@ Create an instance: `map = client.Map`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | ``$STRING`` |  |
-| `callout` | ``$ARRAY`` |  |
-| `coordinate` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `list_view_icon` | ``$STRING`` |  |
-| `map_url` | ``$STRING`` |  |
-| `narrative_description` | ``$STRING`` |  |
-| `splash` | ``$STRING`` |  |
-| `status` | ``$INTEGER`` |  |
-| `tactical_description` | ``$STRING`` |  |
-| `uuid` | ``$STRING`` |  |
-| `x_multiplier` | ``$NUMBER`` |  |
-| `x_scalar_to_add` | ``$NUMBER`` |  |
-| `y_multiplier` | ``$NUMBER`` |  |
-| `y_scalar_to_add` | ``$NUMBER`` |  |
+| `asset_path` | `String` |  |
+| `callout` | `Array` |  |
+| `coordinate` | `String` |  |
+| `data` | `Hash` |  |
+| `display_icon` | `String` |  |
+| `display_name` | `String` |  |
+| `list_view_icon` | `String` |  |
+| `map_url` | `String` |  |
+| `narrative_description` | `String` |  |
+| `splash` | `String` |  |
+| `status` | `Integer` |  |
+| `tactical_description` | `String` |  |
+| `uuid` | `String` |  |
+| `x_multiplier` | `Float` |  |
+| `x_scalar_to_add` | `Float` |  |
+| `y_multiplier` | `Float` |  |
+| `y_scalar_to_add` | `Float` |  |
 
 #### Example: Load
 
@@ -592,18 +620,18 @@ Create an instance: `weapon = client.Weapon`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `default_skin_uuid` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `kill_stream_icon` | ``$STRING`` |  |
-| `shop_data` | ``$OBJECT`` |  |
-| `skin` | ``$ARRAY`` |  |
-| `status` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `weapon_stat` | ``$OBJECT`` |  |
+| `asset_path` | `String` |  |
+| `category` | `String` |  |
+| `data` | `Hash` |  |
+| `default_skin_uuid` | `String` |  |
+| `display_icon` | `String` |  |
+| `display_name` | `String` |  |
+| `kill_stream_icon` | `String` |  |
+| `shop_data` | `Hash` |  |
+| `skin` | `Array` |  |
+| `status` | `Integer` |  |
+| `uuid` | `String` |  |
+| `weapon_stat` | `Hash` |  |
 
 #### Example: Load
 
@@ -620,12 +648,16 @@ weapons = client.Weapon.list
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -642,8 +674,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -687,14 +720,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 agent = client.Agent
-agent.load({ "id" => "example_id" })
+agent.list()
 
-# agent.data_get now returns the loaded agent data
+# agent.data_get now returns the agent data from the last list
 # agent.match_get returns the last match criteria
 ```
 

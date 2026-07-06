@@ -4,6 +4,8 @@
 
 The Lua SDK for the Valorant API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Agent()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -41,7 +43,7 @@ local agents, err = client:Agent():list()
 if err then error(err) end
 
 for _, item in ipairs(agents) do
-  print(item["id"], item["name"])
+  print(item["asset_path"])
 end
 ```
 
@@ -51,6 +53,28 @@ end
 local agent, err = client:Agent():load({ id = "example_id" })
 if err then error(err) end
 print(agent)
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local agents, err = client:Agent():list()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -96,8 +120,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Agent():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Agent():list()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -190,9 +214,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -207,7 +228,7 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
@@ -382,29 +403,29 @@ Create an instance: `local agent = client:Agent(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability` | ``$ARRAY`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `background` | ``$STRING`` |  |
-| `background_gradient_color` | ``$ARRAY`` |  |
-| `bust_portrait` | ``$STRING`` |  |
-| `character_tag` | ``$ARRAY`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer_name` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_icon_small` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `full_portrait` | ``$STRING`` |  |
-| `full_portrait_v2` | ``$STRING`` |  |
-| `is_available_for_test` | ``$BOOLEAN`` |  |
-| `is_base_content` | ``$BOOLEAN`` |  |
-| `is_full_portrait_right_facing` | ``$BOOLEAN`` |  |
-| `is_playable_character` | ``$BOOLEAN`` |  |
-| `killfeed_portrait` | ``$STRING`` |  |
-| `role` | ``$OBJECT`` |  |
-| `status` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `voice_line` | ``$OBJECT`` |  |
+| `ability` | `table` |  |
+| `asset_path` | `string` |  |
+| `background` | `string` |  |
+| `background_gradient_color` | `table` |  |
+| `bust_portrait` | `string` |  |
+| `character_tag` | `table` |  |
+| `data` | `table` |  |
+| `description` | `string` |  |
+| `developer_name` | `string` |  |
+| `display_icon` | `string` |  |
+| `display_icon_small` | `string` |  |
+| `display_name` | `string` |  |
+| `full_portrait` | `string` |  |
+| `full_portrait_v2` | `string` |  |
+| `is_available_for_test` | `boolean` |  |
+| `is_base_content` | `boolean` |  |
+| `is_full_portrait_right_facing` | `boolean` |  |
+| `is_playable_character` | `boolean` |  |
+| `killfeed_portrait` | `string` |  |
+| `role` | `table` |  |
+| `status` | `number` |  |
+| `uuid` | `string` |  |
+| `voice_line` | `table` |  |
 
 #### Example: Load
 
@@ -433,10 +454,10 @@ Create an instance: `local competitive = client:Competitive(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_object_name` | ``$STRING`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `tier` | ``$ARRAY`` |  |
-| `uuid` | ``$STRING`` |  |
+| `asset_object_name` | `string` |  |
+| `asset_path` | `string` |  |
+| `tier` | `table` |  |
+| `uuid` | `string` |  |
 
 #### Example: List
 
@@ -459,23 +480,23 @@ Create an instance: `local cosmetic = client:Cosmetic(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `animation_gif` | ``$STRING`` |  |
-| `animation_png` | ``$STRING`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `full_icon` | ``$STRING`` |  |
-| `full_transparent_icon` | ``$STRING`` |  |
-| `hide_if_not_owned` | ``$BOOLEAN`` |  |
-| `is_hidden_if_not_owned` | ``$BOOLEAN`` |  |
-| `is_null_spray` | ``$BOOLEAN`` |  |
-| `large_art` | ``$STRING`` |  |
-| `level` | ``$ARRAY`` |  |
-| `small_art` | ``$STRING`` |  |
-| `theme_uuid` | ``$STRING`` |  |
-| `uuid` | ``$STRING`` |  |
-| `wide_art` | ``$STRING`` |  |
+| `animation_gif` | `string` |  |
+| `animation_png` | `string` |  |
+| `asset_path` | `string` |  |
+| `category` | `string` |  |
+| `display_icon` | `string` |  |
+| `display_name` | `string` |  |
+| `full_icon` | `string` |  |
+| `full_transparent_icon` | `string` |  |
+| `hide_if_not_owned` | `boolean` |  |
+| `is_hidden_if_not_owned` | `boolean` |  |
+| `is_null_spray` | `boolean` |  |
+| `large_art` | `string` |  |
+| `level` | `table` |  |
+| `small_art` | `string` |  |
+| `theme_uuid` | `string` |  |
+| `uuid` | `string` |  |
+| `wide_art` | `string` |  |
 
 #### Example: List
 
@@ -498,20 +519,20 @@ Create an instance: `local game_mode = client:GameMode(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allows_match_timeout` | ``$BOOLEAN`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `duration` | ``$STRING`` |  |
-| `economy_type` | ``$STRING`` |  |
-| `game_feature_override` | ``$ARRAY`` |  |
-| `game_rule_bool_override` | ``$ARRAY`` |  |
-| `is_minimap_hidden` | ``$BOOLEAN`` |  |
-| `is_team_voice_allowed` | ``$BOOLEAN`` |  |
-| `orb_count` | ``$INTEGER`` |  |
-| `rounds_per_half` | ``$INTEGER`` |  |
-| `team_role` | ``$ARRAY`` |  |
-| `uuid` | ``$STRING`` |  |
+| `allows_match_timeout` | `boolean` |  |
+| `asset_path` | `string` |  |
+| `display_icon` | `string` |  |
+| `display_name` | `string` |  |
+| `duration` | `string` |  |
+| `economy_type` | `string` |  |
+| `game_feature_override` | `table` |  |
+| `game_rule_bool_override` | `table` |  |
+| `is_minimap_hidden` | `boolean` |  |
+| `is_team_voice_allowed` | `boolean` |  |
+| `orb_count` | `number` |  |
+| `rounds_per_half` | `number` |  |
+| `team_role` | `table` |  |
+| `uuid` | `string` |  |
 
 #### Example: List
 
@@ -535,23 +556,23 @@ Create an instance: `local map = client:Map(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | ``$STRING`` |  |
-| `callout` | ``$ARRAY`` |  |
-| `coordinate` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `list_view_icon` | ``$STRING`` |  |
-| `map_url` | ``$STRING`` |  |
-| `narrative_description` | ``$STRING`` |  |
-| `splash` | ``$STRING`` |  |
-| `status` | ``$INTEGER`` |  |
-| `tactical_description` | ``$STRING`` |  |
-| `uuid` | ``$STRING`` |  |
-| `x_multiplier` | ``$NUMBER`` |  |
-| `x_scalar_to_add` | ``$NUMBER`` |  |
-| `y_multiplier` | ``$NUMBER`` |  |
-| `y_scalar_to_add` | ``$NUMBER`` |  |
+| `asset_path` | `string` |  |
+| `callout` | `table` |  |
+| `coordinate` | `string` |  |
+| `data` | `table` |  |
+| `display_icon` | `string` |  |
+| `display_name` | `string` |  |
+| `list_view_icon` | `string` |  |
+| `map_url` | `string` |  |
+| `narrative_description` | `string` |  |
+| `splash` | `string` |  |
+| `status` | `number` |  |
+| `tactical_description` | `string` |  |
+| `uuid` | `string` |  |
+| `x_multiplier` | `number` |  |
+| `x_scalar_to_add` | `number` |  |
+| `y_multiplier` | `number` |  |
+| `y_scalar_to_add` | `number` |  |
 
 #### Example: Load
 
@@ -581,18 +602,18 @@ Create an instance: `local weapon = client:Weapon(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `default_skin_uuid` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `kill_stream_icon` | ``$STRING`` |  |
-| `shop_data` | ``$OBJECT`` |  |
-| `skin` | ``$ARRAY`` |  |
-| `status` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `weapon_stat` | ``$OBJECT`` |  |
+| `asset_path` | `string` |  |
+| `category` | `string` |  |
+| `data` | `table` |  |
+| `default_skin_uuid` | `string` |  |
+| `display_icon` | `string` |  |
+| `display_name` | `string` |  |
+| `kill_stream_icon` | `string` |  |
+| `shop_data` | `table` |  |
+| `skin` | `table` |  |
+| `status` | `number` |  |
+| `uuid` | `string` |  |
+| `weapon_stat` | `table` |  |
 
 #### Example: Load
 
@@ -607,12 +628,16 @@ local weapons, err = client:Weapon():list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -629,8 +654,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -674,14 +700,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
 local agent = client:Agent()
-agent:load({ id = "example_id" })
+agent:list()
 
--- agent:data_get() now returns the loaded agent data
+-- agent:data_get() now returns the agent data from the last list
 -- agent:match_get() returns the last match criteria
 ```
 

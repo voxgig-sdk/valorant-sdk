@@ -4,6 +4,8 @@
 
 The Golang SDK for the Valorant API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Agent(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -58,12 +60,41 @@ func main() {
     }
 
     // Load a single agent — the value is the loaded record.
-    agent, err := client.Agent(nil).Load(map[string]any{"id": "example_id"}, nil)
+    agent, err := client.Agent(nil).Load(map[string]any{"id": "example"}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(agent)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+agents, err := client.Agent(nil).List(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = agents
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -113,13 +144,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-agent, err := client.Agent(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+agent, err := client.Agent(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(agent) // the loaded mock data
+fmt.Println(agent) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -211,9 +242,6 @@ All entities implement the `ValorantEntity` interface.
 | --- | --- | --- |
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
-| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -226,16 +254,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    agent, err := client.Agent(nil).Load(map[string]any{"id": "example_id"}, nil)
+    agent, err := client.Agent(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // agent is the loaded record
+    // agent is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -403,29 +431,29 @@ Create an instance: `agent := client.Agent(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability` | ``$ARRAY`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `background` | ``$STRING`` |  |
-| `background_gradient_color` | ``$ARRAY`` |  |
-| `bust_portrait` | ``$STRING`` |  |
-| `character_tag` | ``$ARRAY`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer_name` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_icon_small` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `full_portrait` | ``$STRING`` |  |
-| `full_portrait_v2` | ``$STRING`` |  |
-| `is_available_for_test` | ``$BOOLEAN`` |  |
-| `is_base_content` | ``$BOOLEAN`` |  |
-| `is_full_portrait_right_facing` | ``$BOOLEAN`` |  |
-| `is_playable_character` | ``$BOOLEAN`` |  |
-| `killfeed_portrait` | ``$STRING`` |  |
-| `role` | ``$OBJECT`` |  |
-| `status` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `voice_line` | ``$OBJECT`` |  |
+| `ability` | `[]any` |  |
+| `asset_path` | `string` |  |
+| `background` | `string` |  |
+| `background_gradient_color` | `[]any` |  |
+| `bust_portrait` | `string` |  |
+| `character_tag` | `[]any` |  |
+| `data` | `map[string]any` |  |
+| `description` | `string` |  |
+| `developer_name` | `string` |  |
+| `display_icon` | `string` |  |
+| `display_icon_small` | `string` |  |
+| `display_name` | `string` |  |
+| `full_portrait` | `string` |  |
+| `full_portrait_v2` | `string` |  |
+| `is_available_for_test` | `bool` |  |
+| `is_base_content` | `bool` |  |
+| `is_full_portrait_right_facing` | `bool` |  |
+| `is_playable_character` | `bool` |  |
+| `killfeed_portrait` | `string` |  |
+| `role` | `map[string]any` |  |
+| `status` | `int` |  |
+| `uuid` | `string` |  |
+| `voice_line` | `map[string]any` |  |
 
 #### Example: Load
 
@@ -462,10 +490,10 @@ Create an instance: `competitive := client.Competitive(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_object_name` | ``$STRING`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `tier` | ``$ARRAY`` |  |
-| `uuid` | ``$STRING`` |  |
+| `asset_object_name` | `string` |  |
+| `asset_path` | `string` |  |
+| `tier` | `[]any` |  |
+| `uuid` | `string` |  |
 
 #### Example: List
 
@@ -492,23 +520,23 @@ Create an instance: `cosmetic := client.Cosmetic(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `animation_gif` | ``$STRING`` |  |
-| `animation_png` | ``$STRING`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `full_icon` | ``$STRING`` |  |
-| `full_transparent_icon` | ``$STRING`` |  |
-| `hide_if_not_owned` | ``$BOOLEAN`` |  |
-| `is_hidden_if_not_owned` | ``$BOOLEAN`` |  |
-| `is_null_spray` | ``$BOOLEAN`` |  |
-| `large_art` | ``$STRING`` |  |
-| `level` | ``$ARRAY`` |  |
-| `small_art` | ``$STRING`` |  |
-| `theme_uuid` | ``$STRING`` |  |
-| `uuid` | ``$STRING`` |  |
-| `wide_art` | ``$STRING`` |  |
+| `animation_gif` | `string` |  |
+| `animation_png` | `string` |  |
+| `asset_path` | `string` |  |
+| `category` | `string` |  |
+| `display_icon` | `string` |  |
+| `display_name` | `string` |  |
+| `full_icon` | `string` |  |
+| `full_transparent_icon` | `string` |  |
+| `hide_if_not_owned` | `bool` |  |
+| `is_hidden_if_not_owned` | `bool` |  |
+| `is_null_spray` | `bool` |  |
+| `large_art` | `string` |  |
+| `level` | `[]any` |  |
+| `small_art` | `string` |  |
+| `theme_uuid` | `string` |  |
+| `uuid` | `string` |  |
+| `wide_art` | `string` |  |
 
 #### Example: List
 
@@ -535,20 +563,20 @@ Create an instance: `game_mode := client.GameMode(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allows_match_timeout` | ``$BOOLEAN`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `duration` | ``$STRING`` |  |
-| `economy_type` | ``$STRING`` |  |
-| `game_feature_override` | ``$ARRAY`` |  |
-| `game_rule_bool_override` | ``$ARRAY`` |  |
-| `is_minimap_hidden` | ``$BOOLEAN`` |  |
-| `is_team_voice_allowed` | ``$BOOLEAN`` |  |
-| `orb_count` | ``$INTEGER`` |  |
-| `rounds_per_half` | ``$INTEGER`` |  |
-| `team_role` | ``$ARRAY`` |  |
-| `uuid` | ``$STRING`` |  |
+| `allows_match_timeout` | `bool` |  |
+| `asset_path` | `string` |  |
+| `display_icon` | `string` |  |
+| `display_name` | `string` |  |
+| `duration` | `string` |  |
+| `economy_type` | `string` |  |
+| `game_feature_override` | `[]any` |  |
+| `game_rule_bool_override` | `[]any` |  |
+| `is_minimap_hidden` | `bool` |  |
+| `is_team_voice_allowed` | `bool` |  |
+| `orb_count` | `int` |  |
+| `rounds_per_half` | `int` |  |
+| `team_role` | `[]any` |  |
+| `uuid` | `string` |  |
 
 #### Example: List
 
@@ -563,7 +591,7 @@ fmt.Println(game_modes) // the array of records
 
 ### Map
 
-Create an instance: `map := client.Map(nil)`
+Create an instance: `map_ := client.Map(nil)`
 
 #### Operations
 
@@ -576,42 +604,42 @@ Create an instance: `map := client.Map(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | ``$STRING`` |  |
-| `callout` | ``$ARRAY`` |  |
-| `coordinate` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `list_view_icon` | ``$STRING`` |  |
-| `map_url` | ``$STRING`` |  |
-| `narrative_description` | ``$STRING`` |  |
-| `splash` | ``$STRING`` |  |
-| `status` | ``$INTEGER`` |  |
-| `tactical_description` | ``$STRING`` |  |
-| `uuid` | ``$STRING`` |  |
-| `x_multiplier` | ``$NUMBER`` |  |
-| `x_scalar_to_add` | ``$NUMBER`` |  |
-| `y_multiplier` | ``$NUMBER`` |  |
-| `y_scalar_to_add` | ``$NUMBER`` |  |
+| `asset_path` | `string` |  |
+| `callout` | `[]any` |  |
+| `coordinate` | `string` |  |
+| `data` | `map[string]any` |  |
+| `display_icon` | `string` |  |
+| `display_name` | `string` |  |
+| `list_view_icon` | `string` |  |
+| `map_url` | `string` |  |
+| `narrative_description` | `string` |  |
+| `splash` | `string` |  |
+| `status` | `int` |  |
+| `tactical_description` | `string` |  |
+| `uuid` | `string` |  |
+| `x_multiplier` | `float64` |  |
+| `x_scalar_to_add` | `float64` |  |
+| `y_multiplier` | `float64` |  |
+| `y_scalar_to_add` | `float64` |  |
 
 #### Example: Load
 
 ```go
-map, err := client.Map(nil).Load(map[string]any{"id": "map_id"}, nil)
+map_, err := client.Map(nil).Load(map[string]any{"id": "map_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(map) // the loaded record
+fmt.Println(map_) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-maps, err := client.Map(nil).List(nil, nil)
+map_s, err := client.Map(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(maps) // the array of records
+fmt.Println(map_s) // the array of records
 ```
 
 
@@ -630,18 +658,18 @@ Create an instance: `weapon := client.Weapon(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `default_skin_uuid` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `kill_stream_icon` | ``$STRING`` |  |
-| `shop_data` | ``$OBJECT`` |  |
-| `skin` | ``$ARRAY`` |  |
-| `status` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `weapon_stat` | ``$OBJECT`` |  |
+| `asset_path` | `string` |  |
+| `category` | `string` |  |
+| `data` | `map[string]any` |  |
+| `default_skin_uuid` | `string` |  |
+| `display_icon` | `string` |  |
+| `display_name` | `string` |  |
+| `kill_stream_icon` | `string` |  |
+| `shop_data` | `map[string]any` |  |
+| `skin` | `[]any` |  |
+| `status` | `int` |  |
+| `uuid` | `string` |  |
+| `weapon_stat` | `map[string]any` |  |
 
 #### Example: Load
 
@@ -664,12 +692,16 @@ fmt.Println(weapons) // the array of records
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -686,9 +718,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -729,14 +761,14 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
 agent := client.Agent(nil)
-agent.Load(map[string]any{"id": "example_id"}, nil)
+agent.List(nil, nil)
 
-// agent.Data() now returns the loaded agent data
+// agent.Data() now returns the agent data from the last list
 // agent.Match() returns the last match criteria
 ```
 

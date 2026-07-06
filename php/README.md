@@ -4,6 +4,8 @@
 
 The PHP SDK for the Valorant API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Agent()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,7 +38,7 @@ try {
     // list() returns an array of Agent records — iterate directly.
     $agents = $client->Agent()->list();
     foreach ($agents as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["ability"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -52,6 +54,37 @@ try {
     print_r($agent);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $agents = $client->Agent()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -75,7 +108,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -104,8 +140,8 @@ $client = ValorantSDK::test([
     "entity" => ["agent" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// load() returns the bare mock record (throws on error).
-$agent = $client->Agent()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$agent = $client->Agent()->list();
 print_r($agent);
 ```
 
@@ -199,10 +235,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -391,29 +424,29 @@ Create an instance: `$agent = $client->Agent();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability` | ``$ARRAY`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `background` | ``$STRING`` |  |
-| `background_gradient_color` | ``$ARRAY`` |  |
-| `bust_portrait` | ``$STRING`` |  |
-| `character_tag` | ``$ARRAY`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer_name` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_icon_small` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `full_portrait` | ``$STRING`` |  |
-| `full_portrait_v2` | ``$STRING`` |  |
-| `is_available_for_test` | ``$BOOLEAN`` |  |
-| `is_base_content` | ``$BOOLEAN`` |  |
-| `is_full_portrait_right_facing` | ``$BOOLEAN`` |  |
-| `is_playable_character` | ``$BOOLEAN`` |  |
-| `killfeed_portrait` | ``$STRING`` |  |
-| `role` | ``$OBJECT`` |  |
-| `status` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `voice_line` | ``$OBJECT`` |  |
+| `ability` | `array` |  |
+| `asset_path` | `string` |  |
+| `background` | `string` |  |
+| `background_gradient_color` | `array` |  |
+| `bust_portrait` | `string` |  |
+| `character_tag` | `array` |  |
+| `data` | `array` |  |
+| `description` | `string` |  |
+| `developer_name` | `string` |  |
+| `display_icon` | `string` |  |
+| `display_icon_small` | `string` |  |
+| `display_name` | `string` |  |
+| `full_portrait` | `string` |  |
+| `full_portrait_v2` | `string` |  |
+| `is_available_for_test` | `bool` |  |
+| `is_base_content` | `bool` |  |
+| `is_full_portrait_right_facing` | `bool` |  |
+| `is_playable_character` | `bool` |  |
+| `killfeed_portrait` | `string` |  |
+| `role` | `array` |  |
+| `status` | `int` |  |
+| `uuid` | `string` |  |
+| `voice_line` | `array` |  |
 
 #### Example: Load
 
@@ -444,10 +477,10 @@ Create an instance: `$competitive = $client->Competitive();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_object_name` | ``$STRING`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `tier` | ``$ARRAY`` |  |
-| `uuid` | ``$STRING`` |  |
+| `asset_object_name` | `string` |  |
+| `asset_path` | `string` |  |
+| `tier` | `array` |  |
+| `uuid` | `string` |  |
 
 #### Example: List
 
@@ -471,23 +504,23 @@ Create an instance: `$cosmetic = $client->Cosmetic();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `animation_gif` | ``$STRING`` |  |
-| `animation_png` | ``$STRING`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `full_icon` | ``$STRING`` |  |
-| `full_transparent_icon` | ``$STRING`` |  |
-| `hide_if_not_owned` | ``$BOOLEAN`` |  |
-| `is_hidden_if_not_owned` | ``$BOOLEAN`` |  |
-| `is_null_spray` | ``$BOOLEAN`` |  |
-| `large_art` | ``$STRING`` |  |
-| `level` | ``$ARRAY`` |  |
-| `small_art` | ``$STRING`` |  |
-| `theme_uuid` | ``$STRING`` |  |
-| `uuid` | ``$STRING`` |  |
-| `wide_art` | ``$STRING`` |  |
+| `animation_gif` | `string` |  |
+| `animation_png` | `string` |  |
+| `asset_path` | `string` |  |
+| `category` | `string` |  |
+| `display_icon` | `string` |  |
+| `display_name` | `string` |  |
+| `full_icon` | `string` |  |
+| `full_transparent_icon` | `string` |  |
+| `hide_if_not_owned` | `bool` |  |
+| `is_hidden_if_not_owned` | `bool` |  |
+| `is_null_spray` | `bool` |  |
+| `large_art` | `string` |  |
+| `level` | `array` |  |
+| `small_art` | `string` |  |
+| `theme_uuid` | `string` |  |
+| `uuid` | `string` |  |
+| `wide_art` | `string` |  |
 
 #### Example: List
 
@@ -511,20 +544,20 @@ Create an instance: `$game_mode = $client->GameMode();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allows_match_timeout` | ``$BOOLEAN`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `duration` | ``$STRING`` |  |
-| `economy_type` | ``$STRING`` |  |
-| `game_feature_override` | ``$ARRAY`` |  |
-| `game_rule_bool_override` | ``$ARRAY`` |  |
-| `is_minimap_hidden` | ``$BOOLEAN`` |  |
-| `is_team_voice_allowed` | ``$BOOLEAN`` |  |
-| `orb_count` | ``$INTEGER`` |  |
-| `rounds_per_half` | ``$INTEGER`` |  |
-| `team_role` | ``$ARRAY`` |  |
-| `uuid` | ``$STRING`` |  |
+| `allows_match_timeout` | `bool` |  |
+| `asset_path` | `string` |  |
+| `display_icon` | `string` |  |
+| `display_name` | `string` |  |
+| `duration` | `string` |  |
+| `economy_type` | `string` |  |
+| `game_feature_override` | `array` |  |
+| `game_rule_bool_override` | `array` |  |
+| `is_minimap_hidden` | `bool` |  |
+| `is_team_voice_allowed` | `bool` |  |
+| `orb_count` | `int` |  |
+| `rounds_per_half` | `int` |  |
+| `team_role` | `array` |  |
+| `uuid` | `string` |  |
 
 #### Example: List
 
@@ -549,23 +582,23 @@ Create an instance: `$map = $client->Map();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | ``$STRING`` |  |
-| `callout` | ``$ARRAY`` |  |
-| `coordinate` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `list_view_icon` | ``$STRING`` |  |
-| `map_url` | ``$STRING`` |  |
-| `narrative_description` | ``$STRING`` |  |
-| `splash` | ``$STRING`` |  |
-| `status` | ``$INTEGER`` |  |
-| `tactical_description` | ``$STRING`` |  |
-| `uuid` | ``$STRING`` |  |
-| `x_multiplier` | ``$NUMBER`` |  |
-| `x_scalar_to_add` | ``$NUMBER`` |  |
-| `y_multiplier` | ``$NUMBER`` |  |
-| `y_scalar_to_add` | ``$NUMBER`` |  |
+| `asset_path` | `string` |  |
+| `callout` | `array` |  |
+| `coordinate` | `string` |  |
+| `data` | `array` |  |
+| `display_icon` | `string` |  |
+| `display_name` | `string` |  |
+| `list_view_icon` | `string` |  |
+| `map_url` | `string` |  |
+| `narrative_description` | `string` |  |
+| `splash` | `string` |  |
+| `status` | `int` |  |
+| `tactical_description` | `string` |  |
+| `uuid` | `string` |  |
+| `x_multiplier` | `float` |  |
+| `x_scalar_to_add` | `float` |  |
+| `y_multiplier` | `float` |  |
+| `y_scalar_to_add` | `float` |  |
 
 #### Example: Load
 
@@ -597,18 +630,18 @@ Create an instance: `$weapon = $client->Weapon();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `default_skin_uuid` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `kill_stream_icon` | ``$STRING`` |  |
-| `shop_data` | ``$OBJECT`` |  |
-| `skin` | ``$ARRAY`` |  |
-| `status` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `weapon_stat` | ``$OBJECT`` |  |
+| `asset_path` | `string` |  |
+| `category` | `string` |  |
+| `data` | `array` |  |
+| `default_skin_uuid` | `string` |  |
+| `display_icon` | `string` |  |
+| `display_name` | `string` |  |
+| `kill_stream_icon` | `string` |  |
+| `shop_data` | `array` |  |
+| `skin` | `array` |  |
+| `status` | `int` |  |
+| `uuid` | `string` |  |
+| `weapon_stat` | `array` |  |
 
 #### Example: Load
 
@@ -625,12 +658,16 @@ $weapons = $client->Weapon()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -647,8 +684,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -692,15 +730,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $agent = $client->Agent();
-$agent->load(["id" => "example_id"]);
+$agent->list();
 
-// $agent->dataGet() now returns the loaded agent data
-// $agent->matchGet() returns the last match criteria
+// $agent->data_get() now returns the agent data from the last list
+// $agent->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -107,38 +107,38 @@ agent = client.Agent()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability` | ``$ARRAY`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `background` | ``$STRING`` | No |  |
-| `background_gradient_color` | ``$ARRAY`` | No |  |
-| `bust_portrait` | ``$STRING`` | No |  |
-| `character_tag` | ``$ARRAY`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer_name` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_icon_small` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `full_portrait` | ``$STRING`` | No |  |
-| `full_portrait_v2` | ``$STRING`` | No |  |
-| `is_available_for_test` | ``$BOOLEAN`` | No |  |
-| `is_base_content` | ``$BOOLEAN`` | No |  |
-| `is_full_portrait_right_facing` | ``$BOOLEAN`` | No |  |
-| `is_playable_character` | ``$BOOLEAN`` | No |  |
-| `killfeed_portrait` | ``$STRING`` | No |  |
-| `role` | ``$OBJECT`` | No |  |
-| `status` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `voice_line` | ``$OBJECT`` | No |  |
+| `ability` | `list` | No |  |
+| `asset_path` | `str` | No |  |
+| `background` | `str` | No |  |
+| `background_gradient_color` | `list` | No |  |
+| `bust_portrait` | `str` | No |  |
+| `character_tag` | `list` | No |  |
+| `data` | `dict` | No |  |
+| `description` | `str` | No |  |
+| `developer_name` | `str` | No |  |
+| `display_icon` | `str` | No |  |
+| `display_icon_small` | `str` | No |  |
+| `display_name` | `str` | No |  |
+| `full_portrait` | `str` | No |  |
+| `full_portrait_v2` | `str` | No |  |
+| `is_available_for_test` | `bool` | No |  |
+| `is_base_content` | `bool` | No |  |
+| `is_full_portrait_right_facing` | `bool` | No |  |
+| `is_playable_character` | `bool` | No |  |
+| `killfeed_portrait` | `str` | No |  |
+| `role` | `dict` | No |  |
+| `status` | `int` | No |  |
+| `uuid` | `str` | No |  |
+| `voice_line` | `dict` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Agent().list({})
+results = client.Agent().list()
 for agent in results:
     print(agent)
 ```
@@ -190,19 +190,19 @@ competitive = client.Competitive()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_object_name` | ``$STRING`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `tier` | ``$ARRAY`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `asset_object_name` | `str` | No |  |
+| `asset_path` | `str` | No |  |
+| `tier` | `list` | No |  |
+| `uuid` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Competitive().list({})
+results = client.Competitive().list()
 for competitive in results:
     print(competitive)
 ```
@@ -246,32 +246,32 @@ cosmetic = client.Cosmetic()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `animation_gif` | ``$STRING`` | No |  |
-| `animation_png` | ``$STRING`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `full_icon` | ``$STRING`` | No |  |
-| `full_transparent_icon` | ``$STRING`` | No |  |
-| `hide_if_not_owned` | ``$BOOLEAN`` | No |  |
-| `is_hidden_if_not_owned` | ``$BOOLEAN`` | No |  |
-| `is_null_spray` | ``$BOOLEAN`` | No |  |
-| `large_art` | ``$STRING`` | No |  |
-| `level` | ``$ARRAY`` | No |  |
-| `small_art` | ``$STRING`` | No |  |
-| `theme_uuid` | ``$STRING`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `wide_art` | ``$STRING`` | No |  |
+| `animation_gif` | `str` | No |  |
+| `animation_png` | `str` | No |  |
+| `asset_path` | `str` | No |  |
+| `category` | `str` | No |  |
+| `display_icon` | `str` | No |  |
+| `display_name` | `str` | No |  |
+| `full_icon` | `str` | No |  |
+| `full_transparent_icon` | `str` | No |  |
+| `hide_if_not_owned` | `bool` | No |  |
+| `is_hidden_if_not_owned` | `bool` | No |  |
+| `is_null_spray` | `bool` | No |  |
+| `large_art` | `str` | No |  |
+| `level` | `list` | No |  |
+| `small_art` | `str` | No |  |
+| `theme_uuid` | `str` | No |  |
+| `uuid` | `str` | No |  |
+| `wide_art` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Cosmetic().list({})
+results = client.Cosmetic().list()
 for cosmetic in results:
     print(cosmetic)
 ```
@@ -315,29 +315,29 @@ game_mode = client.GameMode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allows_match_timeout` | ``$BOOLEAN`` | No |  |
-| `asset_path` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `duration` | ``$STRING`` | No |  |
-| `economy_type` | ``$STRING`` | No |  |
-| `game_feature_override` | ``$ARRAY`` | No |  |
-| `game_rule_bool_override` | ``$ARRAY`` | No |  |
-| `is_minimap_hidden` | ``$BOOLEAN`` | No |  |
-| `is_team_voice_allowed` | ``$BOOLEAN`` | No |  |
-| `orb_count` | ``$INTEGER`` | No |  |
-| `rounds_per_half` | ``$INTEGER`` | No |  |
-| `team_role` | ``$ARRAY`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `allows_match_timeout` | `bool` | No |  |
+| `asset_path` | `str` | No |  |
+| `display_icon` | `str` | No |  |
+| `display_name` | `str` | No |  |
+| `duration` | `str` | No |  |
+| `economy_type` | `str` | No |  |
+| `game_feature_override` | `list` | No |  |
+| `game_rule_bool_override` | `list` | No |  |
+| `is_minimap_hidden` | `bool` | No |  |
+| `is_team_voice_allowed` | `bool` | No |  |
+| `orb_count` | `int` | No |  |
+| `rounds_per_half` | `int` | No |  |
+| `team_role` | `list` | No |  |
+| `uuid` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GameMode().list({})
+results = client.GameMode().list()
 for game_mode in results:
     print(game_mode)
 ```
@@ -381,32 +381,32 @@ map = client.Map()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | ``$STRING`` | No |  |
-| `callout` | ``$ARRAY`` | No |  |
-| `coordinate` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `list_view_icon` | ``$STRING`` | No |  |
-| `map_url` | ``$STRING`` | No |  |
-| `narrative_description` | ``$STRING`` | No |  |
-| `splash` | ``$STRING`` | No |  |
-| `status` | ``$INTEGER`` | No |  |
-| `tactical_description` | ``$STRING`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `x_multiplier` | ``$NUMBER`` | No |  |
-| `x_scalar_to_add` | ``$NUMBER`` | No |  |
-| `y_multiplier` | ``$NUMBER`` | No |  |
-| `y_scalar_to_add` | ``$NUMBER`` | No |  |
+| `asset_path` | `str` | No |  |
+| `callout` | `list` | No |  |
+| `coordinate` | `str` | No |  |
+| `data` | `dict` | No |  |
+| `display_icon` | `str` | No |  |
+| `display_name` | `str` | No |  |
+| `list_view_icon` | `str` | No |  |
+| `map_url` | `str` | No |  |
+| `narrative_description` | `str` | No |  |
+| `splash` | `str` | No |  |
+| `status` | `int` | No |  |
+| `tactical_description` | `str` | No |  |
+| `uuid` | `str` | No |  |
+| `x_multiplier` | `float` | No |  |
+| `x_scalar_to_add` | `float` | No |  |
+| `y_multiplier` | `float` | No |  |
+| `y_scalar_to_add` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Map().list({})
+results = client.Map().list()
 for map in results:
     print(map)
 ```
@@ -458,27 +458,27 @@ weapon = client.Weapon()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `default_skin_uuid` | ``$STRING`` | No |  |
-| `display_icon` | ``$STRING`` | No |  |
-| `display_name` | ``$STRING`` | No |  |
-| `kill_stream_icon` | ``$STRING`` | No |  |
-| `shop_data` | ``$OBJECT`` | No |  |
-| `skin` | ``$ARRAY`` | No |  |
-| `status` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `weapon_stat` | ``$OBJECT`` | No |  |
+| `asset_path` | `str` | No |  |
+| `category` | `str` | No |  |
+| `data` | `dict` | No |  |
+| `default_skin_uuid` | `str` | No |  |
+| `display_icon` | `str` | No |  |
+| `display_name` | `str` | No |  |
+| `kill_stream_icon` | `str` | No |  |
+| `shop_data` | `dict` | No |  |
+| `skin` | `list` | No |  |
+| `status` | `int` | No |  |
+| `uuid` | `str` | No |  |
+| `weapon_stat` | `dict` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Weapon().list({})
+results = client.Weapon().list()
 for weapon in results:
     print(weapon)
 ```

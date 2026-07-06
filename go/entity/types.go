@@ -40,8 +40,7 @@ type AgentLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// AgentListMatch mirrors the agent fields as an all-optional match
-// filter (Go analog of Partial<Agent>).
+// AgentListMatch is the typed request payload for Agent.ListTyped.
 type AgentListMatch struct {
 	Ability *[]any `json:"ability,omitempty"`
 	AssetPath *string `json:"asset_path,omitempty"`
@@ -76,8 +75,7 @@ type Competitive struct {
 	Uuid *string `json:"uuid,omitempty"`
 }
 
-// CompetitiveListMatch mirrors the competitive fields as an all-optional match
-// filter (Go analog of Partial<Competitive>).
+// CompetitiveListMatch is the typed request payload for Competitive.ListTyped.
 type CompetitiveListMatch struct {
 	AssetObjectName *string `json:"asset_object_name,omitempty"`
 	AssetPath *string `json:"asset_path,omitempty"`
@@ -106,8 +104,7 @@ type Cosmetic struct {
 	WideArt *string `json:"wide_art,omitempty"`
 }
 
-// CosmeticListMatch mirrors the cosmetic fields as an all-optional match
-// filter (Go analog of Partial<Cosmetic>).
+// CosmeticListMatch is the typed request payload for Cosmetic.ListTyped.
 type CosmeticListMatch struct {
 	AnimationGif *string `json:"animation_gif,omitempty"`
 	AnimationPng *string `json:"animation_png,omitempty"`
@@ -146,8 +143,7 @@ type GameMode struct {
 	Uuid *string `json:"uuid,omitempty"`
 }
 
-// GameModeListMatch mirrors the game_mode fields as an all-optional match
-// filter (Go analog of Partial<GameMode>).
+// GameModeListMatch is the typed request payload for GameMode.ListTyped.
 type GameModeListMatch struct {
 	AllowsMatchTimeout *bool `json:"allows_match_timeout,omitempty"`
 	AssetPath *string `json:"asset_path,omitempty"`
@@ -191,8 +187,7 @@ type MapLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// MapListMatch mirrors the map fields as an all-optional match
-// filter (Go analog of Partial<Map>).
+// MapListMatch is the typed request payload for Map.ListTyped.
 type MapListMatch struct {
 	AssetPath *string `json:"asset_path,omitempty"`
 	Callout *[]any `json:"callout,omitempty"`
@@ -234,8 +229,7 @@ type WeaponLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// WeaponListMatch mirrors the weapon fields as an all-optional match
-// filter (Go analog of Partial<Weapon>).
+// WeaponListMatch is the typed request payload for Weapon.ListTyped.
 type WeaponListMatch struct {
 	AssetPath *string `json:"asset_path,omitempty"`
 	Category *string `json:"category,omitempty"`

@@ -4,6 +4,11 @@
 
 The Python SDK for the Valorant API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Agent()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    agents = client.Agent().list({})
+    agents = client.Agent().list()
     for agent in agents:
         print(agent)
 except Exception as err:
@@ -55,6 +60,34 @@ try:
     print(agent)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    agents = client.Agent().list()
+    print(agents)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -75,7 +108,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -101,7 +137,7 @@ Create a mock client for unit testing — no server required:
 client = ValorantSDK.test()
 
 # Entity ops return the bare record and raise on error.
-agent = client.Agent().load({"id": "test01"})
+agent = client.Agent().list()
 # agent contains the mock response record
 ```
 
@@ -193,9 +229,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -377,36 +410,36 @@ Create an instance: `agent = client.Agent()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability` | ``$ARRAY`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `background` | ``$STRING`` |  |
-| `background_gradient_color` | ``$ARRAY`` |  |
-| `bust_portrait` | ``$STRING`` |  |
-| `character_tag` | ``$ARRAY`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer_name` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_icon_small` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `full_portrait` | ``$STRING`` |  |
-| `full_portrait_v2` | ``$STRING`` |  |
-| `is_available_for_test` | ``$BOOLEAN`` |  |
-| `is_base_content` | ``$BOOLEAN`` |  |
-| `is_full_portrait_right_facing` | ``$BOOLEAN`` |  |
-| `is_playable_character` | ``$BOOLEAN`` |  |
-| `killfeed_portrait` | ``$STRING`` |  |
-| `role` | ``$OBJECT`` |  |
-| `status` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `voice_line` | ``$OBJECT`` |  |
+| `ability` | `list` |  |
+| `asset_path` | `str` |  |
+| `background` | `str` |  |
+| `background_gradient_color` | `list` |  |
+| `bust_portrait` | `str` |  |
+| `character_tag` | `list` |  |
+| `data` | `dict` |  |
+| `description` | `str` |  |
+| `developer_name` | `str` |  |
+| `display_icon` | `str` |  |
+| `display_icon_small` | `str` |  |
+| `display_name` | `str` |  |
+| `full_portrait` | `str` |  |
+| `full_portrait_v2` | `str` |  |
+| `is_available_for_test` | `bool` |  |
+| `is_base_content` | `bool` |  |
+| `is_full_portrait_right_facing` | `bool` |  |
+| `is_playable_character` | `bool` |  |
+| `killfeed_portrait` | `str` |  |
+| `role` | `dict` |  |
+| `status` | `int` |  |
+| `uuid` | `str` |  |
+| `voice_line` | `dict` |  |
 
 #### Example: Load
 
@@ -417,7 +450,7 @@ agent = client.Agent().load({"id": "agent_id"})
 #### Example: List
 
 ```python
-agents = client.Agent().list({})
+agents = client.Agent().list()
 ```
 
 
@@ -429,21 +462,21 @@ Create an instance: `competitive = client.Competitive()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_object_name` | ``$STRING`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `tier` | ``$ARRAY`` |  |
-| `uuid` | ``$STRING`` |  |
+| `asset_object_name` | `str` |  |
+| `asset_path` | `str` |  |
+| `tier` | `list` |  |
+| `uuid` | `str` |  |
 
 #### Example: List
 
 ```python
-competitives = client.Competitive().list({})
+competitives = client.Competitive().list()
 ```
 
 
@@ -455,34 +488,34 @@ Create an instance: `cosmetic = client.Cosmetic()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `animation_gif` | ``$STRING`` |  |
-| `animation_png` | ``$STRING`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `full_icon` | ``$STRING`` |  |
-| `full_transparent_icon` | ``$STRING`` |  |
-| `hide_if_not_owned` | ``$BOOLEAN`` |  |
-| `is_hidden_if_not_owned` | ``$BOOLEAN`` |  |
-| `is_null_spray` | ``$BOOLEAN`` |  |
-| `large_art` | ``$STRING`` |  |
-| `level` | ``$ARRAY`` |  |
-| `small_art` | ``$STRING`` |  |
-| `theme_uuid` | ``$STRING`` |  |
-| `uuid` | ``$STRING`` |  |
-| `wide_art` | ``$STRING`` |  |
+| `animation_gif` | `str` |  |
+| `animation_png` | `str` |  |
+| `asset_path` | `str` |  |
+| `category` | `str` |  |
+| `display_icon` | `str` |  |
+| `display_name` | `str` |  |
+| `full_icon` | `str` |  |
+| `full_transparent_icon` | `str` |  |
+| `hide_if_not_owned` | `bool` |  |
+| `is_hidden_if_not_owned` | `bool` |  |
+| `is_null_spray` | `bool` |  |
+| `large_art` | `str` |  |
+| `level` | `list` |  |
+| `small_art` | `str` |  |
+| `theme_uuid` | `str` |  |
+| `uuid` | `str` |  |
+| `wide_art` | `str` |  |
 
 #### Example: List
 
 ```python
-cosmetics = client.Cosmetic().list({})
+cosmetics = client.Cosmetic().list()
 ```
 
 
@@ -494,31 +527,31 @@ Create an instance: `game_mode = client.GameMode()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allows_match_timeout` | ``$BOOLEAN`` |  |
-| `asset_path` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `duration` | ``$STRING`` |  |
-| `economy_type` | ``$STRING`` |  |
-| `game_feature_override` | ``$ARRAY`` |  |
-| `game_rule_bool_override` | ``$ARRAY`` |  |
-| `is_minimap_hidden` | ``$BOOLEAN`` |  |
-| `is_team_voice_allowed` | ``$BOOLEAN`` |  |
-| `orb_count` | ``$INTEGER`` |  |
-| `rounds_per_half` | ``$INTEGER`` |  |
-| `team_role` | ``$ARRAY`` |  |
-| `uuid` | ``$STRING`` |  |
+| `allows_match_timeout` | `bool` |  |
+| `asset_path` | `str` |  |
+| `display_icon` | `str` |  |
+| `display_name` | `str` |  |
+| `duration` | `str` |  |
+| `economy_type` | `str` |  |
+| `game_feature_override` | `list` |  |
+| `game_rule_bool_override` | `list` |  |
+| `is_minimap_hidden` | `bool` |  |
+| `is_team_voice_allowed` | `bool` |  |
+| `orb_count` | `int` |  |
+| `rounds_per_half` | `int` |  |
+| `team_role` | `list` |  |
+| `uuid` | `str` |  |
 
 #### Example: List
 
 ```python
-game_modes = client.GameMode().list({})
+game_modes = client.GameMode().list()
 ```
 
 
@@ -530,30 +563,30 @@ Create an instance: `map = client.Map()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | ``$STRING`` |  |
-| `callout` | ``$ARRAY`` |  |
-| `coordinate` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `list_view_icon` | ``$STRING`` |  |
-| `map_url` | ``$STRING`` |  |
-| `narrative_description` | ``$STRING`` |  |
-| `splash` | ``$STRING`` |  |
-| `status` | ``$INTEGER`` |  |
-| `tactical_description` | ``$STRING`` |  |
-| `uuid` | ``$STRING`` |  |
-| `x_multiplier` | ``$NUMBER`` |  |
-| `x_scalar_to_add` | ``$NUMBER`` |  |
-| `y_multiplier` | ``$NUMBER`` |  |
-| `y_scalar_to_add` | ``$NUMBER`` |  |
+| `asset_path` | `str` |  |
+| `callout` | `list` |  |
+| `coordinate` | `str` |  |
+| `data` | `dict` |  |
+| `display_icon` | `str` |  |
+| `display_name` | `str` |  |
+| `list_view_icon` | `str` |  |
+| `map_url` | `str` |  |
+| `narrative_description` | `str` |  |
+| `splash` | `str` |  |
+| `status` | `int` |  |
+| `tactical_description` | `str` |  |
+| `uuid` | `str` |  |
+| `x_multiplier` | `float` |  |
+| `x_scalar_to_add` | `float` |  |
+| `y_multiplier` | `float` |  |
+| `y_scalar_to_add` | `float` |  |
 
 #### Example: Load
 
@@ -564,7 +597,7 @@ map = client.Map().load({"id": "map_id"})
 #### Example: List
 
 ```python
-maps = client.Map().list({})
+maps = client.Map().list()
 ```
 
 
@@ -576,25 +609,25 @@ Create an instance: `weapon = client.Weapon()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `default_skin_uuid` | ``$STRING`` |  |
-| `display_icon` | ``$STRING`` |  |
-| `display_name` | ``$STRING`` |  |
-| `kill_stream_icon` | ``$STRING`` |  |
-| `shop_data` | ``$OBJECT`` |  |
-| `skin` | ``$ARRAY`` |  |
-| `status` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `weapon_stat` | ``$OBJECT`` |  |
+| `asset_path` | `str` |  |
+| `category` | `str` |  |
+| `data` | `dict` |  |
+| `default_skin_uuid` | `str` |  |
+| `display_icon` | `str` |  |
+| `display_name` | `str` |  |
+| `kill_stream_icon` | `str` |  |
+| `shop_data` | `dict` |  |
+| `skin` | `list` |  |
+| `status` | `int` |  |
+| `uuid` | `str` |  |
+| `weapon_stat` | `dict` |  |
 
 #### Example: Load
 
@@ -605,16 +638,20 @@ weapon = client.Weapon().load({"id": "weapon_id"})
 #### Example: List
 
 ```python
-weapons = client.Weapon().list({})
+weapons = client.Weapon().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -631,8 +668,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -675,14 +713,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 agent = client.Agent()
-agent.load({"id": "example_id"})
+agent.list()
 
-# agent.data_get() now returns the loaded agent data
+# agent.data_get() now returns the agent data from the last list
 # agent.match_get() returns the last match criteria
 ```
 
