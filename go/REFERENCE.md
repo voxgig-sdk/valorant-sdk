@@ -111,6 +111,7 @@ same parameters as `Direct()`.
 
 ```go
 agent := client.Agent(nil)
+fmt.Println(agent.GetName()) // "agent"
 ```
 
 ### Fields
@@ -149,6 +150,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Agent(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -157,6 +162,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Agent(nil).Load(map[string]any{"id": "agent_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -187,6 +196,7 @@ Return the entity name.
 
 ```go
 competitive := client.Competitive(nil)
+fmt.Println(competitive.GetName()) // "competitive"
 ```
 
 ### Fields
@@ -206,6 +216,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Competitive(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -236,6 +250,7 @@ Return the entity name.
 
 ```go
 cosmetic := client.Cosmetic(nil)
+fmt.Println(cosmetic.GetName()) // "cosmetic"
 ```
 
 ### Fields
@@ -268,6 +283,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Cosmetic(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -297,7 +316,8 @@ Return the entity name.
 ## GameModeEntity
 
 ```go
-game_mode := client.GameMode(nil)
+gameMode := client.GameMode(nil)
+fmt.Println(gameMode.GetName()) // "game_mode"
 ```
 
 ### Fields
@@ -327,6 +347,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.GameMode(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -356,7 +380,8 @@ Return the entity name.
 ## MapEntity
 
 ```go
-map := client.Map(nil)
+map_ := client.Map(nil)
+fmt.Println(map_.GetName()) // "map"
 ```
 
 ### Fields
@@ -389,6 +414,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Map(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -397,6 +426,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Map(nil).Load(map[string]any{"id": "map_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -427,6 +460,7 @@ Return the entity name.
 
 ```go
 weapon := client.Weapon(nil)
+fmt.Println(weapon.GetName()) // "weapon"
 ```
 
 ### Fields
@@ -454,6 +488,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Weapon(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -462,6 +500,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Weapon(nil).Load(map[string]any{"id": "weapon_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

@@ -15,9 +15,9 @@ main: {
           url: "https://valorant-api.com"
         }
       ]
+      summary: "The Valorant API provides extensive data related to in-game items, assets, and other game features, sourced directly from the Valorant game files."
       title: "Valorant API"
       version: "1.0.0"
+      website: "https://valorant-api.com"
     }
   }
-}
-

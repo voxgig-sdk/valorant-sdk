@@ -60,7 +60,7 @@ func main() {
     }
 
     // Load a single agent — the value is the loaded record.
-    agent, err := client.Agent(nil).Load(map[string]any{"id": "example"}, nil)
+    agent, err := client.Agent(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -551,7 +551,7 @@ fmt.Println(cosmetics) // the array of records
 
 ### GameMode
 
-Create an instance: `game_mode := client.GameMode(nil)`
+Create an instance: `gameMode := client.GameMode(nil)`
 
 #### Operations
 
@@ -581,11 +581,11 @@ Create an instance: `game_mode := client.GameMode(nil)`
 #### Example: List
 
 ```go
-game_modes, err := client.GameMode(nil).List(nil, nil)
+gameModes, err := client.GameMode(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(game_modes) // the array of records
+fmt.Println(gameModes) // the array of records
 ```
 
 
