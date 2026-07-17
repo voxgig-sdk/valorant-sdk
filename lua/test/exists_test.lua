@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Valorant SDK exists test
 
 local sdk = require("valorant_sdk")
 
