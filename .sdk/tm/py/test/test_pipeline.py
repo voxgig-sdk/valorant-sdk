@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import ValorantSDK
-from core.error import ValorantError
-from core.result import ValorantResult
-from core.response import ValorantResponse
-from core.spec import ValorantSpec
-from feature.base_feature import ValorantBaseFeature
+from projectname_sdk.core.error import ValorantError
+from projectname_sdk.core.result import ValorantResult
+from projectname_sdk.core.response import ValorantResponse
+from projectname_sdk.core.spec import ValorantSpec
+from projectname_sdk.feature.base_feature import ValorantBaseFeature
 
 
 def _client():

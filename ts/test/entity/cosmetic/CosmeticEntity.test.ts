@@ -63,7 +63,7 @@ describe('CosmeticEntity', async () => {
     const cosmetic_ref01_ent = client.Cosmetic()
     const cosmetic_ref01_match: any = {}
 
-    const cosmetic_ref01_list = await cosmetic_ref01_ent.list(cosmetic_ref01_match)
+    const cosmetic_ref01_list = (await cosmetic_ref01_ent.list(cosmetic_ref01_match)).map((e: any) => e.data())
 
 
   })

@@ -118,29 +118,27 @@ fmt.Println(agent.GetName()) // "agent"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability` | `[]any` | No |  |
-| `asset_path` | `string` | No |  |
+| `abilities` | `[]any` | No |  |
+| `assetPath` | `string` | No |  |
 | `background` | `string` | No |  |
-| `background_gradient_color` | `[]any` | No |  |
-| `bust_portrait` | `string` | No |  |
-| `character_tag` | `[]any` | No |  |
-| `data` | `map[string]any` | No |  |
+| `backgroundGradientColors` | `[]any` | No |  |
+| `bustPortrait` | `string` | No |  |
+| `characterTags` | `[]any` | No |  |
 | `description` | `string` | No |  |
-| `developer_name` | `string` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_icon_small` | `string` | No |  |
-| `display_name` | `string` | No |  |
-| `full_portrait` | `string` | No |  |
-| `full_portrait_v2` | `string` | No |  |
-| `is_available_for_test` | `bool` | No |  |
-| `is_base_content` | `bool` | No |  |
-| `is_full_portrait_right_facing` | `bool` | No |  |
-| `is_playable_character` | `bool` | No |  |
-| `killfeed_portrait` | `string` | No |  |
+| `developerName` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayIconSmall` | `string` | No |  |
+| `displayName` | `string` | No |  |
+| `fullPortrait` | `string` | No |  |
+| `fullPortraitV2` | `string` | No |  |
+| `isAvailableForTest` | `bool` | No |  |
+| `isBaseContent` | `bool` | No |  |
+| `isFullPortraitRightFacing` | `bool` | No |  |
+| `isPlayableCharacter` | `bool` | No |  |
+| `killfeedPortrait` | `string` | No |  |
 | `role` | `map[string]any` | No |  |
-| `status` | `int` | No |  |
 | `uuid` | `string` | No |  |
-| `voice_line` | `map[string]any` | No |  |
+| `voiceLine` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -203,9 +201,9 @@ fmt.Println(competitive.GetName()) // "competitive"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_object_name` | `string` | No |  |
-| `asset_path` | `string` | No |  |
-| `tier` | `[]any` | No |  |
+| `assetObjectName` | `string` | No |  |
+| `assetPath` | `string` | No |  |
+| `tiers` | `[]any` | No |  |
 | `uuid` | `string` | No |  |
 
 ### Operations
@@ -257,23 +255,23 @@ fmt.Println(cosmetic.GetName()) // "cosmetic"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `animation_gif` | `string` | No |  |
-| `animation_png` | `string` | No |  |
-| `asset_path` | `string` | No |  |
+| `animationGif` | `string` | No |  |
+| `animationPng` | `string` | No |  |
+| `assetPath` | `string` | No |  |
 | `category` | `string` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_name` | `string` | No |  |
-| `full_icon` | `string` | No |  |
-| `full_transparent_icon` | `string` | No |  |
-| `hide_if_not_owned` | `bool` | No |  |
-| `is_hidden_if_not_owned` | `bool` | No |  |
-| `is_null_spray` | `bool` | No |  |
-| `large_art` | `string` | No |  |
-| `level` | `[]any` | No |  |
-| `small_art` | `string` | No |  |
-| `theme_uuid` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayName` | `string` | No |  |
+| `fullIcon` | `string` | No |  |
+| `fullTransparentIcon` | `string` | No |  |
+| `hideIfNotOwned` | `bool` | No |  |
+| `isHiddenIfNotOwned` | `bool` | No |  |
+| `isNullSpray` | `bool` | No |  |
+| `largeArt` | `string` | No |  |
+| `levels` | `[]any` | No |  |
+| `smallArt` | `string` | No |  |
+| `themeUuid` | `string` | No |  |
 | `uuid` | `string` | No |  |
-| `wide_art` | `string` | No |  |
+| `wideArt` | `string` | No |  |
 
 ### Operations
 
@@ -324,19 +322,19 @@ fmt.Println(gameMode.GetName()) // "game_mode"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allows_match_timeout` | `bool` | No |  |
-| `asset_path` | `string` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_name` | `string` | No |  |
+| `allowsMatchTimeouts` | `bool` | No |  |
+| `assetPath` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayName` | `string` | No |  |
 | `duration` | `string` | No |  |
-| `economy_type` | `string` | No |  |
-| `game_feature_override` | `[]any` | No |  |
-| `game_rule_bool_override` | `[]any` | No |  |
-| `is_minimap_hidden` | `bool` | No |  |
-| `is_team_voice_allowed` | `bool` | No |  |
-| `orb_count` | `int` | No |  |
-| `rounds_per_half` | `int` | No |  |
-| `team_role` | `[]any` | No |  |
+| `economyType` | `string` | No |  |
+| `gameFeatureOverrides` | `[]any` | No |  |
+| `gameRuleBoolOverrides` | `[]any` | No |  |
+| `isMinimapHidden` | `bool` | No |  |
+| `isTeamVoiceAllowed` | `bool` | No |  |
+| `orbCount` | `int` | No |  |
+| `roundsPerHalf` | `int` | No |  |
+| `teamRoles` | `[]any` | No |  |
 | `uuid` | `string` | No |  |
 
 ### Operations
@@ -388,23 +386,21 @@ fmt.Println(map_.GetName()) // "map"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | `string` | No |  |
-| `callout` | `[]any` | No |  |
-| `coordinate` | `string` | No |  |
-| `data` | `map[string]any` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_name` | `string` | No |  |
-| `list_view_icon` | `string` | No |  |
-| `map_url` | `string` | No |  |
-| `narrative_description` | `string` | No |  |
+| `assetPath` | `string` | No |  |
+| `callouts` | `[]any` | No |  |
+| `coordinates` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayName` | `string` | No |  |
+| `listViewIcon` | `string` | No |  |
+| `mapUrl` | `string` | No |  |
+| `narrativeDescription` | `string` | No |  |
 | `splash` | `string` | No |  |
-| `status` | `int` | No |  |
-| `tactical_description` | `string` | No |  |
+| `tacticalDescription` | `string` | No |  |
 | `uuid` | `string` | No |  |
-| `x_multiplier` | `float64` | No |  |
-| `x_scalar_to_add` | `float64` | No |  |
-| `y_multiplier` | `float64` | No |  |
-| `y_scalar_to_add` | `float64` | No |  |
+| `xMultiplier` | `float64` | No |  |
+| `xScalarToAdd` | `float64` | No |  |
+| `yMultiplier` | `float64` | No |  |
+| `yScalarToAdd` | `float64` | No |  |
 
 ### Operations
 
@@ -467,18 +463,16 @@ fmt.Println(weapon.GetName()) // "weapon"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | `string` | No |  |
+| `assetPath` | `string` | No |  |
 | `category` | `string` | No |  |
-| `data` | `map[string]any` | No |  |
-| `default_skin_uuid` | `string` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_name` | `string` | No |  |
-| `kill_stream_icon` | `string` | No |  |
-| `shop_data` | `map[string]any` | No |  |
-| `skin` | `[]any` | No |  |
-| `status` | `int` | No |  |
+| `defaultSkinUuid` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayName` | `string` | No |  |
+| `killStreamIcon` | `string` | No |  |
+| `shopData` | `map[string]any` | No |  |
+| `skins` | `[]any` | No |  |
 | `uuid` | `string` | No |  |
-| `weapon_stat` | `map[string]any` | No |  |
+| `weaponStats` | `map[string]any` | No |  |
 
 ### Operations
 

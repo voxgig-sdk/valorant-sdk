@@ -6,47 +6,42 @@ main: kit: entity: map: {
 
   fields: [
     {
-      name: "asset_path"
+      name: "assetPath"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "callout"
+      name: "callouts"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "coordinate"
+      name: "coordinates"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "data"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "display_icon"
+      name: "displayIcon"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "display_name"
+      name: "displayName"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "list_view_icon"
+      name: "listViewIcon"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "map_url"
+      name: "mapUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "narrative_description"
+      name: "narrativeDescription"
       req: false
       type: "`$STRING`"
     }
@@ -56,12 +51,7 @@ main: kit: entity: map: {
       type: "`$STRING`"
     }
     {
-      name: "status"
-      req: false
-      type: "`$INTEGER`"
-    }
-    {
-      name: "tactical_description"
+      name: "tacticalDescription"
       req: false
       type: "`$STRING`"
     }
@@ -71,22 +61,22 @@ main: kit: entity: map: {
       type: "`$STRING`"
     }
     {
-      name: "x_multiplier"
+      name: "xMultiplier"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "x_scalar_to_add"
+      name: "xScalarToAdd"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "y_multiplier"
+      name: "yMultiplier"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "y_scalar_to_add"
+      name: "yScalarToAdd"
       req: false
       type: "`$NUMBER`"
     }
@@ -123,7 +113,7 @@ main: kit: entity: map: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -173,7 +163,7 @@ main: kit: entity: map: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

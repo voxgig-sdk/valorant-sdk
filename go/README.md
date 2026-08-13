@@ -75,12 +75,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-agents, err := client.Agent(nil).List(nil, nil)
+cosmetics, err := client.Cosmetic(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = agents
+_ = cosmetics
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -144,13 +144,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-agent, err := client.Agent(nil).List(
+cosmetic, err := client.Cosmetic(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(agent) // the returned mock data
+fmt.Println(cosmetic) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -274,29 +274,27 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"ability"` |  |
-| `"asset_path"` |  |
+| `"abilities"` |  |
+| `"assetPath"` |  |
 | `"background"` |  |
-| `"background_gradient_color"` |  |
-| `"bust_portrait"` |  |
-| `"character_tag"` |  |
-| `"data"` |  |
+| `"backgroundGradientColors"` |  |
+| `"bustPortrait"` |  |
+| `"characterTags"` |  |
 | `"description"` |  |
-| `"developer_name"` |  |
-| `"display_icon"` |  |
-| `"display_icon_small"` |  |
-| `"display_name"` |  |
-| `"full_portrait"` |  |
-| `"full_portrait_v2"` |  |
-| `"is_available_for_test"` |  |
-| `"is_base_content"` |  |
-| `"is_full_portrait_right_facing"` |  |
-| `"is_playable_character"` |  |
-| `"killfeed_portrait"` |  |
+| `"developerName"` |  |
+| `"displayIcon"` |  |
+| `"displayIconSmall"` |  |
+| `"displayName"` |  |
+| `"fullPortrait"` |  |
+| `"fullPortraitV2"` |  |
+| `"isAvailableForTest"` |  |
+| `"isBaseContent"` |  |
+| `"isFullPortraitRightFacing"` |  |
+| `"isPlayableCharacter"` |  |
+| `"killfeedPortrait"` |  |
 | `"role"` |  |
-| `"status"` |  |
 | `"uuid"` |  |
-| `"voice_line"` |  |
+| `"voiceLine"` |  |
 
 Operations: List, Load.
 
@@ -306,9 +304,9 @@ API path: `/v1/agents`
 
 | Field | Description |
 | --- | --- |
-| `"asset_object_name"` |  |
-| `"asset_path"` |  |
-| `"tier"` |  |
+| `"assetObjectName"` |  |
+| `"assetPath"` |  |
+| `"tiers"` |  |
 | `"uuid"` |  |
 
 Operations: List.
@@ -319,23 +317,23 @@ API path: `/v1/competitivetiers`
 
 | Field | Description |
 | --- | --- |
-| `"animation_gif"` |  |
-| `"animation_png"` |  |
-| `"asset_path"` |  |
+| `"animationGif"` |  |
+| `"animationPng"` |  |
+| `"assetPath"` |  |
 | `"category"` |  |
-| `"display_icon"` |  |
-| `"display_name"` |  |
-| `"full_icon"` |  |
-| `"full_transparent_icon"` |  |
-| `"hide_if_not_owned"` |  |
-| `"is_hidden_if_not_owned"` |  |
-| `"is_null_spray"` |  |
-| `"large_art"` |  |
-| `"level"` |  |
-| `"small_art"` |  |
-| `"theme_uuid"` |  |
+| `"displayIcon"` |  |
+| `"displayName"` |  |
+| `"fullIcon"` |  |
+| `"fullTransparentIcon"` |  |
+| `"hideIfNotOwned"` |  |
+| `"isHiddenIfNotOwned"` |  |
+| `"isNullSpray"` |  |
+| `"largeArt"` |  |
+| `"levels"` |  |
+| `"smallArt"` |  |
+| `"themeUuid"` |  |
 | `"uuid"` |  |
-| `"wide_art"` |  |
+| `"wideArt"` |  |
 
 Operations: List.
 
@@ -345,19 +343,19 @@ API path: `/v1/buddies`
 
 | Field | Description |
 | --- | --- |
-| `"allows_match_timeout"` |  |
-| `"asset_path"` |  |
-| `"display_icon"` |  |
-| `"display_name"` |  |
+| `"allowsMatchTimeouts"` |  |
+| `"assetPath"` |  |
+| `"displayIcon"` |  |
+| `"displayName"` |  |
 | `"duration"` |  |
-| `"economy_type"` |  |
-| `"game_feature_override"` |  |
-| `"game_rule_bool_override"` |  |
-| `"is_minimap_hidden"` |  |
-| `"is_team_voice_allowed"` |  |
-| `"orb_count"` |  |
-| `"rounds_per_half"` |  |
-| `"team_role"` |  |
+| `"economyType"` |  |
+| `"gameFeatureOverrides"` |  |
+| `"gameRuleBoolOverrides"` |  |
+| `"isMinimapHidden"` |  |
+| `"isTeamVoiceAllowed"` |  |
+| `"orbCount"` |  |
+| `"roundsPerHalf"` |  |
+| `"teamRoles"` |  |
 | `"uuid"` |  |
 
 Operations: List.
@@ -368,23 +366,21 @@ API path: `/v1/gamemodes`
 
 | Field | Description |
 | --- | --- |
-| `"asset_path"` |  |
-| `"callout"` |  |
-| `"coordinate"` |  |
-| `"data"` |  |
-| `"display_icon"` |  |
-| `"display_name"` |  |
-| `"list_view_icon"` |  |
-| `"map_url"` |  |
-| `"narrative_description"` |  |
+| `"assetPath"` |  |
+| `"callouts"` |  |
+| `"coordinates"` |  |
+| `"displayIcon"` |  |
+| `"displayName"` |  |
+| `"listViewIcon"` |  |
+| `"mapUrl"` |  |
+| `"narrativeDescription"` |  |
 | `"splash"` |  |
-| `"status"` |  |
-| `"tactical_description"` |  |
+| `"tacticalDescription"` |  |
 | `"uuid"` |  |
-| `"x_multiplier"` |  |
-| `"x_scalar_to_add"` |  |
-| `"y_multiplier"` |  |
-| `"y_scalar_to_add"` |  |
+| `"xMultiplier"` |  |
+| `"xScalarToAdd"` |  |
+| `"yMultiplier"` |  |
+| `"yScalarToAdd"` |  |
 
 Operations: List, Load.
 
@@ -394,18 +390,16 @@ API path: `/v1/maps`
 
 | Field | Description |
 | --- | --- |
-| `"asset_path"` |  |
+| `"assetPath"` |  |
 | `"category"` |  |
-| `"data"` |  |
-| `"default_skin_uuid"` |  |
-| `"display_icon"` |  |
-| `"display_name"` |  |
-| `"kill_stream_icon"` |  |
-| `"shop_data"` |  |
-| `"skin"` |  |
-| `"status"` |  |
+| `"defaultSkinUuid"` |  |
+| `"displayIcon"` |  |
+| `"displayName"` |  |
+| `"killStreamIcon"` |  |
+| `"shopData"` |  |
+| `"skins"` |  |
 | `"uuid"` |  |
-| `"weapon_stat"` |  |
+| `"weaponStats"` |  |
 
 Operations: List, Load.
 
@@ -431,29 +425,27 @@ Create an instance: `agent := client.Agent(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability` | `[]any` |  |
-| `asset_path` | `string` |  |
+| `abilities` | `[]any` |  |
+| `assetPath` | `string` |  |
 | `background` | `string` |  |
-| `background_gradient_color` | `[]any` |  |
-| `bust_portrait` | `string` |  |
-| `character_tag` | `[]any` |  |
-| `data` | `map[string]any` |  |
+| `backgroundGradientColors` | `[]any` |  |
+| `bustPortrait` | `string` |  |
+| `characterTags` | `[]any` |  |
 | `description` | `string` |  |
-| `developer_name` | `string` |  |
-| `display_icon` | `string` |  |
-| `display_icon_small` | `string` |  |
-| `display_name` | `string` |  |
-| `full_portrait` | `string` |  |
-| `full_portrait_v2` | `string` |  |
-| `is_available_for_test` | `bool` |  |
-| `is_base_content` | `bool` |  |
-| `is_full_portrait_right_facing` | `bool` |  |
-| `is_playable_character` | `bool` |  |
-| `killfeed_portrait` | `string` |  |
+| `developerName` | `string` |  |
+| `displayIcon` | `string` |  |
+| `displayIconSmall` | `string` |  |
+| `displayName` | `string` |  |
+| `fullPortrait` | `string` |  |
+| `fullPortraitV2` | `string` |  |
+| `isAvailableForTest` | `bool` |  |
+| `isBaseContent` | `bool` |  |
+| `isFullPortraitRightFacing` | `bool` |  |
+| `isPlayableCharacter` | `bool` |  |
+| `killfeedPortrait` | `string` |  |
 | `role` | `map[string]any` |  |
-| `status` | `int` |  |
 | `uuid` | `string` |  |
-| `voice_line` | `map[string]any` |  |
+| `voiceLine` | `map[string]any` |  |
 
 #### Example: Load
 
@@ -490,9 +482,9 @@ Create an instance: `competitive := client.Competitive(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_object_name` | `string` |  |
-| `asset_path` | `string` |  |
-| `tier` | `[]any` |  |
+| `assetObjectName` | `string` |  |
+| `assetPath` | `string` |  |
+| `tiers` | `[]any` |  |
 | `uuid` | `string` |  |
 
 #### Example: List
@@ -520,23 +512,23 @@ Create an instance: `cosmetic := client.Cosmetic(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `animation_gif` | `string` |  |
-| `animation_png` | `string` |  |
-| `asset_path` | `string` |  |
+| `animationGif` | `string` |  |
+| `animationPng` | `string` |  |
+| `assetPath` | `string` |  |
 | `category` | `string` |  |
-| `display_icon` | `string` |  |
-| `display_name` | `string` |  |
-| `full_icon` | `string` |  |
-| `full_transparent_icon` | `string` |  |
-| `hide_if_not_owned` | `bool` |  |
-| `is_hidden_if_not_owned` | `bool` |  |
-| `is_null_spray` | `bool` |  |
-| `large_art` | `string` |  |
-| `level` | `[]any` |  |
-| `small_art` | `string` |  |
-| `theme_uuid` | `string` |  |
+| `displayIcon` | `string` |  |
+| `displayName` | `string` |  |
+| `fullIcon` | `string` |  |
+| `fullTransparentIcon` | `string` |  |
+| `hideIfNotOwned` | `bool` |  |
+| `isHiddenIfNotOwned` | `bool` |  |
+| `isNullSpray` | `bool` |  |
+| `largeArt` | `string` |  |
+| `levels` | `[]any` |  |
+| `smallArt` | `string` |  |
+| `themeUuid` | `string` |  |
 | `uuid` | `string` |  |
-| `wide_art` | `string` |  |
+| `wideArt` | `string` |  |
 
 #### Example: List
 
@@ -563,19 +555,19 @@ Create an instance: `gameMode := client.GameMode(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allows_match_timeout` | `bool` |  |
-| `asset_path` | `string` |  |
-| `display_icon` | `string` |  |
-| `display_name` | `string` |  |
+| `allowsMatchTimeouts` | `bool` |  |
+| `assetPath` | `string` |  |
+| `displayIcon` | `string` |  |
+| `displayName` | `string` |  |
 | `duration` | `string` |  |
-| `economy_type` | `string` |  |
-| `game_feature_override` | `[]any` |  |
-| `game_rule_bool_override` | `[]any` |  |
-| `is_minimap_hidden` | `bool` |  |
-| `is_team_voice_allowed` | `bool` |  |
-| `orb_count` | `int` |  |
-| `rounds_per_half` | `int` |  |
-| `team_role` | `[]any` |  |
+| `economyType` | `string` |  |
+| `gameFeatureOverrides` | `[]any` |  |
+| `gameRuleBoolOverrides` | `[]any` |  |
+| `isMinimapHidden` | `bool` |  |
+| `isTeamVoiceAllowed` | `bool` |  |
+| `orbCount` | `int` |  |
+| `roundsPerHalf` | `int` |  |
+| `teamRoles` | `[]any` |  |
 | `uuid` | `string` |  |
 
 #### Example: List
@@ -604,23 +596,21 @@ Create an instance: `map_ := client.Map(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | `string` |  |
-| `callout` | `[]any` |  |
-| `coordinate` | `string` |  |
-| `data` | `map[string]any` |  |
-| `display_icon` | `string` |  |
-| `display_name` | `string` |  |
-| `list_view_icon` | `string` |  |
-| `map_url` | `string` |  |
-| `narrative_description` | `string` |  |
+| `assetPath` | `string` |  |
+| `callouts` | `[]any` |  |
+| `coordinates` | `string` |  |
+| `displayIcon` | `string` |  |
+| `displayName` | `string` |  |
+| `listViewIcon` | `string` |  |
+| `mapUrl` | `string` |  |
+| `narrativeDescription` | `string` |  |
 | `splash` | `string` |  |
-| `status` | `int` |  |
-| `tactical_description` | `string` |  |
+| `tacticalDescription` | `string` |  |
 | `uuid` | `string` |  |
-| `x_multiplier` | `float64` |  |
-| `x_scalar_to_add` | `float64` |  |
-| `y_multiplier` | `float64` |  |
-| `y_scalar_to_add` | `float64` |  |
+| `xMultiplier` | `float64` |  |
+| `xScalarToAdd` | `float64` |  |
+| `yMultiplier` | `float64` |  |
+| `yScalarToAdd` | `float64` |  |
 
 #### Example: Load
 
@@ -658,18 +648,16 @@ Create an instance: `weapon := client.Weapon(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | `string` |  |
+| `assetPath` | `string` |  |
 | `category` | `string` |  |
-| `data` | `map[string]any` |  |
-| `default_skin_uuid` | `string` |  |
-| `display_icon` | `string` |  |
-| `display_name` | `string` |  |
-| `kill_stream_icon` | `string` |  |
-| `shop_data` | `map[string]any` |  |
-| `skin` | `[]any` |  |
-| `status` | `int` |  |
+| `defaultSkinUuid` | `string` |  |
+| `displayIcon` | `string` |  |
+| `displayName` | `string` |  |
+| `killStreamIcon` | `string` |  |
+| `shopData` | `map[string]any` |  |
+| `skins` | `[]any` |  |
 | `uuid` | `string` |  |
-| `weapon_stat` | `map[string]any` |  |
+| `weaponStats` | `map[string]any` |  |
 
 #### Example: Load
 
@@ -765,11 +753,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-agent := client.Agent(nil)
-agent.List(nil, nil)
+cosmetic := client.Cosmetic(nil)
+cosmetic.List(nil, nil)
 
-// agent.Data() now returns the agent data from the last list
-// agent.Match() returns the last match criteria
+// cosmetic.Data() now returns the cosmetic data from the last list
+// cosmetic.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

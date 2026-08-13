@@ -63,7 +63,7 @@ describe('WeaponEntity', async () => {
     const weapon_ref01_ent = client.Weapon()
     const weapon_ref01_match: any = {}
 
-    const weapon_ref01_list = await weapon_ref01_ent.list(weapon_ref01_match)
+    const weapon_ref01_list = (await weapon_ref01_ent.list(weapon_ref01_match)).map((e: any) => e.data())
 
 
 

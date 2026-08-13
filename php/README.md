@@ -38,7 +38,7 @@ try {
     // list() returns an array of Agent records — iterate directly.
     $agents = $client->Agent()->list();
     foreach ($agents as $item) {
-        echo $item["ability"] . "\n";
+        echo $item["abilities"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Agent record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Agent record (throws on error).
     $agent = $client->Agent()->load(["id" => "example_id"]);
     print_r($agent);
 } catch (\Throwable $err) {
@@ -65,7 +65,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $agents = $client->Agent()->list();
+    $cosmetics = $client->Cosmetic()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -132,17 +132,15 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = ValorantSDK::test([
-    "entity" => ["agent" => ["test01" => ["id" => "test01"]]],
-]);
+$client = ValorantSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$agent = $client->Agent()->list();
-print_r($agent);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$cosmetic = $client->Cosmetic()->list();
+print_r($cosmetic);
 ```
 
 ### Use a custom fetch function
@@ -245,7 +243,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -267,29 +265,27 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `ability` |  |
-| `asset_path` |  |
+| `abilities` |  |
+| `assetPath` |  |
 | `background` |  |
-| `background_gradient_color` |  |
-| `bust_portrait` |  |
-| `character_tag` |  |
-| `data` |  |
+| `backgroundGradientColors` |  |
+| `bustPortrait` |  |
+| `characterTags` |  |
 | `description` |  |
-| `developer_name` |  |
-| `display_icon` |  |
-| `display_icon_small` |  |
-| `display_name` |  |
-| `full_portrait` |  |
-| `full_portrait_v2` |  |
-| `is_available_for_test` |  |
-| `is_base_content` |  |
-| `is_full_portrait_right_facing` |  |
-| `is_playable_character` |  |
-| `killfeed_portrait` |  |
+| `developerName` |  |
+| `displayIcon` |  |
+| `displayIconSmall` |  |
+| `displayName` |  |
+| `fullPortrait` |  |
+| `fullPortraitV2` |  |
+| `isAvailableForTest` |  |
+| `isBaseContent` |  |
+| `isFullPortraitRightFacing` |  |
+| `isPlayableCharacter` |  |
+| `killfeedPortrait` |  |
 | `role` |  |
-| `status` |  |
 | `uuid` |  |
-| `voice_line` |  |
+| `voiceLine` |  |
 
 Operations: List, Load.
 
@@ -299,9 +295,9 @@ API path: `/v1/agents`
 
 | Field | Description |
 | --- | --- |
-| `asset_object_name` |  |
-| `asset_path` |  |
-| `tier` |  |
+| `assetObjectName` |  |
+| `assetPath` |  |
+| `tiers` |  |
 | `uuid` |  |
 
 Operations: List.
@@ -312,23 +308,23 @@ API path: `/v1/competitivetiers`
 
 | Field | Description |
 | --- | --- |
-| `animation_gif` |  |
-| `animation_png` |  |
-| `asset_path` |  |
+| `animationGif` |  |
+| `animationPng` |  |
+| `assetPath` |  |
 | `category` |  |
-| `display_icon` |  |
-| `display_name` |  |
-| `full_icon` |  |
-| `full_transparent_icon` |  |
-| `hide_if_not_owned` |  |
-| `is_hidden_if_not_owned` |  |
-| `is_null_spray` |  |
-| `large_art` |  |
-| `level` |  |
-| `small_art` |  |
-| `theme_uuid` |  |
+| `displayIcon` |  |
+| `displayName` |  |
+| `fullIcon` |  |
+| `fullTransparentIcon` |  |
+| `hideIfNotOwned` |  |
+| `isHiddenIfNotOwned` |  |
+| `isNullSpray` |  |
+| `largeArt` |  |
+| `levels` |  |
+| `smallArt` |  |
+| `themeUuid` |  |
 | `uuid` |  |
-| `wide_art` |  |
+| `wideArt` |  |
 
 Operations: List.
 
@@ -338,19 +334,19 @@ API path: `/v1/buddies`
 
 | Field | Description |
 | --- | --- |
-| `allows_match_timeout` |  |
-| `asset_path` |  |
-| `display_icon` |  |
-| `display_name` |  |
+| `allowsMatchTimeouts` |  |
+| `assetPath` |  |
+| `displayIcon` |  |
+| `displayName` |  |
 | `duration` |  |
-| `economy_type` |  |
-| `game_feature_override` |  |
-| `game_rule_bool_override` |  |
-| `is_minimap_hidden` |  |
-| `is_team_voice_allowed` |  |
-| `orb_count` |  |
-| `rounds_per_half` |  |
-| `team_role` |  |
+| `economyType` |  |
+| `gameFeatureOverrides` |  |
+| `gameRuleBoolOverrides` |  |
+| `isMinimapHidden` |  |
+| `isTeamVoiceAllowed` |  |
+| `orbCount` |  |
+| `roundsPerHalf` |  |
+| `teamRoles` |  |
 | `uuid` |  |
 
 Operations: List.
@@ -361,23 +357,21 @@ API path: `/v1/gamemodes`
 
 | Field | Description |
 | --- | --- |
-| `asset_path` |  |
-| `callout` |  |
-| `coordinate` |  |
-| `data` |  |
-| `display_icon` |  |
-| `display_name` |  |
-| `list_view_icon` |  |
-| `map_url` |  |
-| `narrative_description` |  |
+| `assetPath` |  |
+| `callouts` |  |
+| `coordinates` |  |
+| `displayIcon` |  |
+| `displayName` |  |
+| `listViewIcon` |  |
+| `mapUrl` |  |
+| `narrativeDescription` |  |
 | `splash` |  |
-| `status` |  |
-| `tactical_description` |  |
+| `tacticalDescription` |  |
 | `uuid` |  |
-| `x_multiplier` |  |
-| `x_scalar_to_add` |  |
-| `y_multiplier` |  |
-| `y_scalar_to_add` |  |
+| `xMultiplier` |  |
+| `xScalarToAdd` |  |
+| `yMultiplier` |  |
+| `yScalarToAdd` |  |
 
 Operations: List, Load.
 
@@ -387,18 +381,16 @@ API path: `/v1/maps`
 
 | Field | Description |
 | --- | --- |
-| `asset_path` |  |
+| `assetPath` |  |
 | `category` |  |
-| `data` |  |
-| `default_skin_uuid` |  |
-| `display_icon` |  |
-| `display_name` |  |
-| `kill_stream_icon` |  |
-| `shop_data` |  |
-| `skin` |  |
-| `status` |  |
+| `defaultSkinUuid` |  |
+| `displayIcon` |  |
+| `displayName` |  |
+| `killStreamIcon` |  |
+| `shopData` |  |
+| `skins` |  |
 | `uuid` |  |
-| `weapon_stat` |  |
+| `weaponStats` |  |
 
 Operations: List, Load.
 
@@ -424,34 +416,32 @@ Create an instance: `$agent = $client->Agent();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability` | `array` |  |
-| `asset_path` | `string` |  |
+| `abilities` | `array` |  |
+| `assetPath` | `string` |  |
 | `background` | `string` |  |
-| `background_gradient_color` | `array` |  |
-| `bust_portrait` | `string` |  |
-| `character_tag` | `array` |  |
-| `data` | `array` |  |
+| `backgroundGradientColors` | `array` |  |
+| `bustPortrait` | `string` |  |
+| `characterTags` | `array` |  |
 | `description` | `string` |  |
-| `developer_name` | `string` |  |
-| `display_icon` | `string` |  |
-| `display_icon_small` | `string` |  |
-| `display_name` | `string` |  |
-| `full_portrait` | `string` |  |
-| `full_portrait_v2` | `string` |  |
-| `is_available_for_test` | `bool` |  |
-| `is_base_content` | `bool` |  |
-| `is_full_portrait_right_facing` | `bool` |  |
-| `is_playable_character` | `bool` |  |
-| `killfeed_portrait` | `string` |  |
+| `developerName` | `string` |  |
+| `displayIcon` | `string` |  |
+| `displayIconSmall` | `string` |  |
+| `displayName` | `string` |  |
+| `fullPortrait` | `string` |  |
+| `fullPortraitV2` | `string` |  |
+| `isAvailableForTest` | `bool` |  |
+| `isBaseContent` | `bool` |  |
+| `isFullPortraitRightFacing` | `bool` |  |
+| `isPlayableCharacter` | `bool` |  |
+| `killfeedPortrait` | `string` |  |
 | `role` | `array` |  |
-| `status` | `int` |  |
 | `uuid` | `string` |  |
-| `voice_line` | `array` |  |
+| `voiceLine` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Agent record (throws on error).
+// load() returns the ENTITY — call data_get() for the Agent record (throws on error).
 $agent = $client->Agent()->load(["id" => "agent_id"]);
 ```
 
@@ -477,9 +467,9 @@ Create an instance: `$competitive = $client->Competitive();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_object_name` | `string` |  |
-| `asset_path` | `string` |  |
-| `tier` | `array` |  |
+| `assetObjectName` | `string` |  |
+| `assetPath` | `string` |  |
+| `tiers` | `array` |  |
 | `uuid` | `string` |  |
 
 #### Example: List
@@ -504,23 +494,23 @@ Create an instance: `$cosmetic = $client->Cosmetic();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `animation_gif` | `string` |  |
-| `animation_png` | `string` |  |
-| `asset_path` | `string` |  |
+| `animationGif` | `string` |  |
+| `animationPng` | `string` |  |
+| `assetPath` | `string` |  |
 | `category` | `string` |  |
-| `display_icon` | `string` |  |
-| `display_name` | `string` |  |
-| `full_icon` | `string` |  |
-| `full_transparent_icon` | `string` |  |
-| `hide_if_not_owned` | `bool` |  |
-| `is_hidden_if_not_owned` | `bool` |  |
-| `is_null_spray` | `bool` |  |
-| `large_art` | `string` |  |
-| `level` | `array` |  |
-| `small_art` | `string` |  |
-| `theme_uuid` | `string` |  |
+| `displayIcon` | `string` |  |
+| `displayName` | `string` |  |
+| `fullIcon` | `string` |  |
+| `fullTransparentIcon` | `string` |  |
+| `hideIfNotOwned` | `bool` |  |
+| `isHiddenIfNotOwned` | `bool` |  |
+| `isNullSpray` | `bool` |  |
+| `largeArt` | `string` |  |
+| `levels` | `array` |  |
+| `smallArt` | `string` |  |
+| `themeUuid` | `string` |  |
 | `uuid` | `string` |  |
-| `wide_art` | `string` |  |
+| `wideArt` | `string` |  |
 
 #### Example: List
 
@@ -544,19 +534,19 @@ Create an instance: `$game_mode = $client->GameMode();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allows_match_timeout` | `bool` |  |
-| `asset_path` | `string` |  |
-| `display_icon` | `string` |  |
-| `display_name` | `string` |  |
+| `allowsMatchTimeouts` | `bool` |  |
+| `assetPath` | `string` |  |
+| `displayIcon` | `string` |  |
+| `displayName` | `string` |  |
 | `duration` | `string` |  |
-| `economy_type` | `string` |  |
-| `game_feature_override` | `array` |  |
-| `game_rule_bool_override` | `array` |  |
-| `is_minimap_hidden` | `bool` |  |
-| `is_team_voice_allowed` | `bool` |  |
-| `orb_count` | `int` |  |
-| `rounds_per_half` | `int` |  |
-| `team_role` | `array` |  |
+| `economyType` | `string` |  |
+| `gameFeatureOverrides` | `array` |  |
+| `gameRuleBoolOverrides` | `array` |  |
+| `isMinimapHidden` | `bool` |  |
+| `isTeamVoiceAllowed` | `bool` |  |
+| `orbCount` | `int` |  |
+| `roundsPerHalf` | `int` |  |
+| `teamRoles` | `array` |  |
 | `uuid` | `string` |  |
 
 #### Example: List
@@ -582,28 +572,26 @@ Create an instance: `$map = $client->Map();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | `string` |  |
-| `callout` | `array` |  |
-| `coordinate` | `string` |  |
-| `data` | `array` |  |
-| `display_icon` | `string` |  |
-| `display_name` | `string` |  |
-| `list_view_icon` | `string` |  |
-| `map_url` | `string` |  |
-| `narrative_description` | `string` |  |
+| `assetPath` | `string` |  |
+| `callouts` | `array` |  |
+| `coordinates` | `string` |  |
+| `displayIcon` | `string` |  |
+| `displayName` | `string` |  |
+| `listViewIcon` | `string` |  |
+| `mapUrl` | `string` |  |
+| `narrativeDescription` | `string` |  |
 | `splash` | `string` |  |
-| `status` | `int` |  |
-| `tactical_description` | `string` |  |
+| `tacticalDescription` | `string` |  |
 | `uuid` | `string` |  |
-| `x_multiplier` | `float` |  |
-| `x_scalar_to_add` | `float` |  |
-| `y_multiplier` | `float` |  |
-| `y_scalar_to_add` | `float` |  |
+| `xMultiplier` | `float` |  |
+| `xScalarToAdd` | `float` |  |
+| `yMultiplier` | `float` |  |
+| `yScalarToAdd` | `float` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Map record (throws on error).
+// load() returns the ENTITY — call data_get() for the Map record (throws on error).
 $map = $client->Map()->load(["id" => "map_id"]);
 ```
 
@@ -630,23 +618,21 @@ Create an instance: `$weapon = $client->Weapon();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | `string` |  |
+| `assetPath` | `string` |  |
 | `category` | `string` |  |
-| `data` | `array` |  |
-| `default_skin_uuid` | `string` |  |
-| `display_icon` | `string` |  |
-| `display_name` | `string` |  |
-| `kill_stream_icon` | `string` |  |
-| `shop_data` | `array` |  |
-| `skin` | `array` |  |
-| `status` | `int` |  |
+| `defaultSkinUuid` | `string` |  |
+| `displayIcon` | `string` |  |
+| `displayName` | `string` |  |
+| `killStreamIcon` | `string` |  |
+| `shopData` | `array` |  |
+| `skins` | `array` |  |
 | `uuid` | `string` |  |
-| `weapon_stat` | `array` |  |
+| `weaponStats` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Weapon record (throws on error).
+// load() returns the ENTITY — call data_get() for the Weapon record (throws on error).
 $weapon = $client->Weapon()->load(["id" => "weapon_id"]);
 ```
 
@@ -734,11 +720,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$agent = $client->Agent();
-$agent->list();
+$cosmetic = $client->Cosmetic();
+$cosmetic->list();
 
-// $agent->data_get() now returns the agent data from the last list
-// $agent->match_get() returns the last match criteria
+// $cosmetic->data_get() now returns the cosmetic data from the last list
+// $cosmetic->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

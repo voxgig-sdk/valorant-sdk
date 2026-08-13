@@ -6,22 +6,22 @@ main: kit: entity: game_mode: {
 
   fields: [
     {
-      name: "allows_match_timeout"
+      name: "allowsMatchTimeouts"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "asset_path"
+      name: "assetPath"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "display_icon"
+      name: "displayIcon"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "display_name"
+      name: "displayName"
       req: false
       type: "`$STRING`"
     }
@@ -31,42 +31,42 @@ main: kit: entity: game_mode: {
       type: "`$STRING`"
     }
     {
-      name: "economy_type"
+      name: "economyType"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "game_feature_override"
+      name: "gameFeatureOverrides"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "game_rule_bool_override"
+      name: "gameRuleBoolOverrides"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "is_minimap_hidden"
+      name: "isMinimapHidden"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "is_team_voice_allowed"
+      name: "isTeamVoiceAllowed"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "orb_count"
+      name: "orbCount"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "rounds_per_half"
+      name: "roundsPerHalf"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "team_role"
+      name: "teamRoles"
       req: false
       type: "`$ARRAY`"
     }
@@ -108,7 +108,7 @@ main: kit: entity: game_mode: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

@@ -6,33 +6,35 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/valorant-sdk/go/core"
+)
 
 // Agent is the typed data model for the agent entity.
 type Agent struct {
-	Ability *[]any `json:"ability,omitempty"`
-	AssetPath *string `json:"asset_path,omitempty"`
+	Abilities *[]any `json:"abilities,omitempty"`
+	AssetPath *string `json:"assetPath,omitempty"`
 	Background *string `json:"background,omitempty"`
-	BackgroundGradientColor *[]any `json:"background_gradient_color,omitempty"`
-	BustPortrait *string `json:"bust_portrait,omitempty"`
-	CharacterTag *[]any `json:"character_tag,omitempty"`
-	Data *map[string]any `json:"data,omitempty"`
+	BackgroundGradientColors *[]any `json:"backgroundGradientColors,omitempty"`
+	BustPortrait *string `json:"bustPortrait,omitempty"`
+	CharacterTags *[]any `json:"characterTags,omitempty"`
 	Description *string `json:"description,omitempty"`
-	DeveloperName *string `json:"developer_name,omitempty"`
-	DisplayIcon *string `json:"display_icon,omitempty"`
-	DisplayIconSmall *string `json:"display_icon_small,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
-	FullPortrait *string `json:"full_portrait,omitempty"`
-	FullPortraitV2 *string `json:"full_portrait_v2,omitempty"`
-	IsAvailableForTest *bool `json:"is_available_for_test,omitempty"`
-	IsBaseContent *bool `json:"is_base_content,omitempty"`
-	IsFullPortraitRightFacing *bool `json:"is_full_portrait_right_facing,omitempty"`
-	IsPlayableCharacter *bool `json:"is_playable_character,omitempty"`
-	KillfeedPortrait *string `json:"killfeed_portrait,omitempty"`
+	DeveloperName *string `json:"developerName,omitempty"`
+	DisplayIcon *string `json:"displayIcon,omitempty"`
+	DisplayIconSmall *string `json:"displayIconSmall,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	FullPortrait *string `json:"fullPortrait,omitempty"`
+	FullPortraitV2 *string `json:"fullPortraitV2,omitempty"`
+	IsAvailableForTest *bool `json:"isAvailableForTest,omitempty"`
+	IsBaseContent *bool `json:"isBaseContent,omitempty"`
+	IsFullPortraitRightFacing *bool `json:"isFullPortraitRightFacing,omitempty"`
+	IsPlayableCharacter *bool `json:"isPlayableCharacter,omitempty"`
+	KillfeedPortrait *string `json:"killfeedPortrait,omitempty"`
 	Role *map[string]any `json:"role,omitempty"`
-	Status *int `json:"status,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
-	VoiceLine *map[string]any `json:"voice_line,omitempty"`
+	VoiceLine *map[string]any `json:"voiceLine,omitempty"`
 }
 
 // AgentLoadMatch is the typed request payload for Agent.LoadTyped.
@@ -42,144 +44,140 @@ type AgentLoadMatch struct {
 
 // AgentListMatch is the typed request payload for Agent.ListTyped.
 type AgentListMatch struct {
-	Ability *[]any `json:"ability,omitempty"`
-	AssetPath *string `json:"asset_path,omitempty"`
+	Abilities *[]any `json:"abilities,omitempty"`
+	AssetPath *string `json:"assetPath,omitempty"`
 	Background *string `json:"background,omitempty"`
-	BackgroundGradientColor *[]any `json:"background_gradient_color,omitempty"`
-	BustPortrait *string `json:"bust_portrait,omitempty"`
-	CharacterTag *[]any `json:"character_tag,omitempty"`
-	Data *map[string]any `json:"data,omitempty"`
+	BackgroundGradientColors *[]any `json:"backgroundGradientColors,omitempty"`
+	BustPortrait *string `json:"bustPortrait,omitempty"`
+	CharacterTags *[]any `json:"characterTags,omitempty"`
 	Description *string `json:"description,omitempty"`
-	DeveloperName *string `json:"developer_name,omitempty"`
-	DisplayIcon *string `json:"display_icon,omitempty"`
-	DisplayIconSmall *string `json:"display_icon_small,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
-	FullPortrait *string `json:"full_portrait,omitempty"`
-	FullPortraitV2 *string `json:"full_portrait_v2,omitempty"`
-	IsAvailableForTest *bool `json:"is_available_for_test,omitempty"`
-	IsBaseContent *bool `json:"is_base_content,omitempty"`
-	IsFullPortraitRightFacing *bool `json:"is_full_portrait_right_facing,omitempty"`
-	IsPlayableCharacter *bool `json:"is_playable_character,omitempty"`
-	KillfeedPortrait *string `json:"killfeed_portrait,omitempty"`
+	DeveloperName *string `json:"developerName,omitempty"`
+	DisplayIcon *string `json:"displayIcon,omitempty"`
+	DisplayIconSmall *string `json:"displayIconSmall,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	FullPortrait *string `json:"fullPortrait,omitempty"`
+	FullPortraitV2 *string `json:"fullPortraitV2,omitempty"`
+	IsAvailableForTest *bool `json:"isAvailableForTest,omitempty"`
+	IsBaseContent *bool `json:"isBaseContent,omitempty"`
+	IsFullPortraitRightFacing *bool `json:"isFullPortraitRightFacing,omitempty"`
+	IsPlayableCharacter *bool `json:"isPlayableCharacter,omitempty"`
+	KillfeedPortrait *string `json:"killfeedPortrait,omitempty"`
 	Role *map[string]any `json:"role,omitempty"`
-	Status *int `json:"status,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
-	VoiceLine *map[string]any `json:"voice_line,omitempty"`
+	VoiceLine *map[string]any `json:"voiceLine,omitempty"`
 }
 
 // Competitive is the typed data model for the competitive entity.
 type Competitive struct {
-	AssetObjectName *string `json:"asset_object_name,omitempty"`
-	AssetPath *string `json:"asset_path,omitempty"`
-	Tier *[]any `json:"tier,omitempty"`
+	AssetObjectName *string `json:"assetObjectName,omitempty"`
+	AssetPath *string `json:"assetPath,omitempty"`
+	Tiers *[]any `json:"tiers,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
 }
 
 // CompetitiveListMatch is the typed request payload for Competitive.ListTyped.
 type CompetitiveListMatch struct {
-	AssetObjectName *string `json:"asset_object_name,omitempty"`
-	AssetPath *string `json:"asset_path,omitempty"`
-	Tier *[]any `json:"tier,omitempty"`
+	AssetObjectName *string `json:"assetObjectName,omitempty"`
+	AssetPath *string `json:"assetPath,omitempty"`
+	Tiers *[]any `json:"tiers,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
 }
 
 // Cosmetic is the typed data model for the cosmetic entity.
 type Cosmetic struct {
-	AnimationGif *string `json:"animation_gif,omitempty"`
-	AnimationPng *string `json:"animation_png,omitempty"`
-	AssetPath *string `json:"asset_path,omitempty"`
+	AnimationGif *string `json:"animationGif,omitempty"`
+	AnimationPng *string `json:"animationPng,omitempty"`
+	AssetPath *string `json:"assetPath,omitempty"`
 	Category *string `json:"category,omitempty"`
-	DisplayIcon *string `json:"display_icon,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
-	FullIcon *string `json:"full_icon,omitempty"`
-	FullTransparentIcon *string `json:"full_transparent_icon,omitempty"`
-	HideIfNotOwned *bool `json:"hide_if_not_owned,omitempty"`
-	IsHiddenIfNotOwned *bool `json:"is_hidden_if_not_owned,omitempty"`
-	IsNullSpray *bool `json:"is_null_spray,omitempty"`
-	LargeArt *string `json:"large_art,omitempty"`
-	Level *[]any `json:"level,omitempty"`
-	SmallArt *string `json:"small_art,omitempty"`
-	ThemeUuid *string `json:"theme_uuid,omitempty"`
+	DisplayIcon *string `json:"displayIcon,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	FullIcon *string `json:"fullIcon,omitempty"`
+	FullTransparentIcon *string `json:"fullTransparentIcon,omitempty"`
+	HideIfNotOwned *bool `json:"hideIfNotOwned,omitempty"`
+	IsHiddenIfNotOwned *bool `json:"isHiddenIfNotOwned,omitempty"`
+	IsNullSpray *bool `json:"isNullSpray,omitempty"`
+	LargeArt *string `json:"largeArt,omitempty"`
+	Levels *[]any `json:"levels,omitempty"`
+	SmallArt *string `json:"smallArt,omitempty"`
+	ThemeUuid *string `json:"themeUuid,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
-	WideArt *string `json:"wide_art,omitempty"`
+	WideArt *string `json:"wideArt,omitempty"`
 }
 
 // CosmeticListMatch is the typed request payload for Cosmetic.ListTyped.
 type CosmeticListMatch struct {
-	AnimationGif *string `json:"animation_gif,omitempty"`
-	AnimationPng *string `json:"animation_png,omitempty"`
-	AssetPath *string `json:"asset_path,omitempty"`
+	AnimationGif *string `json:"animationGif,omitempty"`
+	AnimationPng *string `json:"animationPng,omitempty"`
+	AssetPath *string `json:"assetPath,omitempty"`
 	Category *string `json:"category,omitempty"`
-	DisplayIcon *string `json:"display_icon,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
-	FullIcon *string `json:"full_icon,omitempty"`
-	FullTransparentIcon *string `json:"full_transparent_icon,omitempty"`
-	HideIfNotOwned *bool `json:"hide_if_not_owned,omitempty"`
-	IsHiddenIfNotOwned *bool `json:"is_hidden_if_not_owned,omitempty"`
-	IsNullSpray *bool `json:"is_null_spray,omitempty"`
-	LargeArt *string `json:"large_art,omitempty"`
-	Level *[]any `json:"level,omitempty"`
-	SmallArt *string `json:"small_art,omitempty"`
-	ThemeUuid *string `json:"theme_uuid,omitempty"`
+	DisplayIcon *string `json:"displayIcon,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	FullIcon *string `json:"fullIcon,omitempty"`
+	FullTransparentIcon *string `json:"fullTransparentIcon,omitempty"`
+	HideIfNotOwned *bool `json:"hideIfNotOwned,omitempty"`
+	IsHiddenIfNotOwned *bool `json:"isHiddenIfNotOwned,omitempty"`
+	IsNullSpray *bool `json:"isNullSpray,omitempty"`
+	LargeArt *string `json:"largeArt,omitempty"`
+	Levels *[]any `json:"levels,omitempty"`
+	SmallArt *string `json:"smallArt,omitempty"`
+	ThemeUuid *string `json:"themeUuid,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
-	WideArt *string `json:"wide_art,omitempty"`
+	WideArt *string `json:"wideArt,omitempty"`
 }
 
 // GameMode is the typed data model for the game_mode entity.
 type GameMode struct {
-	AllowsMatchTimeout *bool `json:"allows_match_timeout,omitempty"`
-	AssetPath *string `json:"asset_path,omitempty"`
-	DisplayIcon *string `json:"display_icon,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
+	AllowsMatchTimeouts *bool `json:"allowsMatchTimeouts,omitempty"`
+	AssetPath *string `json:"assetPath,omitempty"`
+	DisplayIcon *string `json:"displayIcon,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
 	Duration *string `json:"duration,omitempty"`
-	EconomyType *string `json:"economy_type,omitempty"`
-	GameFeatureOverride *[]any `json:"game_feature_override,omitempty"`
-	GameRuleBoolOverride *[]any `json:"game_rule_bool_override,omitempty"`
-	IsMinimapHidden *bool `json:"is_minimap_hidden,omitempty"`
-	IsTeamVoiceAllowed *bool `json:"is_team_voice_allowed,omitempty"`
-	OrbCount *int `json:"orb_count,omitempty"`
-	RoundsPerHalf *int `json:"rounds_per_half,omitempty"`
-	TeamRole *[]any `json:"team_role,omitempty"`
+	EconomyType *string `json:"economyType,omitempty"`
+	GameFeatureOverrides *[]any `json:"gameFeatureOverrides,omitempty"`
+	GameRuleBoolOverrides *[]any `json:"gameRuleBoolOverrides,omitempty"`
+	IsMinimapHidden *bool `json:"isMinimapHidden,omitempty"`
+	IsTeamVoiceAllowed *bool `json:"isTeamVoiceAllowed,omitempty"`
+	OrbCount *int `json:"orbCount,omitempty"`
+	RoundsPerHalf *int `json:"roundsPerHalf,omitempty"`
+	TeamRoles *[]any `json:"teamRoles,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
 }
 
 // GameModeListMatch is the typed request payload for GameMode.ListTyped.
 type GameModeListMatch struct {
-	AllowsMatchTimeout *bool `json:"allows_match_timeout,omitempty"`
-	AssetPath *string `json:"asset_path,omitempty"`
-	DisplayIcon *string `json:"display_icon,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
+	AllowsMatchTimeouts *bool `json:"allowsMatchTimeouts,omitempty"`
+	AssetPath *string `json:"assetPath,omitempty"`
+	DisplayIcon *string `json:"displayIcon,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
 	Duration *string `json:"duration,omitempty"`
-	EconomyType *string `json:"economy_type,omitempty"`
-	GameFeatureOverride *[]any `json:"game_feature_override,omitempty"`
-	GameRuleBoolOverride *[]any `json:"game_rule_bool_override,omitempty"`
-	IsMinimapHidden *bool `json:"is_minimap_hidden,omitempty"`
-	IsTeamVoiceAllowed *bool `json:"is_team_voice_allowed,omitempty"`
-	OrbCount *int `json:"orb_count,omitempty"`
-	RoundsPerHalf *int `json:"rounds_per_half,omitempty"`
-	TeamRole *[]any `json:"team_role,omitempty"`
+	EconomyType *string `json:"economyType,omitempty"`
+	GameFeatureOverrides *[]any `json:"gameFeatureOverrides,omitempty"`
+	GameRuleBoolOverrides *[]any `json:"gameRuleBoolOverrides,omitempty"`
+	IsMinimapHidden *bool `json:"isMinimapHidden,omitempty"`
+	IsTeamVoiceAllowed *bool `json:"isTeamVoiceAllowed,omitempty"`
+	OrbCount *int `json:"orbCount,omitempty"`
+	RoundsPerHalf *int `json:"roundsPerHalf,omitempty"`
+	TeamRoles *[]any `json:"teamRoles,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
 }
 
 // Map is the typed data model for the map entity.
 type Map struct {
-	AssetPath *string `json:"asset_path,omitempty"`
-	Callout *[]any `json:"callout,omitempty"`
-	Coordinate *string `json:"coordinate,omitempty"`
-	Data *map[string]any `json:"data,omitempty"`
-	DisplayIcon *string `json:"display_icon,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
-	ListViewIcon *string `json:"list_view_icon,omitempty"`
-	MapUrl *string `json:"map_url,omitempty"`
-	NarrativeDescription *string `json:"narrative_description,omitempty"`
+	AssetPath *string `json:"assetPath,omitempty"`
+	Callouts *[]any `json:"callouts,omitempty"`
+	Coordinates *string `json:"coordinates,omitempty"`
+	DisplayIcon *string `json:"displayIcon,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	ListViewIcon *string `json:"listViewIcon,omitempty"`
+	MapUrl *string `json:"mapUrl,omitempty"`
+	NarrativeDescription *string `json:"narrativeDescription,omitempty"`
 	Splash *string `json:"splash,omitempty"`
-	Status *int `json:"status,omitempty"`
-	TacticalDescription *string `json:"tactical_description,omitempty"`
+	TacticalDescription *string `json:"tacticalDescription,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
-	XMultiplier *float64 `json:"x_multiplier,omitempty"`
-	XScalarToAdd *float64 `json:"x_scalar_to_add,omitempty"`
-	YMultiplier *float64 `json:"y_multiplier,omitempty"`
-	YScalarToAdd *float64 `json:"y_scalar_to_add,omitempty"`
+	XMultiplier *float64 `json:"xMultiplier,omitempty"`
+	XScalarToAdd *float64 `json:"xScalarToAdd,omitempty"`
+	YMultiplier *float64 `json:"yMultiplier,omitempty"`
+	YScalarToAdd *float64 `json:"yScalarToAdd,omitempty"`
 }
 
 // MapLoadMatch is the typed request payload for Map.LoadTyped.
@@ -189,39 +187,35 @@ type MapLoadMatch struct {
 
 // MapListMatch is the typed request payload for Map.ListTyped.
 type MapListMatch struct {
-	AssetPath *string `json:"asset_path,omitempty"`
-	Callout *[]any `json:"callout,omitempty"`
-	Coordinate *string `json:"coordinate,omitempty"`
-	Data *map[string]any `json:"data,omitempty"`
-	DisplayIcon *string `json:"display_icon,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
-	ListViewIcon *string `json:"list_view_icon,omitempty"`
-	MapUrl *string `json:"map_url,omitempty"`
-	NarrativeDescription *string `json:"narrative_description,omitempty"`
+	AssetPath *string `json:"assetPath,omitempty"`
+	Callouts *[]any `json:"callouts,omitempty"`
+	Coordinates *string `json:"coordinates,omitempty"`
+	DisplayIcon *string `json:"displayIcon,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	ListViewIcon *string `json:"listViewIcon,omitempty"`
+	MapUrl *string `json:"mapUrl,omitempty"`
+	NarrativeDescription *string `json:"narrativeDescription,omitempty"`
 	Splash *string `json:"splash,omitempty"`
-	Status *int `json:"status,omitempty"`
-	TacticalDescription *string `json:"tactical_description,omitempty"`
+	TacticalDescription *string `json:"tacticalDescription,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
-	XMultiplier *float64 `json:"x_multiplier,omitempty"`
-	XScalarToAdd *float64 `json:"x_scalar_to_add,omitempty"`
-	YMultiplier *float64 `json:"y_multiplier,omitempty"`
-	YScalarToAdd *float64 `json:"y_scalar_to_add,omitempty"`
+	XMultiplier *float64 `json:"xMultiplier,omitempty"`
+	XScalarToAdd *float64 `json:"xScalarToAdd,omitempty"`
+	YMultiplier *float64 `json:"yMultiplier,omitempty"`
+	YScalarToAdd *float64 `json:"yScalarToAdd,omitempty"`
 }
 
 // Weapon is the typed data model for the weapon entity.
 type Weapon struct {
-	AssetPath *string `json:"asset_path,omitempty"`
+	AssetPath *string `json:"assetPath,omitempty"`
 	Category *string `json:"category,omitempty"`
-	Data *map[string]any `json:"data,omitempty"`
-	DefaultSkinUuid *string `json:"default_skin_uuid,omitempty"`
-	DisplayIcon *string `json:"display_icon,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
-	KillStreamIcon *string `json:"kill_stream_icon,omitempty"`
-	ShopData *map[string]any `json:"shop_data,omitempty"`
-	Skin *[]any `json:"skin,omitempty"`
-	Status *int `json:"status,omitempty"`
+	DefaultSkinUuid *string `json:"defaultSkinUuid,omitempty"`
+	DisplayIcon *string `json:"displayIcon,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	KillStreamIcon *string `json:"killStreamIcon,omitempty"`
+	ShopData *map[string]any `json:"shopData,omitempty"`
+	Skins *[]any `json:"skins,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
-	WeaponStat *map[string]any `json:"weapon_stat,omitempty"`
+	WeaponStats *map[string]any `json:"weaponStats,omitempty"`
 }
 
 // WeaponLoadMatch is the typed request payload for Weapon.LoadTyped.
@@ -231,18 +225,16 @@ type WeaponLoadMatch struct {
 
 // WeaponListMatch is the typed request payload for Weapon.ListTyped.
 type WeaponListMatch struct {
-	AssetPath *string `json:"asset_path,omitempty"`
+	AssetPath *string `json:"assetPath,omitempty"`
 	Category *string `json:"category,omitempty"`
-	Data *map[string]any `json:"data,omitempty"`
-	DefaultSkinUuid *string `json:"default_skin_uuid,omitempty"`
-	DisplayIcon *string `json:"display_icon,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
-	KillStreamIcon *string `json:"kill_stream_icon,omitempty"`
-	ShopData *map[string]any `json:"shop_data,omitempty"`
-	Skin *[]any `json:"skin,omitempty"`
-	Status *int `json:"status,omitempty"`
+	DefaultSkinUuid *string `json:"defaultSkinUuid,omitempty"`
+	DisplayIcon *string `json:"displayIcon,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	KillStreamIcon *string `json:"killStreamIcon,omitempty"`
+	ShopData *map[string]any `json:"shopData,omitempty"`
+	Skins *[]any `json:"skins,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
-	WeaponStat *map[string]any `json:"weapon_stat,omitempty"`
+	WeaponStats *map[string]any `json:"weaponStats,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
@@ -257,12 +249,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -274,12 +280,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

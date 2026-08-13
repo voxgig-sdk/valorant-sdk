@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = ValorantSDK.test()
-const agents = await client.Agent().list()
-// agents is an array of bare Agent records populated with mock data
-console.log(agents)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = ValorantSDK.test({
+  entity: {
+    cosmetic: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const cosmetics = await client.Cosmetic().list()
+// cosmetics is an array of Cosmetic entities, populated with mock data
+// — call cosmetics[0].data() for the record itself
+console.log(cosmetics)
 ```
 
 ### Python
 
 ```python
 client = ValorantSDK.test()
-agents = client.Agent().list()
-print(agents)
+cosmetics = client.Cosmetic().list()
+print(cosmetics)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(agents)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = ValorantSDK::test([
-    "entity" => ["agent" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["cosmetic" => ["test01" => []]],
 ]);
-$agents = $client->Agent()->list();
+$cosmetics = $client->Cosmetic()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Agent(nil).List(
+result, err := client.Cosmetic(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Agent(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = ValorantSDK.test({
-  "entity" => { "agent" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "cosmetic" => { "test01" => {} } },
 })
-agents = client.Agent.list()
+cosmetics = client.Cosmetic.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Agent():list()
+local results, err = client:Cosmetic():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { ValorantSDK } from '@voxgig-sdk/valorant'
 
 const client = new ValorantSDK()
 
-// List all agents (returns Agent[])
+// List all agents (returns AgentEntity[] — .data() for the record)
 const agents = await client.Agent().list()
 for (const agent of agents) {
   console.log(agent)
@@ -196,7 +205,7 @@ $client = new ValorantSDK();
 $agents = $client->Agent()->list();
 print_r($agents);
 
-// Load a specific agent (returns the bare record; throws on error)
+// Load a specific agent (returns the ENTITY; call data_get() for the record; throws on error)
 $agent = $client->Agent()->load(["id" => "example_id"]);
 print_r($agent);
 ```
@@ -227,7 +236,7 @@ client = ValorantSDK.new
 agents = client.Agent.list
 puts agents
 
-# Load a specific agent (returns the bare record; raises on error)
+# Load a specific agent (returns the ENTITY; call data_get for the record)
 agent = client.Agent.load({ "id" => "example_id" })
 puts agent
 ```
@@ -364,6 +373,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://dash.valorant-api.com/](https://dash.valorant-api.com/)
 

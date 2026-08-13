@@ -10,98 +10,90 @@
 
 # Agent entity data model.
 #
-# @!attribute [rw] ability
+# @!attribute [rw] abilities
 #   @return [Array, nil]
 #
-# @!attribute [rw] asset_path
+# @!attribute [rw] assetPath
 #   @return [String, nil]
 #
 # @!attribute [rw] background
 #   @return [String, nil]
 #
-# @!attribute [rw] background_gradient_color
+# @!attribute [rw] backgroundGradientColors
 #   @return [Array, nil]
 #
-# @!attribute [rw] bust_portrait
+# @!attribute [rw] bustPortrait
 #   @return [String, nil]
 #
-# @!attribute [rw] character_tag
+# @!attribute [rw] characterTags
 #   @return [Array, nil]
-#
-# @!attribute [rw] data
-#   @return [Hash, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] developer_name
+# @!attribute [rw] developerName
 #   @return [String, nil]
 #
-# @!attribute [rw] display_icon
+# @!attribute [rw] displayIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] display_icon_small
+# @!attribute [rw] displayIconSmall
 #   @return [String, nil]
 #
-# @!attribute [rw] display_name
+# @!attribute [rw] displayName
 #   @return [String, nil]
 #
-# @!attribute [rw] full_portrait
+# @!attribute [rw] fullPortrait
 #   @return [String, nil]
 #
-# @!attribute [rw] full_portrait_v2
+# @!attribute [rw] fullPortraitV2
 #   @return [String, nil]
 #
-# @!attribute [rw] is_available_for_test
+# @!attribute [rw] isAvailableForTest
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_base_content
+# @!attribute [rw] isBaseContent
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_full_portrait_right_facing
+# @!attribute [rw] isFullPortraitRightFacing
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_playable_character
+# @!attribute [rw] isPlayableCharacter
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] killfeed_portrait
+# @!attribute [rw] killfeedPortrait
 #   @return [String, nil]
 #
 # @!attribute [rw] role
 #   @return [Hash, nil]
 #
-# @!attribute [rw] status
-#   @return [Integer, nil]
-#
 # @!attribute [rw] uuid
 #   @return [String, nil]
 #
-# @!attribute [rw] voice_line
+# @!attribute [rw] voiceLine
 #   @return [Hash, nil]
 Agent = Struct.new(
-  :ability,
-  :asset_path,
+  :abilities,
+  :assetPath,
   :background,
-  :background_gradient_color,
-  :bust_portrait,
-  :character_tag,
-  :data,
+  :backgroundGradientColors,
+  :bustPortrait,
+  :characterTags,
   :description,
-  :developer_name,
-  :display_icon,
-  :display_icon_small,
-  :display_name,
-  :full_portrait,
-  :full_portrait_v2,
-  :is_available_for_test,
-  :is_base_content,
-  :is_full_portrait_right_facing,
-  :is_playable_character,
-  :killfeed_portrait,
+  :developerName,
+  :displayIcon,
+  :displayIconSmall,
+  :displayName,
+  :fullPortrait,
+  :fullPortraitV2,
+  :isAvailableForTest,
+  :isBaseContent,
+  :isFullPortraitRightFacing,
+  :isPlayableCharacter,
+  :killfeedPortrait,
   :role,
-  :status,
   :uuid,
-  :voice_line,
+  :voiceLine,
   keyword_init: true
 )
 
@@ -116,481 +108,465 @@ AgentLoadMatch = Struct.new(
 
 # Request payload for Agent#list.
 #
-# @!attribute [rw] ability
+# @!attribute [rw] abilities
 #   @return [Array, nil]
 #
-# @!attribute [rw] asset_path
+# @!attribute [rw] assetPath
 #   @return [String, nil]
 #
 # @!attribute [rw] background
 #   @return [String, nil]
 #
-# @!attribute [rw] background_gradient_color
+# @!attribute [rw] backgroundGradientColors
 #   @return [Array, nil]
 #
-# @!attribute [rw] bust_portrait
+# @!attribute [rw] bustPortrait
 #   @return [String, nil]
 #
-# @!attribute [rw] character_tag
+# @!attribute [rw] characterTags
 #   @return [Array, nil]
-#
-# @!attribute [rw] data
-#   @return [Hash, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] developer_name
+# @!attribute [rw] developerName
 #   @return [String, nil]
 #
-# @!attribute [rw] display_icon
+# @!attribute [rw] displayIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] display_icon_small
+# @!attribute [rw] displayIconSmall
 #   @return [String, nil]
 #
-# @!attribute [rw] display_name
+# @!attribute [rw] displayName
 #   @return [String, nil]
 #
-# @!attribute [rw] full_portrait
+# @!attribute [rw] fullPortrait
 #   @return [String, nil]
 #
-# @!attribute [rw] full_portrait_v2
+# @!attribute [rw] fullPortraitV2
 #   @return [String, nil]
 #
-# @!attribute [rw] is_available_for_test
+# @!attribute [rw] isAvailableForTest
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_base_content
+# @!attribute [rw] isBaseContent
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_full_portrait_right_facing
+# @!attribute [rw] isFullPortraitRightFacing
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_playable_character
+# @!attribute [rw] isPlayableCharacter
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] killfeed_portrait
+# @!attribute [rw] killfeedPortrait
 #   @return [String, nil]
 #
 # @!attribute [rw] role
 #   @return [Hash, nil]
 #
-# @!attribute [rw] status
-#   @return [Integer, nil]
-#
 # @!attribute [rw] uuid
 #   @return [String, nil]
 #
-# @!attribute [rw] voice_line
+# @!attribute [rw] voiceLine
 #   @return [Hash, nil]
 AgentListMatch = Struct.new(
-  :ability,
-  :asset_path,
+  :abilities,
+  :assetPath,
   :background,
-  :background_gradient_color,
-  :bust_portrait,
-  :character_tag,
-  :data,
+  :backgroundGradientColors,
+  :bustPortrait,
+  :characterTags,
   :description,
-  :developer_name,
-  :display_icon,
-  :display_icon_small,
-  :display_name,
-  :full_portrait,
-  :full_portrait_v2,
-  :is_available_for_test,
-  :is_base_content,
-  :is_full_portrait_right_facing,
-  :is_playable_character,
-  :killfeed_portrait,
+  :developerName,
+  :displayIcon,
+  :displayIconSmall,
+  :displayName,
+  :fullPortrait,
+  :fullPortraitV2,
+  :isAvailableForTest,
+  :isBaseContent,
+  :isFullPortraitRightFacing,
+  :isPlayableCharacter,
+  :killfeedPortrait,
   :role,
-  :status,
   :uuid,
-  :voice_line,
+  :voiceLine,
   keyword_init: true
 )
 
 # Competitive entity data model.
 #
-# @!attribute [rw] asset_object_name
+# @!attribute [rw] assetObjectName
 #   @return [String, nil]
 #
-# @!attribute [rw] asset_path
+# @!attribute [rw] assetPath
 #   @return [String, nil]
 #
-# @!attribute [rw] tier
+# @!attribute [rw] tiers
 #   @return [Array, nil]
 #
 # @!attribute [rw] uuid
 #   @return [String, nil]
 Competitive = Struct.new(
-  :asset_object_name,
-  :asset_path,
-  :tier,
+  :assetObjectName,
+  :assetPath,
+  :tiers,
   :uuid,
   keyword_init: true
 )
 
 # Request payload for Competitive#list.
 #
-# @!attribute [rw] asset_object_name
+# @!attribute [rw] assetObjectName
 #   @return [String, nil]
 #
-# @!attribute [rw] asset_path
+# @!attribute [rw] assetPath
 #   @return [String, nil]
 #
-# @!attribute [rw] tier
+# @!attribute [rw] tiers
 #   @return [Array, nil]
 #
 # @!attribute [rw] uuid
 #   @return [String, nil]
 CompetitiveListMatch = Struct.new(
-  :asset_object_name,
-  :asset_path,
-  :tier,
+  :assetObjectName,
+  :assetPath,
+  :tiers,
   :uuid,
   keyword_init: true
 )
 
 # Cosmetic entity data model.
 #
-# @!attribute [rw] animation_gif
+# @!attribute [rw] animationGif
 #   @return [String, nil]
 #
-# @!attribute [rw] animation_png
+# @!attribute [rw] animationPng
 #   @return [String, nil]
 #
-# @!attribute [rw] asset_path
+# @!attribute [rw] assetPath
 #   @return [String, nil]
 #
 # @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] display_icon
+# @!attribute [rw] displayIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] display_name
+# @!attribute [rw] displayName
 #   @return [String, nil]
 #
-# @!attribute [rw] full_icon
+# @!attribute [rw] fullIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] full_transparent_icon
+# @!attribute [rw] fullTransparentIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] hide_if_not_owned
+# @!attribute [rw] hideIfNotOwned
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_hidden_if_not_owned
+# @!attribute [rw] isHiddenIfNotOwned
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_null_spray
+# @!attribute [rw] isNullSpray
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] large_art
+# @!attribute [rw] largeArt
 #   @return [String, nil]
 #
-# @!attribute [rw] level
+# @!attribute [rw] levels
 #   @return [Array, nil]
 #
-# @!attribute [rw] small_art
+# @!attribute [rw] smallArt
 #   @return [String, nil]
 #
-# @!attribute [rw] theme_uuid
+# @!attribute [rw] themeUuid
 #   @return [String, nil]
 #
 # @!attribute [rw] uuid
 #   @return [String, nil]
 #
-# @!attribute [rw] wide_art
+# @!attribute [rw] wideArt
 #   @return [String, nil]
 Cosmetic = Struct.new(
-  :animation_gif,
-  :animation_png,
-  :asset_path,
+  :animationGif,
+  :animationPng,
+  :assetPath,
   :category,
-  :display_icon,
-  :display_name,
-  :full_icon,
-  :full_transparent_icon,
-  :hide_if_not_owned,
-  :is_hidden_if_not_owned,
-  :is_null_spray,
-  :large_art,
-  :level,
-  :small_art,
-  :theme_uuid,
+  :displayIcon,
+  :displayName,
+  :fullIcon,
+  :fullTransparentIcon,
+  :hideIfNotOwned,
+  :isHiddenIfNotOwned,
+  :isNullSpray,
+  :largeArt,
+  :levels,
+  :smallArt,
+  :themeUuid,
   :uuid,
-  :wide_art,
+  :wideArt,
   keyword_init: true
 )
 
 # Request payload for Cosmetic#list.
 #
-# @!attribute [rw] animation_gif
+# @!attribute [rw] animationGif
 #   @return [String, nil]
 #
-# @!attribute [rw] animation_png
+# @!attribute [rw] animationPng
 #   @return [String, nil]
 #
-# @!attribute [rw] asset_path
+# @!attribute [rw] assetPath
 #   @return [String, nil]
 #
 # @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] display_icon
+# @!attribute [rw] displayIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] display_name
+# @!attribute [rw] displayName
 #   @return [String, nil]
 #
-# @!attribute [rw] full_icon
+# @!attribute [rw] fullIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] full_transparent_icon
+# @!attribute [rw] fullTransparentIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] hide_if_not_owned
+# @!attribute [rw] hideIfNotOwned
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_hidden_if_not_owned
+# @!attribute [rw] isHiddenIfNotOwned
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_null_spray
+# @!attribute [rw] isNullSpray
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] large_art
+# @!attribute [rw] largeArt
 #   @return [String, nil]
 #
-# @!attribute [rw] level
+# @!attribute [rw] levels
 #   @return [Array, nil]
 #
-# @!attribute [rw] small_art
+# @!attribute [rw] smallArt
 #   @return [String, nil]
 #
-# @!attribute [rw] theme_uuid
+# @!attribute [rw] themeUuid
 #   @return [String, nil]
 #
 # @!attribute [rw] uuid
 #   @return [String, nil]
 #
-# @!attribute [rw] wide_art
+# @!attribute [rw] wideArt
 #   @return [String, nil]
 CosmeticListMatch = Struct.new(
-  :animation_gif,
-  :animation_png,
-  :asset_path,
+  :animationGif,
+  :animationPng,
+  :assetPath,
   :category,
-  :display_icon,
-  :display_name,
-  :full_icon,
-  :full_transparent_icon,
-  :hide_if_not_owned,
-  :is_hidden_if_not_owned,
-  :is_null_spray,
-  :large_art,
-  :level,
-  :small_art,
-  :theme_uuid,
+  :displayIcon,
+  :displayName,
+  :fullIcon,
+  :fullTransparentIcon,
+  :hideIfNotOwned,
+  :isHiddenIfNotOwned,
+  :isNullSpray,
+  :largeArt,
+  :levels,
+  :smallArt,
+  :themeUuid,
   :uuid,
-  :wide_art,
+  :wideArt,
   keyword_init: true
 )
 
 # GameMode entity data model.
 #
-# @!attribute [rw] allows_match_timeout
+# @!attribute [rw] allowsMatchTimeouts
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] asset_path
+# @!attribute [rw] assetPath
 #   @return [String, nil]
 #
-# @!attribute [rw] display_icon
+# @!attribute [rw] displayIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] display_name
+# @!attribute [rw] displayName
 #   @return [String, nil]
 #
 # @!attribute [rw] duration
 #   @return [String, nil]
 #
-# @!attribute [rw] economy_type
+# @!attribute [rw] economyType
 #   @return [String, nil]
 #
-# @!attribute [rw] game_feature_override
+# @!attribute [rw] gameFeatureOverrides
 #   @return [Array, nil]
 #
-# @!attribute [rw] game_rule_bool_override
+# @!attribute [rw] gameRuleBoolOverrides
 #   @return [Array, nil]
 #
-# @!attribute [rw] is_minimap_hidden
+# @!attribute [rw] isMinimapHidden
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_team_voice_allowed
+# @!attribute [rw] isTeamVoiceAllowed
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] orb_count
+# @!attribute [rw] orbCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] rounds_per_half
+# @!attribute [rw] roundsPerHalf
 #   @return [Integer, nil]
 #
-# @!attribute [rw] team_role
+# @!attribute [rw] teamRoles
 #   @return [Array, nil]
 #
 # @!attribute [rw] uuid
 #   @return [String, nil]
 GameMode = Struct.new(
-  :allows_match_timeout,
-  :asset_path,
-  :display_icon,
-  :display_name,
+  :allowsMatchTimeouts,
+  :assetPath,
+  :displayIcon,
+  :displayName,
   :duration,
-  :economy_type,
-  :game_feature_override,
-  :game_rule_bool_override,
-  :is_minimap_hidden,
-  :is_team_voice_allowed,
-  :orb_count,
-  :rounds_per_half,
-  :team_role,
+  :economyType,
+  :gameFeatureOverrides,
+  :gameRuleBoolOverrides,
+  :isMinimapHidden,
+  :isTeamVoiceAllowed,
+  :orbCount,
+  :roundsPerHalf,
+  :teamRoles,
   :uuid,
   keyword_init: true
 )
 
 # Request payload for GameMode#list.
 #
-# @!attribute [rw] allows_match_timeout
+# @!attribute [rw] allowsMatchTimeouts
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] asset_path
+# @!attribute [rw] assetPath
 #   @return [String, nil]
 #
-# @!attribute [rw] display_icon
+# @!attribute [rw] displayIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] display_name
+# @!attribute [rw] displayName
 #   @return [String, nil]
 #
 # @!attribute [rw] duration
 #   @return [String, nil]
 #
-# @!attribute [rw] economy_type
+# @!attribute [rw] economyType
 #   @return [String, nil]
 #
-# @!attribute [rw] game_feature_override
+# @!attribute [rw] gameFeatureOverrides
 #   @return [Array, nil]
 #
-# @!attribute [rw] game_rule_bool_override
+# @!attribute [rw] gameRuleBoolOverrides
 #   @return [Array, nil]
 #
-# @!attribute [rw] is_minimap_hidden
+# @!attribute [rw] isMinimapHidden
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_team_voice_allowed
+# @!attribute [rw] isTeamVoiceAllowed
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] orb_count
+# @!attribute [rw] orbCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] rounds_per_half
+# @!attribute [rw] roundsPerHalf
 #   @return [Integer, nil]
 #
-# @!attribute [rw] team_role
+# @!attribute [rw] teamRoles
 #   @return [Array, nil]
 #
 # @!attribute [rw] uuid
 #   @return [String, nil]
 GameModeListMatch = Struct.new(
-  :allows_match_timeout,
-  :asset_path,
-  :display_icon,
-  :display_name,
+  :allowsMatchTimeouts,
+  :assetPath,
+  :displayIcon,
+  :displayName,
   :duration,
-  :economy_type,
-  :game_feature_override,
-  :game_rule_bool_override,
-  :is_minimap_hidden,
-  :is_team_voice_allowed,
-  :orb_count,
-  :rounds_per_half,
-  :team_role,
+  :economyType,
+  :gameFeatureOverrides,
+  :gameRuleBoolOverrides,
+  :isMinimapHidden,
+  :isTeamVoiceAllowed,
+  :orbCount,
+  :roundsPerHalf,
+  :teamRoles,
   :uuid,
   keyword_init: true
 )
 
 # Map entity data model.
 #
-# @!attribute [rw] asset_path
+# @!attribute [rw] assetPath
 #   @return [String, nil]
 #
-# @!attribute [rw] callout
+# @!attribute [rw] callouts
 #   @return [Array, nil]
 #
-# @!attribute [rw] coordinate
+# @!attribute [rw] coordinates
 #   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
-# @!attribute [rw] display_icon
+# @!attribute [rw] displayIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] display_name
+# @!attribute [rw] displayName
 #   @return [String, nil]
 #
-# @!attribute [rw] list_view_icon
+# @!attribute [rw] listViewIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] map_url
+# @!attribute [rw] mapUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] narrative_description
+# @!attribute [rw] narrativeDescription
 #   @return [String, nil]
 #
 # @!attribute [rw] splash
 #   @return [String, nil]
 #
-# @!attribute [rw] status
-#   @return [Integer, nil]
-#
-# @!attribute [rw] tactical_description
+# @!attribute [rw] tacticalDescription
 #   @return [String, nil]
 #
 # @!attribute [rw] uuid
 #   @return [String, nil]
 #
-# @!attribute [rw] x_multiplier
+# @!attribute [rw] xMultiplier
 #   @return [Float, nil]
 #
-# @!attribute [rw] x_scalar_to_add
+# @!attribute [rw] xScalarToAdd
 #   @return [Float, nil]
 #
-# @!attribute [rw] y_multiplier
+# @!attribute [rw] yMultiplier
 #   @return [Float, nil]
 #
-# @!attribute [rw] y_scalar_to_add
+# @!attribute [rw] yScalarToAdd
 #   @return [Float, nil]
 Map = Struct.new(
-  :asset_path,
-  :callout,
-  :coordinate,
-  :data,
-  :display_icon,
-  :display_name,
-  :list_view_icon,
-  :map_url,
-  :narrative_description,
+  :assetPath,
+  :callouts,
+  :coordinates,
+  :displayIcon,
+  :displayName,
+  :listViewIcon,
+  :mapUrl,
+  :narrativeDescription,
   :splash,
-  :status,
-  :tactical_description,
+  :tacticalDescription,
   :uuid,
-  :x_multiplier,
-  :x_scalar_to_add,
-  :y_multiplier,
-  :y_scalar_to_add,
+  :xMultiplier,
+  :xScalarToAdd,
+  :yMultiplier,
+  :yScalarToAdd,
   keyword_init: true
 )
 
@@ -605,127 +581,111 @@ MapLoadMatch = Struct.new(
 
 # Request payload for Map#list.
 #
-# @!attribute [rw] asset_path
+# @!attribute [rw] assetPath
 #   @return [String, nil]
 #
-# @!attribute [rw] callout
+# @!attribute [rw] callouts
 #   @return [Array, nil]
 #
-# @!attribute [rw] coordinate
+# @!attribute [rw] coordinates
 #   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
-# @!attribute [rw] display_icon
+# @!attribute [rw] displayIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] display_name
+# @!attribute [rw] displayName
 #   @return [String, nil]
 #
-# @!attribute [rw] list_view_icon
+# @!attribute [rw] listViewIcon
 #   @return [String, nil]
 #
-# @!attribute [rw] map_url
+# @!attribute [rw] mapUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] narrative_description
+# @!attribute [rw] narrativeDescription
 #   @return [String, nil]
 #
 # @!attribute [rw] splash
 #   @return [String, nil]
 #
-# @!attribute [rw] status
-#   @return [Integer, nil]
-#
-# @!attribute [rw] tactical_description
+# @!attribute [rw] tacticalDescription
 #   @return [String, nil]
 #
 # @!attribute [rw] uuid
 #   @return [String, nil]
 #
-# @!attribute [rw] x_multiplier
+# @!attribute [rw] xMultiplier
 #   @return [Float, nil]
 #
-# @!attribute [rw] x_scalar_to_add
+# @!attribute [rw] xScalarToAdd
 #   @return [Float, nil]
 #
-# @!attribute [rw] y_multiplier
+# @!attribute [rw] yMultiplier
 #   @return [Float, nil]
 #
-# @!attribute [rw] y_scalar_to_add
+# @!attribute [rw] yScalarToAdd
 #   @return [Float, nil]
 MapListMatch = Struct.new(
-  :asset_path,
-  :callout,
-  :coordinate,
-  :data,
-  :display_icon,
-  :display_name,
-  :list_view_icon,
-  :map_url,
-  :narrative_description,
+  :assetPath,
+  :callouts,
+  :coordinates,
+  :displayIcon,
+  :displayName,
+  :listViewIcon,
+  :mapUrl,
+  :narrativeDescription,
   :splash,
-  :status,
-  :tactical_description,
+  :tacticalDescription,
   :uuid,
-  :x_multiplier,
-  :x_scalar_to_add,
-  :y_multiplier,
-  :y_scalar_to_add,
+  :xMultiplier,
+  :xScalarToAdd,
+  :yMultiplier,
+  :yScalarToAdd,
   keyword_init: true
 )
 
 # Weapon entity data model.
 #
-# @!attribute [rw] asset_path
+# @!attribute [rw] assetPath
 #   @return [String, nil]
 #
 # @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] data
+# @!attribute [rw] defaultSkinUuid
+#   @return [String, nil]
+#
+# @!attribute [rw] displayIcon
+#   @return [String, nil]
+#
+# @!attribute [rw] displayName
+#   @return [String, nil]
+#
+# @!attribute [rw] killStreamIcon
+#   @return [String, nil]
+#
+# @!attribute [rw] shopData
 #   @return [Hash, nil]
 #
-# @!attribute [rw] default_skin_uuid
-#   @return [String, nil]
-#
-# @!attribute [rw] display_icon
-#   @return [String, nil]
-#
-# @!attribute [rw] display_name
-#   @return [String, nil]
-#
-# @!attribute [rw] kill_stream_icon
-#   @return [String, nil]
-#
-# @!attribute [rw] shop_data
-#   @return [Hash, nil]
-#
-# @!attribute [rw] skin
+# @!attribute [rw] skins
 #   @return [Array, nil]
-#
-# @!attribute [rw] status
-#   @return [Integer, nil]
 #
 # @!attribute [rw] uuid
 #   @return [String, nil]
 #
-# @!attribute [rw] weapon_stat
+# @!attribute [rw] weaponStats
 #   @return [Hash, nil]
 Weapon = Struct.new(
-  :asset_path,
+  :assetPath,
   :category,
-  :data,
-  :default_skin_uuid,
-  :display_icon,
-  :display_name,
-  :kill_stream_icon,
-  :shop_data,
-  :skin,
-  :status,
+  :defaultSkinUuid,
+  :displayIcon,
+  :displayName,
+  :killStreamIcon,
+  :shopData,
+  :skins,
   :uuid,
-  :weapon_stat,
+  :weaponStats,
   keyword_init: true
 )
 
@@ -740,54 +700,46 @@ WeaponLoadMatch = Struct.new(
 
 # Request payload for Weapon#list.
 #
-# @!attribute [rw] asset_path
+# @!attribute [rw] assetPath
 #   @return [String, nil]
 #
 # @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] data
+# @!attribute [rw] defaultSkinUuid
+#   @return [String, nil]
+#
+# @!attribute [rw] displayIcon
+#   @return [String, nil]
+#
+# @!attribute [rw] displayName
+#   @return [String, nil]
+#
+# @!attribute [rw] killStreamIcon
+#   @return [String, nil]
+#
+# @!attribute [rw] shopData
 #   @return [Hash, nil]
 #
-# @!attribute [rw] default_skin_uuid
-#   @return [String, nil]
-#
-# @!attribute [rw] display_icon
-#   @return [String, nil]
-#
-# @!attribute [rw] display_name
-#   @return [String, nil]
-#
-# @!attribute [rw] kill_stream_icon
-#   @return [String, nil]
-#
-# @!attribute [rw] shop_data
-#   @return [Hash, nil]
-#
-# @!attribute [rw] skin
+# @!attribute [rw] skins
 #   @return [Array, nil]
-#
-# @!attribute [rw] status
-#   @return [Integer, nil]
 #
 # @!attribute [rw] uuid
 #   @return [String, nil]
 #
-# @!attribute [rw] weapon_stat
+# @!attribute [rw] weaponStats
 #   @return [Hash, nil]
 WeaponListMatch = Struct.new(
-  :asset_path,
+  :assetPath,
   :category,
-  :data,
-  :default_skin_uuid,
-  :display_icon,
-  :display_name,
-  :kill_stream_icon,
-  :shop_data,
-  :skin,
-  :status,
+  :defaultSkinUuid,
+  :displayIcon,
+  :displayName,
+  :killStreamIcon,
+  :shopData,
+  :skins,
   :uuid,
-  :weapon_stat,
+  :weaponStats,
   keyword_init: true
 )
 

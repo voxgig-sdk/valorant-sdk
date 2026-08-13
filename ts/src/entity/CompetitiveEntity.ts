@@ -37,7 +37,7 @@ class CompetitiveEntity extends ValorantEntityBase<Competitive> {
 
 
 
-  async list(this: any, reqmatch?: CompetitiveListMatch, ctrl?: Control): Promise<Competitive[]> {
+  async list(this: any, reqmatch?: CompetitiveListMatch, ctrl?: Control): Promise<CompetitiveEntity[]> {
 
     const utility = this._utility
 

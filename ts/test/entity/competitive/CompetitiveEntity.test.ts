@@ -63,7 +63,7 @@ describe('CompetitiveEntity', async () => {
     const competitive_ref01_ent = client.Competitive()
     const competitive_ref01_match: any = {}
 
-    const competitive_ref01_list = await competitive_ref01_ent.list(competitive_ref01_match)
+    const competitive_ref01_list = (await competitive_ref01_ent.list(competitive_ref01_match)).map((e: any) => e.data())
 
 
   })

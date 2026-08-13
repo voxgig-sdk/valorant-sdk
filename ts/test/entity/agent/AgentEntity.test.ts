@@ -63,7 +63,7 @@ describe('AgentEntity', async () => {
     const agent_ref01_ent = client.Agent()
     const agent_ref01_match: any = {}
 
-    const agent_ref01_list = await agent_ref01_ent.list(agent_ref01_match)
+    const agent_ref01_list = (await agent_ref01_ent.list(agent_ref01_match)).map((e: any) => e.data())
 
 
 

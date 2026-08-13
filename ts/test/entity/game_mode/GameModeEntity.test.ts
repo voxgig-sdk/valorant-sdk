@@ -63,7 +63,7 @@ describe('GameModeEntity', async () => {
     const game_mode_ref01_ent = client.GameMode()
     const game_mode_ref01_match: any = {}
 
-    const game_mode_ref01_list = await game_mode_ref01_ent.list(game_mode_ref01_match)
+    const game_mode_ref01_list = (await game_mode_ref01_ent.list(game_mode_ref01_match)).map((e: any) => e.data())
 
 
   })

@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Valorant SDK exists test
 
 import pytest
 from valorant_sdk import ValorantSDK

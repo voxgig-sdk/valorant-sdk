@@ -6,12 +6,12 @@ main: kit: entity: agent: {
 
   fields: [
     {
-      name: "ability"
+      name: "abilities"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "asset_path"
+      name: "assetPath"
       req: false
       type: "`$STRING`"
     }
@@ -21,24 +21,19 @@ main: kit: entity: agent: {
       type: "`$STRING`"
     }
     {
-      name: "background_gradient_color"
+      name: "backgroundGradientColors"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "bust_portrait"
+      name: "bustPortrait"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "character_tag"
+      name: "characterTags"
       req: false
       type: "`$ARRAY`"
-    }
-    {
-      name: "data"
-      req: false
-      type: "`$OBJECT`"
     }
     {
       name: "description"
@@ -46,57 +41,57 @@ main: kit: entity: agent: {
       type: "`$STRING`"
     }
     {
-      name: "developer_name"
+      name: "developerName"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "display_icon"
+      name: "displayIcon"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "display_icon_small"
+      name: "displayIconSmall"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "display_name"
+      name: "displayName"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "full_portrait"
+      name: "fullPortrait"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "full_portrait_v2"
+      name: "fullPortraitV2"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "is_available_for_test"
+      name: "isAvailableForTest"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "is_base_content"
+      name: "isBaseContent"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "is_full_portrait_right_facing"
+      name: "isFullPortraitRightFacing"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "is_playable_character"
+      name: "isPlayableCharacter"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "killfeed_portrait"
+      name: "killfeedPortrait"
       req: false
       type: "`$STRING`"
     }
@@ -106,17 +101,12 @@ main: kit: entity: agent: {
       type: "`$OBJECT`"
     }
     {
-      name: "status"
-      req: false
-      type: "`$INTEGER`"
-    }
-    {
       name: "uuid"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "voice_line"
+      name: "voiceLine"
       req: false
       type: "`$OBJECT`"
     }
@@ -161,7 +151,7 @@ main: kit: entity: agent: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -211,7 +201,7 @@ main: kit: entity: agent: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

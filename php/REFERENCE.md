@@ -112,29 +112,27 @@ $agent = $client->Agent();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability` | `array` | No |  |
-| `asset_path` | `string` | No |  |
+| `abilities` | `array` | No |  |
+| `assetPath` | `string` | No |  |
 | `background` | `string` | No |  |
-| `background_gradient_color` | `array` | No |  |
-| `bust_portrait` | `string` | No |  |
-| `character_tag` | `array` | No |  |
-| `data` | `array` | No |  |
+| `backgroundGradientColors` | `array` | No |  |
+| `bustPortrait` | `string` | No |  |
+| `characterTags` | `array` | No |  |
 | `description` | `string` | No |  |
-| `developer_name` | `string` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_icon_small` | `string` | No |  |
-| `display_name` | `string` | No |  |
-| `full_portrait` | `string` | No |  |
-| `full_portrait_v2` | `string` | No |  |
-| `is_available_for_test` | `bool` | No |  |
-| `is_base_content` | `bool` | No |  |
-| `is_full_portrait_right_facing` | `bool` | No |  |
-| `is_playable_character` | `bool` | No |  |
-| `killfeed_portrait` | `string` | No |  |
+| `developerName` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayIconSmall` | `string` | No |  |
+| `displayName` | `string` | No |  |
+| `fullPortrait` | `string` | No |  |
+| `fullPortraitV2` | `string` | No |  |
+| `isAvailableForTest` | `bool` | No |  |
+| `isBaseContent` | `bool` | No |  |
+| `isFullPortraitRightFacing` | `bool` | No |  |
+| `isPlayableCharacter` | `bool` | No |  |
+| `killfeedPortrait` | `string` | No |  |
 | `role` | `array` | No |  |
-| `status` | `int` | No |  |
 | `uuid` | `string` | No |  |
-| `voice_line` | `array` | No |  |
+| `voiceLine` | `array` | No |  |
 
 ### Operations
 
@@ -194,9 +192,9 @@ $competitive = $client->Competitive();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_object_name` | `string` | No |  |
-| `asset_path` | `string` | No |  |
-| `tier` | `array` | No |  |
+| `assetObjectName` | `string` | No |  |
+| `assetPath` | `string` | No |  |
+| `tiers` | `array` | No |  |
 | `uuid` | `string` | No |  |
 
 ### Operations
@@ -249,23 +247,23 @@ $cosmetic = $client->Cosmetic();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `animation_gif` | `string` | No |  |
-| `animation_png` | `string` | No |  |
-| `asset_path` | `string` | No |  |
+| `animationGif` | `string` | No |  |
+| `animationPng` | `string` | No |  |
+| `assetPath` | `string` | No |  |
 | `category` | `string` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_name` | `string` | No |  |
-| `full_icon` | `string` | No |  |
-| `full_transparent_icon` | `string` | No |  |
-| `hide_if_not_owned` | `bool` | No |  |
-| `is_hidden_if_not_owned` | `bool` | No |  |
-| `is_null_spray` | `bool` | No |  |
-| `large_art` | `string` | No |  |
-| `level` | `array` | No |  |
-| `small_art` | `string` | No |  |
-| `theme_uuid` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayName` | `string` | No |  |
+| `fullIcon` | `string` | No |  |
+| `fullTransparentIcon` | `string` | No |  |
+| `hideIfNotOwned` | `bool` | No |  |
+| `isHiddenIfNotOwned` | `bool` | No |  |
+| `isNullSpray` | `bool` | No |  |
+| `largeArt` | `string` | No |  |
+| `levels` | `array` | No |  |
+| `smallArt` | `string` | No |  |
+| `themeUuid` | `string` | No |  |
 | `uuid` | `string` | No |  |
-| `wide_art` | `string` | No |  |
+| `wideArt` | `string` | No |  |
 
 ### Operations
 
@@ -317,19 +315,19 @@ $game_mode = $client->GameMode();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allows_match_timeout` | `bool` | No |  |
-| `asset_path` | `string` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_name` | `string` | No |  |
+| `allowsMatchTimeouts` | `bool` | No |  |
+| `assetPath` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayName` | `string` | No |  |
 | `duration` | `string` | No |  |
-| `economy_type` | `string` | No |  |
-| `game_feature_override` | `array` | No |  |
-| `game_rule_bool_override` | `array` | No |  |
-| `is_minimap_hidden` | `bool` | No |  |
-| `is_team_voice_allowed` | `bool` | No |  |
-| `orb_count` | `int` | No |  |
-| `rounds_per_half` | `int` | No |  |
-| `team_role` | `array` | No |  |
+| `economyType` | `string` | No |  |
+| `gameFeatureOverrides` | `array` | No |  |
+| `gameRuleBoolOverrides` | `array` | No |  |
+| `isMinimapHidden` | `bool` | No |  |
+| `isTeamVoiceAllowed` | `bool` | No |  |
+| `orbCount` | `int` | No |  |
+| `roundsPerHalf` | `int` | No |  |
+| `teamRoles` | `array` | No |  |
 | `uuid` | `string` | No |  |
 
 ### Operations
@@ -382,23 +380,21 @@ $map = $client->Map();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | `string` | No |  |
-| `callout` | `array` | No |  |
-| `coordinate` | `string` | No |  |
-| `data` | `array` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_name` | `string` | No |  |
-| `list_view_icon` | `string` | No |  |
-| `map_url` | `string` | No |  |
-| `narrative_description` | `string` | No |  |
+| `assetPath` | `string` | No |  |
+| `callouts` | `array` | No |  |
+| `coordinates` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayName` | `string` | No |  |
+| `listViewIcon` | `string` | No |  |
+| `mapUrl` | `string` | No |  |
+| `narrativeDescription` | `string` | No |  |
 | `splash` | `string` | No |  |
-| `status` | `int` | No |  |
-| `tactical_description` | `string` | No |  |
+| `tacticalDescription` | `string` | No |  |
 | `uuid` | `string` | No |  |
-| `x_multiplier` | `float` | No |  |
-| `x_scalar_to_add` | `float` | No |  |
-| `y_multiplier` | `float` | No |  |
-| `y_scalar_to_add` | `float` | No |  |
+| `xMultiplier` | `float` | No |  |
+| `xScalarToAdd` | `float` | No |  |
+| `yMultiplier` | `float` | No |  |
+| `yScalarToAdd` | `float` | No |  |
 
 ### Operations
 
@@ -458,18 +454,16 @@ $weapon = $client->Weapon();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | `string` | No |  |
+| `assetPath` | `string` | No |  |
 | `category` | `string` | No |  |
-| `data` | `array` | No |  |
-| `default_skin_uuid` | `string` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_name` | `string` | No |  |
-| `kill_stream_icon` | `string` | No |  |
-| `shop_data` | `array` | No |  |
-| `skin` | `array` | No |  |
-| `status` | `int` | No |  |
+| `defaultSkinUuid` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayName` | `string` | No |  |
+| `killStreamIcon` | `string` | No |  |
+| `shopData` | `array` | No |  |
+| `skins` | `array` | No |  |
 | `uuid` | `string` | No |  |
-| `weapon_stat` | `array` | No |  |
+| `weaponStats` | `array` | No |  |
 
 ### Operations
 

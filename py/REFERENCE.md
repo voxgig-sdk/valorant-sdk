@@ -107,29 +107,27 @@ agent = client.Agent()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability` | `list` | No |  |
-| `asset_path` | `str` | No |  |
+| `abilities` | `list` | No |  |
+| `assetPath` | `str` | No |  |
 | `background` | `str` | No |  |
-| `background_gradient_color` | `list` | No |  |
-| `bust_portrait` | `str` | No |  |
-| `character_tag` | `list` | No |  |
-| `data` | `dict` | No |  |
+| `backgroundGradientColors` | `list` | No |  |
+| `bustPortrait` | `str` | No |  |
+| `characterTags` | `list` | No |  |
 | `description` | `str` | No |  |
-| `developer_name` | `str` | No |  |
-| `display_icon` | `str` | No |  |
-| `display_icon_small` | `str` | No |  |
-| `display_name` | `str` | No |  |
-| `full_portrait` | `str` | No |  |
-| `full_portrait_v2` | `str` | No |  |
-| `is_available_for_test` | `bool` | No |  |
-| `is_base_content` | `bool` | No |  |
-| `is_full_portrait_right_facing` | `bool` | No |  |
-| `is_playable_character` | `bool` | No |  |
-| `killfeed_portrait` | `str` | No |  |
+| `developerName` | `str` | No |  |
+| `displayIcon` | `str` | No |  |
+| `displayIconSmall` | `str` | No |  |
+| `displayName` | `str` | No |  |
+| `fullPortrait` | `str` | No |  |
+| `fullPortraitV2` | `str` | No |  |
+| `isAvailableForTest` | `bool` | No |  |
+| `isBaseContent` | `bool` | No |  |
+| `isFullPortraitRightFacing` | `bool` | No |  |
+| `isPlayableCharacter` | `bool` | No |  |
+| `killfeedPortrait` | `str` | No |  |
 | `role` | `dict` | No |  |
-| `status` | `int` | No |  |
 | `uuid` | `str` | No |  |
-| `voice_line` | `dict` | No |  |
+| `voiceLine` | `dict` | No |  |
 
 ### Operations
 
@@ -190,9 +188,9 @@ competitive = client.Competitive()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_object_name` | `str` | No |  |
-| `asset_path` | `str` | No |  |
-| `tier` | `list` | No |  |
+| `assetObjectName` | `str` | No |  |
+| `assetPath` | `str` | No |  |
+| `tiers` | `list` | No |  |
 | `uuid` | `str` | No |  |
 
 ### Operations
@@ -246,23 +244,23 @@ cosmetic = client.Cosmetic()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `animation_gif` | `str` | No |  |
-| `animation_png` | `str` | No |  |
-| `asset_path` | `str` | No |  |
+| `animationGif` | `str` | No |  |
+| `animationPng` | `str` | No |  |
+| `assetPath` | `str` | No |  |
 | `category` | `str` | No |  |
-| `display_icon` | `str` | No |  |
-| `display_name` | `str` | No |  |
-| `full_icon` | `str` | No |  |
-| `full_transparent_icon` | `str` | No |  |
-| `hide_if_not_owned` | `bool` | No |  |
-| `is_hidden_if_not_owned` | `bool` | No |  |
-| `is_null_spray` | `bool` | No |  |
-| `large_art` | `str` | No |  |
-| `level` | `list` | No |  |
-| `small_art` | `str` | No |  |
-| `theme_uuid` | `str` | No |  |
+| `displayIcon` | `str` | No |  |
+| `displayName` | `str` | No |  |
+| `fullIcon` | `str` | No |  |
+| `fullTransparentIcon` | `str` | No |  |
+| `hideIfNotOwned` | `bool` | No |  |
+| `isHiddenIfNotOwned` | `bool` | No |  |
+| `isNullSpray` | `bool` | No |  |
+| `largeArt` | `str` | No |  |
+| `levels` | `list` | No |  |
+| `smallArt` | `str` | No |  |
+| `themeUuid` | `str` | No |  |
 | `uuid` | `str` | No |  |
-| `wide_art` | `str` | No |  |
+| `wideArt` | `str` | No |  |
 
 ### Operations
 
@@ -315,19 +313,19 @@ game_mode = client.GameMode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allows_match_timeout` | `bool` | No |  |
-| `asset_path` | `str` | No |  |
-| `display_icon` | `str` | No |  |
-| `display_name` | `str` | No |  |
+| `allowsMatchTimeouts` | `bool` | No |  |
+| `assetPath` | `str` | No |  |
+| `displayIcon` | `str` | No |  |
+| `displayName` | `str` | No |  |
 | `duration` | `str` | No |  |
-| `economy_type` | `str` | No |  |
-| `game_feature_override` | `list` | No |  |
-| `game_rule_bool_override` | `list` | No |  |
-| `is_minimap_hidden` | `bool` | No |  |
-| `is_team_voice_allowed` | `bool` | No |  |
-| `orb_count` | `int` | No |  |
-| `rounds_per_half` | `int` | No |  |
-| `team_role` | `list` | No |  |
+| `economyType` | `str` | No |  |
+| `gameFeatureOverrides` | `list` | No |  |
+| `gameRuleBoolOverrides` | `list` | No |  |
+| `isMinimapHidden` | `bool` | No |  |
+| `isTeamVoiceAllowed` | `bool` | No |  |
+| `orbCount` | `int` | No |  |
+| `roundsPerHalf` | `int` | No |  |
+| `teamRoles` | `list` | No |  |
 | `uuid` | `str` | No |  |
 
 ### Operations
@@ -381,23 +379,21 @@ map = client.Map()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | `str` | No |  |
-| `callout` | `list` | No |  |
-| `coordinate` | `str` | No |  |
-| `data` | `dict` | No |  |
-| `display_icon` | `str` | No |  |
-| `display_name` | `str` | No |  |
-| `list_view_icon` | `str` | No |  |
-| `map_url` | `str` | No |  |
-| `narrative_description` | `str` | No |  |
+| `assetPath` | `str` | No |  |
+| `callouts` | `list` | No |  |
+| `coordinates` | `str` | No |  |
+| `displayIcon` | `str` | No |  |
+| `displayName` | `str` | No |  |
+| `listViewIcon` | `str` | No |  |
+| `mapUrl` | `str` | No |  |
+| `narrativeDescription` | `str` | No |  |
 | `splash` | `str` | No |  |
-| `status` | `int` | No |  |
-| `tactical_description` | `str` | No |  |
+| `tacticalDescription` | `str` | No |  |
 | `uuid` | `str` | No |  |
-| `x_multiplier` | `float` | No |  |
-| `x_scalar_to_add` | `float` | No |  |
-| `y_multiplier` | `float` | No |  |
-| `y_scalar_to_add` | `float` | No |  |
+| `xMultiplier` | `float` | No |  |
+| `xScalarToAdd` | `float` | No |  |
+| `yMultiplier` | `float` | No |  |
+| `yScalarToAdd` | `float` | No |  |
 
 ### Operations
 
@@ -458,18 +454,16 @@ weapon = client.Weapon()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | `str` | No |  |
+| `assetPath` | `str` | No |  |
 | `category` | `str` | No |  |
-| `data` | `dict` | No |  |
-| `default_skin_uuid` | `str` | No |  |
-| `display_icon` | `str` | No |  |
-| `display_name` | `str` | No |  |
-| `kill_stream_icon` | `str` | No |  |
-| `shop_data` | `dict` | No |  |
-| `skin` | `list` | No |  |
-| `status` | `int` | No |  |
+| `defaultSkinUuid` | `str` | No |  |
+| `displayIcon` | `str` | No |  |
+| `displayName` | `str` | No |  |
+| `killStreamIcon` | `str` | No |  |
+| `shopData` | `dict` | No |  |
+| `skins` | `list` | No |  |
 | `uuid` | `str` | No |  |
-| `weapon_stat` | `dict` | No |  |
+| `weaponStats` | `dict` | No |  |
 
 ### Operations
 

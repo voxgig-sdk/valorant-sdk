@@ -6,17 +6,17 @@ main: kit: entity: cosmetic: {
 
   fields: [
     {
-      name: "animation_gif"
+      name: "animationGif"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "animation_png"
+      name: "animationPng"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "asset_path"
+      name: "assetPath"
       req: false
       type: "`$STRING`"
     }
@@ -26,57 +26,57 @@ main: kit: entity: cosmetic: {
       type: "`$STRING`"
     }
     {
-      name: "display_icon"
+      name: "displayIcon"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "display_name"
+      name: "displayName"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "full_icon"
+      name: "fullIcon"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "full_transparent_icon"
+      name: "fullTransparentIcon"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "hide_if_not_owned"
+      name: "hideIfNotOwned"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "is_hidden_if_not_owned"
+      name: "isHiddenIfNotOwned"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "is_null_spray"
+      name: "isNullSpray"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "large_art"
+      name: "largeArt"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "level"
+      name: "levels"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "small_art"
+      name: "smallArt"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "theme_uuid"
+      name: "themeUuid"
       req: false
       type: "`$STRING`"
     }
@@ -86,7 +86,7 @@ main: kit: entity: cosmetic: {
       type: "`$STRING`"
     }
     {
-      name: "wide_art"
+      name: "wideArt"
       req: false
       type: "`$STRING`"
     }
@@ -123,7 +123,7 @@ main: kit: entity: cosmetic: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -152,7 +152,7 @@ main: kit: entity: cosmetic: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -181,7 +181,7 @@ main: kit: entity: cosmetic: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

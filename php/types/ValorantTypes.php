@@ -15,29 +15,27 @@ declare(strict_types=1);
 /** Agent entity data model. */
 class Agent
 {
-    public ?array $ability = null;
-    public ?string $asset_path = null;
+    public ?array $abilities = null;
+    public ?string $assetPath = null;
     public ?string $background = null;
-    public ?array $background_gradient_color = null;
-    public ?string $bust_portrait = null;
-    public ?array $character_tag = null;
-    public ?array $data = null;
+    public ?array $backgroundGradientColors = null;
+    public ?string $bustPortrait = null;
+    public ?array $characterTags = null;
     public ?string $description = null;
-    public ?string $developer_name = null;
-    public ?string $display_icon = null;
-    public ?string $display_icon_small = null;
-    public ?string $display_name = null;
-    public ?string $full_portrait = null;
-    public ?string $full_portrait_v2 = null;
-    public ?bool $is_available_for_test = null;
-    public ?bool $is_base_content = null;
-    public ?bool $is_full_portrait_right_facing = null;
-    public ?bool $is_playable_character = null;
-    public ?string $killfeed_portrait = null;
+    public ?string $developerName = null;
+    public ?string $displayIcon = null;
+    public ?string $displayIconSmall = null;
+    public ?string $displayName = null;
+    public ?string $fullPortrait = null;
+    public ?string $fullPortraitV2 = null;
+    public ?bool $isAvailableForTest = null;
+    public ?bool $isBaseContent = null;
+    public ?bool $isFullPortraitRightFacing = null;
+    public ?bool $isPlayableCharacter = null;
+    public ?string $killfeedPortrait = null;
     public ?array $role = null;
-    public ?int $status = null;
     public ?string $uuid = null;
-    public ?array $voice_line = null;
+    public ?array $voiceLine = null;
 }
 
 /** Request payload for Agent#load. */
@@ -49,151 +47,147 @@ class AgentLoadMatch
 /** Request payload for Agent#list. */
 class AgentListMatch
 {
-    public ?array $ability = null;
-    public ?string $asset_path = null;
+    public ?array $abilities = null;
+    public ?string $assetPath = null;
     public ?string $background = null;
-    public ?array $background_gradient_color = null;
-    public ?string $bust_portrait = null;
-    public ?array $character_tag = null;
-    public ?array $data = null;
+    public ?array $backgroundGradientColors = null;
+    public ?string $bustPortrait = null;
+    public ?array $characterTags = null;
     public ?string $description = null;
-    public ?string $developer_name = null;
-    public ?string $display_icon = null;
-    public ?string $display_icon_small = null;
-    public ?string $display_name = null;
-    public ?string $full_portrait = null;
-    public ?string $full_portrait_v2 = null;
-    public ?bool $is_available_for_test = null;
-    public ?bool $is_base_content = null;
-    public ?bool $is_full_portrait_right_facing = null;
-    public ?bool $is_playable_character = null;
-    public ?string $killfeed_portrait = null;
+    public ?string $developerName = null;
+    public ?string $displayIcon = null;
+    public ?string $displayIconSmall = null;
+    public ?string $displayName = null;
+    public ?string $fullPortrait = null;
+    public ?string $fullPortraitV2 = null;
+    public ?bool $isAvailableForTest = null;
+    public ?bool $isBaseContent = null;
+    public ?bool $isFullPortraitRightFacing = null;
+    public ?bool $isPlayableCharacter = null;
+    public ?string $killfeedPortrait = null;
     public ?array $role = null;
-    public ?int $status = null;
     public ?string $uuid = null;
-    public ?array $voice_line = null;
+    public ?array $voiceLine = null;
 }
 
 /** Competitive entity data model. */
 class Competitive
 {
-    public ?string $asset_object_name = null;
-    public ?string $asset_path = null;
-    public ?array $tier = null;
+    public ?string $assetObjectName = null;
+    public ?string $assetPath = null;
+    public ?array $tiers = null;
     public ?string $uuid = null;
 }
 
 /** Request payload for Competitive#list. */
 class CompetitiveListMatch
 {
-    public ?string $asset_object_name = null;
-    public ?string $asset_path = null;
-    public ?array $tier = null;
+    public ?string $assetObjectName = null;
+    public ?string $assetPath = null;
+    public ?array $tiers = null;
     public ?string $uuid = null;
 }
 
 /** Cosmetic entity data model. */
 class Cosmetic
 {
-    public ?string $animation_gif = null;
-    public ?string $animation_png = null;
-    public ?string $asset_path = null;
+    public ?string $animationGif = null;
+    public ?string $animationPng = null;
+    public ?string $assetPath = null;
     public ?string $category = null;
-    public ?string $display_icon = null;
-    public ?string $display_name = null;
-    public ?string $full_icon = null;
-    public ?string $full_transparent_icon = null;
-    public ?bool $hide_if_not_owned = null;
-    public ?bool $is_hidden_if_not_owned = null;
-    public ?bool $is_null_spray = null;
-    public ?string $large_art = null;
-    public ?array $level = null;
-    public ?string $small_art = null;
-    public ?string $theme_uuid = null;
+    public ?string $displayIcon = null;
+    public ?string $displayName = null;
+    public ?string $fullIcon = null;
+    public ?string $fullTransparentIcon = null;
+    public ?bool $hideIfNotOwned = null;
+    public ?bool $isHiddenIfNotOwned = null;
+    public ?bool $isNullSpray = null;
+    public ?string $largeArt = null;
+    public ?array $levels = null;
+    public ?string $smallArt = null;
+    public ?string $themeUuid = null;
     public ?string $uuid = null;
-    public ?string $wide_art = null;
+    public ?string $wideArt = null;
 }
 
 /** Request payload for Cosmetic#list. */
 class CosmeticListMatch
 {
-    public ?string $animation_gif = null;
-    public ?string $animation_png = null;
-    public ?string $asset_path = null;
+    public ?string $animationGif = null;
+    public ?string $animationPng = null;
+    public ?string $assetPath = null;
     public ?string $category = null;
-    public ?string $display_icon = null;
-    public ?string $display_name = null;
-    public ?string $full_icon = null;
-    public ?string $full_transparent_icon = null;
-    public ?bool $hide_if_not_owned = null;
-    public ?bool $is_hidden_if_not_owned = null;
-    public ?bool $is_null_spray = null;
-    public ?string $large_art = null;
-    public ?array $level = null;
-    public ?string $small_art = null;
-    public ?string $theme_uuid = null;
+    public ?string $displayIcon = null;
+    public ?string $displayName = null;
+    public ?string $fullIcon = null;
+    public ?string $fullTransparentIcon = null;
+    public ?bool $hideIfNotOwned = null;
+    public ?bool $isHiddenIfNotOwned = null;
+    public ?bool $isNullSpray = null;
+    public ?string $largeArt = null;
+    public ?array $levels = null;
+    public ?string $smallArt = null;
+    public ?string $themeUuid = null;
     public ?string $uuid = null;
-    public ?string $wide_art = null;
+    public ?string $wideArt = null;
 }
 
 /** GameMode entity data model. */
 class GameMode
 {
-    public ?bool $allows_match_timeout = null;
-    public ?string $asset_path = null;
-    public ?string $display_icon = null;
-    public ?string $display_name = null;
+    public ?bool $allowsMatchTimeouts = null;
+    public ?string $assetPath = null;
+    public ?string $displayIcon = null;
+    public ?string $displayName = null;
     public ?string $duration = null;
-    public ?string $economy_type = null;
-    public ?array $game_feature_override = null;
-    public ?array $game_rule_bool_override = null;
-    public ?bool $is_minimap_hidden = null;
-    public ?bool $is_team_voice_allowed = null;
-    public ?int $orb_count = null;
-    public ?int $rounds_per_half = null;
-    public ?array $team_role = null;
+    public ?string $economyType = null;
+    public ?array $gameFeatureOverrides = null;
+    public ?array $gameRuleBoolOverrides = null;
+    public ?bool $isMinimapHidden = null;
+    public ?bool $isTeamVoiceAllowed = null;
+    public ?int $orbCount = null;
+    public ?int $roundsPerHalf = null;
+    public ?array $teamRoles = null;
     public ?string $uuid = null;
 }
 
 /** Request payload for GameMode#list. */
 class GameModeListMatch
 {
-    public ?bool $allows_match_timeout = null;
-    public ?string $asset_path = null;
-    public ?string $display_icon = null;
-    public ?string $display_name = null;
+    public ?bool $allowsMatchTimeouts = null;
+    public ?string $assetPath = null;
+    public ?string $displayIcon = null;
+    public ?string $displayName = null;
     public ?string $duration = null;
-    public ?string $economy_type = null;
-    public ?array $game_feature_override = null;
-    public ?array $game_rule_bool_override = null;
-    public ?bool $is_minimap_hidden = null;
-    public ?bool $is_team_voice_allowed = null;
-    public ?int $orb_count = null;
-    public ?int $rounds_per_half = null;
-    public ?array $team_role = null;
+    public ?string $economyType = null;
+    public ?array $gameFeatureOverrides = null;
+    public ?array $gameRuleBoolOverrides = null;
+    public ?bool $isMinimapHidden = null;
+    public ?bool $isTeamVoiceAllowed = null;
+    public ?int $orbCount = null;
+    public ?int $roundsPerHalf = null;
+    public ?array $teamRoles = null;
     public ?string $uuid = null;
 }
 
 /** Map entity data model. */
 class Map
 {
-    public ?string $asset_path = null;
-    public ?array $callout = null;
-    public ?string $coordinate = null;
-    public ?array $data = null;
-    public ?string $display_icon = null;
-    public ?string $display_name = null;
-    public ?string $list_view_icon = null;
-    public ?string $map_url = null;
-    public ?string $narrative_description = null;
+    public ?string $assetPath = null;
+    public ?array $callouts = null;
+    public ?string $coordinates = null;
+    public ?string $displayIcon = null;
+    public ?string $displayName = null;
+    public ?string $listViewIcon = null;
+    public ?string $mapUrl = null;
+    public ?string $narrativeDescription = null;
     public ?string $splash = null;
-    public ?int $status = null;
-    public ?string $tactical_description = null;
+    public ?string $tacticalDescription = null;
     public ?string $uuid = null;
-    public ?float $x_multiplier = null;
-    public ?float $x_scalar_to_add = null;
-    public ?float $y_multiplier = null;
-    public ?float $y_scalar_to_add = null;
+    public ?float $xMultiplier = null;
+    public ?float $xScalarToAdd = null;
+    public ?float $yMultiplier = null;
+    public ?float $yScalarToAdd = null;
 }
 
 /** Request payload for Map#load. */
@@ -205,40 +199,36 @@ class MapLoadMatch
 /** Request payload for Map#list. */
 class MapListMatch
 {
-    public ?string $asset_path = null;
-    public ?array $callout = null;
-    public ?string $coordinate = null;
-    public ?array $data = null;
-    public ?string $display_icon = null;
-    public ?string $display_name = null;
-    public ?string $list_view_icon = null;
-    public ?string $map_url = null;
-    public ?string $narrative_description = null;
+    public ?string $assetPath = null;
+    public ?array $callouts = null;
+    public ?string $coordinates = null;
+    public ?string $displayIcon = null;
+    public ?string $displayName = null;
+    public ?string $listViewIcon = null;
+    public ?string $mapUrl = null;
+    public ?string $narrativeDescription = null;
     public ?string $splash = null;
-    public ?int $status = null;
-    public ?string $tactical_description = null;
+    public ?string $tacticalDescription = null;
     public ?string $uuid = null;
-    public ?float $x_multiplier = null;
-    public ?float $x_scalar_to_add = null;
-    public ?float $y_multiplier = null;
-    public ?float $y_scalar_to_add = null;
+    public ?float $xMultiplier = null;
+    public ?float $xScalarToAdd = null;
+    public ?float $yMultiplier = null;
+    public ?float $yScalarToAdd = null;
 }
 
 /** Weapon entity data model. */
 class Weapon
 {
-    public ?string $asset_path = null;
+    public ?string $assetPath = null;
     public ?string $category = null;
-    public ?array $data = null;
-    public ?string $default_skin_uuid = null;
-    public ?string $display_icon = null;
-    public ?string $display_name = null;
-    public ?string $kill_stream_icon = null;
-    public ?array $shop_data = null;
-    public ?array $skin = null;
-    public ?int $status = null;
+    public ?string $defaultSkinUuid = null;
+    public ?string $displayIcon = null;
+    public ?string $displayName = null;
+    public ?string $killStreamIcon = null;
+    public ?array $shopData = null;
+    public ?array $skins = null;
     public ?string $uuid = null;
-    public ?array $weapon_stat = null;
+    public ?array $weaponStats = null;
 }
 
 /** Request payload for Weapon#load. */
@@ -250,17 +240,15 @@ class WeaponLoadMatch
 /** Request payload for Weapon#list. */
 class WeaponListMatch
 {
-    public ?string $asset_path = null;
+    public ?string $assetPath = null;
     public ?string $category = null;
-    public ?array $data = null;
-    public ?string $default_skin_uuid = null;
-    public ?string $display_icon = null;
-    public ?string $display_name = null;
-    public ?string $kill_stream_icon = null;
-    public ?array $shop_data = null;
-    public ?array $skin = null;
-    public ?int $status = null;
+    public ?string $defaultSkinUuid = null;
+    public ?string $displayIcon = null;
+    public ?string $displayName = null;
+    public ?string $killStreamIcon = null;
+    public ?array $shopData = null;
+    public ?array $skins = null;
     public ?string $uuid = null;
-    public ?array $weapon_stat = null;
+    public ?array $weaponStats = null;
 }
 

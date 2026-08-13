@@ -37,7 +37,7 @@ class CosmeticEntity extends ValorantEntityBase<Cosmetic> {
 
 
 
-  async list(this: any, reqmatch?: CosmeticListMatch, ctrl?: Control): Promise<Cosmetic[]> {
+  async list(this: any, reqmatch?: CosmeticListMatch, ctrl?: Control): Promise<CosmeticEntity[]> {
 
     const utility = this._utility
 

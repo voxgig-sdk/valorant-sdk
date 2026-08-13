@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Valorant',
   }
 
 
@@ -71,14 +71,14 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "ability",
+          "name": "abilities",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "asset_path",
+          "name": "assetPath",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
@@ -92,143 +92,129 @@ class Config {
         },
         {
           "active": true,
-          "name": "background_gradient_color",
+          "name": "backgroundGradientColors",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "bust_portrait",
+          "name": "bustPortrait",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "character_tag",
+          "name": "characterTags",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "data",
+          "name": "description",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "description",
+          "name": "developerName",
           "req": false,
           "type": "`$STRING`",
           "index$": 7
         },
         {
           "active": true,
-          "name": "developer_name",
+          "name": "displayIcon",
           "req": false,
           "type": "`$STRING`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "display_icon",
+          "name": "displayIconSmall",
           "req": false,
           "type": "`$STRING`",
           "index$": 9
         },
         {
           "active": true,
-          "name": "display_icon_small",
+          "name": "displayName",
           "req": false,
           "type": "`$STRING`",
           "index$": 10
         },
         {
           "active": true,
-          "name": "display_name",
+          "name": "fullPortrait",
           "req": false,
           "type": "`$STRING`",
           "index$": 11
         },
         {
           "active": true,
-          "name": "full_portrait",
+          "name": "fullPortraitV2",
           "req": false,
           "type": "`$STRING`",
           "index$": 12
         },
         {
           "active": true,
-          "name": "full_portrait_v2",
+          "name": "isAvailableForTest",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$BOOLEAN`",
           "index$": 13
         },
         {
           "active": true,
-          "name": "is_available_for_test",
+          "name": "isBaseContent",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 14
         },
         {
           "active": true,
-          "name": "is_base_content",
+          "name": "isFullPortraitRightFacing",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 15
         },
         {
           "active": true,
-          "name": "is_full_portrait_right_facing",
+          "name": "isPlayableCharacter",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 16
         },
         {
           "active": true,
-          "name": "is_playable_character",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 17
-        },
-        {
-          "active": true,
-          "name": "killfeed_portrait",
+          "name": "killfeedPortrait",
           "req": false,
           "type": "`$STRING`",
-          "index$": 18
+          "index$": 17
         },
         {
           "active": true,
           "name": "role",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 19
-        },
-        {
-          "active": true,
-          "name": "status",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 20
+          "index$": 18
         },
         {
           "active": true,
           "name": "uuid",
           "req": false,
           "type": "`$STRING`",
-          "index$": 21
+          "index$": 19
         },
         {
           "active": true,
-          "name": "voice_line",
+          "name": "voiceLine",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 22
+          "index$": 20
         }
       ],
       "name": "agent",
@@ -260,6 +246,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/agents",
               "parts": [
@@ -274,7 +261,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -311,6 +298,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/agents/{uuid}",
               "parts": [
@@ -331,7 +319,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -347,21 +335,21 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "asset_object_name",
+          "name": "assetObjectName",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "asset_path",
+          "name": "assetPath",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "tier",
+          "name": "tiers",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
@@ -395,6 +383,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/competitivetiers",
               "parts": [
@@ -408,7 +397,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -424,21 +413,21 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "animation_gif",
+          "name": "animationGif",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "animation_png",
+          "name": "animationPng",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "asset_path",
+          "name": "assetPath",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
@@ -452,77 +441,77 @@ class Config {
         },
         {
           "active": true,
-          "name": "display_icon",
+          "name": "displayIcon",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "display_name",
+          "name": "displayName",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "full_icon",
+          "name": "fullIcon",
           "req": false,
           "type": "`$STRING`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "full_transparent_icon",
+          "name": "fullTransparentIcon",
           "req": false,
           "type": "`$STRING`",
           "index$": 7
         },
         {
           "active": true,
-          "name": "hide_if_not_owned",
+          "name": "hideIfNotOwned",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "is_hidden_if_not_owned",
+          "name": "isHiddenIfNotOwned",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 9
         },
         {
           "active": true,
-          "name": "is_null_spray",
+          "name": "isNullSpray",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 10
         },
         {
           "active": true,
-          "name": "large_art",
+          "name": "largeArt",
           "req": false,
           "type": "`$STRING`",
           "index$": 11
         },
         {
           "active": true,
-          "name": "level",
+          "name": "levels",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 12
         },
         {
           "active": true,
-          "name": "small_art",
+          "name": "smallArt",
           "req": false,
           "type": "`$STRING`",
           "index$": 13
         },
         {
           "active": true,
-          "name": "theme_uuid",
+          "name": "themeUuid",
           "req": false,
           "type": "`$STRING`",
           "index$": 14
@@ -536,7 +525,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "wide_art",
+          "name": "wideArt",
           "req": false,
           "type": "`$STRING`",
           "index$": 16
@@ -563,6 +552,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/buddies",
               "parts": [
@@ -576,7 +566,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             },
@@ -595,6 +585,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/cards",
               "parts": [
@@ -608,7 +599,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 1
             },
@@ -627,6 +618,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/sprays",
               "parts": [
@@ -640,7 +632,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 2
             }
@@ -656,28 +648,28 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "allows_match_timeout",
+          "name": "allowsMatchTimeouts",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "asset_path",
+          "name": "assetPath",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "display_icon",
+          "name": "displayIcon",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "display_name",
+          "name": "displayName",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
@@ -691,56 +683,56 @@ class Config {
         },
         {
           "active": true,
-          "name": "economy_type",
+          "name": "economyType",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "game_feature_override",
+          "name": "gameFeatureOverrides",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "game_rule_bool_override",
+          "name": "gameRuleBoolOverrides",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 7
         },
         {
           "active": true,
-          "name": "is_minimap_hidden",
+          "name": "isMinimapHidden",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "is_team_voice_allowed",
+          "name": "isTeamVoiceAllowed",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 9
         },
         {
           "active": true,
-          "name": "orb_count",
+          "name": "orbCount",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 10
         },
         {
           "active": true,
-          "name": "rounds_per_half",
+          "name": "roundsPerHalf",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 11
         },
         {
           "active": true,
-          "name": "team_role",
+          "name": "teamRoles",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 12
@@ -774,6 +766,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/gamemodes",
               "parts": [
@@ -787,7 +780,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -803,122 +796,108 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "asset_path",
+          "name": "assetPath",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "callout",
+          "name": "callouts",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "coordinate",
+          "name": "coordinates",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "data",
+          "name": "displayIcon",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "display_icon",
+          "name": "displayName",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "display_name",
+          "name": "listViewIcon",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "list_view_icon",
+          "name": "mapUrl",
           "req": false,
           "type": "`$STRING`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "map_url",
+          "name": "narrativeDescription",
           "req": false,
           "type": "`$STRING`",
           "index$": 7
         },
         {
           "active": true,
-          "name": "narrative_description",
+          "name": "splash",
           "req": false,
           "type": "`$STRING`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "splash",
+          "name": "tacticalDescription",
           "req": false,
           "type": "`$STRING`",
           "index$": 9
         },
         {
           "active": true,
-          "name": "status",
+          "name": "uuid",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$STRING`",
           "index$": 10
         },
         {
           "active": true,
-          "name": "tactical_description",
+          "name": "xMultiplier",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$NUMBER`",
           "index$": 11
         },
         {
           "active": true,
-          "name": "uuid",
+          "name": "xScalarToAdd",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$NUMBER`",
           "index$": 12
         },
         {
           "active": true,
-          "name": "x_multiplier",
+          "name": "yMultiplier",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 13
         },
         {
           "active": true,
-          "name": "x_scalar_to_add",
+          "name": "yScalarToAdd",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 14
-        },
-        {
-          "active": true,
-          "name": "y_multiplier",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 15
-        },
-        {
-          "active": true,
-          "name": "y_scalar_to_add",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 16
         }
       ],
       "name": "map",
@@ -942,6 +921,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/maps",
               "parts": [
@@ -955,7 +935,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -992,6 +972,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/maps/{uuid}",
               "parts": [
@@ -1012,7 +993,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -1028,7 +1009,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "asset_path",
+          "name": "assetPath",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -1042,73 +1023,59 @@ class Config {
         },
         {
           "active": true,
-          "name": "data",
+          "name": "defaultSkinUuid",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "default_skin_uuid",
+          "name": "displayIcon",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "display_icon",
+          "name": "displayName",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "display_name",
+          "name": "killStreamIcon",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "kill_stream_icon",
+          "name": "shopData",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$OBJECT`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "shop_data",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 7
-        },
-        {
-          "active": true,
-          "name": "skin",
+          "name": "skins",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 8
-        },
-        {
-          "active": true,
-          "name": "status",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 9
+          "index$": 7
         },
         {
           "active": true,
           "name": "uuid",
           "req": false,
           "type": "`$STRING`",
-          "index$": 10
+          "index$": 8
         },
         {
           "active": true,
-          "name": "weapon_stat",
+          "name": "weaponStats",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 11
+          "index$": 9
         }
       ],
       "name": "weapon",
@@ -1132,6 +1099,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/weapons",
               "parts": [
@@ -1145,7 +1113,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -1182,6 +1150,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/weapons/{uuid}",
               "parts": [
@@ -1202,7 +1171,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }

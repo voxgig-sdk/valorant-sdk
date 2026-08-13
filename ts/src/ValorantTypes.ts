@@ -6,29 +6,27 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Agent {
-  ability?: any[]
-  asset_path?: string
+  abilities?: any[]
+  assetPath?: string
   background?: string
-  background_gradient_color?: any[]
-  bust_portrait?: string
-  character_tag?: any[]
-  data?: Record<string, any>
+  backgroundGradientColors?: any[]
+  bustPortrait?: string
+  characterTags?: any[]
   description?: string
-  developer_name?: string
-  display_icon?: string
-  display_icon_small?: string
-  display_name?: string
-  full_portrait?: string
-  full_portrait_v2?: string
-  is_available_for_test?: boolean
-  is_base_content?: boolean
-  is_full_portrait_right_facing?: boolean
-  is_playable_character?: boolean
-  killfeed_portrait?: string
+  developerName?: string
+  displayIcon?: string
+  displayIconSmall?: string
+  displayName?: string
+  fullPortrait?: string
+  fullPortraitV2?: string
+  isAvailableForTest?: boolean
+  isBaseContent?: boolean
+  isFullPortraitRightFacing?: boolean
+  isPlayableCharacter?: boolean
+  killfeedPortrait?: string
   role?: Record<string, any>
-  status?: number
   uuid?: string
-  voice_line?: Record<string, any>
+  voiceLine?: Record<string, any>
 }
 
 export interface AgentLoadMatch {
@@ -36,137 +34,133 @@ export interface AgentLoadMatch {
 }
 
 export interface AgentListMatch {
-  ability?: any[]
-  asset_path?: string
+  abilities?: any[]
+  assetPath?: string
   background?: string
-  background_gradient_color?: any[]
-  bust_portrait?: string
-  character_tag?: any[]
-  data?: Record<string, any>
+  backgroundGradientColors?: any[]
+  bustPortrait?: string
+  characterTags?: any[]
   description?: string
-  developer_name?: string
-  display_icon?: string
-  display_icon_small?: string
-  display_name?: string
-  full_portrait?: string
-  full_portrait_v2?: string
-  is_available_for_test?: boolean
-  is_base_content?: boolean
-  is_full_portrait_right_facing?: boolean
-  is_playable_character?: boolean
-  killfeed_portrait?: string
+  developerName?: string
+  displayIcon?: string
+  displayIconSmall?: string
+  displayName?: string
+  fullPortrait?: string
+  fullPortraitV2?: string
+  isAvailableForTest?: boolean
+  isBaseContent?: boolean
+  isFullPortraitRightFacing?: boolean
+  isPlayableCharacter?: boolean
+  killfeedPortrait?: string
   role?: Record<string, any>
-  status?: number
   uuid?: string
-  voice_line?: Record<string, any>
+  voiceLine?: Record<string, any>
 }
 
 export interface Competitive {
-  asset_object_name?: string
-  asset_path?: string
-  tier?: any[]
+  assetObjectName?: string
+  assetPath?: string
+  tiers?: any[]
   uuid?: string
 }
 
 export interface CompetitiveListMatch {
-  asset_object_name?: string
-  asset_path?: string
-  tier?: any[]
+  assetObjectName?: string
+  assetPath?: string
+  tiers?: any[]
   uuid?: string
 }
 
 export interface Cosmetic {
-  animation_gif?: string
-  animation_png?: string
-  asset_path?: string
+  animationGif?: string
+  animationPng?: string
+  assetPath?: string
   category?: string
-  display_icon?: string
-  display_name?: string
-  full_icon?: string
-  full_transparent_icon?: string
-  hide_if_not_owned?: boolean
-  is_hidden_if_not_owned?: boolean
-  is_null_spray?: boolean
-  large_art?: string
-  level?: any[]
-  small_art?: string
-  theme_uuid?: string
+  displayIcon?: string
+  displayName?: string
+  fullIcon?: string
+  fullTransparentIcon?: string
+  hideIfNotOwned?: boolean
+  isHiddenIfNotOwned?: boolean
+  isNullSpray?: boolean
+  largeArt?: string
+  levels?: any[]
+  smallArt?: string
+  themeUuid?: string
   uuid?: string
-  wide_art?: string
+  wideArt?: string
 }
 
 export interface CosmeticListMatch {
-  animation_gif?: string
-  animation_png?: string
-  asset_path?: string
+  animationGif?: string
+  animationPng?: string
+  assetPath?: string
   category?: string
-  display_icon?: string
-  display_name?: string
-  full_icon?: string
-  full_transparent_icon?: string
-  hide_if_not_owned?: boolean
-  is_hidden_if_not_owned?: boolean
-  is_null_spray?: boolean
-  large_art?: string
-  level?: any[]
-  small_art?: string
-  theme_uuid?: string
+  displayIcon?: string
+  displayName?: string
+  fullIcon?: string
+  fullTransparentIcon?: string
+  hideIfNotOwned?: boolean
+  isHiddenIfNotOwned?: boolean
+  isNullSpray?: boolean
+  largeArt?: string
+  levels?: any[]
+  smallArt?: string
+  themeUuid?: string
   uuid?: string
-  wide_art?: string
+  wideArt?: string
 }
 
 export interface GameMode {
-  allows_match_timeout?: boolean
-  asset_path?: string
-  display_icon?: string
-  display_name?: string
+  allowsMatchTimeouts?: boolean
+  assetPath?: string
+  displayIcon?: string
+  displayName?: string
   duration?: string
-  economy_type?: string
-  game_feature_override?: any[]
-  game_rule_bool_override?: any[]
-  is_minimap_hidden?: boolean
-  is_team_voice_allowed?: boolean
-  orb_count?: number
-  rounds_per_half?: number
-  team_role?: any[]
+  economyType?: string
+  gameFeatureOverrides?: any[]
+  gameRuleBoolOverrides?: any[]
+  isMinimapHidden?: boolean
+  isTeamVoiceAllowed?: boolean
+  orbCount?: number
+  roundsPerHalf?: number
+  teamRoles?: any[]
   uuid?: string
 }
 
 export interface GameModeListMatch {
-  allows_match_timeout?: boolean
-  asset_path?: string
-  display_icon?: string
-  display_name?: string
+  allowsMatchTimeouts?: boolean
+  assetPath?: string
+  displayIcon?: string
+  displayName?: string
   duration?: string
-  economy_type?: string
-  game_feature_override?: any[]
-  game_rule_bool_override?: any[]
-  is_minimap_hidden?: boolean
-  is_team_voice_allowed?: boolean
-  orb_count?: number
-  rounds_per_half?: number
-  team_role?: any[]
+  economyType?: string
+  gameFeatureOverrides?: any[]
+  gameRuleBoolOverrides?: any[]
+  isMinimapHidden?: boolean
+  isTeamVoiceAllowed?: boolean
+  orbCount?: number
+  roundsPerHalf?: number
+  teamRoles?: any[]
   uuid?: string
 }
 
 export interface Map {
-  asset_path?: string
-  callout?: any[]
-  coordinate?: string
-  data?: Record<string, any>
-  display_icon?: string
-  display_name?: string
-  list_view_icon?: string
-  map_url?: string
-  narrative_description?: string
+  assetPath?: string
+  callouts?: any[]
+  coordinates?: string
+  displayIcon?: string
+  displayName?: string
+  listViewIcon?: string
+  mapUrl?: string
+  narrativeDescription?: string
   splash?: string
-  status?: number
-  tactical_description?: string
+  tacticalDescription?: string
   uuid?: string
-  x_multiplier?: number
-  x_scalar_to_add?: number
-  y_multiplier?: number
-  y_scalar_to_add?: number
+  xMultiplier?: number
+  xScalarToAdd?: number
+  yMultiplier?: number
+  yScalarToAdd?: number
 }
 
 export interface MapLoadMatch {
@@ -174,38 +168,34 @@ export interface MapLoadMatch {
 }
 
 export interface MapListMatch {
-  asset_path?: string
-  callout?: any[]
-  coordinate?: string
-  data?: Record<string, any>
-  display_icon?: string
-  display_name?: string
-  list_view_icon?: string
-  map_url?: string
-  narrative_description?: string
+  assetPath?: string
+  callouts?: any[]
+  coordinates?: string
+  displayIcon?: string
+  displayName?: string
+  listViewIcon?: string
+  mapUrl?: string
+  narrativeDescription?: string
   splash?: string
-  status?: number
-  tactical_description?: string
+  tacticalDescription?: string
   uuid?: string
-  x_multiplier?: number
-  x_scalar_to_add?: number
-  y_multiplier?: number
-  y_scalar_to_add?: number
+  xMultiplier?: number
+  xScalarToAdd?: number
+  yMultiplier?: number
+  yScalarToAdd?: number
 }
 
 export interface Weapon {
-  asset_path?: string
+  assetPath?: string
   category?: string
-  data?: Record<string, any>
-  default_skin_uuid?: string
-  display_icon?: string
-  display_name?: string
-  kill_stream_icon?: string
-  shop_data?: Record<string, any>
-  skin?: any[]
-  status?: number
+  defaultSkinUuid?: string
+  displayIcon?: string
+  displayName?: string
+  killStreamIcon?: string
+  shopData?: Record<string, any>
+  skins?: any[]
   uuid?: string
-  weapon_stat?: Record<string, any>
+  weaponStats?: Record<string, any>
 }
 
 export interface WeaponLoadMatch {
@@ -213,17 +203,15 @@ export interface WeaponLoadMatch {
 }
 
 export interface WeaponListMatch {
-  asset_path?: string
+  assetPath?: string
   category?: string
-  data?: Record<string, any>
-  default_skin_uuid?: string
-  display_icon?: string
-  display_name?: string
-  kill_stream_icon?: string
-  shop_data?: Record<string, any>
-  skin?: any[]
-  status?: number
+  defaultSkinUuid?: string
+  displayIcon?: string
+  displayName?: string
+  killStreamIcon?: string
+  shopData?: Record<string, any>
+  skins?: any[]
   uuid?: string
-  weapon_stat?: Record<string, any>
+  weaponStats?: Record<string, any>
 }
 

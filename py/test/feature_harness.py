@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import ValorantControl
-from core.error import ValorantError
-from core.result import ValorantResult
-from core.spec import ValorantSpec
+from valorant_sdk.config import make_config
+from valorant_sdk.features import _make_feature
+from valorant_sdk.core.control import ValorantControl
+from valorant_sdk.core.error import ValorantError
+from valorant_sdk.core.result import ValorantResult
+from valorant_sdk.core.spec import ValorantSpec
 
 
 # True when this SDK was generated with the named feature.

@@ -176,29 +176,27 @@ const agent = client.Agent()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ability` | `any[]` | No |  |
-| `asset_path` | `string` | No |  |
+| `abilities` | `any[]` | No |  |
+| `assetPath` | `string` | No |  |
 | `background` | `string` | No |  |
-| `background_gradient_color` | `any[]` | No |  |
-| `bust_portrait` | `string` | No |  |
-| `character_tag` | `any[]` | No |  |
-| `data` | `Record<string, any>` | No |  |
+| `backgroundGradientColors` | `any[]` | No |  |
+| `bustPortrait` | `string` | No |  |
+| `characterTags` | `any[]` | No |  |
 | `description` | `string` | No |  |
-| `developer_name` | `string` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_icon_small` | `string` | No |  |
-| `display_name` | `string` | No |  |
-| `full_portrait` | `string` | No |  |
-| `full_portrait_v2` | `string` | No |  |
-| `is_available_for_test` | `boolean` | No |  |
-| `is_base_content` | `boolean` | No |  |
-| `is_full_portrait_right_facing` | `boolean` | No |  |
-| `is_playable_character` | `boolean` | No |  |
-| `killfeed_portrait` | `string` | No |  |
+| `developerName` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayIconSmall` | `string` | No |  |
+| `displayName` | `string` | No |  |
+| `fullPortrait` | `string` | No |  |
+| `fullPortraitV2` | `string` | No |  |
+| `isAvailableForTest` | `boolean` | No |  |
+| `isBaseContent` | `boolean` | No |  |
+| `isFullPortraitRightFacing` | `boolean` | No |  |
+| `isPlayableCharacter` | `boolean` | No |  |
+| `killfeedPortrait` | `string` | No |  |
 | `role` | `Record<string, any>` | No |  |
-| `status` | `number` | No |  |
 | `uuid` | `string` | No |  |
-| `voice_line` | `Record<string, any>` | No |  |
+| `voiceLine` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -256,9 +254,9 @@ const competitive = client.Competitive()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_object_name` | `string` | No |  |
-| `asset_path` | `string` | No |  |
-| `tier` | `any[]` | No |  |
+| `assetObjectName` | `string` | No |  |
+| `assetPath` | `string` | No |  |
+| `tiers` | `any[]` | No |  |
 | `uuid` | `string` | No |  |
 
 ### Operations
@@ -309,23 +307,23 @@ const cosmetic = client.Cosmetic()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `animation_gif` | `string` | No |  |
-| `animation_png` | `string` | No |  |
-| `asset_path` | `string` | No |  |
+| `animationGif` | `string` | No |  |
+| `animationPng` | `string` | No |  |
+| `assetPath` | `string` | No |  |
 | `category` | `string` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_name` | `string` | No |  |
-| `full_icon` | `string` | No |  |
-| `full_transparent_icon` | `string` | No |  |
-| `hide_if_not_owned` | `boolean` | No |  |
-| `is_hidden_if_not_owned` | `boolean` | No |  |
-| `is_null_spray` | `boolean` | No |  |
-| `large_art` | `string` | No |  |
-| `level` | `any[]` | No |  |
-| `small_art` | `string` | No |  |
-| `theme_uuid` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayName` | `string` | No |  |
+| `fullIcon` | `string` | No |  |
+| `fullTransparentIcon` | `string` | No |  |
+| `hideIfNotOwned` | `boolean` | No |  |
+| `isHiddenIfNotOwned` | `boolean` | No |  |
+| `isNullSpray` | `boolean` | No |  |
+| `largeArt` | `string` | No |  |
+| `levels` | `any[]` | No |  |
+| `smallArt` | `string` | No |  |
+| `themeUuid` | `string` | No |  |
 | `uuid` | `string` | No |  |
-| `wide_art` | `string` | No |  |
+| `wideArt` | `string` | No |  |
 
 ### Operations
 
@@ -375,19 +373,19 @@ const game_mode = client.GameMode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allows_match_timeout` | `boolean` | No |  |
-| `asset_path` | `string` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_name` | `string` | No |  |
+| `allowsMatchTimeouts` | `boolean` | No |  |
+| `assetPath` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayName` | `string` | No |  |
 | `duration` | `string` | No |  |
-| `economy_type` | `string` | No |  |
-| `game_feature_override` | `any[]` | No |  |
-| `game_rule_bool_override` | `any[]` | No |  |
-| `is_minimap_hidden` | `boolean` | No |  |
-| `is_team_voice_allowed` | `boolean` | No |  |
-| `orb_count` | `number` | No |  |
-| `rounds_per_half` | `number` | No |  |
-| `team_role` | `any[]` | No |  |
+| `economyType` | `string` | No |  |
+| `gameFeatureOverrides` | `any[]` | No |  |
+| `gameRuleBoolOverrides` | `any[]` | No |  |
+| `isMinimapHidden` | `boolean` | No |  |
+| `isTeamVoiceAllowed` | `boolean` | No |  |
+| `orbCount` | `number` | No |  |
+| `roundsPerHalf` | `number` | No |  |
+| `teamRoles` | `any[]` | No |  |
 | `uuid` | `string` | No |  |
 
 ### Operations
@@ -438,23 +436,21 @@ const map = client.Map()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | `string` | No |  |
-| `callout` | `any[]` | No |  |
-| `coordinate` | `string` | No |  |
-| `data` | `Record<string, any>` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_name` | `string` | No |  |
-| `list_view_icon` | `string` | No |  |
-| `map_url` | `string` | No |  |
-| `narrative_description` | `string` | No |  |
+| `assetPath` | `string` | No |  |
+| `callouts` | `any[]` | No |  |
+| `coordinates` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayName` | `string` | No |  |
+| `listViewIcon` | `string` | No |  |
+| `mapUrl` | `string` | No |  |
+| `narrativeDescription` | `string` | No |  |
 | `splash` | `string` | No |  |
-| `status` | `number` | No |  |
-| `tactical_description` | `string` | No |  |
+| `tacticalDescription` | `string` | No |  |
 | `uuid` | `string` | No |  |
-| `x_multiplier` | `number` | No |  |
-| `x_scalar_to_add` | `number` | No |  |
-| `y_multiplier` | `number` | No |  |
-| `y_scalar_to_add` | `number` | No |  |
+| `xMultiplier` | `number` | No |  |
+| `xScalarToAdd` | `number` | No |  |
+| `yMultiplier` | `number` | No |  |
+| `yScalarToAdd` | `number` | No |  |
 
 ### Operations
 
@@ -512,18 +508,16 @@ const weapon = client.Weapon()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asset_path` | `string` | No |  |
+| `assetPath` | `string` | No |  |
 | `category` | `string` | No |  |
-| `data` | `Record<string, any>` | No |  |
-| `default_skin_uuid` | `string` | No |  |
-| `display_icon` | `string` | No |  |
-| `display_name` | `string` | No |  |
-| `kill_stream_icon` | `string` | No |  |
-| `shop_data` | `Record<string, any>` | No |  |
-| `skin` | `any[]` | No |  |
-| `status` | `number` | No |  |
+| `defaultSkinUuid` | `string` | No |  |
+| `displayIcon` | `string` | No |  |
+| `displayName` | `string` | No |  |
+| `killStreamIcon` | `string` | No |  |
+| `shopData` | `Record<string, any>` | No |  |
+| `skins` | `any[]` | No |  |
 | `uuid` | `string` | No |  |
-| `weapon_stat` | `Record<string, any>` | No |  |
+| `weaponStats` | `Record<string, any>` | No |  |
 
 ### Operations
 

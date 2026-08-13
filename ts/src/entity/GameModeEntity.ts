@@ -37,7 +37,7 @@ class GameModeEntity extends ValorantEntityBase<GameMode> {
 
 
 
-  async list(this: any, reqmatch?: GameModeListMatch, ctrl?: Control): Promise<GameMode[]> {
+  async list(this: any, reqmatch?: GameModeListMatch, ctrl?: Control): Promise<GameModeEntity[]> {
 
     const utility = this._utility
 

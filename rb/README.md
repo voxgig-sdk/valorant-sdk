@@ -37,7 +37,7 @@ begin
   # list returns an Array of Agent records — iterate directly.
   agents = client.Agent.list
   agents.each do |item|
-    puts "#{item["ability"]}"
+    puts "#{item["abilities"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Agent record (raises on error).
+  # load returns the ENTITY — call data_get for the Agent record (raises on error).
   agent = client.Agent.load({ "id" => "example_id" })
   puts agent
 rescue => err
@@ -63,7 +63,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  agents = client.Agent.list()
+  cosmetics = client.Cosmetic.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -126,17 +126,15 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = ValorantSDK.test({
-  "entity" => { "agent" => { "test01" => { "id" => "test01" } } },
-})
+client = ValorantSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-agent = client.Agent.list()
-puts agent
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+cosmetic = client.Cosmetic.list()
+puts cosmetic
 ```
 
 ### Use a custom fetch function
@@ -257,29 +255,27 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `ability` |  |
-| `asset_path` |  |
+| `abilities` |  |
+| `assetPath` |  |
 | `background` |  |
-| `background_gradient_color` |  |
-| `bust_portrait` |  |
-| `character_tag` |  |
-| `data` |  |
+| `backgroundGradientColors` |  |
+| `bustPortrait` |  |
+| `characterTags` |  |
 | `description` |  |
-| `developer_name` |  |
-| `display_icon` |  |
-| `display_icon_small` |  |
-| `display_name` |  |
-| `full_portrait` |  |
-| `full_portrait_v2` |  |
-| `is_available_for_test` |  |
-| `is_base_content` |  |
-| `is_full_portrait_right_facing` |  |
-| `is_playable_character` |  |
-| `killfeed_portrait` |  |
+| `developerName` |  |
+| `displayIcon` |  |
+| `displayIconSmall` |  |
+| `displayName` |  |
+| `fullPortrait` |  |
+| `fullPortraitV2` |  |
+| `isAvailableForTest` |  |
+| `isBaseContent` |  |
+| `isFullPortraitRightFacing` |  |
+| `isPlayableCharacter` |  |
+| `killfeedPortrait` |  |
 | `role` |  |
-| `status` |  |
 | `uuid` |  |
-| `voice_line` |  |
+| `voiceLine` |  |
 
 Operations: List, Load.
 
@@ -289,9 +285,9 @@ API path: `/v1/agents`
 
 | Field | Description |
 | --- | --- |
-| `asset_object_name` |  |
-| `asset_path` |  |
-| `tier` |  |
+| `assetObjectName` |  |
+| `assetPath` |  |
+| `tiers` |  |
 | `uuid` |  |
 
 Operations: List.
@@ -302,23 +298,23 @@ API path: `/v1/competitivetiers`
 
 | Field | Description |
 | --- | --- |
-| `animation_gif` |  |
-| `animation_png` |  |
-| `asset_path` |  |
+| `animationGif` |  |
+| `animationPng` |  |
+| `assetPath` |  |
 | `category` |  |
-| `display_icon` |  |
-| `display_name` |  |
-| `full_icon` |  |
-| `full_transparent_icon` |  |
-| `hide_if_not_owned` |  |
-| `is_hidden_if_not_owned` |  |
-| `is_null_spray` |  |
-| `large_art` |  |
-| `level` |  |
-| `small_art` |  |
-| `theme_uuid` |  |
+| `displayIcon` |  |
+| `displayName` |  |
+| `fullIcon` |  |
+| `fullTransparentIcon` |  |
+| `hideIfNotOwned` |  |
+| `isHiddenIfNotOwned` |  |
+| `isNullSpray` |  |
+| `largeArt` |  |
+| `levels` |  |
+| `smallArt` |  |
+| `themeUuid` |  |
 | `uuid` |  |
-| `wide_art` |  |
+| `wideArt` |  |
 
 Operations: List.
 
@@ -328,19 +324,19 @@ API path: `/v1/buddies`
 
 | Field | Description |
 | --- | --- |
-| `allows_match_timeout` |  |
-| `asset_path` |  |
-| `display_icon` |  |
-| `display_name` |  |
+| `allowsMatchTimeouts` |  |
+| `assetPath` |  |
+| `displayIcon` |  |
+| `displayName` |  |
 | `duration` |  |
-| `economy_type` |  |
-| `game_feature_override` |  |
-| `game_rule_bool_override` |  |
-| `is_minimap_hidden` |  |
-| `is_team_voice_allowed` |  |
-| `orb_count` |  |
-| `rounds_per_half` |  |
-| `team_role` |  |
+| `economyType` |  |
+| `gameFeatureOverrides` |  |
+| `gameRuleBoolOverrides` |  |
+| `isMinimapHidden` |  |
+| `isTeamVoiceAllowed` |  |
+| `orbCount` |  |
+| `roundsPerHalf` |  |
+| `teamRoles` |  |
 | `uuid` |  |
 
 Operations: List.
@@ -351,23 +347,21 @@ API path: `/v1/gamemodes`
 
 | Field | Description |
 | --- | --- |
-| `asset_path` |  |
-| `callout` |  |
-| `coordinate` |  |
-| `data` |  |
-| `display_icon` |  |
-| `display_name` |  |
-| `list_view_icon` |  |
-| `map_url` |  |
-| `narrative_description` |  |
+| `assetPath` |  |
+| `callouts` |  |
+| `coordinates` |  |
+| `displayIcon` |  |
+| `displayName` |  |
+| `listViewIcon` |  |
+| `mapUrl` |  |
+| `narrativeDescription` |  |
 | `splash` |  |
-| `status` |  |
-| `tactical_description` |  |
+| `tacticalDescription` |  |
 | `uuid` |  |
-| `x_multiplier` |  |
-| `x_scalar_to_add` |  |
-| `y_multiplier` |  |
-| `y_scalar_to_add` |  |
+| `xMultiplier` |  |
+| `xScalarToAdd` |  |
+| `yMultiplier` |  |
+| `yScalarToAdd` |  |
 
 Operations: List, Load.
 
@@ -377,18 +371,16 @@ API path: `/v1/maps`
 
 | Field | Description |
 | --- | --- |
-| `asset_path` |  |
+| `assetPath` |  |
 | `category` |  |
-| `data` |  |
-| `default_skin_uuid` |  |
-| `display_icon` |  |
-| `display_name` |  |
-| `kill_stream_icon` |  |
-| `shop_data` |  |
-| `skin` |  |
-| `status` |  |
+| `defaultSkinUuid` |  |
+| `displayIcon` |  |
+| `displayName` |  |
+| `killStreamIcon` |  |
+| `shopData` |  |
+| `skins` |  |
 | `uuid` |  |
-| `weapon_stat` |  |
+| `weaponStats` |  |
 
 Operations: List, Load.
 
@@ -414,34 +406,32 @@ Create an instance: `agent = client.Agent`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability` | `Array` |  |
-| `asset_path` | `String` |  |
+| `abilities` | `Array` |  |
+| `assetPath` | `String` |  |
 | `background` | `String` |  |
-| `background_gradient_color` | `Array` |  |
-| `bust_portrait` | `String` |  |
-| `character_tag` | `Array` |  |
-| `data` | `Hash` |  |
+| `backgroundGradientColors` | `Array` |  |
+| `bustPortrait` | `String` |  |
+| `characterTags` | `Array` |  |
 | `description` | `String` |  |
-| `developer_name` | `String` |  |
-| `display_icon` | `String` |  |
-| `display_icon_small` | `String` |  |
-| `display_name` | `String` |  |
-| `full_portrait` | `String` |  |
-| `full_portrait_v2` | `String` |  |
-| `is_available_for_test` | `Boolean` |  |
-| `is_base_content` | `Boolean` |  |
-| `is_full_portrait_right_facing` | `Boolean` |  |
-| `is_playable_character` | `Boolean` |  |
-| `killfeed_portrait` | `String` |  |
+| `developerName` | `String` |  |
+| `displayIcon` | `String` |  |
+| `displayIconSmall` | `String` |  |
+| `displayName` | `String` |  |
+| `fullPortrait` | `String` |  |
+| `fullPortraitV2` | `String` |  |
+| `isAvailableForTest` | `Boolean` |  |
+| `isBaseContent` | `Boolean` |  |
+| `isFullPortraitRightFacing` | `Boolean` |  |
+| `isPlayableCharacter` | `Boolean` |  |
+| `killfeedPortrait` | `String` |  |
 | `role` | `Hash` |  |
-| `status` | `Integer` |  |
 | `uuid` | `String` |  |
-| `voice_line` | `Hash` |  |
+| `voiceLine` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Agent record (raises on error).
+# load returns the ENTITY — call data_get for the Agent record (raises on error).
 agent = client.Agent.load({ "id" => "agent_id" })
 ```
 
@@ -467,9 +457,9 @@ Create an instance: `competitive = client.Competitive`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_object_name` | `String` |  |
-| `asset_path` | `String` |  |
-| `tier` | `Array` |  |
+| `assetObjectName` | `String` |  |
+| `assetPath` | `String` |  |
+| `tiers` | `Array` |  |
 | `uuid` | `String` |  |
 
 #### Example: List
@@ -494,23 +484,23 @@ Create an instance: `cosmetic = client.Cosmetic`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `animation_gif` | `String` |  |
-| `animation_png` | `String` |  |
-| `asset_path` | `String` |  |
+| `animationGif` | `String` |  |
+| `animationPng` | `String` |  |
+| `assetPath` | `String` |  |
 | `category` | `String` |  |
-| `display_icon` | `String` |  |
-| `display_name` | `String` |  |
-| `full_icon` | `String` |  |
-| `full_transparent_icon` | `String` |  |
-| `hide_if_not_owned` | `Boolean` |  |
-| `is_hidden_if_not_owned` | `Boolean` |  |
-| `is_null_spray` | `Boolean` |  |
-| `large_art` | `String` |  |
-| `level` | `Array` |  |
-| `small_art` | `String` |  |
-| `theme_uuid` | `String` |  |
+| `displayIcon` | `String` |  |
+| `displayName` | `String` |  |
+| `fullIcon` | `String` |  |
+| `fullTransparentIcon` | `String` |  |
+| `hideIfNotOwned` | `Boolean` |  |
+| `isHiddenIfNotOwned` | `Boolean` |  |
+| `isNullSpray` | `Boolean` |  |
+| `largeArt` | `String` |  |
+| `levels` | `Array` |  |
+| `smallArt` | `String` |  |
+| `themeUuid` | `String` |  |
 | `uuid` | `String` |  |
-| `wide_art` | `String` |  |
+| `wideArt` | `String` |  |
 
 #### Example: List
 
@@ -534,19 +524,19 @@ Create an instance: `game_mode = client.GameMode`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allows_match_timeout` | `Boolean` |  |
-| `asset_path` | `String` |  |
-| `display_icon` | `String` |  |
-| `display_name` | `String` |  |
+| `allowsMatchTimeouts` | `Boolean` |  |
+| `assetPath` | `String` |  |
+| `displayIcon` | `String` |  |
+| `displayName` | `String` |  |
 | `duration` | `String` |  |
-| `economy_type` | `String` |  |
-| `game_feature_override` | `Array` |  |
-| `game_rule_bool_override` | `Array` |  |
-| `is_minimap_hidden` | `Boolean` |  |
-| `is_team_voice_allowed` | `Boolean` |  |
-| `orb_count` | `Integer` |  |
-| `rounds_per_half` | `Integer` |  |
-| `team_role` | `Array` |  |
+| `economyType` | `String` |  |
+| `gameFeatureOverrides` | `Array` |  |
+| `gameRuleBoolOverrides` | `Array` |  |
+| `isMinimapHidden` | `Boolean` |  |
+| `isTeamVoiceAllowed` | `Boolean` |  |
+| `orbCount` | `Integer` |  |
+| `roundsPerHalf` | `Integer` |  |
+| `teamRoles` | `Array` |  |
 | `uuid` | `String` |  |
 
 #### Example: List
@@ -572,28 +562,26 @@ Create an instance: `map = client.Map`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | `String` |  |
-| `callout` | `Array` |  |
-| `coordinate` | `String` |  |
-| `data` | `Hash` |  |
-| `display_icon` | `String` |  |
-| `display_name` | `String` |  |
-| `list_view_icon` | `String` |  |
-| `map_url` | `String` |  |
-| `narrative_description` | `String` |  |
+| `assetPath` | `String` |  |
+| `callouts` | `Array` |  |
+| `coordinates` | `String` |  |
+| `displayIcon` | `String` |  |
+| `displayName` | `String` |  |
+| `listViewIcon` | `String` |  |
+| `mapUrl` | `String` |  |
+| `narrativeDescription` | `String` |  |
 | `splash` | `String` |  |
-| `status` | `Integer` |  |
-| `tactical_description` | `String` |  |
+| `tacticalDescription` | `String` |  |
 | `uuid` | `String` |  |
-| `x_multiplier` | `Float` |  |
-| `x_scalar_to_add` | `Float` |  |
-| `y_multiplier` | `Float` |  |
-| `y_scalar_to_add` | `Float` |  |
+| `xMultiplier` | `Float` |  |
+| `xScalarToAdd` | `Float` |  |
+| `yMultiplier` | `Float` |  |
+| `yScalarToAdd` | `Float` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Map record (raises on error).
+# load returns the ENTITY — call data_get for the Map record (raises on error).
 map = client.Map.load({ "id" => "map_id" })
 ```
 
@@ -620,23 +608,21 @@ Create an instance: `weapon = client.Weapon`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | `String` |  |
+| `assetPath` | `String` |  |
 | `category` | `String` |  |
-| `data` | `Hash` |  |
-| `default_skin_uuid` | `String` |  |
-| `display_icon` | `String` |  |
-| `display_name` | `String` |  |
-| `kill_stream_icon` | `String` |  |
-| `shop_data` | `Hash` |  |
-| `skin` | `Array` |  |
-| `status` | `Integer` |  |
+| `defaultSkinUuid` | `String` |  |
+| `displayIcon` | `String` |  |
+| `displayName` | `String` |  |
+| `killStreamIcon` | `String` |  |
+| `shopData` | `Hash` |  |
+| `skins` | `Array` |  |
 | `uuid` | `String` |  |
-| `weapon_stat` | `Hash` |  |
+| `weaponStats` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Weapon record (raises on error).
+# load returns the ENTITY — call data_get for the Weapon record (raises on error).
 weapon = client.Weapon.load({ "id" => "weapon_id" })
 ```
 
@@ -724,11 +710,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-agent = client.Agent
-agent.list()
+cosmetic = client.Cosmetic
+cosmetic.list()
 
-# agent.data_get now returns the agent data from the last list
-# agent.match_get returns the last match criteria
+# cosmetic.data_get now returns the cosmetic data from the last list
+# cosmetic.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

@@ -52,7 +52,7 @@ except Exception as err:
 
 ### 3. Load an agent
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -69,8 +69,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    agents = client.Agent().list()
-    print(agents)
+    cosmetics = client.Cosmetic().list()
+    print(cosmetics)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -136,9 +136,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = ValorantSDK.test()
 
-# Entity ops return the bare record and raise on error.
-agent = client.Agent().list()
-# agent contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+cosmetic = client.Cosmetic().list()
+# cosmetic contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -238,7 +239,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -260,29 +261,27 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `ability` |  |
-| `asset_path` |  |
+| `abilities` |  |
+| `assetPath` |  |
 | `background` |  |
-| `background_gradient_color` |  |
-| `bust_portrait` |  |
-| `character_tag` |  |
-| `data` |  |
+| `backgroundGradientColors` |  |
+| `bustPortrait` |  |
+| `characterTags` |  |
 | `description` |  |
-| `developer_name` |  |
-| `display_icon` |  |
-| `display_icon_small` |  |
-| `display_name` |  |
-| `full_portrait` |  |
-| `full_portrait_v2` |  |
-| `is_available_for_test` |  |
-| `is_base_content` |  |
-| `is_full_portrait_right_facing` |  |
-| `is_playable_character` |  |
-| `killfeed_portrait` |  |
+| `developerName` |  |
+| `displayIcon` |  |
+| `displayIconSmall` |  |
+| `displayName` |  |
+| `fullPortrait` |  |
+| `fullPortraitV2` |  |
+| `isAvailableForTest` |  |
+| `isBaseContent` |  |
+| `isFullPortraitRightFacing` |  |
+| `isPlayableCharacter` |  |
+| `killfeedPortrait` |  |
 | `role` |  |
-| `status` |  |
 | `uuid` |  |
-| `voice_line` |  |
+| `voiceLine` |  |
 
 Operations: List, Load.
 
@@ -292,9 +291,9 @@ API path: `/v1/agents`
 
 | Field | Description |
 | --- | --- |
-| `asset_object_name` |  |
-| `asset_path` |  |
-| `tier` |  |
+| `assetObjectName` |  |
+| `assetPath` |  |
+| `tiers` |  |
 | `uuid` |  |
 
 Operations: List.
@@ -305,23 +304,23 @@ API path: `/v1/competitivetiers`
 
 | Field | Description |
 | --- | --- |
-| `animation_gif` |  |
-| `animation_png` |  |
-| `asset_path` |  |
+| `animationGif` |  |
+| `animationPng` |  |
+| `assetPath` |  |
 | `category` |  |
-| `display_icon` |  |
-| `display_name` |  |
-| `full_icon` |  |
-| `full_transparent_icon` |  |
-| `hide_if_not_owned` |  |
-| `is_hidden_if_not_owned` |  |
-| `is_null_spray` |  |
-| `large_art` |  |
-| `level` |  |
-| `small_art` |  |
-| `theme_uuid` |  |
+| `displayIcon` |  |
+| `displayName` |  |
+| `fullIcon` |  |
+| `fullTransparentIcon` |  |
+| `hideIfNotOwned` |  |
+| `isHiddenIfNotOwned` |  |
+| `isNullSpray` |  |
+| `largeArt` |  |
+| `levels` |  |
+| `smallArt` |  |
+| `themeUuid` |  |
 | `uuid` |  |
-| `wide_art` |  |
+| `wideArt` |  |
 
 Operations: List.
 
@@ -331,19 +330,19 @@ API path: `/v1/buddies`
 
 | Field | Description |
 | --- | --- |
-| `allows_match_timeout` |  |
-| `asset_path` |  |
-| `display_icon` |  |
-| `display_name` |  |
+| `allowsMatchTimeouts` |  |
+| `assetPath` |  |
+| `displayIcon` |  |
+| `displayName` |  |
 | `duration` |  |
-| `economy_type` |  |
-| `game_feature_override` |  |
-| `game_rule_bool_override` |  |
-| `is_minimap_hidden` |  |
-| `is_team_voice_allowed` |  |
-| `orb_count` |  |
-| `rounds_per_half` |  |
-| `team_role` |  |
+| `economyType` |  |
+| `gameFeatureOverrides` |  |
+| `gameRuleBoolOverrides` |  |
+| `isMinimapHidden` |  |
+| `isTeamVoiceAllowed` |  |
+| `orbCount` |  |
+| `roundsPerHalf` |  |
+| `teamRoles` |  |
 | `uuid` |  |
 
 Operations: List.
@@ -354,23 +353,21 @@ API path: `/v1/gamemodes`
 
 | Field | Description |
 | --- | --- |
-| `asset_path` |  |
-| `callout` |  |
-| `coordinate` |  |
-| `data` |  |
-| `display_icon` |  |
-| `display_name` |  |
-| `list_view_icon` |  |
-| `map_url` |  |
-| `narrative_description` |  |
+| `assetPath` |  |
+| `callouts` |  |
+| `coordinates` |  |
+| `displayIcon` |  |
+| `displayName` |  |
+| `listViewIcon` |  |
+| `mapUrl` |  |
+| `narrativeDescription` |  |
 | `splash` |  |
-| `status` |  |
-| `tactical_description` |  |
+| `tacticalDescription` |  |
 | `uuid` |  |
-| `x_multiplier` |  |
-| `x_scalar_to_add` |  |
-| `y_multiplier` |  |
-| `y_scalar_to_add` |  |
+| `xMultiplier` |  |
+| `xScalarToAdd` |  |
+| `yMultiplier` |  |
+| `yScalarToAdd` |  |
 
 Operations: List, Load.
 
@@ -380,18 +377,16 @@ API path: `/v1/maps`
 
 | Field | Description |
 | --- | --- |
-| `asset_path` |  |
+| `assetPath` |  |
 | `category` |  |
-| `data` |  |
-| `default_skin_uuid` |  |
-| `display_icon` |  |
-| `display_name` |  |
-| `kill_stream_icon` |  |
-| `shop_data` |  |
-| `skin` |  |
-| `status` |  |
+| `defaultSkinUuid` |  |
+| `displayIcon` |  |
+| `displayName` |  |
+| `killStreamIcon` |  |
+| `shopData` |  |
+| `skins` |  |
 | `uuid` |  |
-| `weapon_stat` |  |
+| `weaponStats` |  |
 
 Operations: List, Load.
 
@@ -417,29 +412,27 @@ Create an instance: `agent = client.Agent()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ability` | `list` |  |
-| `asset_path` | `str` |  |
+| `abilities` | `list` |  |
+| `assetPath` | `str` |  |
 | `background` | `str` |  |
-| `background_gradient_color` | `list` |  |
-| `bust_portrait` | `str` |  |
-| `character_tag` | `list` |  |
-| `data` | `dict` |  |
+| `backgroundGradientColors` | `list` |  |
+| `bustPortrait` | `str` |  |
+| `characterTags` | `list` |  |
 | `description` | `str` |  |
-| `developer_name` | `str` |  |
-| `display_icon` | `str` |  |
-| `display_icon_small` | `str` |  |
-| `display_name` | `str` |  |
-| `full_portrait` | `str` |  |
-| `full_portrait_v2` | `str` |  |
-| `is_available_for_test` | `bool` |  |
-| `is_base_content` | `bool` |  |
-| `is_full_portrait_right_facing` | `bool` |  |
-| `is_playable_character` | `bool` |  |
-| `killfeed_portrait` | `str` |  |
+| `developerName` | `str` |  |
+| `displayIcon` | `str` |  |
+| `displayIconSmall` | `str` |  |
+| `displayName` | `str` |  |
+| `fullPortrait` | `str` |  |
+| `fullPortraitV2` | `str` |  |
+| `isAvailableForTest` | `bool` |  |
+| `isBaseContent` | `bool` |  |
+| `isFullPortraitRightFacing` | `bool` |  |
+| `isPlayableCharacter` | `bool` |  |
+| `killfeedPortrait` | `str` |  |
 | `role` | `dict` |  |
-| `status` | `int` |  |
 | `uuid` | `str` |  |
-| `voice_line` | `dict` |  |
+| `voiceLine` | `dict` |  |
 
 #### Example: Load
 
@@ -468,9 +461,9 @@ Create an instance: `competitive = client.Competitive()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_object_name` | `str` |  |
-| `asset_path` | `str` |  |
-| `tier` | `list` |  |
+| `assetObjectName` | `str` |  |
+| `assetPath` | `str` |  |
+| `tiers` | `list` |  |
 | `uuid` | `str` |  |
 
 #### Example: List
@@ -494,23 +487,23 @@ Create an instance: `cosmetic = client.Cosmetic()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `animation_gif` | `str` |  |
-| `animation_png` | `str` |  |
-| `asset_path` | `str` |  |
+| `animationGif` | `str` |  |
+| `animationPng` | `str` |  |
+| `assetPath` | `str` |  |
 | `category` | `str` |  |
-| `display_icon` | `str` |  |
-| `display_name` | `str` |  |
-| `full_icon` | `str` |  |
-| `full_transparent_icon` | `str` |  |
-| `hide_if_not_owned` | `bool` |  |
-| `is_hidden_if_not_owned` | `bool` |  |
-| `is_null_spray` | `bool` |  |
-| `large_art` | `str` |  |
-| `level` | `list` |  |
-| `small_art` | `str` |  |
-| `theme_uuid` | `str` |  |
+| `displayIcon` | `str` |  |
+| `displayName` | `str` |  |
+| `fullIcon` | `str` |  |
+| `fullTransparentIcon` | `str` |  |
+| `hideIfNotOwned` | `bool` |  |
+| `isHiddenIfNotOwned` | `bool` |  |
+| `isNullSpray` | `bool` |  |
+| `largeArt` | `str` |  |
+| `levels` | `list` |  |
+| `smallArt` | `str` |  |
+| `themeUuid` | `str` |  |
 | `uuid` | `str` |  |
-| `wide_art` | `str` |  |
+| `wideArt` | `str` |  |
 
 #### Example: List
 
@@ -533,19 +526,19 @@ Create an instance: `game_mode = client.GameMode()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allows_match_timeout` | `bool` |  |
-| `asset_path` | `str` |  |
-| `display_icon` | `str` |  |
-| `display_name` | `str` |  |
+| `allowsMatchTimeouts` | `bool` |  |
+| `assetPath` | `str` |  |
+| `displayIcon` | `str` |  |
+| `displayName` | `str` |  |
 | `duration` | `str` |  |
-| `economy_type` | `str` |  |
-| `game_feature_override` | `list` |  |
-| `game_rule_bool_override` | `list` |  |
-| `is_minimap_hidden` | `bool` |  |
-| `is_team_voice_allowed` | `bool` |  |
-| `orb_count` | `int` |  |
-| `rounds_per_half` | `int` |  |
-| `team_role` | `list` |  |
+| `economyType` | `str` |  |
+| `gameFeatureOverrides` | `list` |  |
+| `gameRuleBoolOverrides` | `list` |  |
+| `isMinimapHidden` | `bool` |  |
+| `isTeamVoiceAllowed` | `bool` |  |
+| `orbCount` | `int` |  |
+| `roundsPerHalf` | `int` |  |
+| `teamRoles` | `list` |  |
 | `uuid` | `str` |  |
 
 #### Example: List
@@ -570,23 +563,21 @@ Create an instance: `map = client.Map()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | `str` |  |
-| `callout` | `list` |  |
-| `coordinate` | `str` |  |
-| `data` | `dict` |  |
-| `display_icon` | `str` |  |
-| `display_name` | `str` |  |
-| `list_view_icon` | `str` |  |
-| `map_url` | `str` |  |
-| `narrative_description` | `str` |  |
+| `assetPath` | `str` |  |
+| `callouts` | `list` |  |
+| `coordinates` | `str` |  |
+| `displayIcon` | `str` |  |
+| `displayName` | `str` |  |
+| `listViewIcon` | `str` |  |
+| `mapUrl` | `str` |  |
+| `narrativeDescription` | `str` |  |
 | `splash` | `str` |  |
-| `status` | `int` |  |
-| `tactical_description` | `str` |  |
+| `tacticalDescription` | `str` |  |
 | `uuid` | `str` |  |
-| `x_multiplier` | `float` |  |
-| `x_scalar_to_add` | `float` |  |
-| `y_multiplier` | `float` |  |
-| `y_scalar_to_add` | `float` |  |
+| `xMultiplier` | `float` |  |
+| `xScalarToAdd` | `float` |  |
+| `yMultiplier` | `float` |  |
+| `yScalarToAdd` | `float` |  |
 
 #### Example: Load
 
@@ -616,18 +607,16 @@ Create an instance: `weapon = client.Weapon()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asset_path` | `str` |  |
+| `assetPath` | `str` |  |
 | `category` | `str` |  |
-| `data` | `dict` |  |
-| `default_skin_uuid` | `str` |  |
-| `display_icon` | `str` |  |
-| `display_name` | `str` |  |
-| `kill_stream_icon` | `str` |  |
-| `shop_data` | `dict` |  |
-| `skin` | `list` |  |
-| `status` | `int` |  |
+| `defaultSkinUuid` | `str` |  |
+| `displayIcon` | `str` |  |
+| `displayName` | `str` |  |
+| `killStreamIcon` | `str` |  |
+| `shopData` | `dict` |  |
+| `skins` | `list` |  |
 | `uuid` | `str` |  |
-| `weapon_stat` | `dict` |  |
+| `weaponStats` | `dict` |  |
 
 #### Example: Load
 
@@ -717,11 +706,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-agent = client.Agent()
-agent.list()
+cosmetic = client.Cosmetic()
+cosmetic.list()
 
-# agent.data_get() now returns the agent data from the last list
-# agent.match_get() returns the last match criteria
+# cosmetic.data_get() now returns the cosmetic data from the last list
+# cosmetic.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

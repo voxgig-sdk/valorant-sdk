@@ -6,17 +6,17 @@ main: kit: entity: competitive: {
 
   fields: [
     {
-      name: "asset_object_name"
+      name: "assetObjectName"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "asset_path"
+      name: "assetPath"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "tier"
+      name: "tiers"
       req: false
       type: "`$ARRAY`"
     }
@@ -58,7 +58,7 @@ main: kit: entity: competitive: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

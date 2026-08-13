@@ -2,21 +2,21 @@
   "existing": {
     "competitive": {
       "COMPETITIVE00": {
-        "asset_object_name": "s28",
-        "asset_path": "s29",
-        "tier": [],
+        "assetObjectName": "s28",
+        "assetPath": "s29",
+        "tiers": [],
         "uuid": "s2b"
       },
       "COMPETITIVE01": {
-        "asset_object_name": "s50",
-        "asset_path": "s51",
-        "tier": [],
+        "assetObjectName": "s50",
+        "assetPath": "s51",
+        "tiers": [],
         "uuid": "s53"
       },
       "COMPETITIVE02": {
-        "asset_object_name": "s78",
-        "asset_path": "s79",
-        "tier": [],
+        "assetObjectName": "s78",
+        "assetPath": "s79",
+        "tiers": [],
         "uuid": "s7b"
       }
     }
@@ -24,9 +24,9 @@
   "new": {
     "competitive": {
       "competitive_ref01": {
-        "asset_object_name": "sa0",
-        "asset_path": "sa1",
-        "tier": [],
+        "assetObjectName": "sa0",
+        "assetPath": "sa1",
+        "tiers": [],
         "uuid": "sa3"
       }
     }

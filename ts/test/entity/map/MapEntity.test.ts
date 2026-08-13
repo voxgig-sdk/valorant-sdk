@@ -63,7 +63,7 @@ describe('MapEntity', async () => {
     const map_ref01_ent = client.Map()
     const map_ref01_match: any = {}
 
-    const map_ref01_list = await map_ref01_ent.list(map_ref01_match)
+    const map_ref01_list = (await map_ref01_ent.list(map_ref01_match)).map((e: any) => e.data())
 
 
 
