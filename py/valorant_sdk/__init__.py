@@ -23,8 +23,8 @@ class ValorantSDK:
         utility = ValorantUtility()
         self._utility = utility
 
-        from valorant_sdk.config import make_config
-        config = make_config()
+        from valorant_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

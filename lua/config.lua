@@ -1,5 +1,8 @@
 -- Valorant SDK configuration
 
+-- Build a fresh, fully materialised config table. Every call rebuilds the
+-- whole structure, so prefer require("config_shared") unless you need a
+-- private copy you intend to mutate.
 local function make_config()
   return {
     main = {
@@ -30,151 +33,88 @@ local function make_config()
       ["agent"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "abilities",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "assetPath",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "background",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "backgroundGradientColors",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "bustPortrait",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 4,
           },
           {
-            ["active"] = true,
             ["name"] = "characterTags",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 5,
           },
           {
-            ["active"] = true,
             ["name"] = "description",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 6,
           },
           {
-            ["active"] = true,
             ["name"] = "developerName",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 7,
           },
           {
-            ["active"] = true,
             ["name"] = "displayIcon",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 8,
           },
           {
-            ["active"] = true,
             ["name"] = "displayIconSmall",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 9,
           },
           {
-            ["active"] = true,
             ["name"] = "displayName",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 10,
           },
           {
-            ["active"] = true,
             ["name"] = "fullPortrait",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 11,
           },
           {
-            ["active"] = true,
             ["name"] = "fullPortraitV2",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 12,
           },
           {
-            ["active"] = true,
             ["name"] = "isAvailableForTest",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 13,
           },
           {
-            ["active"] = true,
             ["name"] = "isBaseContent",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 14,
           },
           {
-            ["active"] = true,
             ["name"] = "isFullPortraitRightFacing",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 15,
           },
           {
-            ["active"] = true,
             ["name"] = "isPlayableCharacter",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 16,
           },
           {
-            ["active"] = true,
             ["name"] = "killfeedPortrait",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 17,
           },
           {
-            ["active"] = true,
             ["name"] = "role",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 18,
           },
           {
-            ["active"] = true,
             ["name"] = "uuid",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 19,
           },
           {
-            ["active"] = true,
             ["name"] = "voiceLine",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 20,
           },
         },
         ["name"] = "agent",
@@ -184,24 +124,19 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "is_playable_character",
                       ["orig"] = "is_playable_character",
-                      ["reqd"] = false,
                       ["type"] = "`$BOOLEAN`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = "en-US",
                       ["kind"] = "query",
                       ["name"] = "language",
                       ["orig"] = "language",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -223,37 +158,30 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
           ["load"] = {
             ["input"] = "data",
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "id",
                       ["orig"] = "uuid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "en-US",
                       ["kind"] = "query",
                       ["name"] = "language",
                       ["orig"] = "language",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -281,10 +209,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {
@@ -294,32 +220,20 @@ local function make_config()
       ["competitive"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "assetObjectName",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "assetPath",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "tiers",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "uuid",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 3,
           },
         },
         ["name"] = "competitive",
@@ -329,16 +243,13 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "en-US",
                       ["kind"] = "query",
                       ["name"] = "language",
                       ["orig"] = "language",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -359,10 +270,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {
@@ -372,123 +281,72 @@ local function make_config()
       ["cosmetic"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "animationGif",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "animationPng",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "assetPath",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "category",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "displayIcon",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 4,
           },
           {
-            ["active"] = true,
             ["name"] = "displayName",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
           },
           {
-            ["active"] = true,
             ["name"] = "fullIcon",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 6,
           },
           {
-            ["active"] = true,
             ["name"] = "fullTransparentIcon",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 7,
           },
           {
-            ["active"] = true,
             ["name"] = "hideIfNotOwned",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 8,
           },
           {
-            ["active"] = true,
             ["name"] = "isHiddenIfNotOwned",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 9,
           },
           {
-            ["active"] = true,
             ["name"] = "isNullSpray",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 10,
           },
           {
-            ["active"] = true,
             ["name"] = "largeArt",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 11,
           },
           {
-            ["active"] = true,
             ["name"] = "levels",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 12,
           },
           {
-            ["active"] = true,
             ["name"] = "smallArt",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 13,
           },
           {
-            ["active"] = true,
             ["name"] = "themeUuid",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 14,
           },
           {
-            ["active"] = true,
             ["name"] = "uuid",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 15,
           },
           {
-            ["active"] = true,
             ["name"] = "wideArt",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 16,
           },
         },
         ["name"] = "cosmetic",
@@ -498,16 +356,13 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "en-US",
                       ["kind"] = "query",
                       ["name"] = "language",
                       ["orig"] = "language",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -528,19 +383,15 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["index$"] = 0,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "en-US",
                       ["kind"] = "query",
                       ["name"] = "language",
                       ["orig"] = "language",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -561,19 +412,15 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["index$"] = 1,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "en-US",
                       ["kind"] = "query",
                       ["name"] = "language",
                       ["orig"] = "language",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -594,10 +441,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["index$"] = 2,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {
@@ -607,102 +452,60 @@ local function make_config()
       ["game_mode"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "allowsMatchTimeouts",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "assetPath",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "displayIcon",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "displayName",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "duration",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 4,
           },
           {
-            ["active"] = true,
             ["name"] = "economyType",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
           },
           {
-            ["active"] = true,
             ["name"] = "gameFeatureOverrides",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 6,
           },
           {
-            ["active"] = true,
             ["name"] = "gameRuleBoolOverrides",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 7,
           },
           {
-            ["active"] = true,
             ["name"] = "isMinimapHidden",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 8,
           },
           {
-            ["active"] = true,
             ["name"] = "isTeamVoiceAllowed",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 9,
           },
           {
-            ["active"] = true,
             ["name"] = "orbCount",
-            ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 10,
           },
           {
-            ["active"] = true,
             ["name"] = "roundsPerHalf",
-            ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 11,
           },
           {
-            ["active"] = true,
             ["name"] = "teamRoles",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 12,
           },
           {
-            ["active"] = true,
             ["name"] = "uuid",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 13,
           },
         },
         ["name"] = "game_mode",
@@ -712,16 +515,13 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "en-US",
                       ["kind"] = "query",
                       ["name"] = "language",
                       ["orig"] = "language",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -742,10 +542,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {
@@ -755,109 +553,64 @@ local function make_config()
       ["map"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "assetPath",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "callouts",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "coordinates",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "displayIcon",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "displayName",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 4,
           },
           {
-            ["active"] = true,
             ["name"] = "listViewIcon",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
           },
           {
-            ["active"] = true,
             ["name"] = "mapUrl",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 6,
           },
           {
-            ["active"] = true,
             ["name"] = "narrativeDescription",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 7,
           },
           {
-            ["active"] = true,
             ["name"] = "splash",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 8,
           },
           {
-            ["active"] = true,
             ["name"] = "tacticalDescription",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 9,
           },
           {
-            ["active"] = true,
             ["name"] = "uuid",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 10,
           },
           {
-            ["active"] = true,
             ["name"] = "xMultiplier",
-            ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 11,
           },
           {
-            ["active"] = true,
             ["name"] = "xScalarToAdd",
-            ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 12,
           },
           {
-            ["active"] = true,
             ["name"] = "yMultiplier",
-            ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 13,
           },
           {
-            ["active"] = true,
             ["name"] = "yScalarToAdd",
-            ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 14,
           },
         },
         ["name"] = "map",
@@ -867,16 +620,13 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "en-US",
                       ["kind"] = "query",
                       ["name"] = "language",
                       ["orig"] = "language",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -897,37 +647,30 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
           ["load"] = {
             ["input"] = "data",
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "id",
                       ["orig"] = "uuid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "en-US",
                       ["kind"] = "query",
                       ["name"] = "language",
                       ["orig"] = "language",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -955,10 +698,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {
@@ -968,74 +709,44 @@ local function make_config()
       ["weapon"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "assetPath",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "category",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "defaultSkinUuid",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "displayIcon",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "displayName",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 4,
           },
           {
-            ["active"] = true,
             ["name"] = "killStreamIcon",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
           },
           {
-            ["active"] = true,
             ["name"] = "shopData",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 6,
           },
           {
-            ["active"] = true,
             ["name"] = "skins",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 7,
           },
           {
-            ["active"] = true,
             ["name"] = "uuid",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 8,
           },
           {
-            ["active"] = true,
             ["name"] = "weaponStats",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 9,
           },
         },
         ["name"] = "weapon",
@@ -1045,16 +756,13 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "en-US",
                       ["kind"] = "query",
                       ["name"] = "language",
                       ["orig"] = "language",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -1075,37 +783,30 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
           ["load"] = {
             ["input"] = "data",
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "id",
                       ["orig"] = "uuid",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "en-US",
                       ["kind"] = "query",
                       ["name"] = "language",
                       ["orig"] = "language",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -1133,10 +834,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {

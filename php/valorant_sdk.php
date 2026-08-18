@@ -40,7 +40,7 @@ class ValorantSDK
         $utility = new ValorantUtility();
         $this->_utility = $utility;
 
-        $config = ValorantConfig::make_config();
+        $config = ValorantConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

@@ -28,7 +28,7 @@ class ValorantSDK
     utility = ValorantUtility.new
     @_utility = utility
 
-    config = ValorantConfig.make_config
+    config = ValorantConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
