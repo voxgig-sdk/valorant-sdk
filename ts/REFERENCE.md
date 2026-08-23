@@ -177,25 +177,25 @@ const agent = client.Agent()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `abilities` | `any[]` | No |  |
-| `assetPath` | `string` | No |  |
-| `background` | `string` | No |  |
-| `backgroundGradientColors` | `any[]` | No |  |
-| `bustPortrait` | `string` | No |  |
-| `characterTags` | `any[]` | No |  |
-| `description` | `string` | No |  |
-| `developerName` | `string` | No |  |
-| `displayIcon` | `string` | No |  |
-| `displayIconSmall` | `string` | No |  |
-| `displayName` | `string` | No |  |
-| `fullPortrait` | `string` | No |  |
-| `fullPortraitV2` | `string` | No |  |
-| `isAvailableForTest` | `boolean` | No |  |
-| `isBaseContent` | `boolean` | No |  |
-| `isFullPortraitRightFacing` | `boolean` | No |  |
-| `isPlayableCharacter` | `boolean` | No |  |
-| `killfeedPortrait` | `string` | No |  |
+| `assetPath` | `string` | No | Asset path in game files |
+| `background` | `string` | No | URL to the agent's background image |
+| `backgroundGradientColors` | `any[]` | No | Gradient colors for the agent's background |
+| `bustPortrait` | `string` | No | URL to the agent's bust portrait |
+| `characterTags` | `any[]` | No | Tags associated with the character |
+| `description` | `string` | No | Description of the agent |
+| `developerName` | `string` | No | Internal developer name |
+| `displayIcon` | `string` | No | URL to the agent's display icon |
+| `displayIconSmall` | `string` | No | URL to the agent's small display icon |
+| `displayName` | `string` | No | Display name of the agent |
+| `fullPortrait` | `string` | No | URL to the agent's full portrait |
+| `fullPortraitV2` | `string` | No | URL to the agent's full portrait version 2 |
+| `isAvailableForTest` | `boolean` | No | Whether the agent is available for testing |
+| `isBaseContent` | `boolean` | No | Whether the agent is base content |
+| `isFullPortraitRightFacing` | `boolean` | No | Whether the full portrait faces right |
+| `isPlayableCharacter` | `boolean` | No | Whether the agent is playable |
+| `killfeedPortrait` | `string` | No | URL to the agent's killfeed portrait |
 | `role` | `Record<string, any>` | No |  |
-| `uuid` | `string` | No |  |
+| `uuid` | `string` | No | Unique identifier for the agent |
 | `voiceLine` | `Record<string, any>` | No |  |
 
 ### Operations
@@ -254,10 +254,10 @@ const competitive = client.Competitive()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assetObjectName` | `string` | No |  |
-| `assetPath` | `string` | No |  |
+| `assetObjectName` | `string` | No | Asset object name |
+| `assetPath` | `string` | No | Asset path in game files |
 | `tiers` | `any[]` | No |  |
-| `uuid` | `string` | No |  |
+| `uuid` | `string` | No | Unique identifier for the competitive tier set |
 
 ### Operations
 
@@ -307,23 +307,23 @@ const cosmetic = client.Cosmetic()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `animationGif` | `string` | No |  |
-| `animationPng` | `string` | No |  |
-| `assetPath` | `string` | No |  |
-| `category` | `string` | No |  |
-| `displayIcon` | `string` | No |  |
-| `displayName` | `string` | No |  |
-| `fullIcon` | `string` | No |  |
-| `fullTransparentIcon` | `string` | No |  |
-| `hideIfNotOwned` | `boolean` | No |  |
-| `isHiddenIfNotOwned` | `boolean` | No |  |
-| `isNullSpray` | `boolean` | No |  |
-| `largeArt` | `string` | No |  |
+| `animationGif` | `string` | No | URL to the spray's animation GIF |
+| `animationPng` | `string` | No | URL to the spray's animation PNG |
+| `assetPath` | `string` | No | Asset path in game files |
+| `category` | `string` | No | Category of the spray |
+| `displayIcon` | `string` | No | URL to the buddy's display icon |
+| `displayName` | `string` | No | Display name of the buddy |
+| `fullIcon` | `string` | No | URL to the spray's full icon |
+| `fullTransparentIcon` | `string` | No | URL to the spray's full transparent icon |
+| `hideIfNotOwned` | `boolean` | No | Whether the spray is hidden if not owned |
+| `isHiddenIfNotOwned` | `boolean` | No | Whether the buddy is hidden if not owned |
+| `isNullSpray` | `boolean` | No | Whether this is a null spray |
+| `largeArt` | `string` | No | URL to the card's large art |
 | `levels` | `any[]` | No |  |
-| `smallArt` | `string` | No |  |
-| `themeUuid` | `string` | No |  |
-| `uuid` | `string` | No |  |
-| `wideArt` | `string` | No |  |
+| `smallArt` | `string` | No | URL to the card's small art |
+| `themeUuid` | `string` | No | UUID of the theme |
+| `uuid` | `string` | No | Unique identifier for the buddy |
+| `wideArt` | `string` | No | URL to the card's wide art |
 
 ### Operations
 
@@ -373,20 +373,20 @@ const game_mode = client.GameMode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowsMatchTimeouts` | `boolean` | No |  |
-| `assetPath` | `string` | No |  |
-| `displayIcon` | `string` | No |  |
-| `displayName` | `string` | No |  |
-| `duration` | `string` | No |  |
-| `economyType` | `string` | No |  |
-| `gameFeatureOverrides` | `any[]` | No |  |
-| `gameRuleBoolOverrides` | `any[]` | No |  |
-| `isMinimapHidden` | `boolean` | No |  |
-| `isTeamVoiceAllowed` | `boolean` | No |  |
-| `orbCount` | `number` | No |  |
-| `roundsPerHalf` | `number` | No |  |
-| `teamRoles` | `any[]` | No |  |
-| `uuid` | `string` | No |  |
+| `allowsMatchTimeouts` | `boolean` | No | Whether match timeouts are allowed |
+| `assetPath` | `string` | No | Asset path in game files |
+| `displayIcon` | `string` | No | URL to the game mode's display icon |
+| `displayName` | `string` | No | Display name of the game mode |
+| `duration` | `string` | No | Duration of the game mode |
+| `economyType` | `string` | No | Type of economy system |
+| `gameFeatureOverrides` | `any[]` | No | Game feature overrides |
+| `gameRuleBoolOverrides` | `any[]` | No | Game rule boolean overrides |
+| `isMinimapHidden` | `boolean` | No | Whether the minimap is hidden |
+| `isTeamVoiceAllowed` | `boolean` | No | Whether team voice chat is allowed |
+| `orbCount` | `number` | No | Number of orbs in the game mode |
+| `roundsPerHalf` | `number` | No | Number of rounds per half |
+| `teamRoles` | `any[]` | No | Team roles in the game mode |
+| `uuid` | `string` | No | Unique identifier for the game mode |
 
 ### Operations
 
@@ -436,21 +436,21 @@ const map = client.Map()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assetPath` | `string` | No |  |
+| `assetPath` | `string` | No | Asset path in game files |
 | `callouts` | `any[]` | No |  |
-| `coordinates` | `string` | No |  |
-| `displayIcon` | `string` | No |  |
-| `displayName` | `string` | No |  |
-| `listViewIcon` | `string` | No |  |
-| `mapUrl` | `string` | No |  |
-| `narrativeDescription` | `string` | No |  |
-| `splash` | `string` | No |  |
-| `tacticalDescription` | `string` | No |  |
-| `uuid` | `string` | No |  |
-| `xMultiplier` | `number` | No |  |
-| `xScalarToAdd` | `number` | No |  |
-| `yMultiplier` | `number` | No |  |
-| `yScalarToAdd` | `number` | No |  |
+| `coordinates` | `string` | No | Geographic coordinates of the map location |
+| `displayIcon` | `string` | No | URL to the map's display icon |
+| `displayName` | `string` | No | Display name of the map |
+| `listViewIcon` | `string` | No | URL to the map's list view icon |
+| `mapUrl` | `string` | No | URL to the map overview |
+| `narrativeDescription` | `string` | No | Narrative description of the map |
+| `splash` | `string` | No | URL to the map's splash image |
+| `tacticalDescription` | `string` | No | Tactical description of the map |
+| `uuid` | `string` | No | Unique identifier for the map |
+| `xMultiplier` | `number` | No | X coordinate multiplier |
+| `xScalarToAdd` | `number` | No | X scalar to add |
+| `yMultiplier` | `number` | No | Y coordinate multiplier |
+| `yScalarToAdd` | `number` | No | Y scalar to add |
 
 ### Operations
 
@@ -508,15 +508,15 @@ const weapon = client.Weapon()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assetPath` | `string` | No |  |
-| `category` | `string` | No |  |
-| `defaultSkinUuid` | `string` | No |  |
-| `displayIcon` | `string` | No |  |
-| `displayName` | `string` | No |  |
-| `killStreamIcon` | `string` | No |  |
+| `assetPath` | `string` | No | Asset path in game files |
+| `category` | `string` | No | Weapon category (e.g., Rifle, Pistol) |
+| `defaultSkinUuid` | `string` | No | UUID of the default skin |
+| `displayIcon` | `string` | No | URL to the weapon's display icon |
+| `displayName` | `string` | No | Display name of the weapon |
+| `killStreamIcon` | `string` | No | URL to the weapon's kill stream icon |
 | `shopData` | `Record<string, any>` | No |  |
 | `skins` | `any[]` | No |  |
-| `uuid` | `string` | No |  |
+| `uuid` | `string` | No | Unique identifier for the weapon |
 | `weaponStats` | `Record<string, any>` | No |  |
 
 ### Operations

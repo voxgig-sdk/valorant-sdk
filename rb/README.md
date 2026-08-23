@@ -256,25 +256,25 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `abilities` |  |
-| `assetPath` |  |
-| `background` |  |
-| `backgroundGradientColors` |  |
-| `bustPortrait` |  |
-| `characterTags` |  |
-| `description` |  |
-| `developerName` |  |
-| `displayIcon` |  |
-| `displayIconSmall` |  |
-| `displayName` |  |
-| `fullPortrait` |  |
-| `fullPortraitV2` |  |
-| `isAvailableForTest` |  |
-| `isBaseContent` |  |
-| `isFullPortraitRightFacing` |  |
-| `isPlayableCharacter` |  |
-| `killfeedPortrait` |  |
+| `assetPath` | Asset path in game files |
+| `background` | URL to the agent's background image |
+| `backgroundGradientColors` | Gradient colors for the agent's background |
+| `bustPortrait` | URL to the agent's bust portrait |
+| `characterTags` | Tags associated with the character |
+| `description` | Description of the agent |
+| `developerName` | Internal developer name |
+| `displayIcon` | URL to the agent's display icon |
+| `displayIconSmall` | URL to the agent's small display icon |
+| `displayName` | Display name of the agent |
+| `fullPortrait` | URL to the agent's full portrait |
+| `fullPortraitV2` | URL to the agent's full portrait version 2 |
+| `isAvailableForTest` | Whether the agent is available for testing |
+| `isBaseContent` | Whether the agent is base content |
+| `isFullPortraitRightFacing` | Whether the full portrait faces right |
+| `isPlayableCharacter` | Whether the agent is playable |
+| `killfeedPortrait` | URL to the agent's killfeed portrait |
 | `role` |  |
-| `uuid` |  |
+| `uuid` | Unique identifier for the agent |
 | `voiceLine` |  |
 
 Operations: List, Load.
@@ -285,10 +285,10 @@ API path: `/v1/agents`
 
 | Field | Description |
 | --- | --- |
-| `assetObjectName` |  |
-| `assetPath` |  |
+| `assetObjectName` | Asset object name |
+| `assetPath` | Asset path in game files |
 | `tiers` |  |
-| `uuid` |  |
+| `uuid` | Unique identifier for the competitive tier set |
 
 Operations: List.
 
@@ -298,23 +298,23 @@ API path: `/v1/competitivetiers`
 
 | Field | Description |
 | --- | --- |
-| `animationGif` |  |
-| `animationPng` |  |
-| `assetPath` |  |
-| `category` |  |
-| `displayIcon` |  |
-| `displayName` |  |
-| `fullIcon` |  |
-| `fullTransparentIcon` |  |
-| `hideIfNotOwned` |  |
-| `isHiddenIfNotOwned` |  |
-| `isNullSpray` |  |
-| `largeArt` |  |
+| `animationGif` | URL to the spray's animation GIF |
+| `animationPng` | URL to the spray's animation PNG |
+| `assetPath` | Asset path in game files |
+| `category` | Category of the spray |
+| `displayIcon` | URL to the buddy's display icon |
+| `displayName` | Display name of the buddy |
+| `fullIcon` | URL to the spray's full icon |
+| `fullTransparentIcon` | URL to the spray's full transparent icon |
+| `hideIfNotOwned` | Whether the spray is hidden if not owned |
+| `isHiddenIfNotOwned` | Whether the buddy is hidden if not owned |
+| `isNullSpray` | Whether this is a null spray |
+| `largeArt` | URL to the card's large art |
 | `levels` |  |
-| `smallArt` |  |
-| `themeUuid` |  |
-| `uuid` |  |
-| `wideArt` |  |
+| `smallArt` | URL to the card's small art |
+| `themeUuid` | UUID of the theme |
+| `uuid` | Unique identifier for the buddy |
+| `wideArt` | URL to the card's wide art |
 
 Operations: List.
 
@@ -324,20 +324,20 @@ API path: `/v1/buddies`
 
 | Field | Description |
 | --- | --- |
-| `allowsMatchTimeouts` |  |
-| `assetPath` |  |
-| `displayIcon` |  |
-| `displayName` |  |
-| `duration` |  |
-| `economyType` |  |
-| `gameFeatureOverrides` |  |
-| `gameRuleBoolOverrides` |  |
-| `isMinimapHidden` |  |
-| `isTeamVoiceAllowed` |  |
-| `orbCount` |  |
-| `roundsPerHalf` |  |
-| `teamRoles` |  |
-| `uuid` |  |
+| `allowsMatchTimeouts` | Whether match timeouts are allowed |
+| `assetPath` | Asset path in game files |
+| `displayIcon` | URL to the game mode's display icon |
+| `displayName` | Display name of the game mode |
+| `duration` | Duration of the game mode |
+| `economyType` | Type of economy system |
+| `gameFeatureOverrides` | Game feature overrides |
+| `gameRuleBoolOverrides` | Game rule boolean overrides |
+| `isMinimapHidden` | Whether the minimap is hidden |
+| `isTeamVoiceAllowed` | Whether team voice chat is allowed |
+| `orbCount` | Number of orbs in the game mode |
+| `roundsPerHalf` | Number of rounds per half |
+| `teamRoles` | Team roles in the game mode |
+| `uuid` | Unique identifier for the game mode |
 
 Operations: List.
 
@@ -347,21 +347,21 @@ API path: `/v1/gamemodes`
 
 | Field | Description |
 | --- | --- |
-| `assetPath` |  |
+| `assetPath` | Asset path in game files |
 | `callouts` |  |
-| `coordinates` |  |
-| `displayIcon` |  |
-| `displayName` |  |
-| `listViewIcon` |  |
-| `mapUrl` |  |
-| `narrativeDescription` |  |
-| `splash` |  |
-| `tacticalDescription` |  |
-| `uuid` |  |
-| `xMultiplier` |  |
-| `xScalarToAdd` |  |
-| `yMultiplier` |  |
-| `yScalarToAdd` |  |
+| `coordinates` | Geographic coordinates of the map location |
+| `displayIcon` | URL to the map's display icon |
+| `displayName` | Display name of the map |
+| `listViewIcon` | URL to the map's list view icon |
+| `mapUrl` | URL to the map overview |
+| `narrativeDescription` | Narrative description of the map |
+| `splash` | URL to the map's splash image |
+| `tacticalDescription` | Tactical description of the map |
+| `uuid` | Unique identifier for the map |
+| `xMultiplier` | X coordinate multiplier |
+| `xScalarToAdd` | X scalar to add |
+| `yMultiplier` | Y coordinate multiplier |
+| `yScalarToAdd` | Y scalar to add |
 
 Operations: List, Load.
 
@@ -371,15 +371,15 @@ API path: `/v1/maps`
 
 | Field | Description |
 | --- | --- |
-| `assetPath` |  |
-| `category` |  |
-| `defaultSkinUuid` |  |
-| `displayIcon` |  |
-| `displayName` |  |
-| `killStreamIcon` |  |
+| `assetPath` | Asset path in game files |
+| `category` | Weapon category (e.g., Rifle, Pistol) |
+| `defaultSkinUuid` | UUID of the default skin |
+| `displayIcon` | URL to the weapon's display icon |
+| `displayName` | Display name of the weapon |
+| `killStreamIcon` | URL to the weapon's kill stream icon |
 | `shopData` |  |
 | `skins` |  |
-| `uuid` |  |
+| `uuid` | Unique identifier for the weapon |
 | `weaponStats` |  |
 
 Operations: List, Load.
@@ -407,25 +407,25 @@ Create an instance: `agent = client.Agent`
 | Field | Type | Description |
 | --- | --- | --- |
 | `abilities` | `Array` |  |
-| `assetPath` | `String` |  |
-| `background` | `String` |  |
-| `backgroundGradientColors` | `Array` |  |
-| `bustPortrait` | `String` |  |
-| `characterTags` | `Array` |  |
-| `description` | `String` |  |
-| `developerName` | `String` |  |
-| `displayIcon` | `String` |  |
-| `displayIconSmall` | `String` |  |
-| `displayName` | `String` |  |
-| `fullPortrait` | `String` |  |
-| `fullPortraitV2` | `String` |  |
-| `isAvailableForTest` | `Boolean` |  |
-| `isBaseContent` | `Boolean` |  |
-| `isFullPortraitRightFacing` | `Boolean` |  |
-| `isPlayableCharacter` | `Boolean` |  |
-| `killfeedPortrait` | `String` |  |
+| `assetPath` | `String` | Asset path in game files |
+| `background` | `String` | URL to the agent's background image |
+| `backgroundGradientColors` | `Array` | Gradient colors for the agent's background |
+| `bustPortrait` | `String` | URL to the agent's bust portrait |
+| `characterTags` | `Array` | Tags associated with the character |
+| `description` | `String` | Description of the agent |
+| `developerName` | `String` | Internal developer name |
+| `displayIcon` | `String` | URL to the agent's display icon |
+| `displayIconSmall` | `String` | URL to the agent's small display icon |
+| `displayName` | `String` | Display name of the agent |
+| `fullPortrait` | `String` | URL to the agent's full portrait |
+| `fullPortraitV2` | `String` | URL to the agent's full portrait version 2 |
+| `isAvailableForTest` | `Boolean` | Whether the agent is available for testing |
+| `isBaseContent` | `Boolean` | Whether the agent is base content |
+| `isFullPortraitRightFacing` | `Boolean` | Whether the full portrait faces right |
+| `isPlayableCharacter` | `Boolean` | Whether the agent is playable |
+| `killfeedPortrait` | `String` | URL to the agent's killfeed portrait |
 | `role` | `Hash` |  |
-| `uuid` | `String` |  |
+| `uuid` | `String` | Unique identifier for the agent |
 | `voiceLine` | `Hash` |  |
 
 #### Example: Load
@@ -457,10 +457,10 @@ Create an instance: `competitive = client.Competitive`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assetObjectName` | `String` |  |
-| `assetPath` | `String` |  |
+| `assetObjectName` | `String` | Asset object name |
+| `assetPath` | `String` | Asset path in game files |
 | `tiers` | `Array` |  |
-| `uuid` | `String` |  |
+| `uuid` | `String` | Unique identifier for the competitive tier set |
 
 #### Example: List
 
@@ -484,23 +484,23 @@ Create an instance: `cosmetic = client.Cosmetic`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `animationGif` | `String` |  |
-| `animationPng` | `String` |  |
-| `assetPath` | `String` |  |
-| `category` | `String` |  |
-| `displayIcon` | `String` |  |
-| `displayName` | `String` |  |
-| `fullIcon` | `String` |  |
-| `fullTransparentIcon` | `String` |  |
-| `hideIfNotOwned` | `Boolean` |  |
-| `isHiddenIfNotOwned` | `Boolean` |  |
-| `isNullSpray` | `Boolean` |  |
-| `largeArt` | `String` |  |
+| `animationGif` | `String` | URL to the spray's animation GIF |
+| `animationPng` | `String` | URL to the spray's animation PNG |
+| `assetPath` | `String` | Asset path in game files |
+| `category` | `String` | Category of the spray |
+| `displayIcon` | `String` | URL to the buddy's display icon |
+| `displayName` | `String` | Display name of the buddy |
+| `fullIcon` | `String` | URL to the spray's full icon |
+| `fullTransparentIcon` | `String` | URL to the spray's full transparent icon |
+| `hideIfNotOwned` | `Boolean` | Whether the spray is hidden if not owned |
+| `isHiddenIfNotOwned` | `Boolean` | Whether the buddy is hidden if not owned |
+| `isNullSpray` | `Boolean` | Whether this is a null spray |
+| `largeArt` | `String` | URL to the card's large art |
 | `levels` | `Array` |  |
-| `smallArt` | `String` |  |
-| `themeUuid` | `String` |  |
-| `uuid` | `String` |  |
-| `wideArt` | `String` |  |
+| `smallArt` | `String` | URL to the card's small art |
+| `themeUuid` | `String` | UUID of the theme |
+| `uuid` | `String` | Unique identifier for the buddy |
+| `wideArt` | `String` | URL to the card's wide art |
 
 #### Example: List
 
@@ -524,20 +524,20 @@ Create an instance: `game_mode = client.GameMode`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowsMatchTimeouts` | `Boolean` |  |
-| `assetPath` | `String` |  |
-| `displayIcon` | `String` |  |
-| `displayName` | `String` |  |
-| `duration` | `String` |  |
-| `economyType` | `String` |  |
-| `gameFeatureOverrides` | `Array` |  |
-| `gameRuleBoolOverrides` | `Array` |  |
-| `isMinimapHidden` | `Boolean` |  |
-| `isTeamVoiceAllowed` | `Boolean` |  |
-| `orbCount` | `Integer` |  |
-| `roundsPerHalf` | `Integer` |  |
-| `teamRoles` | `Array` |  |
-| `uuid` | `String` |  |
+| `allowsMatchTimeouts` | `Boolean` | Whether match timeouts are allowed |
+| `assetPath` | `String` | Asset path in game files |
+| `displayIcon` | `String` | URL to the game mode's display icon |
+| `displayName` | `String` | Display name of the game mode |
+| `duration` | `String` | Duration of the game mode |
+| `economyType` | `String` | Type of economy system |
+| `gameFeatureOverrides` | `Array` | Game feature overrides |
+| `gameRuleBoolOverrides` | `Array` | Game rule boolean overrides |
+| `isMinimapHidden` | `Boolean` | Whether the minimap is hidden |
+| `isTeamVoiceAllowed` | `Boolean` | Whether team voice chat is allowed |
+| `orbCount` | `Integer` | Number of orbs in the game mode |
+| `roundsPerHalf` | `Integer` | Number of rounds per half |
+| `teamRoles` | `Array` | Team roles in the game mode |
+| `uuid` | `String` | Unique identifier for the game mode |
 
 #### Example: List
 
@@ -562,21 +562,21 @@ Create an instance: `map = client.Map`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assetPath` | `String` |  |
+| `assetPath` | `String` | Asset path in game files |
 | `callouts` | `Array` |  |
-| `coordinates` | `String` |  |
-| `displayIcon` | `String` |  |
-| `displayName` | `String` |  |
-| `listViewIcon` | `String` |  |
-| `mapUrl` | `String` |  |
-| `narrativeDescription` | `String` |  |
-| `splash` | `String` |  |
-| `tacticalDescription` | `String` |  |
-| `uuid` | `String` |  |
-| `xMultiplier` | `Float` |  |
-| `xScalarToAdd` | `Float` |  |
-| `yMultiplier` | `Float` |  |
-| `yScalarToAdd` | `Float` |  |
+| `coordinates` | `String` | Geographic coordinates of the map location |
+| `displayIcon` | `String` | URL to the map's display icon |
+| `displayName` | `String` | Display name of the map |
+| `listViewIcon` | `String` | URL to the map's list view icon |
+| `mapUrl` | `String` | URL to the map overview |
+| `narrativeDescription` | `String` | Narrative description of the map |
+| `splash` | `String` | URL to the map's splash image |
+| `tacticalDescription` | `String` | Tactical description of the map |
+| `uuid` | `String` | Unique identifier for the map |
+| `xMultiplier` | `Float` | X coordinate multiplier |
+| `xScalarToAdd` | `Float` | X scalar to add |
+| `yMultiplier` | `Float` | Y coordinate multiplier |
+| `yScalarToAdd` | `Float` | Y scalar to add |
 
 #### Example: Load
 
@@ -608,15 +608,15 @@ Create an instance: `weapon = client.Weapon`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assetPath` | `String` |  |
-| `category` | `String` |  |
-| `defaultSkinUuid` | `String` |  |
-| `displayIcon` | `String` |  |
-| `displayName` | `String` |  |
-| `killStreamIcon` | `String` |  |
+| `assetPath` | `String` | Asset path in game files |
+| `category` | `String` | Weapon category (e.g., Rifle, Pistol) |
+| `defaultSkinUuid` | `String` | UUID of the default skin |
+| `displayIcon` | `String` | URL to the weapon's display icon |
+| `displayName` | `String` | Display name of the weapon |
+| `killStreamIcon` | `String` | URL to the weapon's kill stream icon |
 | `shopData` | `Hash` |  |
 | `skins` | `Array` |  |
-| `uuid` | `String` |  |
+| `uuid` | `String` | Unique identifier for the weapon |
 | `weaponStats` | `Hash` |  |
 
 #### Example: Load

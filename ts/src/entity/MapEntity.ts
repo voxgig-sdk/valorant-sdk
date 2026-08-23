@@ -15,13 +15,13 @@ import type {
 } from '../types'
 
 import type {
-  Map,
+  MapType,
   MapLoadMatch,
   MapListMatch,
 } from '../ValorantTypes'
 
 // TODO: needs Entity superclass
-class MapEntity extends ValorantEntityBase<Map> {
+class MapEntity extends ValorantEntityBase<MapType> {
 
   constructor(client: ValorantSDK, entopts: any) {
     super(client, entopts)

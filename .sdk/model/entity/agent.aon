@@ -1,0 +1,231 @@
+# Entity: agent
+
+main: kit: entity: agent: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "abilities"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "assetPath"
+      req: false
+      short: "Asset path in game files"
+      type: "`$STRING`"
+    }
+    {
+      name: "background"
+      req: false
+      short: "URL to the agent's background image"
+      type: "`$STRING`"
+    }
+    {
+      name: "backgroundGradientColors"
+      req: false
+      short: "Gradient colors for the agent's background"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "bustPortrait"
+      req: false
+      short: "URL to the agent's bust portrait"
+      type: "`$STRING`"
+    }
+    {
+      name: "characterTags"
+      req: false
+      short: "Tags associated with the character"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "description"
+      req: false
+      short: "Description of the agent"
+      type: "`$STRING`"
+    }
+    {
+      name: "developerName"
+      req: false
+      short: "Internal developer name"
+      type: "`$STRING`"
+    }
+    {
+      name: "displayIcon"
+      req: false
+      short: "URL to the agent's display icon"
+      type: "`$STRING`"
+    }
+    {
+      name: "displayIconSmall"
+      req: false
+      short: "URL to the agent's small display icon"
+      type: "`$STRING`"
+    }
+    {
+      name: "displayName"
+      req: false
+      short: "Display name of the agent"
+      type: "`$STRING`"
+    }
+    {
+      name: "fullPortrait"
+      req: false
+      short: "URL to the agent's full portrait"
+      type: "`$STRING`"
+    }
+    {
+      name: "fullPortraitV2"
+      req: false
+      short: "URL to the agent's full portrait version 2"
+      type: "`$STRING`"
+    }
+    {
+      name: "isAvailableForTest"
+      req: false
+      short: "Whether the agent is available for testing"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "isBaseContent"
+      req: false
+      short: "Whether the agent is base content"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "isFullPortraitRightFacing"
+      req: false
+      short: "Whether the full portrait faces right"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "isPlayableCharacter"
+      req: false
+      short: "Whether the agent is playable"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "killfeedPortrait"
+      req: false
+      short: "URL to the agent's killfeed portrait"
+      type: "`$STRING`"
+    }
+    {
+      name: "role"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "uuid"
+      req: false
+      short: "Unique identifier for the agent"
+      type: "`$STRING`"
+    }
+    {
+      name: "voiceLine"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "agent"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "is_playable_character"
+                orig: "is_playable_character"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/agents"
+          parts: [
+            "v1"
+            "agents"
+          ]
+          select: {
+            exist: [
+              "is_playable_character"
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/agents/{uuid}"
+          parts: [
+            "v1"
+            "agents"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              uuid: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

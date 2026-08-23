@@ -145,7 +145,7 @@ export interface GameModeListMatch {
   uuid?: string
 }
 
-export interface Map {
+export interface MapType {
   assetPath?: string
   callouts?: any[]
   coordinates?: string

@@ -1,0 +1,157 @@
+# Entity: weapon
+
+main: kit: entity: weapon: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "assetPath"
+      req: false
+      short: "Asset path in game files"
+      type: "`$STRING`"
+    }
+    {
+      name: "category"
+      req: false
+      short: "Weapon category (e.g., Rifle, Pistol)"
+      type: "`$STRING`"
+    }
+    {
+      name: "defaultSkinUuid"
+      req: false
+      short: "UUID of the default skin"
+      type: "`$STRING`"
+    }
+    {
+      name: "displayIcon"
+      req: false
+      short: "URL to the weapon's display icon"
+      type: "`$STRING`"
+    }
+    {
+      name: "displayName"
+      req: false
+      short: "Display name of the weapon"
+      type: "`$STRING`"
+    }
+    {
+      name: "killStreamIcon"
+      req: false
+      short: "URL to the weapon's kill stream icon"
+      type: "`$STRING`"
+    }
+    {
+      name: "shopData"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "skins"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "uuid"
+      req: false
+      short: "Unique identifier for the weapon"
+      type: "`$STRING`"
+    }
+    {
+      name: "weaponStats"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "weapon"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/weapons"
+          parts: [
+            "v1"
+            "weapons"
+          ]
+          select: {
+            exist: [
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/weapons/{uuid}"
+          parts: [
+            "v1"
+            "weapons"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              uuid: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

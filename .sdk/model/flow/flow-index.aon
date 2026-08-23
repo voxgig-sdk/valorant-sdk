@@ -1,0 +1,8 @@
+# Flows
+
+@"BasicAgentFlow.aon"
+@"BasicCompetitiveFlow.aon"
+@"BasicCosmeticFlow.aon"
+@"BasicGameModeFlow.aon"
+@"BasicMapFlow.aon"
+@"BasicWeaponFlow.aon"

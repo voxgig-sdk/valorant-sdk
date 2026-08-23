@@ -1,8 +1,0 @@
-# Entity Models
-
-@"agent.aontu"
-@"competitive.aontu"
-@"cosmetic.aontu"
-@"game_mode.aontu"
-@"map.aontu"
-@"weapon.aontu"

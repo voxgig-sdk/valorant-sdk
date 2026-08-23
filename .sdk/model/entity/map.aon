@@ -1,0 +1,189 @@
+# Entity: map
+
+main: kit: entity: map: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "assetPath"
+      req: false
+      short: "Asset path in game files"
+      type: "`$STRING`"
+    }
+    {
+      name: "callouts"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "coordinates"
+      req: false
+      short: "Geographic coordinates of the map location"
+      type: "`$STRING`"
+    }
+    {
+      name: "displayIcon"
+      req: false
+      short: "URL to the map's display icon"
+      type: "`$STRING`"
+    }
+    {
+      name: "displayName"
+      req: false
+      short: "Display name of the map"
+      type: "`$STRING`"
+    }
+    {
+      name: "listViewIcon"
+      req: false
+      short: "URL to the map's list view icon"
+      type: "`$STRING`"
+    }
+    {
+      name: "mapUrl"
+      req: false
+      short: "URL to the map overview"
+      type: "`$STRING`"
+    }
+    {
+      name: "narrativeDescription"
+      req: false
+      short: "Narrative description of the map"
+      type: "`$STRING`"
+    }
+    {
+      name: "splash"
+      req: false
+      short: "URL to the map's splash image"
+      type: "`$STRING`"
+    }
+    {
+      name: "tacticalDescription"
+      req: false
+      short: "Tactical description of the map"
+      type: "`$STRING`"
+    }
+    {
+      name: "uuid"
+      req: false
+      short: "Unique identifier for the map"
+      type: "`$STRING`"
+    }
+    {
+      name: "xMultiplier"
+      req: false
+      short: "X coordinate multiplier"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "xScalarToAdd"
+      req: false
+      short: "X scalar to add"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "yMultiplier"
+      req: false
+      short: "Y coordinate multiplier"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "yScalarToAdd"
+      req: false
+      short: "Y scalar to add"
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "map"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/maps"
+          parts: [
+            "v1"
+            "maps"
+          ]
+          select: {
+            exist: [
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/maps/{uuid}"
+          parts: [
+            "v1"
+            "maps"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              uuid: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,134 @@
+# Entity: game_mode
+
+main: kit: entity: game_mode: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "allowsMatchTimeouts"
+      req: false
+      short: "Whether match timeouts are allowed"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "assetPath"
+      req: false
+      short: "Asset path in game files"
+      type: "`$STRING`"
+    }
+    {
+      name: "displayIcon"
+      req: false
+      short: "URL to the game mode's display icon"
+      type: "`$STRING`"
+    }
+    {
+      name: "displayName"
+      req: false
+      short: "Display name of the game mode"
+      type: "`$STRING`"
+    }
+    {
+      name: "duration"
+      req: false
+      short: "Duration of the game mode"
+      type: "`$STRING`"
+    }
+    {
+      name: "economyType"
+      req: false
+      short: "Type of economy system"
+      type: "`$STRING`"
+    }
+    {
+      name: "gameFeatureOverrides"
+      req: false
+      short: "Game feature overrides"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "gameRuleBoolOverrides"
+      req: false
+      short: "Game rule boolean overrides"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "isMinimapHidden"
+      req: false
+      short: "Whether the minimap is hidden"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "isTeamVoiceAllowed"
+      req: false
+      short: "Whether team voice chat is allowed"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "orbCount"
+      req: false
+      short: "Number of orbs in the game mode"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "roundsPerHalf"
+      req: false
+      short: "Number of rounds per half"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "teamRoles"
+      req: false
+      short: "Team roles in the game mode"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "uuid"
+      req: false
+      short: "Unique identifier for the game mode"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "game_mode"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/gamemodes"
+          parts: [
+            "v1"
+            "gamemodes"
+          ]
+          select: {
+            exist: [
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

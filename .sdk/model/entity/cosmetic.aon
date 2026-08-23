@@ -1,0 +1,209 @@
+# Entity: cosmetic
+
+main: kit: entity: cosmetic: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "animationGif"
+      req: false
+      short: "URL to the spray's animation GIF"
+      type: "`$STRING`"
+    }
+    {
+      name: "animationPng"
+      req: false
+      short: "URL to the spray's animation PNG"
+      type: "`$STRING`"
+    }
+    {
+      name: "assetPath"
+      req: false
+      short: "Asset path in game files"
+      type: "`$STRING`"
+    }
+    {
+      name: "category"
+      req: false
+      short: "Category of the spray"
+      type: "`$STRING`"
+    }
+    {
+      name: "displayIcon"
+      req: false
+      short: "URL to the buddy's display icon"
+      type: "`$STRING`"
+    }
+    {
+      name: "displayName"
+      req: false
+      short: "Display name of the buddy"
+      type: "`$STRING`"
+    }
+    {
+      name: "fullIcon"
+      req: false
+      short: "URL to the spray's full icon"
+      type: "`$STRING`"
+    }
+    {
+      name: "fullTransparentIcon"
+      req: false
+      short: "URL to the spray's full transparent icon"
+      type: "`$STRING`"
+    }
+    {
+      name: "hideIfNotOwned"
+      req: false
+      short: "Whether the spray is hidden if not owned"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "isHiddenIfNotOwned"
+      req: false
+      short: "Whether the buddy is hidden if not owned"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "isNullSpray"
+      req: false
+      short: "Whether this is a null spray"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "largeArt"
+      req: false
+      short: "URL to the card's large art"
+      type: "`$STRING`"
+    }
+    {
+      name: "levels"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "smallArt"
+      req: false
+      short: "URL to the card's small art"
+      type: "`$STRING`"
+    }
+    {
+      name: "themeUuid"
+      req: false
+      short: "UUID of the theme"
+      type: "`$STRING`"
+    }
+    {
+      name: "uuid"
+      req: false
+      short: "Unique identifier for the buddy"
+      type: "`$STRING`"
+    }
+    {
+      name: "wideArt"
+      req: false
+      short: "URL to the card's wide art"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "cosmetic"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/buddies"
+          parts: [
+            "v1"
+            "buddies"
+          ]
+          select: {
+            exist: [
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/cards"
+          parts: [
+            "v1"
+            "cards"
+          ]
+          select: {
+            exist: [
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "en-US"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/sprays"
+          parts: [
+            "v1"
+            "sprays"
+          ]
+          select: {
+            exist: [
+              "language"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -42,102 +42,119 @@
               "active": true,
               "name": "assetPath",
               "req": false,
+              "short": "Asset path in game files",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "background",
               "req": false,
+              "short": "URL to the agent's background image",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "backgroundGradientColors",
               "req": false,
+              "short": "Gradient colors for the agent's background",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "bustPortrait",
               "req": false,
+              "short": "URL to the agent's bust portrait",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "characterTags",
               "req": false,
+              "short": "Tags associated with the character",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "description",
               "req": false,
+              "short": "Description of the agent",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "developerName",
               "req": false,
+              "short": "Internal developer name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "displayIcon",
               "req": false,
+              "short": "URL to the agent's display icon",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "displayIconSmall",
               "req": false,
+              "short": "URL to the agent's small display icon",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "displayName",
               "req": false,
+              "short": "Display name of the agent",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "fullPortrait",
               "req": false,
+              "short": "URL to the agent's full portrait",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "fullPortraitV2",
               "req": false,
+              "short": "URL to the agent's full portrait version 2",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "isAvailableForTest",
               "req": false,
+              "short": "Whether the agent is available for testing",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "isBaseContent",
               "req": false,
+              "short": "Whether the agent is base content",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "isFullPortraitRightFacing",
               "req": false,
+              "short": "Whether the full portrait faces right",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "isPlayableCharacter",
               "req": false,
+              "short": "Whether the agent is playable",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "killfeedPortrait",
               "req": false,
+              "short": "URL to the agent's killfeed portrait",
               "type": "`$STRING`"
             },
             {
@@ -150,6 +167,7 @@
               "active": true,
               "name": "uuid",
               "req": false,
+              "short": "Unique identifier for the agent",
               "type": "`$STRING`"
             },
             {
@@ -278,12 +296,14 @@
               "active": true,
               "name": "assetObjectName",
               "req": false,
+              "short": "Asset object name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "assetPath",
               "req": false,
+              "short": "Asset path in game files",
               "type": "`$STRING`"
             },
             {
@@ -296,6 +316,7 @@
               "active": true,
               "name": "uuid",
               "req": false,
+              "short": "Unique identifier for the competitive tier set",
               "type": "`$STRING`"
             }
           ],
@@ -354,72 +375,84 @@
               "active": true,
               "name": "animationGif",
               "req": false,
+              "short": "URL to the spray's animation GIF",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "animationPng",
               "req": false,
+              "short": "URL to the spray's animation PNG",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "assetPath",
               "req": false,
+              "short": "Asset path in game files",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "category",
               "req": false,
+              "short": "Category of the spray",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "displayIcon",
               "req": false,
+              "short": "URL to the buddy's display icon",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "displayName",
               "req": false,
+              "short": "Display name of the buddy",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "fullIcon",
               "req": false,
+              "short": "URL to the spray's full icon",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "fullTransparentIcon",
               "req": false,
+              "short": "URL to the spray's full transparent icon",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "hideIfNotOwned",
               "req": false,
+              "short": "Whether the spray is hidden if not owned",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "isHiddenIfNotOwned",
               "req": false,
+              "short": "Whether the buddy is hidden if not owned",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "isNullSpray",
               "req": false,
+              "short": "Whether this is a null spray",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "largeArt",
               "req": false,
+              "short": "URL to the card's large art",
               "type": "`$STRING`"
             },
             {
@@ -432,24 +465,28 @@
               "active": true,
               "name": "smallArt",
               "req": false,
+              "short": "URL to the card's small art",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "themeUuid",
               "req": false,
+              "short": "UUID of the theme",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "uuid",
               "req": false,
+              "short": "Unique identifier for the buddy",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "wideArt",
               "req": false,
+              "short": "URL to the card's wide art",
               "type": "`$STRING`"
             }
           ],
@@ -572,84 +609,98 @@
               "active": true,
               "name": "allowsMatchTimeouts",
               "req": false,
+              "short": "Whether match timeouts are allowed",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "assetPath",
               "req": false,
+              "short": "Asset path in game files",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "displayIcon",
               "req": false,
+              "short": "URL to the game mode's display icon",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "displayName",
               "req": false,
+              "short": "Display name of the game mode",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "duration",
               "req": false,
+              "short": "Duration of the game mode",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "economyType",
               "req": false,
+              "short": "Type of economy system",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "gameFeatureOverrides",
               "req": false,
+              "short": "Game feature overrides",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "gameRuleBoolOverrides",
               "req": false,
+              "short": "Game rule boolean overrides",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "isMinimapHidden",
               "req": false,
+              "short": "Whether the minimap is hidden",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "isTeamVoiceAllowed",
               "req": false,
+              "short": "Whether team voice chat is allowed",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "orbCount",
               "req": false,
+              "short": "Number of orbs in the game mode",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "roundsPerHalf",
               "req": false,
+              "short": "Number of rounds per half",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "teamRoles",
               "req": false,
+              "short": "Team roles in the game mode",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "uuid",
               "req": false,
+              "short": "Unique identifier for the game mode",
               "type": "`$STRING`"
             }
           ],
@@ -708,6 +759,7 @@
               "active": true,
               "name": "assetPath",
               "req": false,
+              "short": "Asset path in game files",
               "type": "`$STRING`"
             },
             {
@@ -720,78 +772,91 @@
               "active": true,
               "name": "coordinates",
               "req": false,
+              "short": "Geographic coordinates of the map location",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "displayIcon",
               "req": false,
+              "short": "URL to the map's display icon",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "displayName",
               "req": false,
+              "short": "Display name of the map",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "listViewIcon",
               "req": false,
+              "short": "URL to the map's list view icon",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "mapUrl",
               "req": false,
+              "short": "URL to the map overview",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "narrativeDescription",
               "req": false,
+              "short": "Narrative description of the map",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "splash",
               "req": false,
+              "short": "URL to the map's splash image",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "tacticalDescription",
               "req": false,
+              "short": "Tactical description of the map",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "uuid",
               "req": false,
+              "short": "Unique identifier for the map",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "xMultiplier",
               "req": false,
+              "short": "X coordinate multiplier",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "xScalarToAdd",
               "req": false,
+              "short": "X scalar to add",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "yMultiplier",
               "req": false,
+              "short": "Y coordinate multiplier",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "yScalarToAdd",
               "req": false,
+              "short": "Y scalar to add",
               "type": "`$NUMBER`"
             }
           ],
@@ -905,36 +970,42 @@
               "active": true,
               "name": "assetPath",
               "req": false,
+              "short": "Asset path in game files",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "category",
               "req": false,
+              "short": "Weapon category (e.g., Rifle, Pistol)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "defaultSkinUuid",
               "req": false,
+              "short": "UUID of the default skin",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "displayIcon",
               "req": false,
+              "short": "URL to the weapon's display icon",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "displayName",
               "req": false,
+              "short": "Display name of the weapon",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "killStreamIcon",
               "req": false,
+              "short": "URL to the weapon's kill stream icon",
               "type": "`$STRING`"
             },
             {
@@ -953,6 +1024,7 @@
               "active": true,
               "name": "uuid",
               "req": false,
+              "short": "Unique identifier for the weapon",
               "type": "`$STRING`"
             },
             {

@@ -113,25 +113,25 @@ $agent = $client->Agent();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `abilities` | `array` | No |  |
-| `assetPath` | `string` | No |  |
-| `background` | `string` | No |  |
-| `backgroundGradientColors` | `array` | No |  |
-| `bustPortrait` | `string` | No |  |
-| `characterTags` | `array` | No |  |
-| `description` | `string` | No |  |
-| `developerName` | `string` | No |  |
-| `displayIcon` | `string` | No |  |
-| `displayIconSmall` | `string` | No |  |
-| `displayName` | `string` | No |  |
-| `fullPortrait` | `string` | No |  |
-| `fullPortraitV2` | `string` | No |  |
-| `isAvailableForTest` | `bool` | No |  |
-| `isBaseContent` | `bool` | No |  |
-| `isFullPortraitRightFacing` | `bool` | No |  |
-| `isPlayableCharacter` | `bool` | No |  |
-| `killfeedPortrait` | `string` | No |  |
+| `assetPath` | `string` | No | Asset path in game files |
+| `background` | `string` | No | URL to the agent's background image |
+| `backgroundGradientColors` | `array` | No | Gradient colors for the agent's background |
+| `bustPortrait` | `string` | No | URL to the agent's bust portrait |
+| `characterTags` | `array` | No | Tags associated with the character |
+| `description` | `string` | No | Description of the agent |
+| `developerName` | `string` | No | Internal developer name |
+| `displayIcon` | `string` | No | URL to the agent's display icon |
+| `displayIconSmall` | `string` | No | URL to the agent's small display icon |
+| `displayName` | `string` | No | Display name of the agent |
+| `fullPortrait` | `string` | No | URL to the agent's full portrait |
+| `fullPortraitV2` | `string` | No | URL to the agent's full portrait version 2 |
+| `isAvailableForTest` | `bool` | No | Whether the agent is available for testing |
+| `isBaseContent` | `bool` | No | Whether the agent is base content |
+| `isFullPortraitRightFacing` | `bool` | No | Whether the full portrait faces right |
+| `isPlayableCharacter` | `bool` | No | Whether the agent is playable |
+| `killfeedPortrait` | `string` | No | URL to the agent's killfeed portrait |
 | `role` | `array` | No |  |
-| `uuid` | `string` | No |  |
+| `uuid` | `string` | No | Unique identifier for the agent |
 | `voiceLine` | `array` | No |  |
 
 ### Operations
@@ -192,10 +192,10 @@ $competitive = $client->Competitive();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assetObjectName` | `string` | No |  |
-| `assetPath` | `string` | No |  |
+| `assetObjectName` | `string` | No | Asset object name |
+| `assetPath` | `string` | No | Asset path in game files |
 | `tiers` | `array` | No |  |
-| `uuid` | `string` | No |  |
+| `uuid` | `string` | No | Unique identifier for the competitive tier set |
 
 ### Operations
 
@@ -247,23 +247,23 @@ $cosmetic = $client->Cosmetic();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `animationGif` | `string` | No |  |
-| `animationPng` | `string` | No |  |
-| `assetPath` | `string` | No |  |
-| `category` | `string` | No |  |
-| `displayIcon` | `string` | No |  |
-| `displayName` | `string` | No |  |
-| `fullIcon` | `string` | No |  |
-| `fullTransparentIcon` | `string` | No |  |
-| `hideIfNotOwned` | `bool` | No |  |
-| `isHiddenIfNotOwned` | `bool` | No |  |
-| `isNullSpray` | `bool` | No |  |
-| `largeArt` | `string` | No |  |
+| `animationGif` | `string` | No | URL to the spray's animation GIF |
+| `animationPng` | `string` | No | URL to the spray's animation PNG |
+| `assetPath` | `string` | No | Asset path in game files |
+| `category` | `string` | No | Category of the spray |
+| `displayIcon` | `string` | No | URL to the buddy's display icon |
+| `displayName` | `string` | No | Display name of the buddy |
+| `fullIcon` | `string` | No | URL to the spray's full icon |
+| `fullTransparentIcon` | `string` | No | URL to the spray's full transparent icon |
+| `hideIfNotOwned` | `bool` | No | Whether the spray is hidden if not owned |
+| `isHiddenIfNotOwned` | `bool` | No | Whether the buddy is hidden if not owned |
+| `isNullSpray` | `bool` | No | Whether this is a null spray |
+| `largeArt` | `string` | No | URL to the card's large art |
 | `levels` | `array` | No |  |
-| `smallArt` | `string` | No |  |
-| `themeUuid` | `string` | No |  |
-| `uuid` | `string` | No |  |
-| `wideArt` | `string` | No |  |
+| `smallArt` | `string` | No | URL to the card's small art |
+| `themeUuid` | `string` | No | UUID of the theme |
+| `uuid` | `string` | No | Unique identifier for the buddy |
+| `wideArt` | `string` | No | URL to the card's wide art |
 
 ### Operations
 
@@ -315,20 +315,20 @@ $game_mode = $client->GameMode();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowsMatchTimeouts` | `bool` | No |  |
-| `assetPath` | `string` | No |  |
-| `displayIcon` | `string` | No |  |
-| `displayName` | `string` | No |  |
-| `duration` | `string` | No |  |
-| `economyType` | `string` | No |  |
-| `gameFeatureOverrides` | `array` | No |  |
-| `gameRuleBoolOverrides` | `array` | No |  |
-| `isMinimapHidden` | `bool` | No |  |
-| `isTeamVoiceAllowed` | `bool` | No |  |
-| `orbCount` | `int` | No |  |
-| `roundsPerHalf` | `int` | No |  |
-| `teamRoles` | `array` | No |  |
-| `uuid` | `string` | No |  |
+| `allowsMatchTimeouts` | `bool` | No | Whether match timeouts are allowed |
+| `assetPath` | `string` | No | Asset path in game files |
+| `displayIcon` | `string` | No | URL to the game mode's display icon |
+| `displayName` | `string` | No | Display name of the game mode |
+| `duration` | `string` | No | Duration of the game mode |
+| `economyType` | `string` | No | Type of economy system |
+| `gameFeatureOverrides` | `array` | No | Game feature overrides |
+| `gameRuleBoolOverrides` | `array` | No | Game rule boolean overrides |
+| `isMinimapHidden` | `bool` | No | Whether the minimap is hidden |
+| `isTeamVoiceAllowed` | `bool` | No | Whether team voice chat is allowed |
+| `orbCount` | `int` | No | Number of orbs in the game mode |
+| `roundsPerHalf` | `int` | No | Number of rounds per half |
+| `teamRoles` | `array` | No | Team roles in the game mode |
+| `uuid` | `string` | No | Unique identifier for the game mode |
 
 ### Operations
 
@@ -380,21 +380,21 @@ $map = $client->Map();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assetPath` | `string` | No |  |
+| `assetPath` | `string` | No | Asset path in game files |
 | `callouts` | `array` | No |  |
-| `coordinates` | `string` | No |  |
-| `displayIcon` | `string` | No |  |
-| `displayName` | `string` | No |  |
-| `listViewIcon` | `string` | No |  |
-| `mapUrl` | `string` | No |  |
-| `narrativeDescription` | `string` | No |  |
-| `splash` | `string` | No |  |
-| `tacticalDescription` | `string` | No |  |
-| `uuid` | `string` | No |  |
-| `xMultiplier` | `float` | No |  |
-| `xScalarToAdd` | `float` | No |  |
-| `yMultiplier` | `float` | No |  |
-| `yScalarToAdd` | `float` | No |  |
+| `coordinates` | `string` | No | Geographic coordinates of the map location |
+| `displayIcon` | `string` | No | URL to the map's display icon |
+| `displayName` | `string` | No | Display name of the map |
+| `listViewIcon` | `string` | No | URL to the map's list view icon |
+| `mapUrl` | `string` | No | URL to the map overview |
+| `narrativeDescription` | `string` | No | Narrative description of the map |
+| `splash` | `string` | No | URL to the map's splash image |
+| `tacticalDescription` | `string` | No | Tactical description of the map |
+| `uuid` | `string` | No | Unique identifier for the map |
+| `xMultiplier` | `float` | No | X coordinate multiplier |
+| `xScalarToAdd` | `float` | No | X scalar to add |
+| `yMultiplier` | `float` | No | Y coordinate multiplier |
+| `yScalarToAdd` | `float` | No | Y scalar to add |
 
 ### Operations
 
@@ -454,15 +454,15 @@ $weapon = $client->Weapon();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assetPath` | `string` | No |  |
-| `category` | `string` | No |  |
-| `defaultSkinUuid` | `string` | No |  |
-| `displayIcon` | `string` | No |  |
-| `displayName` | `string` | No |  |
-| `killStreamIcon` | `string` | No |  |
+| `assetPath` | `string` | No | Asset path in game files |
+| `category` | `string` | No | Weapon category (e.g., Rifle, Pistol) |
+| `defaultSkinUuid` | `string` | No | UUID of the default skin |
+| `displayIcon` | `string` | No | URL to the weapon's display icon |
+| `displayName` | `string` | No | Display name of the weapon |
+| `killStreamIcon` | `string` | No | URL to the weapon's kill stream icon |
 | `shopData` | `array` | No |  |
 | `skins` | `array` | No |  |
-| `uuid` | `string` | No |  |
+| `uuid` | `string` | No | Unique identifier for the weapon |
 | `weaponStats` | `array` | No |  |
 
 ### Operations

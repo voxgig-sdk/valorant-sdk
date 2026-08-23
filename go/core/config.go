@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Valorant",
+			"slug": "valorant",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -42,70 +45,87 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "assetPath",
+						"short": "Asset path in game files",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "background",
+						"short": "URL to the agent's background image",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "backgroundGradientColors",
+						"short": "Gradient colors for the agent's background",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "bustPortrait",
+						"short": "URL to the agent's bust portrait",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "characterTags",
+						"short": "Tags associated with the character",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "description",
+						"short": "Description of the agent",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "developerName",
+						"short": "Internal developer name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "displayIcon",
+						"short": "URL to the agent's display icon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "displayIconSmall",
+						"short": "URL to the agent's small display icon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "displayName",
+						"short": "Display name of the agent",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "fullPortrait",
+						"short": "URL to the agent's full portrait",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "fullPortraitV2",
+						"short": "URL to the agent's full portrait version 2",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "isAvailableForTest",
+						"short": "Whether the agent is available for testing",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "isBaseContent",
+						"short": "Whether the agent is base content",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "isFullPortraitRightFacing",
+						"short": "Whether the full portrait faces right",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "isPlayableCharacter",
+						"short": "Whether the agent is playable",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "killfeedPortrait",
+						"short": "URL to the agent's killfeed portrait",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -114,6 +134,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "uuid",
+						"short": "Unique identifier for the agent",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -225,10 +246,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "assetObjectName",
+						"short": "Asset object name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "assetPath",
+						"short": "Asset path in game files",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -237,6 +260,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "uuid",
+						"short": "Unique identifier for the competitive tier set",
 						"type": "`$STRING`",
 					},
 				},
@@ -286,50 +310,62 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "animationGif",
+						"short": "URL to the spray's animation GIF",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "animationPng",
+						"short": "URL to the spray's animation PNG",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "assetPath",
+						"short": "Asset path in game files",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "category",
+						"short": "Category of the spray",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "displayIcon",
+						"short": "URL to the buddy's display icon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "displayName",
+						"short": "Display name of the buddy",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "fullIcon",
+						"short": "URL to the spray's full icon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "fullTransparentIcon",
+						"short": "URL to the spray's full transparent icon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "hideIfNotOwned",
+						"short": "Whether the spray is hidden if not owned",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "isHiddenIfNotOwned",
+						"short": "Whether the buddy is hidden if not owned",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "isNullSpray",
+						"short": "Whether this is a null spray",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "largeArt",
+						"short": "URL to the card's large art",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -338,18 +374,22 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "smallArt",
+						"short": "URL to the card's small art",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "themeUuid",
+						"short": "UUID of the theme",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "uuid",
+						"short": "Unique identifier for the buddy",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "wideArt",
+						"short": "URL to the card's wide art",
 						"type": "`$STRING`",
 					},
 				},
@@ -457,58 +497,72 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "allowsMatchTimeouts",
+						"short": "Whether match timeouts are allowed",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "assetPath",
+						"short": "Asset path in game files",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "displayIcon",
+						"short": "URL to the game mode's display icon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "displayName",
+						"short": "Display name of the game mode",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "duration",
+						"short": "Duration of the game mode",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "economyType",
+						"short": "Type of economy system",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "gameFeatureOverrides",
+						"short": "Game feature overrides",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "gameRuleBoolOverrides",
+						"short": "Game rule boolean overrides",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "isMinimapHidden",
+						"short": "Whether the minimap is hidden",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "isTeamVoiceAllowed",
+						"short": "Whether team voice chat is allowed",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "orbCount",
+						"short": "Number of orbs in the game mode",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "roundsPerHalf",
+						"short": "Number of rounds per half",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "teamRoles",
+						"short": "Team roles in the game mode",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "uuid",
+						"short": "Unique identifier for the game mode",
 						"type": "`$STRING`",
 					},
 				},
@@ -558,6 +612,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "assetPath",
+						"short": "Asset path in game files",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -566,54 +621,67 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "coordinates",
+						"short": "Geographic coordinates of the map location",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "displayIcon",
+						"short": "URL to the map's display icon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "displayName",
+						"short": "Display name of the map",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "listViewIcon",
+						"short": "URL to the map's list view icon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "mapUrl",
+						"short": "URL to the map overview",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "narrativeDescription",
+						"short": "Narrative description of the map",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "splash",
+						"short": "URL to the map's splash image",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "tacticalDescription",
+						"short": "Tactical description of the map",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "uuid",
+						"short": "Unique identifier for the map",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "xMultiplier",
+						"short": "X coordinate multiplier",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "xScalarToAdd",
+						"short": "X scalar to add",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "yMultiplier",
+						"short": "Y coordinate multiplier",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "yScalarToAdd",
+						"short": "Y scalar to add",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -714,26 +782,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "assetPath",
+						"short": "Asset path in game files",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "category",
+						"short": "Weapon category (e.g., Rifle, Pistol)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "defaultSkinUuid",
+						"short": "UUID of the default skin",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "displayIcon",
+						"short": "URL to the weapon's display icon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "displayName",
+						"short": "Display name of the weapon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "killStreamIcon",
+						"short": "URL to the weapon's kill stream icon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -746,6 +820,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "uuid",
+						"short": "Unique identifier for the weapon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
