@@ -320,6 +320,7 @@ The `prepare()` method returns:
 | `displayName` | Display name of the agent |
 | `fullPortrait` | URL to the agent's full portrait |
 | `fullPortraitV2` | URL to the agent's full portrait version 2 |
+| `id` |  |
 | `isAvailableForTest` | Whether the agent is available for testing |
 | `isBaseContent` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | Whether the full portrait faces right |
@@ -404,6 +405,7 @@ API path: `/v1/gamemodes`
 | `coordinates` | Geographic coordinates of the map location |
 | `displayIcon` | URL to the map's display icon |
 | `displayName` | Display name of the map |
+| `id` |  |
 | `listViewIcon` | URL to the map's list view icon |
 | `mapUrl` | URL to the map overview |
 | `narrativeDescription` | Narrative description of the map |
@@ -428,6 +430,7 @@ API path: `/v1/maps`
 | `defaultSkinUuid` | UUID of the default skin |
 | `displayIcon` | URL to the weapon's display icon |
 | `displayName` | Display name of the weapon |
+| `id` |  |
 | `killStreamIcon` | URL to the weapon's kill stream icon |
 | `shopData` |  |
 | `skins` |  |
@@ -471,6 +474,7 @@ Create an instance: `const agent = client.Agent()`
 | `displayName` | `string` | Display name of the agent |
 | `fullPortrait` | `string` | URL to the agent's full portrait |
 | `fullPortraitV2` | `string` | URL to the agent's full portrait version 2 |
+| `id` | `string` |  |
 | `isAvailableForTest` | `boolean` | Whether the agent is available for testing |
 | `isBaseContent` | `boolean` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `boolean` | Whether the full portrait faces right |
@@ -614,6 +618,7 @@ Create an instance: `const map = client.Map()`
 | `coordinates` | `string` | Geographic coordinates of the map location |
 | `displayIcon` | `string` | URL to the map's display icon |
 | `displayName` | `string` | Display name of the map |
+| `id` | `string` |  |
 | `listViewIcon` | `string` | URL to the map's list view icon |
 | `mapUrl` | `string` | URL to the map overview |
 | `narrativeDescription` | `string` | Narrative description of the map |
@@ -658,6 +663,7 @@ Create an instance: `const weapon = client.Weapon()`
 | `defaultSkinUuid` | `string` | UUID of the default skin |
 | `displayIcon` | `string` | URL to the weapon's display icon |
 | `displayName` | `string` | Display name of the weapon |
+| `id` | `string` |  |
 | `killStreamIcon` | `string` | URL to the weapon's kill stream icon |
 | `shopData` | `Record<string, any>` |  |
 | `skins` | `any[]` |  |

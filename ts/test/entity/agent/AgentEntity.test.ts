@@ -66,6 +66,12 @@ describe('AgentEntity', async () => {
     const agent_ref01_list = (await agent_ref01_ent.list(agent_ref01_match)).map((e: any) => e.data())
 
 
+    // LOAD
+    const agent_ref01_match_dt0: any = {}
+    agent_ref01_match_dt0.id = agent_ref01_data.id
+    const agent_ref01_data_dt0 = (await agent_ref01_ent.load(agent_ref01_match_dt0)).data()
+    assert(agent_ref01_data_dt0.id === agent_ref01_data.id)
+
 
   })
 })

@@ -88,9 +88,13 @@ class TestWeaponEntity:
         assert isinstance(weapon_ref01_list_result, list)
 
         # LOAD
-        weapon_ref01_match_dt0 = {}
+        weapon_ref01_match_dt0 = {
+            "id": weapon_ref01_data["id"],
+        }
         weapon_ref01_data_dt0_loaded = weapon_ref01_ent.load(weapon_ref01_match_dt0, None)
-        assert weapon_ref01_data_dt0_loaded is not None
+        weapon_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(weapon_ref01_data_dt0_loaded))
+        assert weapon_ref01_data_dt0_load_result is not None
+        assert weapon_ref01_data_dt0_load_result["id"] == weapon_ref01_data["id"]
 
 
 

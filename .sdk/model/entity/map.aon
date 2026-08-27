@@ -35,6 +35,11 @@ main: kit: entity: map: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "listViewIcon"
       req: false
       short: "URL to the map's list view icon"
@@ -95,6 +100,11 @@ main: kit: entity: map: {
       type: "`$NUMBER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "map"
   op: {

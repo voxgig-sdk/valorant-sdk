@@ -93,9 +93,13 @@ class AgentEntityTest extends TestCase
         $this->assertIsArray($agent_ref01_list_result);
 
         // LOAD
-        $agent_ref01_match_dt0 = [];
+        $agent_ref01_match_dt0 = [
+            "id" => $agent_ref01_data["id"],
+        ];
         $agent_ref01_data_dt0_loaded = $agent_ref01_ent->load($agent_ref01_match_dt0, null);
-        $this->assertNotNull($agent_ref01_data_dt0_loaded);
+        $agent_ref01_data_dt0_load_result = Helpers::to_map(is_object($agent_ref01_data_dt0_loaded) && method_exists($agent_ref01_data_dt0_loaded, 'data_get') ? $agent_ref01_data_dt0_loaded->data_get() : $agent_ref01_data_dt0_loaded);
+        $this->assertNotNull($agent_ref01_data_dt0_load_result);
+        $this->assertEquals($agent_ref01_data_dt0_load_result["id"], $agent_ref01_data["id"]);
 
     }
 }

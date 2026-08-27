@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -97,6 +98,10 @@ local function make_config()
           {
             ["name"] = "fullPortraitV2",
             ["short"] = "URL to the agent's full portrait version 2",
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {
@@ -631,6 +636,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "listViewIcon",
             ["short"] = "URL to the map's list view icon",
             ["type"] = "`$STRING`",
@@ -799,6 +808,10 @@ local function make_config()
           {
             ["name"] = "displayName",
             ["short"] = "Display name of the weapon",
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {

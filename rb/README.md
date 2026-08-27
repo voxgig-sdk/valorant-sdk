@@ -37,7 +37,7 @@ begin
   # list returns an Array of Agent records — iterate directly.
   agents = client.Agent.list
   agents.each do |item|
-    puts "#{item["abilities"]}"
+    puts "#{item["id"]} #{item["abilities"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -268,6 +268,7 @@ returns a result `Hash` with these keys:
 | `displayName` | Display name of the agent |
 | `fullPortrait` | URL to the agent's full portrait |
 | `fullPortraitV2` | URL to the agent's full portrait version 2 |
+| `id` |  |
 | `isAvailableForTest` | Whether the agent is available for testing |
 | `isBaseContent` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | Whether the full portrait faces right |
@@ -352,6 +353,7 @@ API path: `/v1/gamemodes`
 | `coordinates` | Geographic coordinates of the map location |
 | `displayIcon` | URL to the map's display icon |
 | `displayName` | Display name of the map |
+| `id` |  |
 | `listViewIcon` | URL to the map's list view icon |
 | `mapUrl` | URL to the map overview |
 | `narrativeDescription` | Narrative description of the map |
@@ -376,6 +378,7 @@ API path: `/v1/maps`
 | `defaultSkinUuid` | UUID of the default skin |
 | `displayIcon` | URL to the weapon's display icon |
 | `displayName` | Display name of the weapon |
+| `id` |  |
 | `killStreamIcon` | URL to the weapon's kill stream icon |
 | `shopData` |  |
 | `skins` |  |
@@ -419,6 +422,7 @@ Create an instance: `agent = client.Agent`
 | `displayName` | `String` | Display name of the agent |
 | `fullPortrait` | `String` | URL to the agent's full portrait |
 | `fullPortraitV2` | `String` | URL to the agent's full portrait version 2 |
+| `id` | `String` |  |
 | `isAvailableForTest` | `Boolean` | Whether the agent is available for testing |
 | `isBaseContent` | `Boolean` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `Boolean` | Whether the full portrait faces right |
@@ -567,6 +571,7 @@ Create an instance: `map = client.Map`
 | `coordinates` | `String` | Geographic coordinates of the map location |
 | `displayIcon` | `String` | URL to the map's display icon |
 | `displayName` | `String` | Display name of the map |
+| `id` | `String` |  |
 | `listViewIcon` | `String` | URL to the map's list view icon |
 | `mapUrl` | `String` | URL to the map overview |
 | `narrativeDescription` | `String` | Narrative description of the map |
@@ -613,6 +618,7 @@ Create an instance: `weapon = client.Weapon`
 | `defaultSkinUuid` | `String` | UUID of the default skin |
 | `displayIcon` | `String` | URL to the weapon's display icon |
 | `displayName` | `String` | Display name of the weapon |
+| `id` | `String` |  |
 | `killStreamIcon` | `String` | URL to the weapon's kill stream icon |
 | `shopData` | `Hash` |  |
 | `skins` | `Array` |  |

@@ -92,10 +92,14 @@ describe("AgentEntity", function()
     assert.is_table(agent_ref01_list_result)
 
     -- LOAD
-    local agent_ref01_match_dt0 = {}
+    local agent_ref01_match_dt0 = {
+      id = agent_ref01_data["id"],
+    }
     local agent_ref01_data_dt0_loaded, err = agent_ref01_ent:load(agent_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(agent_ref01_data_dt0_loaded)
+    local agent_ref01_data_dt0_load_result = helpers.to_map(type(agent_ref01_data_dt0_loaded) == 'table' and agent_ref01_data_dt0_loaded.data_get and agent_ref01_data_dt0_loaded:data_get() or agent_ref01_data_dt0_loaded)
+    assert.is_not_nil(agent_ref01_data_dt0_load_result)
+    assert.are.equal(agent_ref01_data_dt0_load_result["id"], agent_ref01_data["id"])
 
   end)
 end)

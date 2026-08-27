@@ -20,6 +20,7 @@ func MakeConfig() map[string]any {
 				"options": map[string]any{
 					"active": false,
 				},
+				"transport": "base",
 			},
 		},
 		"options": map[string]any{
@@ -101,6 +102,10 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "fullPortraitV2",
 						"short": "URL to the agent's full portrait version 2",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -635,6 +640,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "listViewIcon",
 						"short": "URL to the map's list view icon",
 						"type": "`$STRING`",
@@ -803,6 +812,10 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "displayName",
 						"short": "Display name of the weapon",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{

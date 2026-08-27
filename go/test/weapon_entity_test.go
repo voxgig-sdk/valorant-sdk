@@ -121,13 +121,19 @@ func TestWeaponEntity(t *testing.T) {
 		}
 
 		// LOAD
-		weaponRef01MatchDt0 := map[string]any{}
+		weaponRef01MatchDt0 := map[string]any{
+			"id": weaponRef01Data["id"],
+		}
 		weaponRef01DataDt0Loaded, err := weaponRef01Ent.Load(weaponRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if weaponRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		weaponRef01DataDt0LoadResult := core.ToMapAny(entityData(weaponRef01DataDt0Loaded))
+		if weaponRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if weaponRef01DataDt0LoadResult["id"] != weaponRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

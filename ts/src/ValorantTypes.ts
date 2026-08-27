@@ -19,6 +19,7 @@ export interface Agent {
   displayName?: string
   fullPortrait?: string
   fullPortraitV2?: string
+  id?: string
   isAvailableForTest?: boolean
   isBaseContent?: boolean
   isFullPortraitRightFacing?: boolean
@@ -47,6 +48,7 @@ export interface AgentListMatch {
   displayName?: string
   fullPortrait?: string
   fullPortraitV2?: string
+  id?: string
   isAvailableForTest?: boolean
   isBaseContent?: boolean
   isFullPortraitRightFacing?: boolean
@@ -151,6 +153,7 @@ export interface MapType {
   coordinates?: string
   displayIcon?: string
   displayName?: string
+  id?: string
   listViewIcon?: string
   mapUrl?: string
   narrativeDescription?: string
@@ -173,6 +176,7 @@ export interface MapListMatch {
   coordinates?: string
   displayIcon?: string
   displayName?: string
+  id?: string
   listViewIcon?: string
   mapUrl?: string
   narrativeDescription?: string
@@ -191,6 +195,7 @@ export interface Weapon {
   defaultSkinUuid?: string
   displayIcon?: string
   displayName?: string
+  id?: string
   killStreamIcon?: string
   shopData?: Record<string, any>
   skins?: any[]
@@ -208,6 +213,7 @@ export interface WeaponListMatch {
   defaultSkinUuid?: string
   displayIcon?: string
   displayName?: string
+  id?: string
   killStreamIcon?: string
   shopData?: Record<string, any>
   skins?: any[]

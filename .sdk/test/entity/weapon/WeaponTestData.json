@@ -2,58 +2,58 @@
   "existing": {
     "weapon": {
       "WEAPON00": {
-        "assetPath": "s64",
-        "category": "s65",
-        "defaultSkinUuid": "s66",
-        "displayIcon": "s67",
-        "displayName": "s68",
-        "killStreamIcon": "s69",
+        "assetPath": "s6e",
+        "category": "s6f",
+        "defaultSkinUuid": "s70",
+        "displayIcon": "s71",
+        "displayName": "s72",
+        "id": "WEAPON00",
+        "killStreamIcon": "s74",
         "shopData": {},
         "skins": [],
-        "uuid": "s6c",
-        "weaponStats": {},
-        "id": "WEAPON00"
+        "uuid": "s77",
+        "weaponStats": {}
       },
       "WEAPON01": {
-        "assetPath": "sc8",
-        "category": "sc9",
-        "defaultSkinUuid": "sca",
-        "displayIcon": "scb",
-        "displayName": "scc",
-        "killStreamIcon": "scd",
+        "assetPath": "sdc",
+        "category": "sdd",
+        "defaultSkinUuid": "sde",
+        "displayIcon": "sdf",
+        "displayName": "se0",
+        "id": "WEAPON01",
+        "killStreamIcon": "se2",
         "shopData": {},
         "skins": [],
-        "uuid": "sd0",
-        "weaponStats": {},
-        "id": "WEAPON01"
+        "uuid": "se5",
+        "weaponStats": {}
       },
       "WEAPON02": {
-        "assetPath": "s12c",
-        "category": "s12d",
-        "defaultSkinUuid": "s12e",
-        "displayIcon": "s12f",
-        "displayName": "s130",
-        "killStreamIcon": "s131",
+        "assetPath": "s14a",
+        "category": "s14b",
+        "defaultSkinUuid": "s14c",
+        "displayIcon": "s14d",
+        "displayName": "s14e",
+        "id": "WEAPON02",
+        "killStreamIcon": "s150",
         "shopData": {},
         "skins": [],
-        "uuid": "s134",
-        "weaponStats": {},
-        "id": "WEAPON02"
+        "uuid": "s153",
+        "weaponStats": {}
       }
     }
   },
   "new": {
     "weapon": {
       "weapon_ref01": {
-        "assetPath": "s190",
-        "category": "s191",
-        "defaultSkinUuid": "s192",
-        "displayIcon": "s193",
-        "displayName": "s194",
-        "killStreamIcon": "s195",
+        "assetPath": "s1b8",
+        "category": "s1b9",
+        "defaultSkinUuid": "s1ba",
+        "displayIcon": "s1bb",
+        "displayName": "s1bc",
+        "killStreamIcon": "s1be",
         "shopData": {},
         "skins": [],
-        "uuid": "s198",
+        "uuid": "s1c1",
         "weaponStats": {}
       }
     }

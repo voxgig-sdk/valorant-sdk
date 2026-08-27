@@ -83,9 +83,13 @@ class WeaponEntityTest < Minitest::Test
     assert weapon_ref01_list_result.is_a?(Array)
 
     # LOAD
-    weapon_ref01_match_dt0 = {}
+    weapon_ref01_match_dt0 = {
+      "id" => weapon_ref01_data["id"],
+    }
     weapon_ref01_data_dt0_loaded = weapon_ref01_ent.load(weapon_ref01_match_dt0, nil)
-    assert !weapon_ref01_data_dt0_loaded.nil?
+    weapon_ref01_data_dt0_load_result = Helpers.to_map(weapon_ref01_data_dt0_loaded.respond_to?(:data_get) ? weapon_ref01_data_dt0_loaded.data_get : weapon_ref01_data_dt0_loaded)
+    assert !weapon_ref01_data_dt0_load_result.nil?
+    assert_equal weapon_ref01_data_dt0_load_result["id"], weapon_ref01_data["id"]
 
   end
 end

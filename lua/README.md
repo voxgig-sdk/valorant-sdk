@@ -43,7 +43,7 @@ local agents, err = client:Agent():list()
 if err then error(err) end
 
 for _, item in ipairs(agents) do
-  print(item["assetPath"])
+  print(item["id"], item["assetPath"])
 end
 ```
 
@@ -259,6 +259,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `displayName` | Display name of the agent |
 | `fullPortrait` | URL to the agent's full portrait |
 | `fullPortraitV2` | URL to the agent's full portrait version 2 |
+| `id` |  |
 | `isAvailableForTest` | Whether the agent is available for testing |
 | `isBaseContent` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | Whether the full portrait faces right |
@@ -343,6 +344,7 @@ API path: `/v1/gamemodes`
 | `coordinates` | Geographic coordinates of the map location |
 | `displayIcon` | URL to the map's display icon |
 | `displayName` | Display name of the map |
+| `id` |  |
 | `listViewIcon` | URL to the map's list view icon |
 | `mapUrl` | URL to the map overview |
 | `narrativeDescription` | Narrative description of the map |
@@ -367,6 +369,7 @@ API path: `/v1/maps`
 | `defaultSkinUuid` | UUID of the default skin |
 | `displayIcon` | URL to the weapon's display icon |
 | `displayName` | Display name of the weapon |
+| `id` |  |
 | `killStreamIcon` | URL to the weapon's kill stream icon |
 | `shopData` |  |
 | `skins` |  |
@@ -410,6 +413,7 @@ Create an instance: `local agent = client:Agent(nil)`
 | `displayName` | `string` | Display name of the agent |
 | `fullPortrait` | `string` | URL to the agent's full portrait |
 | `fullPortraitV2` | `string` | URL to the agent's full portrait version 2 |
+| `id` | `string` |  |
 | `isAvailableForTest` | `boolean` | Whether the agent is available for testing |
 | `isBaseContent` | `boolean` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `boolean` | Whether the full portrait faces right |
@@ -553,6 +557,7 @@ Create an instance: `local map = client:Map(nil)`
 | `coordinates` | `string` | Geographic coordinates of the map location |
 | `displayIcon` | `string` | URL to the map's display icon |
 | `displayName` | `string` | Display name of the map |
+| `id` | `string` |  |
 | `listViewIcon` | `string` | URL to the map's list view icon |
 | `mapUrl` | `string` | URL to the map overview |
 | `narrativeDescription` | `string` | Narrative description of the map |
@@ -597,6 +602,7 @@ Create an instance: `local weapon = client:Weapon(nil)`
 | `defaultSkinUuid` | `string` | UUID of the default skin |
 | `displayIcon` | `string` | URL to the weapon's display icon |
 | `displayName` | `string` | Display name of the weapon |
+| `id` | `string` |  |
 | `killStreamIcon` | `string` | URL to the weapon's kill stream icon |
 | `shopData` | `table` |  |
 | `skins` | `table` |  |

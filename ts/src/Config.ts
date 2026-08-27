@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -142,6 +143,10 @@ class Config {
         {
           "name": "fullPortraitV2",
           "short": "URL to the agent's full portrait version 2",
+          "type": "`$STRING`"
+        },
+        {
+          "name": "id",
           "type": "`$STRING`"
         },
         {
@@ -676,6 +681,10 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "name": "id",
+          "type": "`$STRING`"
+        },
+        {
           "name": "listViewIcon",
           "short": "URL to the map's list view icon",
           "type": "`$STRING`"
@@ -844,6 +853,10 @@ class Config {
         {
           "name": "displayName",
           "short": "Display name of the weapon",
+          "type": "`$STRING`"
+        },
+        {
+          "name": "id",
           "type": "`$STRING`"
         },
         {

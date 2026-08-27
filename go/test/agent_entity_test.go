@@ -121,13 +121,19 @@ func TestAgentEntity(t *testing.T) {
 		}
 
 		// LOAD
-		agentRef01MatchDt0 := map[string]any{}
+		agentRef01MatchDt0 := map[string]any{
+			"id": agentRef01Data["id"],
+		}
 		agentRef01DataDt0Loaded, err := agentRef01Ent.Load(agentRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if agentRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		agentRef01DataDt0LoadResult := core.ToMapAny(entityData(agentRef01DataDt0Loaded))
+		if agentRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if agentRef01DataDt0LoadResult["id"] != agentRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

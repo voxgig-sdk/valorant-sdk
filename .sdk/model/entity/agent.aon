@@ -83,6 +83,11 @@ main: kit: entity: agent: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "isAvailableForTest"
       req: false
       short: "Whether the agent is available for testing"
@@ -129,6 +134,11 @@ main: kit: entity: agent: {
       type: "`$OBJECT`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "agent"
   op: {

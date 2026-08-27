@@ -93,9 +93,13 @@ class WeaponEntityTest extends TestCase
         $this->assertIsArray($weapon_ref01_list_result);
 
         // LOAD
-        $weapon_ref01_match_dt0 = [];
+        $weapon_ref01_match_dt0 = [
+            "id" => $weapon_ref01_data["id"],
+        ];
         $weapon_ref01_data_dt0_loaded = $weapon_ref01_ent->load($weapon_ref01_match_dt0, null);
-        $this->assertNotNull($weapon_ref01_data_dt0_loaded);
+        $weapon_ref01_data_dt0_load_result = Helpers::to_map(is_object($weapon_ref01_data_dt0_loaded) && method_exists($weapon_ref01_data_dt0_loaded, 'data_get') ? $weapon_ref01_data_dt0_loaded->data_get() : $weapon_ref01_data_dt0_loaded);
+        $this->assertNotNull($weapon_ref01_data_dt0_load_result);
+        $this->assertEquals($weapon_ref01_data_dt0_load_result["id"], $weapon_ref01_data["id"]);
 
     }
 }

@@ -287,6 +287,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"displayName"` | Display name of the agent |
 | `"fullPortrait"` | URL to the agent's full portrait |
 | `"fullPortraitV2"` | URL to the agent's full portrait version 2 |
+| `"id"` |  |
 | `"isAvailableForTest"` | Whether the agent is available for testing |
 | `"isBaseContent"` | Whether the agent is base content |
 | `"isFullPortraitRightFacing"` | Whether the full portrait faces right |
@@ -371,6 +372,7 @@ API path: `/v1/gamemodes`
 | `"coordinates"` | Geographic coordinates of the map location |
 | `"displayIcon"` | URL to the map's display icon |
 | `"displayName"` | Display name of the map |
+| `"id"` |  |
 | `"listViewIcon"` | URL to the map's list view icon |
 | `"mapUrl"` | URL to the map overview |
 | `"narrativeDescription"` | Narrative description of the map |
@@ -395,6 +397,7 @@ API path: `/v1/maps`
 | `"defaultSkinUuid"` | UUID of the default skin |
 | `"displayIcon"` | URL to the weapon's display icon |
 | `"displayName"` | Display name of the weapon |
+| `"id"` |  |
 | `"killStreamIcon"` | URL to the weapon's kill stream icon |
 | `"shopData"` |  |
 | `"skins"` |  |
@@ -438,6 +441,7 @@ Create an instance: `agent := client.Agent(nil)`
 | `displayName` | `string` | Display name of the agent |
 | `fullPortrait` | `string` | URL to the agent's full portrait |
 | `fullPortraitV2` | `string` | URL to the agent's full portrait version 2 |
+| `id` | `string` |  |
 | `isAvailableForTest` | `bool` | Whether the agent is available for testing |
 | `isBaseContent` | `bool` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `bool` | Whether the full portrait faces right |
@@ -601,6 +605,7 @@ Create an instance: `map_ := client.Map(nil)`
 | `coordinates` | `string` | Geographic coordinates of the map location |
 | `displayIcon` | `string` | URL to the map's display icon |
 | `displayName` | `string` | Display name of the map |
+| `id` | `string` |  |
 | `listViewIcon` | `string` | URL to the map's list view icon |
 | `mapUrl` | `string` | URL to the map overview |
 | `narrativeDescription` | `string` | Narrative description of the map |
@@ -653,6 +658,7 @@ Create an instance: `weapon := client.Weapon(nil)`
 | `defaultSkinUuid` | `string` | UUID of the default skin |
 | `displayIcon` | `string` | URL to the weapon's display icon |
 | `displayName` | `string` | Display name of the weapon |
+| `id` | `string` |  |
 | `killStreamIcon` | `string` | URL to the weapon's kill stream icon |
 | `shopData` | `map[string]any` |  |
 | `skins` | `[]any` |  |

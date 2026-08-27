@@ -49,6 +49,9 @@
 # @!attribute [rw] fullPortraitV2
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] isAvailableForTest
 #   @return [Boolean, nil]
 #
@@ -86,6 +89,7 @@ Agent = Struct.new(
   :displayName,
   :fullPortrait,
   :fullPortraitV2,
+  :id,
   :isAvailableForTest,
   :isBaseContent,
   :isFullPortraitRightFacing,
@@ -147,6 +151,9 @@ AgentLoadMatch = Struct.new(
 # @!attribute [rw] fullPortraitV2
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] isAvailableForTest
 #   @return [Boolean, nil]
 #
@@ -184,6 +191,7 @@ AgentListMatch = Struct.new(
   :displayName,
   :fullPortrait,
   :fullPortraitV2,
+  :id,
   :isAvailableForTest,
   :isBaseContent,
   :isFullPortraitRightFacing,
@@ -522,6 +530,9 @@ GameModeListMatch = Struct.new(
 # @!attribute [rw] displayName
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] listViewIcon
 #   @return [String, nil]
 #
@@ -557,6 +568,7 @@ Map = Struct.new(
   :coordinates,
   :displayIcon,
   :displayName,
+  :id,
   :listViewIcon,
   :mapUrl,
   :narrativeDescription,
@@ -596,6 +608,9 @@ MapLoadMatch = Struct.new(
 # @!attribute [rw] displayName
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] listViewIcon
 #   @return [String, nil]
 #
@@ -631,6 +646,7 @@ MapListMatch = Struct.new(
   :coordinates,
   :displayIcon,
   :displayName,
+  :id,
   :listViewIcon,
   :mapUrl,
   :narrativeDescription,
@@ -661,6 +677,9 @@ MapListMatch = Struct.new(
 # @!attribute [rw] displayName
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] killStreamIcon
 #   @return [String, nil]
 #
@@ -681,6 +700,7 @@ Weapon = Struct.new(
   :defaultSkinUuid,
   :displayIcon,
   :displayName,
+  :id,
   :killStreamIcon,
   :shopData,
   :skins,
@@ -715,6 +735,9 @@ WeaponLoadMatch = Struct.new(
 # @!attribute [rw] displayName
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] killStreamIcon
 #   @return [String, nil]
 #
@@ -735,6 +758,7 @@ WeaponListMatch = Struct.new(
   :defaultSkinUuid,
   :displayIcon,
   :displayName,
+  :id,
   :killStreamIcon,
   :shopData,
   :skins,

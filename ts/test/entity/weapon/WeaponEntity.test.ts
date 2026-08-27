@@ -66,6 +66,12 @@ describe('WeaponEntity', async () => {
     const weapon_ref01_list = (await weapon_ref01_ent.list(weapon_ref01_match)).map((e: any) => e.data())
 
 
+    // LOAD
+    const weapon_ref01_match_dt0: any = {}
+    weapon_ref01_match_dt0.id = weapon_ref01_data.id
+    const weapon_ref01_data_dt0 = (await weapon_ref01_ent.load(weapon_ref01_match_dt0)).data()
+    assert(weapon_ref01_data_dt0.id === weapon_ref01_data.id)
+
 
   })
 })

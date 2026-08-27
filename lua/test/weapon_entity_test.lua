@@ -92,10 +92,14 @@ describe("WeaponEntity", function()
     assert.is_table(weapon_ref01_list_result)
 
     -- LOAD
-    local weapon_ref01_match_dt0 = {}
+    local weapon_ref01_match_dt0 = {
+      id = weapon_ref01_data["id"],
+    }
     local weapon_ref01_data_dt0_loaded, err = weapon_ref01_ent:load(weapon_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(weapon_ref01_data_dt0_loaded)
+    local weapon_ref01_data_dt0_load_result = helpers.to_map(type(weapon_ref01_data_dt0_loaded) == 'table' and weapon_ref01_data_dt0_loaded.data_get and weapon_ref01_data_dt0_loaded:data_get() or weapon_ref01_data_dt0_loaded)
+    assert.is_not_nil(weapon_ref01_data_dt0_load_result)
+    assert.are.equal(weapon_ref01_data_dt0_load_result["id"], weapon_ref01_data["id"])
 
   end)
 end)

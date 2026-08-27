@@ -88,9 +88,13 @@ class TestAgentEntity:
         assert isinstance(agent_ref01_list_result, list)
 
         # LOAD
-        agent_ref01_match_dt0 = {}
+        agent_ref01_match_dt0 = {
+            "id": agent_ref01_data["id"],
+        }
         agent_ref01_data_dt0_loaded = agent_ref01_ent.load(agent_ref01_match_dt0, None)
-        assert agent_ref01_data_dt0_loaded is not None
+        agent_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(agent_ref01_data_dt0_loaded))
+        assert agent_ref01_data_dt0_load_result is not None
+        assert agent_ref01_data_dt0_load_result["id"] == agent_ref01_data["id"]
 
 
 

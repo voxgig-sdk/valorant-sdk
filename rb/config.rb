@@ -28,6 +28,7 @@ module ValorantConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -109,6 +110,10 @@ module ValorantConfig
             {
               "name" => "fullPortraitV2",
               "short" => "URL to the agent's full portrait version 2",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {
@@ -643,6 +648,10 @@ module ValorantConfig
               "type" => "`$STRING`",
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "listViewIcon",
               "short" => "URL to the map's list view icon",
               "type" => "`$STRING`",
@@ -811,6 +820,10 @@ module ValorantConfig
             {
               "name" => "displayName",
               "short" => "Display name of the weapon",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {

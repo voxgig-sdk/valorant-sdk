@@ -36,6 +36,11 @@ main: kit: entity: weapon: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "killStreamIcon"
       req: false
       short: "URL to the weapon's kill stream icon"
@@ -63,6 +68,11 @@ main: kit: entity: weapon: {
       type: "`$OBJECT`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "weapon"
   op: {

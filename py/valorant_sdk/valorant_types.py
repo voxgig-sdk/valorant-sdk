@@ -30,6 +30,7 @@ class Agent(TypedDict, total=False):
     displayName: str
     fullPortrait: str
     fullPortraitV2: str
+    id: str
     isAvailableForTest: bool
     isBaseContent: bool
     isFullPortraitRightFacing: bool
@@ -58,6 +59,7 @@ class AgentListMatch(TypedDict, total=False):
     displayName: str
     fullPortrait: str
     fullPortraitV2: str
+    id: str
     isAvailableForTest: bool
     isBaseContent: bool
     isFullPortraitRightFacing: bool
@@ -162,6 +164,7 @@ class Map(TypedDict, total=False):
     coordinates: str
     displayIcon: str
     displayName: str
+    id: str
     listViewIcon: str
     mapUrl: str
     narrativeDescription: str
@@ -184,6 +187,7 @@ class MapListMatch(TypedDict, total=False):
     coordinates: str
     displayIcon: str
     displayName: str
+    id: str
     listViewIcon: str
     mapUrl: str
     narrativeDescription: str
@@ -202,6 +206,7 @@ class Weapon(TypedDict, total=False):
     defaultSkinUuid: str
     displayIcon: str
     displayName: str
+    id: str
     killStreamIcon: str
     shopData: dict
     skins: list
@@ -219,6 +224,7 @@ class WeaponListMatch(TypedDict, total=False):
     defaultSkinUuid: str
     displayIcon: str
     displayName: str
+    id: str
     killStreamIcon: str
     shopData: dict
     skins: list

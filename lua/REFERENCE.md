@@ -123,6 +123,7 @@ local agent = client:Agent(nil)
 | `displayName` | `string` | No | Display name of the agent |
 | `fullPortrait` | `string` | No | URL to the agent's full portrait |
 | `fullPortraitV2` | `string` | No | URL to the agent's full portrait version 2 |
+| `id` | `string` | No |  |
 | `isAvailableForTest` | `boolean` | No | Whether the agent is available for testing |
 | `isBaseContent` | `boolean` | No | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `boolean` | No | Whether the full portrait faces right |
@@ -383,6 +384,7 @@ local map = client:Map(nil)
 | `coordinates` | `string` | No | Geographic coordinates of the map location |
 | `displayIcon` | `string` | No | URL to the map's display icon |
 | `displayName` | `string` | No | Display name of the map |
+| `id` | `string` | No |  |
 | `listViewIcon` | `string` | No | URL to the map's list view icon |
 | `mapUrl` | `string` | No | URL to the map overview |
 | `narrativeDescription` | `string` | No | Narrative description of the map |
@@ -457,6 +459,7 @@ local weapon = client:Weapon(nil)
 | `defaultSkinUuid` | `string` | No | UUID of the default skin |
 | `displayIcon` | `string` | No | URL to the weapon's display icon |
 | `displayName` | `string` | No | Display name of the weapon |
+| `id` | `string` | No |  |
 | `killStreamIcon` | `string` | No | URL to the weapon's kill stream icon |
 | `shopData` | `table` | No |  |
 | `skins` | `table` | No |  |

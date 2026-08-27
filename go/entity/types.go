@@ -27,6 +27,7 @@ type Agent struct {
 	DisplayName *string `json:"displayName,omitempty"`
 	FullPortrait *string `json:"fullPortrait,omitempty"`
 	FullPortraitV2 *string `json:"fullPortraitV2,omitempty"`
+	Id *string `json:"id,omitempty"`
 	IsAvailableForTest *bool `json:"isAvailableForTest,omitempty"`
 	IsBaseContent *bool `json:"isBaseContent,omitempty"`
 	IsFullPortraitRightFacing *bool `json:"isFullPortraitRightFacing,omitempty"`
@@ -57,6 +58,7 @@ type AgentListMatch struct {
 	DisplayName *string `json:"displayName,omitempty"`
 	FullPortrait *string `json:"fullPortrait,omitempty"`
 	FullPortraitV2 *string `json:"fullPortraitV2,omitempty"`
+	Id *string `json:"id,omitempty"`
 	IsAvailableForTest *bool `json:"isAvailableForTest,omitempty"`
 	IsBaseContent *bool `json:"isBaseContent,omitempty"`
 	IsFullPortraitRightFacing *bool `json:"isFullPortraitRightFacing,omitempty"`
@@ -168,6 +170,7 @@ type Map struct {
 	Coordinates *string `json:"coordinates,omitempty"`
 	DisplayIcon *string `json:"displayIcon,omitempty"`
 	DisplayName *string `json:"displayName,omitempty"`
+	Id *string `json:"id,omitempty"`
 	ListViewIcon *string `json:"listViewIcon,omitempty"`
 	MapUrl *string `json:"mapUrl,omitempty"`
 	NarrativeDescription *string `json:"narrativeDescription,omitempty"`
@@ -192,6 +195,7 @@ type MapListMatch struct {
 	Coordinates *string `json:"coordinates,omitempty"`
 	DisplayIcon *string `json:"displayIcon,omitempty"`
 	DisplayName *string `json:"displayName,omitempty"`
+	Id *string `json:"id,omitempty"`
 	ListViewIcon *string `json:"listViewIcon,omitempty"`
 	MapUrl *string `json:"mapUrl,omitempty"`
 	NarrativeDescription *string `json:"narrativeDescription,omitempty"`
@@ -211,6 +215,7 @@ type Weapon struct {
 	DefaultSkinUuid *string `json:"defaultSkinUuid,omitempty"`
 	DisplayIcon *string `json:"displayIcon,omitempty"`
 	DisplayName *string `json:"displayName,omitempty"`
+	Id *string `json:"id,omitempty"`
 	KillStreamIcon *string `json:"killStreamIcon,omitempty"`
 	ShopData *map[string]any `json:"shopData,omitempty"`
 	Skins *[]any `json:"skins,omitempty"`
@@ -230,6 +235,7 @@ type WeaponListMatch struct {
 	DefaultSkinUuid *string `json:"defaultSkinUuid,omitempty"`
 	DisplayIcon *string `json:"displayIcon,omitempty"`
 	DisplayName *string `json:"displayName,omitempty"`
+	Id *string `json:"id,omitempty"`
 	KillStreamIcon *string `json:"killStreamIcon,omitempty"`
 	ShopData *map[string]any `json:"shopData,omitempty"`
 	Skins *[]any `json:"skins,omitempty"`

@@ -66,6 +66,12 @@ describe('MapEntity', async () => {
     const map_ref01_list = (await map_ref01_ent.list(map_ref01_match)).map((e: any) => e.data())
 
 
+    // LOAD
+    const map_ref01_match_dt0: any = {}
+    map_ref01_match_dt0.id = map_ref01_data.id
+    const map_ref01_data_dt0 = (await map_ref01_ent.load(map_ref01_match_dt0)).data()
+    assert(map_ref01_data_dt0.id === map_ref01_data.id)
+
 
   })
 })

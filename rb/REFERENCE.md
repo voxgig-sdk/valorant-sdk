@@ -126,6 +126,7 @@ agent = client.Agent
 | `displayName` | `String` | No | Display name of the agent |
 | `fullPortrait` | `String` | No | URL to the agent's full portrait |
 | `fullPortraitV2` | `String` | No | URL to the agent's full portrait version 2 |
+| `id` | `String` | No |  |
 | `isAvailableForTest` | `Boolean` | No | Whether the agent is available for testing |
 | `isBaseContent` | `Boolean` | No | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `Boolean` | No | Whether the full portrait faces right |
@@ -386,6 +387,7 @@ map = client.Map
 | `coordinates` | `String` | No | Geographic coordinates of the map location |
 | `displayIcon` | `String` | No | URL to the map's display icon |
 | `displayName` | `String` | No | Display name of the map |
+| `id` | `String` | No |  |
 | `listViewIcon` | `String` | No | URL to the map's list view icon |
 | `mapUrl` | `String` | No | URL to the map overview |
 | `narrativeDescription` | `String` | No | Narrative description of the map |
@@ -460,6 +462,7 @@ weapon = client.Weapon
 | `defaultSkinUuid` | `String` | No | UUID of the default skin |
 | `displayIcon` | `String` | No | URL to the weapon's display icon |
 | `displayName` | `String` | No | Display name of the weapon |
+| `id` | `String` | No |  |
 | `killStreamIcon` | `String` | No | URL to the weapon's kill stream icon |
 | `shopData` | `Hash` | No |  |
 | `skins` | `Array` | No |  |

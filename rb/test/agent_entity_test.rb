@@ -83,9 +83,13 @@ class AgentEntityTest < Minitest::Test
     assert agent_ref01_list_result.is_a?(Array)
 
     # LOAD
-    agent_ref01_match_dt0 = {}
+    agent_ref01_match_dt0 = {
+      "id" => agent_ref01_data["id"],
+    }
     agent_ref01_data_dt0_loaded = agent_ref01_ent.load(agent_ref01_match_dt0, nil)
-    assert !agent_ref01_data_dt0_loaded.nil?
+    agent_ref01_data_dt0_load_result = Helpers.to_map(agent_ref01_data_dt0_loaded.respond_to?(:data_get) ? agent_ref01_data_dt0_loaded.data_get : agent_ref01_data_dt0_loaded)
+    assert !agent_ref01_data_dt0_load_result.nil?
+    assert_equal agent_ref01_data_dt0_load_result["id"], agent_ref01_data["id"]
 
   end
 end
