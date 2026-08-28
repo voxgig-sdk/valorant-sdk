@@ -32,30 +32,11 @@
 
 ---@class AgentLoadMatch
 ---@field id string
+---@field language? string
 
 ---@class AgentListMatch
----@field abilities? table
----@field assetPath? string
----@field background? string
----@field backgroundGradientColors? table
----@field bustPortrait? string
----@field characterTags? table
----@field description? string
----@field developerName? string
----@field displayIcon? string
----@field displayIconSmall? string
----@field displayName? string
----@field fullPortrait? string
----@field fullPortraitV2? string
----@field id? string
----@field isAvailableForTest? boolean
----@field isBaseContent? boolean
----@field isFullPortraitRightFacing? boolean
----@field isPlayableCharacter? boolean
----@field killfeedPortrait? string
----@field role? table
----@field uuid? string
----@field voiceLine? table
+---@field is_playable_character? boolean
+---@field language? string
 
 ---@class Competitive
 ---@field assetObjectName? string
@@ -64,10 +45,7 @@
 ---@field uuid? string
 
 ---@class CompetitiveListMatch
----@field assetObjectName? string
----@field assetPath? string
----@field tiers? table
----@field uuid? string
+---@field language? string
 
 ---@class Cosmetic
 ---@field animationGif? string
@@ -89,23 +67,7 @@
 ---@field wideArt? string
 
 ---@class CosmeticListMatch
----@field animationGif? string
----@field animationPng? string
----@field assetPath? string
----@field category? string
----@field displayIcon? string
----@field displayName? string
----@field fullIcon? string
----@field fullTransparentIcon? string
----@field hideIfNotOwned? boolean
----@field isHiddenIfNotOwned? boolean
----@field isNullSpray? boolean
----@field largeArt? string
----@field levels? table
----@field smallArt? string
----@field themeUuid? string
----@field uuid? string
----@field wideArt? string
+---@field language? string
 
 ---@class GameMode
 ---@field allowsMatchTimeouts? boolean
@@ -124,20 +86,7 @@
 ---@field uuid? string
 
 ---@class GameModeListMatch
----@field allowsMatchTimeouts? boolean
----@field assetPath? string
----@field displayIcon? string
----@field displayName? string
----@field duration? string
----@field economyType? string
----@field gameFeatureOverrides? table
----@field gameRuleBoolOverrides? table
----@field isMinimapHidden? boolean
----@field isTeamVoiceAllowed? boolean
----@field orbCount? number
----@field roundsPerHalf? number
----@field teamRoles? table
----@field uuid? string
+---@field language? string
 
 ---@class Map
 ---@field assetPath? string
@@ -159,24 +108,10 @@
 
 ---@class MapLoadMatch
 ---@field id string
+---@field language? string
 
 ---@class MapListMatch
----@field assetPath? string
----@field callouts? table
----@field coordinates? string
----@field displayIcon? string
----@field displayName? string
----@field id? string
----@field listViewIcon? string
----@field mapUrl? string
----@field narrativeDescription? string
----@field splash? string
----@field tacticalDescription? string
----@field uuid? string
----@field xMultiplier? number
----@field xScalarToAdd? number
----@field yMultiplier? number
----@field yScalarToAdd? number
+---@field language? string
 
 ---@class Weapon
 ---@field assetPath? string
@@ -193,19 +128,10 @@
 
 ---@class WeaponLoadMatch
 ---@field id string
+---@field language? string
 
 ---@class WeaponListMatch
----@field assetPath? string
----@field category? string
----@field defaultSkinUuid? string
----@field displayIcon? string
----@field displayName? string
----@field id? string
----@field killStreamIcon? string
----@field shopData? table
----@field skins? table
----@field uuid? string
----@field weaponStats? table
+---@field language? string
 
 local M = {}
 

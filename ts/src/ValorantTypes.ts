@@ -32,31 +32,12 @@ export interface Agent {
 
 export interface AgentLoadMatch {
   id: string
+  language?: string
 }
 
 export interface AgentListMatch {
-  abilities?: any[]
-  assetPath?: string
-  background?: string
-  backgroundGradientColors?: any[]
-  bustPortrait?: string
-  characterTags?: any[]
-  description?: string
-  developerName?: string
-  displayIcon?: string
-  displayIconSmall?: string
-  displayName?: string
-  fullPortrait?: string
-  fullPortraitV2?: string
-  id?: string
-  isAvailableForTest?: boolean
-  isBaseContent?: boolean
-  isFullPortraitRightFacing?: boolean
-  isPlayableCharacter?: boolean
-  killfeedPortrait?: string
-  role?: Record<string, any>
-  uuid?: string
-  voiceLine?: Record<string, any>
+  is_playable_character?: boolean
+  language?: string
 }
 
 export interface Competitive {
@@ -67,10 +48,7 @@ export interface Competitive {
 }
 
 export interface CompetitiveListMatch {
-  assetObjectName?: string
-  assetPath?: string
-  tiers?: any[]
-  uuid?: string
+  language?: string
 }
 
 export interface Cosmetic {
@@ -94,23 +72,7 @@ export interface Cosmetic {
 }
 
 export interface CosmeticListMatch {
-  animationGif?: string
-  animationPng?: string
-  assetPath?: string
-  category?: string
-  displayIcon?: string
-  displayName?: string
-  fullIcon?: string
-  fullTransparentIcon?: string
-  hideIfNotOwned?: boolean
-  isHiddenIfNotOwned?: boolean
-  isNullSpray?: boolean
-  largeArt?: string
-  levels?: any[]
-  smallArt?: string
-  themeUuid?: string
-  uuid?: string
-  wideArt?: string
+  language?: string
 }
 
 export interface GameMode {
@@ -131,20 +93,7 @@ export interface GameMode {
 }
 
 export interface GameModeListMatch {
-  allowsMatchTimeouts?: boolean
-  assetPath?: string
-  displayIcon?: string
-  displayName?: string
-  duration?: string
-  economyType?: string
-  gameFeatureOverrides?: any[]
-  gameRuleBoolOverrides?: any[]
-  isMinimapHidden?: boolean
-  isTeamVoiceAllowed?: boolean
-  orbCount?: number
-  roundsPerHalf?: number
-  teamRoles?: any[]
-  uuid?: string
+  language?: string
 }
 
 export interface MapType {
@@ -168,25 +117,11 @@ export interface MapType {
 
 export interface MapLoadMatch {
   id: string
+  language?: string
 }
 
 export interface MapListMatch {
-  assetPath?: string
-  callouts?: any[]
-  coordinates?: string
-  displayIcon?: string
-  displayName?: string
-  id?: string
-  listViewIcon?: string
-  mapUrl?: string
-  narrativeDescription?: string
-  splash?: string
-  tacticalDescription?: string
-  uuid?: string
-  xMultiplier?: number
-  xScalarToAdd?: number
-  yMultiplier?: number
-  yScalarToAdd?: number
+  language?: string
 }
 
 export interface Weapon {
@@ -205,19 +140,10 @@ export interface Weapon {
 
 export interface WeaponLoadMatch {
   id: string
+  language?: string
 }
 
 export interface WeaponListMatch {
-  assetPath?: string
-  category?: string
-  defaultSkinUuid?: string
-  displayIcon?: string
-  displayName?: string
-  id?: string
-  killStreamIcon?: string
-  shopData?: Record<string, any>
-  skins?: any[]
-  uuid?: string
-  weaponStats?: Record<string, any>
+  language?: string
 }
 

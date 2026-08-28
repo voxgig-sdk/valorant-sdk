@@ -41,33 +41,17 @@ class Agent(TypedDict, total=False):
     voiceLine: dict
 
 
-class AgentLoadMatch(TypedDict):
+class AgentLoadMatchRequired(TypedDict):
     id: str
+
+
+class AgentLoadMatch(AgentLoadMatchRequired, total=False):
+    language: str
 
 
 class AgentListMatch(TypedDict, total=False):
-    abilities: list
-    assetPath: str
-    background: str
-    backgroundGradientColors: list
-    bustPortrait: str
-    characterTags: list
-    description: str
-    developerName: str
-    displayIcon: str
-    displayIconSmall: str
-    displayName: str
-    fullPortrait: str
-    fullPortraitV2: str
-    id: str
-    isAvailableForTest: bool
-    isBaseContent: bool
-    isFullPortraitRightFacing: bool
-    isPlayableCharacter: bool
-    killfeedPortrait: str
-    role: dict
-    uuid: str
-    voiceLine: dict
+    is_playable_character: bool
+    language: str
 
 
 class Competitive(TypedDict, total=False):
@@ -78,10 +62,7 @@ class Competitive(TypedDict, total=False):
 
 
 class CompetitiveListMatch(TypedDict, total=False):
-    assetObjectName: str
-    assetPath: str
-    tiers: list
-    uuid: str
+    language: str
 
 
 class Cosmetic(TypedDict, total=False):
@@ -105,23 +86,7 @@ class Cosmetic(TypedDict, total=False):
 
 
 class CosmeticListMatch(TypedDict, total=False):
-    animationGif: str
-    animationPng: str
-    assetPath: str
-    category: str
-    displayIcon: str
-    displayName: str
-    fullIcon: str
-    fullTransparentIcon: str
-    hideIfNotOwned: bool
-    isHiddenIfNotOwned: bool
-    isNullSpray: bool
-    largeArt: str
-    levels: list
-    smallArt: str
-    themeUuid: str
-    uuid: str
-    wideArt: str
+    language: str
 
 
 class GameMode(TypedDict, total=False):
@@ -142,20 +107,7 @@ class GameMode(TypedDict, total=False):
 
 
 class GameModeListMatch(TypedDict, total=False):
-    allowsMatchTimeouts: bool
-    assetPath: str
-    displayIcon: str
-    displayName: str
-    duration: str
-    economyType: str
-    gameFeatureOverrides: list
-    gameRuleBoolOverrides: list
-    isMinimapHidden: bool
-    isTeamVoiceAllowed: bool
-    orbCount: int
-    roundsPerHalf: int
-    teamRoles: list
-    uuid: str
+    language: str
 
 
 class Map(TypedDict, total=False):
@@ -177,27 +129,16 @@ class Map(TypedDict, total=False):
     yScalarToAdd: float
 
 
-class MapLoadMatch(TypedDict):
+class MapLoadMatchRequired(TypedDict):
     id: str
+
+
+class MapLoadMatch(MapLoadMatchRequired, total=False):
+    language: str
 
 
 class MapListMatch(TypedDict, total=False):
-    assetPath: str
-    callouts: list
-    coordinates: str
-    displayIcon: str
-    displayName: str
-    id: str
-    listViewIcon: str
-    mapUrl: str
-    narrativeDescription: str
-    splash: str
-    tacticalDescription: str
-    uuid: str
-    xMultiplier: float
-    xScalarToAdd: float
-    yMultiplier: float
-    yScalarToAdd: float
+    language: str
 
 
 class Weapon(TypedDict, total=False):
@@ -214,19 +155,13 @@ class Weapon(TypedDict, total=False):
     weaponStats: dict
 
 
-class WeaponLoadMatch(TypedDict):
+class WeaponLoadMatchRequired(TypedDict):
     id: str
+
+
+class WeaponLoadMatch(WeaponLoadMatchRequired, total=False):
+    language: str
 
 
 class WeaponListMatch(TypedDict, total=False):
-    assetPath: str
-    category: str
-    defaultSkinUuid: str
-    displayIcon: str
-    displayName: str
-    id: str
-    killStreamIcon: str
-    shopData: dict
-    skins: list
-    uuid: str
-    weaponStats: dict
+    language: str
