@@ -23,6 +23,7 @@ main: kit: entity: competitive: {
       type: "`$ARRAY`"
     }
     {
+      format: "uuid"
       name: "uuid"
       req: false
       short: "Unique identifier for the competitive tier set"
@@ -50,9 +51,13 @@ main: kit: entity: competitive: {
           }
           method: "GET"
           orig: "/v1/competitivetiers"
-          parts: [
-            "v1"
-            "competitivetiers"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "competitivetiers"
+            }
           ]
           select: {
             exist: [

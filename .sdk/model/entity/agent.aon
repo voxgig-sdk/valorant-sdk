@@ -17,6 +17,7 @@ main: kit: entity: agent: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "background"
       req: false
       short: "URL to the agent's background image"
@@ -29,6 +30,7 @@ main: kit: entity: agent: {
       type: "`$ARRAY`"
     }
     {
+      format: "uri"
       name: "bustPortrait"
       req: false
       short: "URL to the agent's bust portrait"
@@ -53,12 +55,14 @@ main: kit: entity: agent: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "displayIcon"
       req: false
       short: "URL to the agent's display icon"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "displayIconSmall"
       req: false
       short: "URL to the agent's small display icon"
@@ -71,12 +75,14 @@ main: kit: entity: agent: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "fullPortrait"
       req: false
       short: "URL to the agent's full portrait"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "fullPortraitV2"
       req: false
       short: "URL to the agent's full portrait version 2"
@@ -112,6 +118,7 @@ main: kit: entity: agent: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "uri"
       name: "killfeedPortrait"
       req: false
       short: "URL to the agent's killfeed portrait"
@@ -123,6 +130,7 @@ main: kit: entity: agent: {
       type: "`$OBJECT`"
     }
     {
+      format: "uuid"
       name: "uuid"
       req: false
       short: "Unique identifier for the agent"
@@ -167,9 +175,13 @@ main: kit: entity: agent: {
           }
           method: "GET"
           orig: "/v1/agents"
-          parts: [
-            "v1"
-            "agents"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
           ]
           select: {
             exist: [
@@ -211,16 +223,22 @@ main: kit: entity: agent: {
           }
           method: "GET"
           orig: "/v1/agents/{uuid}"
-          parts: [
-            "v1"
-            "agents"
-            "{id}"
-          ]
           rename: {
             param: {
               uuid: "id"
             }
           }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

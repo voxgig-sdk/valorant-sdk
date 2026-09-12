@@ -72,6 +72,7 @@ class ValorantConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'background',
               'short' => 'URL to the agent\'s background image',
               'type' => '`$STRING`',
@@ -82,6 +83,7 @@ class ValorantConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'uri',
               'name' => 'bustPortrait',
               'short' => 'URL to the agent\'s bust portrait',
               'type' => '`$STRING`',
@@ -102,11 +104,13 @@ class ValorantConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'displayIcon',
               'short' => 'URL to the agent\'s display icon',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'displayIconSmall',
               'short' => 'URL to the agent\'s small display icon',
               'type' => '`$STRING`',
@@ -117,11 +121,13 @@ class ValorantConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'fullPortrait',
               'short' => 'URL to the agent\'s full portrait',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'fullPortraitV2',
               'short' => 'URL to the agent\'s full portrait version 2',
               'type' => '`$STRING`',
@@ -151,6 +157,7 @@ class ValorantConfig
               'type' => '`$BOOLEAN`',
             ],
             [
+              'format' => 'uri',
               'name' => 'killfeedPortrait',
               'short' => 'URL to the agent\'s killfeed portrait',
               'type' => '`$STRING`',
@@ -160,6 +167,7 @@ class ValorantConfig
               'type' => '`$OBJECT`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'uuid',
               'short' => 'Unique identifier for the agent',
               'type' => '`$STRING`',
@@ -168,6 +176,10 @@ class ValorantConfig
               'name' => 'voiceLine',
               'type' => '`$OBJECT`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'agent',
           'op' => [
@@ -196,9 +208,13 @@ class ValorantConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/agents',
-                  'parts' => [
-                    'v1',
-                    'agents',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'agents',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -209,6 +225,10 @@ class ValorantConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'agents',
                   ],
                 ],
               ],
@@ -241,14 +261,20 @@ class ValorantConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/agents/{uuid}',
-                  'parts' => [
-                    'v1',
-                    'agents',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'uuid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'agents',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -260,6 +286,11 @@ class ValorantConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'agents',
+                    '{id}',
                   ],
                 ],
               ],
@@ -286,6 +317,7 @@ class ValorantConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'uuid',
               'short' => 'Unique identifier for the competitive tier set',
               'type' => '`$STRING`',
@@ -312,9 +344,13 @@ class ValorantConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/competitivetiers',
-                  'parts' => [
-                    'v1',
-                    'competitivetiers',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'competitivetiers',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -324,6 +360,10 @@ class ValorantConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'competitivetiers',
                   ],
                 ],
               ],
@@ -336,11 +376,13 @@ class ValorantConfig
         'cosmetic' => [
           'fields' => [
             [
+              'format' => 'uri',
               'name' => 'animationGif',
               'short' => 'URL to the spray\'s animation GIF',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'animationPng',
               'short' => 'URL to the spray\'s animation PNG',
               'type' => '`$STRING`',
@@ -356,6 +398,7 @@ class ValorantConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'displayIcon',
               'short' => 'URL to the buddy\'s display icon',
               'type' => '`$STRING`',
@@ -366,11 +409,13 @@ class ValorantConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'fullIcon',
               'short' => 'URL to the spray\'s full icon',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'fullTransparentIcon',
               'short' => 'URL to the spray\'s full transparent icon',
               'type' => '`$STRING`',
@@ -391,6 +436,7 @@ class ValorantConfig
               'type' => '`$BOOLEAN`',
             ],
             [
+              'format' => 'uri',
               'name' => 'largeArt',
               'short' => 'URL to the card\'s large art',
               'type' => '`$STRING`',
@@ -400,21 +446,25 @@ class ValorantConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'uri',
               'name' => 'smallArt',
               'short' => 'URL to the card\'s small art',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'themeUuid',
               'short' => 'UUID of the theme',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'uuid',
               'short' => 'Unique identifier for the buddy',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'wideArt',
               'short' => 'URL to the card\'s wide art',
               'type' => '`$STRING`',
@@ -441,9 +491,13 @@ class ValorantConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/buddies',
-                  'parts' => [
-                    'v1',
-                    'buddies',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'buddies',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -453,6 +507,10 @@ class ValorantConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'buddies',
                   ],
                 ],
                 [
@@ -470,9 +528,13 @@ class ValorantConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/cards',
-                  'parts' => [
-                    'v1',
-                    'cards',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'cards',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -482,6 +544,10 @@ class ValorantConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'cards',
                   ],
                 ],
                 [
@@ -499,9 +565,13 @@ class ValorantConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/sprays',
-                  'parts' => [
-                    'v1',
-                    'sprays',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'sprays',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -511,6 +581,10 @@ class ValorantConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'sprays',
                   ],
                 ],
               ],
@@ -533,6 +607,7 @@ class ValorantConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'displayIcon',
               'short' => 'URL to the game mode\'s display icon',
               'type' => '`$STRING`',
@@ -588,6 +663,7 @@ class ValorantConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'uuid',
               'short' => 'Unique identifier for the game mode',
               'type' => '`$STRING`',
@@ -614,9 +690,13 @@ class ValorantConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/gamemodes',
-                  'parts' => [
-                    'v1',
-                    'gamemodes',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'gamemodes',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -626,6 +706,10 @@ class ValorantConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'gamemodes',
                   ],
                 ],
               ],
@@ -652,6 +736,7 @@ class ValorantConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'displayIcon',
               'short' => 'URL to the map\'s display icon',
               'type' => '`$STRING`',
@@ -666,11 +751,13 @@ class ValorantConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'listViewIcon',
               'short' => 'URL to the map\'s list view icon',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'mapUrl',
               'short' => 'URL to the map overview',
               'type' => '`$STRING`',
@@ -681,6 +768,7 @@ class ValorantConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'splash',
               'short' => 'URL to the map\'s splash image',
               'type' => '`$STRING`',
@@ -691,6 +779,7 @@ class ValorantConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'uuid',
               'short' => 'Unique identifier for the map',
               'type' => '`$STRING`',
@@ -716,6 +805,10 @@ class ValorantConfig
               'type' => '`$NUMBER`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'map',
           'op' => [
             'list' => [
@@ -737,9 +830,13 @@ class ValorantConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/maps',
-                  'parts' => [
-                    'v1',
-                    'maps',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'maps',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -749,6 +846,10 @@ class ValorantConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'maps',
                   ],
                 ],
               ],
@@ -781,14 +882,20 @@ class ValorantConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/maps/{uuid}',
-                  'parts' => [
-                    'v1',
-                    'maps',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'uuid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'maps',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -800,6 +907,11 @@ class ValorantConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'maps',
+                    '{id}',
                   ],
                 ],
               ],
@@ -822,11 +934,13 @@ class ValorantConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'defaultSkinUuid',
               'short' => 'UUID of the default skin',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'displayIcon',
               'short' => 'URL to the weapon\'s display icon',
               'type' => '`$STRING`',
@@ -841,6 +955,7 @@ class ValorantConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'killStreamIcon',
               'short' => 'URL to the weapon\'s kill stream icon',
               'type' => '`$STRING`',
@@ -854,6 +969,7 @@ class ValorantConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'uuid',
               'name' => 'uuid',
               'short' => 'Unique identifier for the weapon',
               'type' => '`$STRING`',
@@ -862,6 +978,10 @@ class ValorantConfig
               'name' => 'weaponStats',
               'type' => '`$OBJECT`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'weapon',
           'op' => [
@@ -884,9 +1004,13 @@ class ValorantConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/weapons',
-                  'parts' => [
-                    'v1',
-                    'weapons',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'weapons',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -896,6 +1020,10 @@ class ValorantConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'weapons',
                   ],
                 ],
               ],
@@ -928,14 +1056,20 @@ class ValorantConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/weapons/{uuid}',
-                  'parts' => [
-                    'v1',
-                    'weapons',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'uuid' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'weapons',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -947,6 +1081,11 @@ class ValorantConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'weapons',
+                    '{id}',
                   ],
                 ],
               ],

@@ -18,6 +18,7 @@ main: kit: entity: game_mode: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "displayIcon"
       req: false
       short: "URL to the game mode's display icon"
@@ -84,6 +85,7 @@ main: kit: entity: game_mode: {
       type: "`$ARRAY`"
     }
     {
+      format: "uuid"
       name: "uuid"
       req: false
       short: "Unique identifier for the game mode"
@@ -111,9 +113,13 @@ main: kit: entity: game_mode: {
           }
           method: "GET"
           orig: "/v1/gamemodes"
-          parts: [
-            "v1"
-            "gamemodes"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "gamemodes"
+            }
           ]
           select: {
             exist: [

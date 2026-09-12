@@ -18,12 +18,14 @@ main: kit: entity: weapon: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "defaultSkinUuid"
       req: false
       short: "UUID of the default skin"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "displayIcon"
       req: false
       short: "URL to the weapon's display icon"
@@ -41,6 +43,7 @@ main: kit: entity: weapon: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "killStreamIcon"
       req: false
       short: "URL to the weapon's kill stream icon"
@@ -57,6 +60,7 @@ main: kit: entity: weapon: {
       type: "`$ARRAY`"
     }
     {
+      format: "uuid"
       name: "uuid"
       req: false
       short: "Unique identifier for the weapon"
@@ -94,9 +98,13 @@ main: kit: entity: weapon: {
           }
           method: "GET"
           orig: "/v1/weapons"
-          parts: [
-            "v1"
-            "weapons"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "weapons"
+            }
           ]
           select: {
             exist: [
@@ -137,16 +145,22 @@ main: kit: entity: weapon: {
           }
           method: "GET"
           orig: "/v1/weapons/{uuid}"
-          parts: [
-            "v1"
-            "weapons"
-            "{id}"
-          ]
           rename: {
             param: {
               uuid: "id"
             }
           }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "weapons"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

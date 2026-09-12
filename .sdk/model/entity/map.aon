@@ -23,6 +23,7 @@ main: kit: entity: map: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "displayIcon"
       req: false
       short: "URL to the map's display icon"
@@ -40,12 +41,14 @@ main: kit: entity: map: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "listViewIcon"
       req: false
       short: "URL to the map's list view icon"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "mapUrl"
       req: false
       short: "URL to the map overview"
@@ -58,6 +61,7 @@ main: kit: entity: map: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "splash"
       req: false
       short: "URL to the map's splash image"
@@ -70,6 +74,7 @@ main: kit: entity: map: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "uuid"
       req: false
       short: "Unique identifier for the map"
@@ -126,9 +131,13 @@ main: kit: entity: map: {
           }
           method: "GET"
           orig: "/v1/maps"
-          parts: [
-            "v1"
-            "maps"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "maps"
+            }
           ]
           select: {
             exist: [
@@ -169,16 +178,22 @@ main: kit: entity: map: {
           }
           method: "GET"
           orig: "/v1/maps/{uuid}"
-          parts: [
-            "v1"
-            "maps"
-            "{id}"
-          ]
           rename: {
             param: {
               uuid: "id"
             }
           }
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "maps"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

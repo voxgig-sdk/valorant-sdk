@@ -6,12 +6,14 @@ main: kit: entity: cosmetic: {
 
   fields: [
     {
+      format: "uri"
       name: "animationGif"
       req: false
       short: "URL to the spray's animation GIF"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "animationPng"
       req: false
       short: "URL to the spray's animation PNG"
@@ -30,6 +32,7 @@ main: kit: entity: cosmetic: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "displayIcon"
       req: false
       short: "URL to the buddy's display icon"
@@ -42,12 +45,14 @@ main: kit: entity: cosmetic: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "fullIcon"
       req: false
       short: "URL to the spray's full icon"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "fullTransparentIcon"
       req: false
       short: "URL to the spray's full transparent icon"
@@ -72,6 +77,7 @@ main: kit: entity: cosmetic: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "uri"
       name: "largeArt"
       req: false
       short: "URL to the card's large art"
@@ -83,24 +89,28 @@ main: kit: entity: cosmetic: {
       type: "`$ARRAY`"
     }
     {
+      format: "uri"
       name: "smallArt"
       req: false
       short: "URL to the card's small art"
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "themeUuid"
       req: false
       short: "UUID of the theme"
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "uuid"
       req: false
       short: "Unique identifier for the buddy"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "wideArt"
       req: false
       short: "URL to the card's wide art"
@@ -128,9 +138,13 @@ main: kit: entity: cosmetic: {
           }
           method: "GET"
           orig: "/v1/buddies"
-          parts: [
-            "v1"
-            "buddies"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "buddies"
+            }
           ]
           select: {
             exist: [
@@ -157,9 +171,13 @@ main: kit: entity: cosmetic: {
           }
           method: "GET"
           orig: "/v1/cards"
-          parts: [
-            "v1"
-            "cards"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "cards"
+            }
           ]
           select: {
             exist: [
@@ -186,9 +204,13 @@ main: kit: entity: cosmetic: {
           }
           method: "GET"
           orig: "/v1/sprays"
-          parts: [
-            "v1"
-            "sprays"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "sprays"
+            }
           ]
           select: {
             exist: [

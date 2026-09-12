@@ -47,6 +47,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "background",
               "req": false,
               "short": "URL to the agent's background image",
@@ -61,6 +62,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "bustPortrait",
               "req": false,
               "short": "URL to the agent's bust portrait",
@@ -89,6 +91,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "displayIcon",
               "req": false,
               "short": "URL to the agent's display icon",
@@ -96,6 +99,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "displayIconSmall",
               "req": false,
               "short": "URL to the agent's small display icon",
@@ -110,6 +114,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "fullPortrait",
               "req": false,
               "short": "URL to the agent's full portrait",
@@ -117,6 +122,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "fullPortraitV2",
               "req": false,
               "short": "URL to the agent's full portrait version 2",
@@ -158,6 +164,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "killfeedPortrait",
               "req": false,
               "short": "URL to the agent's killfeed portrait",
@@ -171,6 +178,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "uuid",
               "req": false,
               "short": "Unique identifier for the agent",
@@ -219,9 +227,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/agents",
-                  "parts": [
-                    "v1",
-                    "agents"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -268,16 +280,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/agents/{uuid}",
-                  "parts": [
-                    "v1",
-                    "agents",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "uuid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "agents"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id",
@@ -324,6 +342,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "uuid",
               "req": false,
               "short": "Unique identifier for the competitive tier set",
@@ -354,9 +373,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/competitivetiers",
-                  "parts": [
-                    "v1",
-                    "competitivetiers"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "competitivetiers"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -383,6 +406,7 @@
           "fields": [
             {
               "active": true,
+              "format": "uri",
               "name": "animationGif",
               "req": false,
               "short": "URL to the spray's animation GIF",
@@ -390,6 +414,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "animationPng",
               "req": false,
               "short": "URL to the spray's animation PNG",
@@ -411,6 +436,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "displayIcon",
               "req": false,
               "short": "URL to the buddy's display icon",
@@ -425,6 +451,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "fullIcon",
               "req": false,
               "short": "URL to the spray's full icon",
@@ -432,6 +459,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "fullTransparentIcon",
               "req": false,
               "short": "URL to the spray's full transparent icon",
@@ -460,6 +488,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "largeArt",
               "req": false,
               "short": "URL to the card's large art",
@@ -473,6 +502,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "smallArt",
               "req": false,
               "short": "URL to the card's small art",
@@ -480,6 +510,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "themeUuid",
               "req": false,
               "short": "UUID of the theme",
@@ -487,6 +518,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "uuid",
               "req": false,
               "short": "Unique identifier for the buddy",
@@ -494,6 +526,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "wideArt",
               "req": false,
               "short": "URL to the card's wide art",
@@ -524,9 +557,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/buddies",
-                  "parts": [
-                    "v1",
-                    "buddies"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "buddies"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -556,9 +593,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/cards",
-                  "parts": [
-                    "v1",
-                    "cards"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "cards"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -588,9 +629,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/sprays",
-                  "parts": [
-                    "v1",
-                    "sprays"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "sprays"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -631,6 +676,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "displayIcon",
               "req": false,
               "short": "URL to the game mode's display icon",
@@ -708,6 +754,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "uuid",
               "req": false,
               "short": "Unique identifier for the game mode",
@@ -738,9 +785,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/gamemodes",
-                  "parts": [
-                    "v1",
-                    "gamemodes"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "gamemodes"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -787,6 +838,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "displayIcon",
               "req": false,
               "short": "URL to the map's display icon",
@@ -807,6 +859,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "listViewIcon",
               "req": false,
               "short": "URL to the map's list view icon",
@@ -814,6 +867,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "mapUrl",
               "req": false,
               "short": "URL to the map overview",
@@ -828,6 +882,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "splash",
               "req": false,
               "short": "URL to the map's splash image",
@@ -842,6 +897,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "uuid",
               "req": false,
               "short": "Unique identifier for the map",
@@ -904,9 +960,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/maps",
-                  "parts": [
-                    "v1",
-                    "maps"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "maps"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -952,16 +1012,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/maps/{uuid}",
-                  "parts": [
-                    "v1",
-                    "maps",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "uuid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "maps"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id",
@@ -1002,6 +1068,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "defaultSkinUuid",
               "req": false,
               "short": "UUID of the default skin",
@@ -1009,6 +1076,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "displayIcon",
               "req": false,
               "short": "URL to the weapon's display icon",
@@ -1029,6 +1097,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "killStreamIcon",
               "req": false,
               "short": "URL to the weapon's kill stream icon",
@@ -1048,6 +1117,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "uuid",
               "req": false,
               "short": "Unique identifier for the weapon",
@@ -1088,9 +1158,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/weapons",
-                  "parts": [
-                    "v1",
-                    "weapons"
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "weapons"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1136,16 +1210,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v1/weapons/{uuid}",
-                  "parts": [
-                    "v1",
-                    "weapons",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "uuid": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "weapons"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id",
@@ -1229,8 +1309,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -1544,6 +1627,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1569,6 +1655,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -1620,6 +1710,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1644,6 +1735,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -1695,6 +1787,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1719,6 +1812,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -1759,6 +1853,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1784,6 +1881,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -1818,6 +1918,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1843,6 +1946,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -1883,6 +1989,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1908,6 +2017,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -1953,6 +2065,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1978,6 +2093,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -1995,11 +2113,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -2028,6 +2141,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2052,6 +2168,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },
