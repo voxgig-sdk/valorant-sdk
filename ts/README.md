@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { ValorantSDK } from '@voxgig-sdk/valorant'
+import { ValorantSDK } from '@voxgig-sdk/valorant-sdk'
 
 const client = new ValorantSDK()
 ```
@@ -765,7 +765,7 @@ valorant/
 Import the SDK from the package root:
 
 ```ts
-import { ValorantSDK } from '@voxgig-sdk/valorant'
+import { ValorantSDK } from '@voxgig-sdk/valorant-sdk'
 ```
 
 ### Entity state

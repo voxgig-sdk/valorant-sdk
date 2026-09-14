@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/valorant",
+  "name": "@voxgig-sdk/valorant-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the Valorant public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

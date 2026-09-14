@@ -105,7 +105,7 @@ local results, err = client:Cosmetic():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/valorant` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/releases) |
+| TypeScript | `@voxgig-sdk/valorant-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/releases) |
 | Python | `voxgig-sdk-valorant` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/releases) |
 | PHP | `voxgig-sdk/valorant` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/valorant-sdk/go` | `go get github.com/voxgig-sdk/valorant-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Cosmetic():list()
 ### TypeScript
 
 ```ts
-import { ValorantSDK } from '@voxgig-sdk/valorant'
+import { ValorantSDK } from '@voxgig-sdk/valorant-sdk'
 
 const client = new ValorantSDK()
 
