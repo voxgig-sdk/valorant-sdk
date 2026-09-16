@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.VALORANT_TEST_LIVE;
         for (const op of ['list']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'cosmetic.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'cosmetic.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set VALORANT_TEST_COSMETIC_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "format": "uri", "name": "animationGif", "req": false, "short": "URL to the spray's animation GIF", "type": "`$STRING`", "index$": 0 }, { "active": true, "format": "uri", "name": "animationPng", "req": false, "short": "URL to the spray's animation PNG", "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "assetPath", "req": false, "short": "Asset path in game files", "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "category", "req": false, "short": "Category of the spray", "type": "`$STRING`", "index$": 3 }, { "active": true, "format": "uri", "name": "displayIcon", "req": false, "short": "URL to the buddy's display icon", "type": "`$STRING`", "index$": 4 }, { "active": true, "name": "displayName", "req": false, "short": "Display name of the buddy", "type": "`$STRING`", "index$": 5 }, { "active": true, "format": "uri", "name": "fullIcon", "req": false, "short": "URL to the spray's full icon", "type": "`$STRING`", "index$": 6 }, { "active": true, "format": "uri", "name": "fullTransparentIcon", "req": false, "short": "URL to the spray's full transparent icon", "type": "`$STRING`", "index$": 7 }, { "active": true, "name": "hideIfNotOwned", "req": false, "short": "Whether the spray is hidden if not owned", "type": "`$BOOLEAN`", "index$": 8 }, { "active": true, "name": "isHiddenIfNotOwned", "req": false, "short": "Whether the buddy is hidden if not owned", "type": "`$BOOLEAN`", "index$": 9 }, { "active": true, "name": "isNullSpray", "req": false, "short": "Whether this is a null spray", "type": "`$BOOLEAN`", "index$": 10 }, { "active": true, "format": "uri", "name": "largeArt", "req": false, "short": "URL to the card's large art", "type": "`$STRING`", "index$": 11 }, { "active": true, "name": "levels", "req": false, "type": "`$ARRAY`", "index$": 12 }, { "active": true, "format": "uri", "name": "smallArt", "req": false, "short": "URL to the card's small art", "type": "`$STRING`", "index$": 13 }, { "active": true, "format": "uuid", "name": "themeUuid", "req": false, "short": "UUID of the theme", "type": "`$STRING`", "index$": 14 }, { "active": true, "format": "uuid", "name": "uuid", "req": false, "short": "Unique identifier for the buddy", "type": "`$STRING`", "index$": 15 }, { "active": true, "format": "uri", "name": "wideArt", "req": false, "short": "URL to the card's wide art", "type": "`$STRING`", "index$": 16 }], "name": "cosmetic", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "query": [{ "active": true, "example": "en-US", "kind": "query", "name": "language", "orig": "language", "reqd": false, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /v1/buddies", "json": "{\"operationId\":\"getBuddies\",\"parameters\":[{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the buddy's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the buddy\",\"type\":\"string\"},\"isHiddenIfNotOwned\":{\"description\":\"Whether the buddy is hidden if not owned\",\"type\":\"boolean\"},\"levels\":{\"items\":{\"properties\":{\"assetPath\":{\"type\":\"string\"},\"charmLevel\":{\"type\":\"integer\"},\"displayIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"type\":\"string\"},\"hideIfNotOwned\":{\"type\":\"boolean\"},\"uuid\":{\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"themeUuid\":{\"description\":\"UUID of the theme\",\"format\":\"uuid\",\"type\":\"string\"},\"uuid\":{\"description\":\"Unique identifier for the buddy\",\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of buddies\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/v1/buddies", "segments": [{ "lit": "v1" }, { "lit": "buddies" }], "select": { "exist": ["language"] }, "transform": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }, { "active": true, "args": { "query": [{ "active": true, "example": "en-US", "kind": "query", "name": "language", "orig": "language", "reqd": false, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /v1/cards", "json": "{\"operationId\":\"getCards\",\"parameters\":[{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the card's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the player card\",\"type\":\"string\"},\"isHiddenIfNotOwned\":{\"description\":\"Whether the card is hidden if not owned\",\"type\":\"boolean\"},\"largeArt\":{\"description\":\"URL to the card's large art\",\"format\":\"uri\",\"type\":\"string\"},\"smallArt\":{\"description\":\"URL to the card's small art\",\"format\":\"uri\",\"type\":\"string\"},\"themeUuid\":{\"description\":\"UUID of the theme\",\"format\":\"uuid\",\"type\":\"string\"},\"uuid\":{\"description\":\"Unique identifier for the player card\",\"format\":\"uuid\",\"type\":\"string\"},\"wideArt\":{\"description\":\"URL to the card's wide art\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of player cards\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/v1/cards", "segments": [{ "lit": "v1" }, { "lit": "cards" }], "select": { "exist": ["language"] }, "transform": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 1 }, { "active": true, "args": { "query": [{ "active": true, "example": "en-US", "kind": "query", "name": "language", "orig": "language", "reqd": false, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /v1/sprays", "json": "{\"operationId\":\"getSprays\",\"parameters\":[{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"animationGif\":{\"description\":\"URL to the spray's animation GIF\",\"format\":\"uri\",\"type\":\"string\"},\"animationPng\":{\"description\":\"URL to the spray's animation PNG\",\"format\":\"uri\",\"type\":\"string\"},\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"category\":{\"description\":\"Category of the spray\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the spray's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the spray\",\"type\":\"string\"},\"fullIcon\":{\"description\":\"URL to the spray's full icon\",\"format\":\"uri\",\"type\":\"string\"},\"fullTransparentIcon\":{\"description\":\"URL to the spray's full transparent icon\",\"format\":\"uri\",\"type\":\"string\"},\"hideIfNotOwned\":{\"description\":\"Whether the spray is hidden if not owned\",\"type\":\"boolean\"},\"isNullSpray\":{\"description\":\"Whether this is a null spray\",\"type\":\"boolean\"},\"levels\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"themeUuid\":{\"description\":\"UUID of the theme\",\"format\":\"uuid\",\"type\":\"string\"},\"uuid\":{\"description\":\"Unique identifier for the spray\",\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of sprays\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/v1/sprays", "segments": [{ "lit": "v1" }, { "lit": "sprays" }], "select": { "exist": ["language"] }, "transform": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 2 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "cosmetic", "name__orig": "cosmetic", "Name": "Cosmetic", "name_": "cosmetic", "name-": "cosmetic", "NAME": "COSMETIC", "index$": 2 }, { "active": true, "entity": "cosmetic", "key$": "BasicCosmeticFlow", "kind": "basic", "name": "BasicCosmeticFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "cosmetic_ref01" } }], "index$": 0 }] }, 'Cosmetic');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -101,12 +99,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['VALORANT_TEST_COSMETIC_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'VALORANT_TEST_COSMETIC_ENTID': idmap,
         'VALORANT_TEST_LIVE': 'FALSE',
@@ -114,7 +106,13 @@ function basicSetup(extra) {
     });
     idmap = env['VALORANT_TEST_COSMETIC_ENTID'];
     const live = 'TRUE' === env.VALORANT_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['VALORANT_TEST_COSMETIC_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.ValorantSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -125,7 +123,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -137,7 +136,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.VALORANT_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.VALORANT_TEST_LIVE;
         for (const op of ['list']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'game_mode.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'game_mode.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set VALORANT_TEST_GAME_MODE_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "allowsMatchTimeouts", "req": false, "short": "Whether match timeouts are allowed", "type": "`$BOOLEAN`", "index$": 0 }, { "active": true, "name": "assetPath", "req": false, "short": "Asset path in game files", "type": "`$STRING`", "index$": 1 }, { "active": true, "format": "uri", "name": "displayIcon", "req": false, "short": "URL to the game mode's display icon", "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "displayName", "req": false, "short": "Display name of the game mode", "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "duration", "req": false, "short": "Duration of the game mode", "type": "`$STRING`", "index$": 4 }, { "active": true, "name": "economyType", "req": false, "short": "Type of economy system", "type": "`$STRING`", "index$": 5 }, { "active": true, "name": "gameFeatureOverrides", "req": false, "short": "Game feature overrides", "type": "`$ARRAY`", "index$": 6 }, { "active": true, "name": "gameRuleBoolOverrides", "req": false, "short": "Game rule boolean overrides", "type": "`$ARRAY`", "index$": 7 }, { "active": true, "name": "isMinimapHidden", "req": false, "short": "Whether the minimap is hidden", "type": "`$BOOLEAN`", "index$": 8 }, { "active": true, "name": "isTeamVoiceAllowed", "req": false, "short": "Whether team voice chat is allowed", "type": "`$BOOLEAN`", "index$": 9 }, { "active": true, "name": "orbCount", "req": false, "short": "Number of orbs in the game mode", "type": "`$INTEGER`", "index$": 10 }, { "active": true, "name": "roundsPerHalf", "req": false, "short": "Number of rounds per half", "type": "`$INTEGER`", "index$": 11 }, { "active": true, "name": "teamRoles", "req": false, "short": "Team roles in the game mode", "type": "`$ARRAY`", "index$": 12 }, { "active": true, "format": "uuid", "name": "uuid", "req": false, "short": "Unique identifier for the game mode", "type": "`$STRING`", "index$": 13 }], "name": "game_mode", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "query": [{ "active": true, "example": "en-US", "kind": "query", "name": "language", "orig": "language", "reqd": false, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /v1/gamemodes", "json": "{\"operationId\":\"getGameModes\",\"parameters\":[{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"allowsMatchTimeouts\":{\"description\":\"Whether match timeouts are allowed\",\"type\":\"boolean\"},\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the game mode's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the game mode\",\"type\":\"string\"},\"duration\":{\"description\":\"Duration of the game mode\",\"type\":\"string\"},\"economyType\":{\"description\":\"Type of economy system\",\"type\":\"string\"},\"gameFeatureOverrides\":{\"description\":\"Game feature overrides\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"gameRuleBoolOverrides\":{\"description\":\"Game rule boolean overrides\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"isMinimapHidden\":{\"description\":\"Whether the minimap is hidden\",\"type\":\"boolean\"},\"isTeamVoiceAllowed\":{\"description\":\"Whether team voice chat is allowed\",\"type\":\"boolean\"},\"orbCount\":{\"description\":\"Number of orbs in the game mode\",\"type\":\"integer\"},\"roundsPerHalf\":{\"description\":\"Number of rounds per half\",\"type\":\"integer\"},\"teamRoles\":{\"description\":\"Team roles in the game mode\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"uuid\":{\"description\":\"Unique identifier for the game mode\",\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of game modes\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/v1/gamemodes", "segments": [{ "lit": "v1" }, { "lit": "gamemodes" }], "select": { "exist": ["language"] }, "transform": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "game_mode", "name__orig": "game_mode", "Name": "GameMode", "name_": "game_mode", "name-": "game-mode", "NAME": "GAME_MODE", "index$": 3 }, { "active": true, "entity": "game_mode", "key$": "BasicGameModeFlow", "kind": "basic", "name": "BasicGameModeFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "game_mode_ref01" } }], "index$": 0 }] }, 'GameMode');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -101,12 +99,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['VALORANT_TEST_GAME_MODE_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'VALORANT_TEST_GAME_MODE_ENTID': idmap,
         'VALORANT_TEST_LIVE': 'FALSE',
@@ -114,7 +106,13 @@ function basicSetup(extra) {
     });
     idmap = env['VALORANT_TEST_GAME_MODE_ENTID'];
     const live = 'TRUE' === env.VALORANT_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['VALORANT_TEST_GAME_MODE_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.ValorantSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -125,7 +123,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -137,7 +136,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.VALORANT_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

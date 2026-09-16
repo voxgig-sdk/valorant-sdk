@@ -57,5 +57,362 @@
         "weaponStats": {}
       }
     }
+  },
+  "requests": {
+    "GET /v1/weapons": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getWeapons",
+        "parameters": [
+          {
+            "description": "Language code for localized content",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "en-US",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "assetPath": {
+                            "description": "Asset path in game files",
+                            "type": "string"
+                          },
+                          "category": {
+                            "description": "Weapon category (e.g., Rifle, Pistol)",
+                            "type": "string"
+                          },
+                          "defaultSkinUuid": {
+                            "description": "UUID of the default skin",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "displayIcon": {
+                            "description": "URL to the weapon's display icon",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "displayName": {
+                            "description": "Display name of the weapon",
+                            "type": "string"
+                          },
+                          "killStreamIcon": {
+                            "description": "URL to the weapon's kill stream icon",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "shopData": {
+                            "properties": {
+                              "assetPath": {
+                                "type": "string"
+                              },
+                              "canBeTrashed": {
+                                "type": "boolean"
+                              },
+                              "category": {
+                                "type": "string"
+                              },
+                              "categoryText": {
+                                "type": "string"
+                              },
+                              "cost": {
+                                "type": "integer"
+                              },
+                              "gridPosition": {
+                                "type": "object"
+                              },
+                              "newImage": {
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "newImage2": {
+                                "format": "uri",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "skins": {
+                            "items": {
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "uuid": {
+                            "description": "Unique identifier for the weapon",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "weaponStats": {
+                            "properties": {
+                              "adsStats": {
+                                "type": "object"
+                              },
+                              "airBurstStats": {
+                                "type": "object"
+                              },
+                              "altFireType": {
+                                "type": "string"
+                              },
+                              "altShotgunStats": {
+                                "type": "object"
+                              },
+                              "damageRanges": {
+                                "items": {
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "equipTimeSeconds": {
+                                "type": "number"
+                              },
+                              "feature": {
+                                "type": "string"
+                              },
+                              "fireMode": {
+                                "type": "string"
+                              },
+                              "fireRate": {
+                                "type": "number"
+                              },
+                              "firstBulletAccuracy": {
+                                "type": "number"
+                              },
+                              "magazineSize": {
+                                "type": "integer"
+                              },
+                              "reloadTimeSeconds": {
+                                "type": "number"
+                              },
+                              "runSpeedMultiplier": {
+                                "type": "number"
+                              },
+                              "shotgunPelletCount": {
+                                "type": "integer"
+                              },
+                              "wallPenetration": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "status": {
+                      "example": 200,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with list of weapons"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /v1/weapons/{uuid}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getWeaponByUuid",
+        "parameters": [
+          {
+            "description": "UUID of the weapon",
+            "in": "path",
+            "name": "uuid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Language code for localized content",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "en-US",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "assetPath": {
+                          "description": "Asset path in game files",
+                          "type": "string"
+                        },
+                        "category": {
+                          "description": "Weapon category (e.g., Rifle, Pistol)",
+                          "type": "string"
+                        },
+                        "defaultSkinUuid": {
+                          "description": "UUID of the default skin",
+                          "format": "uuid",
+                          "type": "string"
+                        },
+                        "displayIcon": {
+                          "description": "URL to the weapon's display icon",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "displayName": {
+                          "description": "Display name of the weapon",
+                          "type": "string"
+                        },
+                        "killStreamIcon": {
+                          "description": "URL to the weapon's kill stream icon",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "shopData": {
+                          "properties": {
+                            "assetPath": {
+                              "type": "string"
+                            },
+                            "canBeTrashed": {
+                              "type": "boolean"
+                            },
+                            "category": {
+                              "type": "string"
+                            },
+                            "categoryText": {
+                              "type": "string"
+                            },
+                            "cost": {
+                              "type": "integer"
+                            },
+                            "gridPosition": {
+                              "type": "object"
+                            },
+                            "newImage": {
+                              "format": "uri",
+                              "type": "string"
+                            },
+                            "newImage2": {
+                              "format": "uri",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "skins": {
+                          "items": {
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "uuid": {
+                          "description": "Unique identifier for the weapon",
+                          "format": "uuid",
+                          "type": "string"
+                        },
+                        "weaponStats": {
+                          "properties": {
+                            "adsStats": {
+                              "type": "object"
+                            },
+                            "airBurstStats": {
+                              "type": "object"
+                            },
+                            "altFireType": {
+                              "type": "string"
+                            },
+                            "altShotgunStats": {
+                              "type": "object"
+                            },
+                            "damageRanges": {
+                              "items": {
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "equipTimeSeconds": {
+                              "type": "number"
+                            },
+                            "feature": {
+                              "type": "string"
+                            },
+                            "fireMode": {
+                              "type": "string"
+                            },
+                            "fireRate": {
+                              "type": "number"
+                            },
+                            "firstBulletAccuracy": {
+                              "type": "number"
+                            },
+                            "magazineSize": {
+                              "type": "integer"
+                            },
+                            "reloadTimeSeconds": {
+                              "type": "number"
+                            },
+                            "runSpeedMultiplier": {
+                              "type": "number"
+                            },
+                            "shotgunPelletCount": {
+                              "type": "integer"
+                            },
+                            "wallPenetration": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "status": {
+                      "example": 200,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with weapon details"
+          },
+          "404": {
+            "description": "Weapon not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

@@ -101,5 +101,419 @@
         "voiceLine": {}
       }
     }
+  },
+  "requests": {
+    "GET /v1/agents": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAgents",
+        "parameters": [
+          {
+            "description": "Language code for localized content (e.g., en-US, es-ES, fr-FR)",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "en-US",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter only playable characters",
+            "in": "query",
+            "name": "isPlayableCharacter",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "abilities": {
+                            "items": {
+                              "properties": {
+                                "description": {
+                                  "type": "string"
+                                },
+                                "displayIcon": {
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                "displayName": {
+                                  "type": "string"
+                                },
+                                "slot": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "assetPath": {
+                            "description": "Asset path in game files",
+                            "type": "string"
+                          },
+                          "background": {
+                            "description": "URL to the agent's background image",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "backgroundGradientColors": {
+                            "description": "Gradient colors for the agent's background",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "bustPortrait": {
+                            "description": "URL to the agent's bust portrait",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "characterTags": {
+                            "description": "Tags associated with the character",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "description": {
+                            "description": "Description of the agent",
+                            "type": "string"
+                          },
+                          "developerName": {
+                            "description": "Internal developer name",
+                            "type": "string"
+                          },
+                          "displayIcon": {
+                            "description": "URL to the agent's display icon",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "displayIconSmall": {
+                            "description": "URL to the agent's small display icon",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "displayName": {
+                            "description": "Display name of the agent",
+                            "type": "string"
+                          },
+                          "fullPortrait": {
+                            "description": "URL to the agent's full portrait",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "fullPortraitV2": {
+                            "description": "URL to the agent's full portrait version 2",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "isAvailableForTest": {
+                            "description": "Whether the agent is available for testing",
+                            "type": "boolean"
+                          },
+                          "isBaseContent": {
+                            "description": "Whether the agent is base content",
+                            "type": "boolean"
+                          },
+                          "isFullPortraitRightFacing": {
+                            "description": "Whether the full portrait faces right",
+                            "type": "boolean"
+                          },
+                          "isPlayableCharacter": {
+                            "description": "Whether the agent is playable",
+                            "type": "boolean"
+                          },
+                          "killfeedPortrait": {
+                            "description": "URL to the agent's killfeed portrait",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "role": {
+                            "properties": {
+                              "assetPath": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "displayIcon": {
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "displayName": {
+                                "type": "string"
+                              },
+                              "uuid": {
+                                "format": "uuid",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "uuid": {
+                            "description": "Unique identifier for the agent",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "voiceLine": {
+                            "properties": {
+                              "maxDuration": {
+                                "type": "number"
+                              },
+                              "mediaList": {
+                                "items": {
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "minDuration": {
+                                "type": "number"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "status": {
+                      "example": 200,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with list of agents"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /v1/agents/{uuid}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAgentByUuid",
+        "parameters": [
+          {
+            "description": "UUID of the agent",
+            "in": "path",
+            "name": "uuid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Language code for localized content",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "en-US",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "abilities": {
+                          "items": {
+                            "properties": {
+                              "description": {
+                                "type": "string"
+                              },
+                              "displayIcon": {
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "displayName": {
+                                "type": "string"
+                              },
+                              "slot": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "assetPath": {
+                          "description": "Asset path in game files",
+                          "type": "string"
+                        },
+                        "background": {
+                          "description": "URL to the agent's background image",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "backgroundGradientColors": {
+                          "description": "Gradient colors for the agent's background",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "bustPortrait": {
+                          "description": "URL to the agent's bust portrait",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "characterTags": {
+                          "description": "Tags associated with the character",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "description": {
+                          "description": "Description of the agent",
+                          "type": "string"
+                        },
+                        "developerName": {
+                          "description": "Internal developer name",
+                          "type": "string"
+                        },
+                        "displayIcon": {
+                          "description": "URL to the agent's display icon",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "displayIconSmall": {
+                          "description": "URL to the agent's small display icon",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "displayName": {
+                          "description": "Display name of the agent",
+                          "type": "string"
+                        },
+                        "fullPortrait": {
+                          "description": "URL to the agent's full portrait",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "fullPortraitV2": {
+                          "description": "URL to the agent's full portrait version 2",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "isAvailableForTest": {
+                          "description": "Whether the agent is available for testing",
+                          "type": "boolean"
+                        },
+                        "isBaseContent": {
+                          "description": "Whether the agent is base content",
+                          "type": "boolean"
+                        },
+                        "isFullPortraitRightFacing": {
+                          "description": "Whether the full portrait faces right",
+                          "type": "boolean"
+                        },
+                        "isPlayableCharacter": {
+                          "description": "Whether the agent is playable",
+                          "type": "boolean"
+                        },
+                        "killfeedPortrait": {
+                          "description": "URL to the agent's killfeed portrait",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "role": {
+                          "properties": {
+                            "assetPath": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "displayIcon": {
+                              "format": "uri",
+                              "type": "string"
+                            },
+                            "displayName": {
+                              "type": "string"
+                            },
+                            "uuid": {
+                              "format": "uuid",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "uuid": {
+                          "description": "Unique identifier for the agent",
+                          "format": "uuid",
+                          "type": "string"
+                        },
+                        "voiceLine": {
+                          "properties": {
+                            "maxDuration": {
+                              "type": "number"
+                            },
+                            "mediaList": {
+                              "items": {
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "minDuration": {
+                              "type": "number"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "status": {
+                      "example": 200,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with agent details"
+          },
+          "404": {
+            "description": "Agent not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

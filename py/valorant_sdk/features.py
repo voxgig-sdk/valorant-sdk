@@ -1,12 +1,18 @@
 # Valorant SDK feature factory
 
 from valorant_sdk.feature.base_feature import ValorantBaseFeature
+from valorant_sdk.feature.ratelimit_feature import ValorantRatelimitFeature
+from valorant_sdk.feature.retry_feature import ValorantRetryFeature
 from valorant_sdk.feature.test_feature import ValorantTestFeature
+from valorant_sdk.feature.timeout_feature import ValorantTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: ValorantBaseFeature(),
+    "ratelimit": lambda: ValorantRatelimitFeature(),
+    "retry": lambda: ValorantRetryFeature(),
     "test": lambda: ValorantTestFeature(),
+    "timeout": lambda: ValorantTimeoutFeature(),
 }
 
 

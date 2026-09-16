@@ -82,5 +82,321 @@
         "wideArt": "s2b8"
       }
     }
+  },
+  "requests": {
+    "GET /v1/buddies": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getBuddies",
+        "parameters": [
+          {
+            "description": "Language code for localized content",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "en-US",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "assetPath": {
+                            "description": "Asset path in game files",
+                            "type": "string"
+                          },
+                          "displayIcon": {
+                            "description": "URL to the buddy's display icon",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "displayName": {
+                            "description": "Display name of the buddy",
+                            "type": "string"
+                          },
+                          "isHiddenIfNotOwned": {
+                            "description": "Whether the buddy is hidden if not owned",
+                            "type": "boolean"
+                          },
+                          "levels": {
+                            "items": {
+                              "properties": {
+                                "assetPath": {
+                                  "type": "string"
+                                },
+                                "charmLevel": {
+                                  "type": "integer"
+                                },
+                                "displayIcon": {
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                "displayName": {
+                                  "type": "string"
+                                },
+                                "hideIfNotOwned": {
+                                  "type": "boolean"
+                                },
+                                "uuid": {
+                                  "format": "uuid",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "themeUuid": {
+                            "description": "UUID of the theme",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "uuid": {
+                            "description": "Unique identifier for the buddy",
+                            "format": "uuid",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "status": {
+                      "example": 200,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with list of buddies"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /v1/cards": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCards",
+        "parameters": [
+          {
+            "description": "Language code for localized content",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "en-US",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "assetPath": {
+                            "description": "Asset path in game files",
+                            "type": "string"
+                          },
+                          "displayIcon": {
+                            "description": "URL to the card's display icon",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "displayName": {
+                            "description": "Display name of the player card",
+                            "type": "string"
+                          },
+                          "isHiddenIfNotOwned": {
+                            "description": "Whether the card is hidden if not owned",
+                            "type": "boolean"
+                          },
+                          "largeArt": {
+                            "description": "URL to the card's large art",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "smallArt": {
+                            "description": "URL to the card's small art",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "themeUuid": {
+                            "description": "UUID of the theme",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "uuid": {
+                            "description": "Unique identifier for the player card",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "wideArt": {
+                            "description": "URL to the card's wide art",
+                            "format": "uri",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "status": {
+                      "example": 200,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with list of player cards"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /v1/sprays": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSprays",
+        "parameters": [
+          {
+            "description": "Language code for localized content",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "en-US",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "animationGif": {
+                            "description": "URL to the spray's animation GIF",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "animationPng": {
+                            "description": "URL to the spray's animation PNG",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "assetPath": {
+                            "description": "Asset path in game files",
+                            "type": "string"
+                          },
+                          "category": {
+                            "description": "Category of the spray",
+                            "type": "string"
+                          },
+                          "displayIcon": {
+                            "description": "URL to the spray's display icon",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "displayName": {
+                            "description": "Display name of the spray",
+                            "type": "string"
+                          },
+                          "fullIcon": {
+                            "description": "URL to the spray's full icon",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "fullTransparentIcon": {
+                            "description": "URL to the spray's full transparent icon",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "hideIfNotOwned": {
+                            "description": "Whether the spray is hidden if not owned",
+                            "type": "boolean"
+                          },
+                          "isNullSpray": {
+                            "description": "Whether this is a null spray",
+                            "type": "boolean"
+                          },
+                          "levels": {
+                            "items": {
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "themeUuid": {
+                            "description": "UUID of the theme",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "uuid": {
+                            "description": "Unique identifier for the spray",
+                            "format": "uuid",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "status": {
+                      "example": 200,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with list of sprays"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

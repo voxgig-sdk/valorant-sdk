@@ -111,6 +111,12 @@ main: kit: entity: game_mode: {
               }
             ]
           }
+          contract: {
+            id: "GET /v1/gamemodes"
+            json: "{\"operationId\":\"getGameModes\",\"parameters\":[{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"allowsMatchTimeouts\":{\"description\":\"Whether match timeouts are allowed\",\"type\":\"boolean\"},\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the game mode's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the game mode\",\"type\":\"string\"},\"duration\":{\"description\":\"Duration of the game mode\",\"type\":\"string\"},\"economyType\":{\"description\":\"Type of economy system\",\"type\":\"string\"},\"gameFeatureOverrides\":{\"description\":\"Game feature overrides\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"gameRuleBoolOverrides\":{\"description\":\"Game rule boolean overrides\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"isMinimapHidden\":{\"description\":\"Whether the minimap is hidden\",\"type\":\"boolean\"},\"isTeamVoiceAllowed\":{\"description\":\"Whether team voice chat is allowed\",\"type\":\"boolean\"},\"orbCount\":{\"description\":\"Number of orbs in the game mode\",\"type\":\"integer\"},\"roundsPerHalf\":{\"description\":\"Number of rounds per half\",\"type\":\"integer\"},\"teamRoles\":{\"description\":\"Team roles in the game mode\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"uuid\":{\"description\":\"Unique identifier for the game mode\",\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of game modes\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v1/gamemodes"
           segments: [

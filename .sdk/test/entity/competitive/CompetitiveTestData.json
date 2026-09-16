@@ -30,5 +30,114 @@
         "uuid": "sa3"
       }
     }
+  },
+  "requests": {
+    "GET /v1/competitivetiers": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCompetitiveTiers",
+        "parameters": [
+          {
+            "description": "Language code for localized content",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "schema": {
+              "default": "en-US",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "assetObjectName": {
+                            "description": "Asset object name",
+                            "type": "string"
+                          },
+                          "assetPath": {
+                            "description": "Asset path in game files",
+                            "type": "string"
+                          },
+                          "tiers": {
+                            "items": {
+                              "properties": {
+                                "backgroundColor": {
+                                  "type": "string"
+                                },
+                                "color": {
+                                  "type": "string"
+                                },
+                                "division": {
+                                  "type": "string"
+                                },
+                                "divisionName": {
+                                  "type": "string"
+                                },
+                                "largeIcon": {
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                "rankTriangleDownIcon": {
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                "rankTriangleUpIcon": {
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                "smallIcon": {
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                "tier": {
+                                  "type": "integer"
+                                },
+                                "tierName": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "uuid": {
+                            "description": "Unique identifier for the competitive tier set",
+                            "format": "uuid",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "status": {
+                      "example": 200,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with competitive tier information"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

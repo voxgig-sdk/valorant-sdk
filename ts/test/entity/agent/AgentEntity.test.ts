@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { ValorantSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('AgentEntity', async () => {
 
     const live = 'TRUE' === process.env.VALORANT_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'agent.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'agent.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set VALORANT_TEST_AGENT_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"abilities","req":false,"type":"`$ARRAY`","index$":0},{"active":true,"name":"assetPath","req":false,"short":"Asset path in game files","type":"`$STRING`","index$":1},{"active":true,"format":"uri","name":"background","req":false,"short":"URL to the agent's background image","type":"`$STRING`","index$":2},{"active":true,"name":"backgroundGradientColors","req":false,"short":"Gradient colors for the agent's background","type":"`$ARRAY`","index$":3},{"active":true,"format":"uri","name":"bustPortrait","req":false,"short":"URL to the agent's bust portrait","type":"`$STRING`","index$":4},{"active":true,"name":"characterTags","req":false,"short":"Tags associated with the character","type":"`$ARRAY`","index$":5},{"active":true,"name":"description","req":false,"short":"Description of the agent","type":"`$STRING`","index$":6},{"active":true,"name":"developerName","req":false,"short":"Internal developer name","type":"`$STRING`","index$":7},{"active":true,"format":"uri","name":"displayIcon","req":false,"short":"URL to the agent's display icon","type":"`$STRING`","index$":8},{"active":true,"format":"uri","name":"displayIconSmall","req":false,"short":"URL to the agent's small display icon","type":"`$STRING`","index$":9},{"active":true,"name":"displayName","req":false,"short":"Display name of the agent","type":"`$STRING`","index$":10},{"active":true,"format":"uri","name":"fullPortrait","req":false,"short":"URL to the agent's full portrait","type":"`$STRING`","index$":11},{"active":true,"format":"uri","name":"fullPortraitV2","req":false,"short":"URL to the agent's full portrait version 2","type":"`$STRING`","index$":12},{"active":true,"name":"id","req":false,"type":"`$STRING`","index$":13},{"active":true,"name":"isAvailableForTest","req":false,"short":"Whether the agent is available for testing","type":"`$BOOLEAN`","index$":14},{"active":true,"name":"isBaseContent","req":false,"short":"Whether the agent is base content","type":"`$BOOLEAN`","index$":15},{"active":true,"name":"isFullPortraitRightFacing","req":false,"short":"Whether the full portrait faces right","type":"`$BOOLEAN`","index$":16},{"active":true,"name":"isPlayableCharacter","req":false,"short":"Whether the agent is playable","type":"`$BOOLEAN`","index$":17},{"active":true,"format":"uri","name":"killfeedPortrait","req":false,"short":"URL to the agent's killfeed portrait","type":"`$STRING`","index$":18},{"active":true,"name":"role","req":false,"type":"`$OBJECT`","index$":19},{"active":true,"format":"uuid","name":"uuid","req":false,"short":"Unique identifier for the agent","type":"`$STRING`","index$":20},{"active":true,"name":"voiceLine","req":false,"type":"`$OBJECT`","index$":21}],"id":{"field":"id","name":"id"},"name":"agent","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"kind":"query","name":"is_playable_character","orig":"is_playable_character","reqd":false,"type":"`$BOOLEAN`","index$":0},{"active":true,"example":"en-US","kind":"query","name":"language","orig":"language","reqd":false,"type":"`$STRING`","index$":1}]},"contract":{"id":"GET /v1/agents","json":"{\"operationId\":\"getAgents\",\"parameters\":[{\"description\":\"Language code for localized content (e.g., en-US, es-ES, fr-FR)\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}},{\"description\":\"Filter only playable characters\",\"in\":\"query\",\"name\":\"isPlayableCharacter\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"abilities\":{\"items\":{\"properties\":{\"description\":{\"type\":\"string\"},\"displayIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"type\":\"string\"},\"slot\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"background\":{\"description\":\"URL to the agent's background image\",\"format\":\"uri\",\"type\":\"string\"},\"backgroundGradientColors\":{\"description\":\"Gradient colors for the agent's background\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"bustPortrait\":{\"description\":\"URL to the agent's bust portrait\",\"format\":\"uri\",\"type\":\"string\"},\"characterTags\":{\"description\":\"Tags associated with the character\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"description\":{\"description\":\"Description of the agent\",\"type\":\"string\"},\"developerName\":{\"description\":\"Internal developer name\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the agent's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayIconSmall\":{\"description\":\"URL to the agent's small display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the agent\",\"type\":\"string\"},\"fullPortrait\":{\"description\":\"URL to the agent's full portrait\",\"format\":\"uri\",\"type\":\"string\"},\"fullPortraitV2\":{\"description\":\"URL to the agent's full portrait version 2\",\"format\":\"uri\",\"type\":\"string\"},\"isAvailableForTest\":{\"description\":\"Whether the agent is available for testing\",\"type\":\"boolean\"},\"isBaseContent\":{\"description\":\"Whether the agent is base content\",\"type\":\"boolean\"},\"isFullPortraitRightFacing\":{\"description\":\"Whether the full portrait faces right\",\"type\":\"boolean\"},\"isPlayableCharacter\":{\"description\":\"Whether the agent is playable\",\"type\":\"boolean\"},\"killfeedPortrait\":{\"description\":\"URL to the agent's killfeed portrait\",\"format\":\"uri\",\"type\":\"string\"},\"role\":{\"properties\":{\"assetPath\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"displayIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"type\":\"string\"},\"uuid\":{\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"uuid\":{\"description\":\"Unique identifier for the agent\",\"format\":\"uuid\",\"type\":\"string\"},\"voiceLine\":{\"properties\":{\"maxDuration\":{\"type\":\"number\"},\"mediaList\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"minDuration\":{\"type\":\"number\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of agents\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/v1/agents","segments":[{"lit":"v1"},{"lit":"agents"}],"select":{"exist":["is_playable_character","language"]},"transform":{"req":"`reqdata`","res":"`body.data`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"id","orig":"uuid","reqd":true,"type":"`$STRING`","index$":0}],"query":[{"active":true,"example":"en-US","kind":"query","name":"language","orig":"language","reqd":false,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /v1/agents/{uuid}","json":"{\"operationId\":\"getAgentByUuid\",\"parameters\":[{\"description\":\"UUID of the agent\",\"in\":\"path\",\"name\":\"uuid\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}},{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"abilities\":{\"items\":{\"properties\":{\"description\":{\"type\":\"string\"},\"displayIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"type\":\"string\"},\"slot\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"background\":{\"description\":\"URL to the agent's background image\",\"format\":\"uri\",\"type\":\"string\"},\"backgroundGradientColors\":{\"description\":\"Gradient colors for the agent's background\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"bustPortrait\":{\"description\":\"URL to the agent's bust portrait\",\"format\":\"uri\",\"type\":\"string\"},\"characterTags\":{\"description\":\"Tags associated with the character\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"description\":{\"description\":\"Description of the agent\",\"type\":\"string\"},\"developerName\":{\"description\":\"Internal developer name\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the agent's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayIconSmall\":{\"description\":\"URL to the agent's small display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the agent\",\"type\":\"string\"},\"fullPortrait\":{\"description\":\"URL to the agent's full portrait\",\"format\":\"uri\",\"type\":\"string\"},\"fullPortraitV2\":{\"description\":\"URL to the agent's full portrait version 2\",\"format\":\"uri\",\"type\":\"string\"},\"isAvailableForTest\":{\"description\":\"Whether the agent is available for testing\",\"type\":\"boolean\"},\"isBaseContent\":{\"description\":\"Whether the agent is base content\",\"type\":\"boolean\"},\"isFullPortraitRightFacing\":{\"description\":\"Whether the full portrait faces right\",\"type\":\"boolean\"},\"isPlayableCharacter\":{\"description\":\"Whether the agent is playable\",\"type\":\"boolean\"},\"killfeedPortrait\":{\"description\":\"URL to the agent's killfeed portrait\",\"format\":\"uri\",\"type\":\"string\"},\"role\":{\"properties\":{\"assetPath\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"displayIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"type\":\"string\"},\"uuid\":{\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"uuid\":{\"description\":\"Unique identifier for the agent\",\"format\":\"uuid\",\"type\":\"string\"},\"voiceLine\":{\"properties\":{\"maxDuration\":{\"type\":\"number\"},\"mediaList\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"minDuration\":{\"type\":\"number\"}},\"type\":\"object\"}},\"type\":\"object\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with agent details\"},\"404\":{\"description\":\"Agent not found\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/v1/agents/{uuid}","rename":{"param":{"uuid":"id"}},"segments":[{"lit":"v1"},{"lit":"agents"},{"var":"id"}],"select":{"exist":["id","language"]},"transform":{"req":"`reqdata`","res":"`body.data`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"agent","name__orig":"agent","Name":"Agent","name_":"agent","name-":"agent","NAME":"AGENT","index$":0}, {"active":true,"entity":"agent","key$":"BasicAgentFlow","kind":"basic","name":"BasicAgentFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"agent_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"agent_ref01","srcdatavar":"agent_ref01_data","suffix":"_dt0"},"match":{"id":"agent01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-agent_ref01"}}],"index$":1}]}, 'Agent')
     }
     const client = setup.client
     const struct = setup.struct
@@ -116,13 +115,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['VALORANT_TEST_AGENT_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'VALORANT_TEST_AGENT_ENTID': idmap,
     'VALORANT_TEST_LIVE': 'FALSE',
@@ -133,7 +125,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.VALORANT_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['VALORANT_TEST_AGENT_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new ValorantSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -145,7 +143,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -158,7 +157,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.VALORANT_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 
