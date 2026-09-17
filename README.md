@@ -105,12 +105,12 @@ local results, err = client:Cosmetic():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/valorant-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/releases) |
-| Python | `voxgig-sdk-valorant` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/releases) |
-| PHP | `voxgig-sdk/valorant` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/releases) |
+| TypeScript | `@voxgig-sdk/valorant-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/tags) |
+| Python | `voxgig-sdk-valorant` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/tags) |
+| PHP | `voxgig-sdk/valorant` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/valorant-sdk/go` | `go get github.com/voxgig-sdk/valorant-sdk/go@latest` |
-| Ruby | `voxgig-sdk-valorant` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/releases) |
-| Lua | `voxgig-sdk-valorant` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/releases) |
+| Ruby | `voxgig-sdk-valorant` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/tags) |
+| Lua | `voxgig-sdk-valorant` | publish pending — [install from git tag](https://github.com/voxgig-sdk/valorant-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/valorant-sdk/go-cli` | `go install github.com/voxgig-sdk/valorant-sdk/go-cli/cmd/valorant@latest` |
 | Go MCP server | `github.com/voxgig-sdk/valorant-sdk/go-mcp` | `go get github.com/voxgig-sdk/valorant-sdk/go-mcp@latest` |
 

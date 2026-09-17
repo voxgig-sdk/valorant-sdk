@@ -1,8 +1,8 @@
 # Entity Models
 
-@"agent.aon"
-@"competitive.aon"
-@"cosmetic.aon"
-@"game_mode.aon"
-@"map.aon"
-@"weapon.aon"
+@"./agent.aon"
+@"./competitive.aon"
+@"./cosmetic.aon"
+@"./game_mode.aon"
+@"./map.aon"
+@"./weapon.aon"

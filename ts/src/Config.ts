@@ -127,24 +127,24 @@ class Config {
 
     entity: {
       
-      agent: {
-      },
-
-      competitive: {
-      },
-
-      cosmetic: {
-      },
-
-      game_mode: {
-      },
-
-      map: {
-      },
-
-      weapon: {
-      },
-
+        agent: {
+        },
+  
+        competitive: {
+        },
+  
+        cosmetic: {
+        },
+  
+        game_mode: {
+        },
+  
+        map: {
+        },
+  
+        weapon: {
+        },
+  
     }
   }
 
