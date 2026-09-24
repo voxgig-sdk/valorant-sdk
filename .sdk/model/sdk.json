@@ -24,172 +24,260 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "agent": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "abilities",
-              "req": false,
-              "type": "`$ARRAY`"
+          "fields": {
+            "abilities": {
+              "a": true,
+              "h": "Abilities",
+              "n": "abilities",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "assetPath",
-              "req": false,
-              "short": "Asset path in game files",
-              "type": "`$STRING`"
+            "assetPath": {
+              "a": true,
+              "h": "Asset Path",
+              "n": "assetPath",
+              "r": false,
+              "sh": "Asset path in game files",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "background",
-              "req": false,
-              "short": "URL to the agent's background image",
-              "type": "`$STRING`"
+            "background": {
+              "a": true,
+              "fo": "uri",
+              "h": "Background",
+              "n": "background",
+              "r": false,
+              "sh": "URL to the agent's background image",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "backgroundGradientColors",
-              "req": false,
-              "short": "Gradient colors for the agent's background",
-              "type": "`$ARRAY`"
+            "backgroundGradientColors": {
+              "a": true,
+              "h": "Background Gradient Colors",
+              "n": "backgroundGradientColors",
+              "r": false,
+              "sh": "Gradient colors for the agent's background",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "bustPortrait",
-              "req": false,
-              "short": "URL to the agent's bust portrait",
-              "type": "`$STRING`"
+            "bustPortrait": {
+              "a": true,
+              "fo": "uri",
+              "h": "Bust Portrait",
+              "n": "bustPortrait",
+              "r": false,
+              "sh": "URL to the agent's bust portrait",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "characterTags",
-              "req": false,
-              "short": "Tags associated with the character",
-              "type": "`$ARRAY`"
+            "characterTags": {
+              "a": true,
+              "h": "Character Tags",
+              "n": "characterTags",
+              "r": false,
+              "sh": "Tags associated with the character",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "Description of the agent",
-              "type": "`$STRING`"
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "Description of the agent",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "developerName",
-              "req": false,
-              "short": "Internal developer name",
-              "type": "`$STRING`"
+            "developerName": {
+              "a": true,
+              "h": "Developer Name",
+              "n": "developerName",
+              "r": false,
+              "sh": "Internal developer name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "displayIcon",
-              "req": false,
-              "short": "URL to the agent's display icon",
-              "type": "`$STRING`"
+            "displayIcon": {
+              "a": true,
+              "fo": "uri",
+              "h": "Display Icon",
+              "n": "displayIcon",
+              "r": false,
+              "sh": "URL to the agent's display icon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "displayIconSmall",
-              "req": false,
-              "short": "URL to the agent's small display icon",
-              "type": "`$STRING`"
+            "displayIconSmall": {
+              "a": true,
+              "fo": "uri",
+              "h": "Display Icon Small",
+              "n": "displayIconSmall",
+              "r": false,
+              "sh": "URL to the agent's small display icon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "displayName",
-              "req": false,
-              "short": "Display name of the agent",
-              "type": "`$STRING`"
+            "displayName": {
+              "a": true,
+              "h": "Display Name",
+              "n": "displayName",
+              "r": false,
+              "sh": "Display name of the agent",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "fullPortrait",
-              "req": false,
-              "short": "URL to the agent's full portrait",
-              "type": "`$STRING`"
+            "fullPortrait": {
+              "a": true,
+              "fo": "uri",
+              "h": "Full Portrait",
+              "n": "fullPortrait",
+              "r": false,
+              "sh": "URL to the agent's full portrait",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "fullPortraitV2",
-              "req": false,
-              "short": "URL to the agent's full portrait version 2",
-              "type": "`$STRING`"
+            "fullPortraitV2": {
+              "a": true,
+              "fo": "uri",
+              "h": "Full Portrait V2",
+              "n": "fullPortraitV2",
+              "r": false,
+              "sh": "URL to the agent's full portrait version 2",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "isAvailableForTest",
-              "req": false,
-              "short": "Whether the agent is available for testing",
-              "type": "`$BOOLEAN`"
+            "isAvailableForTest": {
+              "a": true,
+              "h": "Is Available For Test",
+              "n": "isAvailableForTest",
+              "r": false,
+              "sh": "Whether the agent is available for testing",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "isBaseContent",
-              "req": false,
-              "short": "Whether the agent is base content",
-              "type": "`$BOOLEAN`"
+            "isBaseContent": {
+              "a": true,
+              "h": "Is Base Content",
+              "n": "isBaseContent",
+              "r": false,
+              "sh": "Whether the agent is base content",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "isFullPortraitRightFacing",
-              "req": false,
-              "short": "Whether the full portrait faces right",
-              "type": "`$BOOLEAN`"
+            "isFullPortraitRightFacing": {
+              "a": true,
+              "h": "Is Full Portrait Right Facing",
+              "n": "isFullPortraitRightFacing",
+              "r": false,
+              "sh": "Whether the full portrait faces right",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "isPlayableCharacter",
-              "req": false,
-              "short": "Whether the agent is playable",
-              "type": "`$BOOLEAN`"
+            "isPlayableCharacter": {
+              "a": true,
+              "h": "Is Playable Character",
+              "n": "isPlayableCharacter",
+              "r": false,
+              "sh": "Whether the agent is playable",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "killfeedPortrait",
-              "req": false,
-              "short": "URL to the agent's killfeed portrait",
-              "type": "`$STRING`"
+            "killfeedPortrait": {
+              "a": true,
+              "fo": "uri",
+              "h": "Killfeed Portrait",
+              "n": "killfeedPortrait",
+              "r": false,
+              "sh": "URL to the agent's killfeed portrait",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "role",
-              "req": false,
-              "type": "`$OBJECT`"
+            "role": {
+              "a": true,
+              "h": "Role",
+              "n": "role",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "uuid",
-              "req": false,
-              "short": "Unique identifier for the agent",
-              "type": "`$STRING`"
+            "uuid": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Uuid",
+              "n": "uuid",
+              "r": false,
+              "sh": "Unique identifier for the agent",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "voiceLine",
-              "req": false,
-              "type": "`$OBJECT`"
+            "voiceLine": {
+              "a": true,
+              "h": "Voice Line",
+              "n": "voiceLine",
+              "r": false,
+              "t": "`$OBJECT`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -201,38 +289,44 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/agents",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "is_playable_character",
-                        "orig": "is_playable_character",
-                        "reqd": false,
-                        "type": "`$BOOLEAN`"
+                        "a": true,
+                        "k": "query",
+                        "n": "is_playable_character",
+                        "or": "is_playable_character",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
                       },
                       {
-                        "active": true,
-                        "example": "en-US",
-                        "kind": "query",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en-US",
+                        "k": "query",
+                        "n": "language",
+                        "or": "language",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/agents",
-                    "json": "{\"operationId\":\"getAgents\",\"parameters\":[{\"description\":\"Language code for localized content (e.g., en-US, es-ES, fr-FR)\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}},{\"description\":\"Filter only playable characters\",\"in\":\"query\",\"name\":\"isPlayableCharacter\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"abilities\":{\"items\":{\"properties\":{\"description\":{\"type\":\"string\"},\"displayIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"type\":\"string\"},\"slot\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"background\":{\"description\":\"URL to the agent's background image\",\"format\":\"uri\",\"type\":\"string\"},\"backgroundGradientColors\":{\"description\":\"Gradient colors for the agent's background\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"bustPortrait\":{\"description\":\"URL to the agent's bust portrait\",\"format\":\"uri\",\"type\":\"string\"},\"characterTags\":{\"description\":\"Tags associated with the character\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"description\":{\"description\":\"Description of the agent\",\"type\":\"string\"},\"developerName\":{\"description\":\"Internal developer name\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the agent's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayIconSmall\":{\"description\":\"URL to the agent's small display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the agent\",\"type\":\"string\"},\"fullPortrait\":{\"description\":\"URL to the agent's full portrait\",\"format\":\"uri\",\"type\":\"string\"},\"fullPortraitV2\":{\"description\":\"URL to the agent's full portrait version 2\",\"format\":\"uri\",\"type\":\"string\"},\"isAvailableForTest\":{\"description\":\"Whether the agent is available for testing\",\"type\":\"boolean\"},\"isBaseContent\":{\"description\":\"Whether the agent is base content\",\"type\":\"boolean\"},\"isFullPortraitRightFacing\":{\"description\":\"Whether the full portrait faces right\",\"type\":\"boolean\"},\"isPlayableCharacter\":{\"description\":\"Whether the agent is playable\",\"type\":\"boolean\"},\"killfeedPortrait\":{\"description\":\"URL to the agent's killfeed portrait\",\"format\":\"uri\",\"type\":\"string\"},\"role\":{\"properties\":{\"assetPath\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"displayIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"type\":\"string\"},\"uuid\":{\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"uuid\":{\"description\":\"Unique identifier for the agent\",\"format\":\"uuid\",\"type\":\"string\"},\"voiceLine\":{\"properties\":{\"maxDuration\":{\"type\":\"number\"},\"mediaList\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"minDuration\":{\"type\":\"number\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of agents\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/agents",
+                  "q": {
+                    "exist": [
+                      "is_playable_character",
+                      "language"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/agents",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -240,13 +334,7 @@
                       "lit": "agents"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "is_playable_character",
-                      "language"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -258,45 +346,50 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/agents/{uuid}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "uuid",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "uuid",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "en-US",
-                        "kind": "query",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en-US",
+                        "k": "query",
+                        "n": "language",
+                        "or": "language",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/agents/{uuid}",
-                    "json": "{\"operationId\":\"getAgentByUuid\",\"parameters\":[{\"description\":\"UUID of the agent\",\"in\":\"path\",\"name\":\"uuid\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}},{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"abilities\":{\"items\":{\"properties\":{\"description\":{\"type\":\"string\"},\"displayIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"type\":\"string\"},\"slot\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"background\":{\"description\":\"URL to the agent's background image\",\"format\":\"uri\",\"type\":\"string\"},\"backgroundGradientColors\":{\"description\":\"Gradient colors for the agent's background\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"bustPortrait\":{\"description\":\"URL to the agent's bust portrait\",\"format\":\"uri\",\"type\":\"string\"},\"characterTags\":{\"description\":\"Tags associated with the character\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"description\":{\"description\":\"Description of the agent\",\"type\":\"string\"},\"developerName\":{\"description\":\"Internal developer name\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the agent's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayIconSmall\":{\"description\":\"URL to the agent's small display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the agent\",\"type\":\"string\"},\"fullPortrait\":{\"description\":\"URL to the agent's full portrait\",\"format\":\"uri\",\"type\":\"string\"},\"fullPortraitV2\":{\"description\":\"URL to the agent's full portrait version 2\",\"format\":\"uri\",\"type\":\"string\"},\"isAvailableForTest\":{\"description\":\"Whether the agent is available for testing\",\"type\":\"boolean\"},\"isBaseContent\":{\"description\":\"Whether the agent is base content\",\"type\":\"boolean\"},\"isFullPortraitRightFacing\":{\"description\":\"Whether the full portrait faces right\",\"type\":\"boolean\"},\"isPlayableCharacter\":{\"description\":\"Whether the agent is playable\",\"type\":\"boolean\"},\"killfeedPortrait\":{\"description\":\"URL to the agent's killfeed portrait\",\"format\":\"uri\",\"type\":\"string\"},\"role\":{\"properties\":{\"assetPath\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"displayIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"type\":\"string\"},\"uuid\":{\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"uuid\":{\"description\":\"Unique identifier for the agent\",\"format\":\"uuid\",\"type\":\"string\"},\"voiceLine\":{\"properties\":{\"maxDuration\":{\"type\":\"number\"},\"mediaList\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"minDuration\":{\"type\":\"number\"}},\"type\":\"object\"}},\"type\":\"object\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with agent details\"},\"404\":{\"description\":\"Agent not found\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/agents/{uuid}",
+                  "q": {
+                    "exist": [
+                      "id",
+                      "language"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/agents/{uuid}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "uuid": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -307,13 +400,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id",
-                      "language"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -330,36 +417,40 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "assetObjectName",
-              "req": false,
-              "short": "Asset object name",
-              "type": "`$STRING`"
+          "fields": {
+            "assetObjectName": {
+              "a": true,
+              "h": "Asset Object Name",
+              "n": "assetObjectName",
+              "r": false,
+              "sh": "Asset object name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "assetPath",
-              "req": false,
-              "short": "Asset path in game files",
-              "type": "`$STRING`"
+            "assetPath": {
+              "a": true,
+              "h": "Asset Path",
+              "n": "assetPath",
+              "r": false,
+              "sh": "Asset path in game files",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "tiers",
-              "req": false,
-              "type": "`$ARRAY`"
+            "tiers": {
+              "a": true,
+              "h": "Tiers",
+              "n": "tiers",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "uuid",
-              "req": false,
-              "short": "Unique identifier for the competitive tier set",
-              "type": "`$STRING`"
+            "uuid": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Uuid",
+              "n": "uuid",
+              "r": false,
+              "sh": "Unique identifier for the competitive tier set",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "competitive",
           "op": {
             "list": {
@@ -367,30 +458,35 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/competitivetiers",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "en-US",
-                        "kind": "query",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en-US",
+                        "k": "query",
+                        "n": "language",
+                        "or": "language",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/competitivetiers",
-                    "json": "{\"operationId\":\"getCompetitiveTiers\",\"parameters\":[{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"assetObjectName\":{\"description\":\"Asset object name\",\"type\":\"string\"},\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"tiers\":{\"items\":{\"properties\":{\"backgroundColor\":{\"type\":\"string\"},\"color\":{\"type\":\"string\"},\"division\":{\"type\":\"string\"},\"divisionName\":{\"type\":\"string\"},\"largeIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"rankTriangleDownIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"rankTriangleUpIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"smallIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"tier\":{\"type\":\"integer\"},\"tierName\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"uuid\":{\"description\":\"Unique identifier for the competitive tier set\",\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with competitive tier information\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/competitivetiers",
+                  "q": {
+                    "exist": [
+                      "language"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/competitivetiers",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -398,12 +494,7 @@
                       "lit": "competitivetiers"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -420,136 +511,153 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "uri",
-              "name": "animationGif",
-              "req": false,
-              "short": "URL to the spray's animation GIF",
-              "type": "`$STRING`"
+          "fields": {
+            "animationGif": {
+              "a": true,
+              "fo": "uri",
+              "h": "Animation Gif",
+              "n": "animationGif",
+              "r": false,
+              "sh": "URL to the spray's animation GIF",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "animationPng",
-              "req": false,
-              "short": "URL to the spray's animation PNG",
-              "type": "`$STRING`"
+            "animationPng": {
+              "a": true,
+              "fo": "uri",
+              "h": "Animation Png",
+              "n": "animationPng",
+              "r": false,
+              "sh": "URL to the spray's animation PNG",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "assetPath",
-              "req": false,
-              "short": "Asset path in game files",
-              "type": "`$STRING`"
+            "assetPath": {
+              "a": true,
+              "h": "Asset Path",
+              "n": "assetPath",
+              "r": false,
+              "sh": "Asset path in game files",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "category",
-              "req": false,
-              "short": "Category of the spray",
-              "type": "`$STRING`"
+            "category": {
+              "a": true,
+              "h": "Category",
+              "n": "category",
+              "r": false,
+              "sh": "Category of the spray",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "displayIcon",
-              "req": false,
-              "short": "URL to the buddy's display icon",
-              "type": "`$STRING`"
+            "displayIcon": {
+              "a": true,
+              "fo": "uri",
+              "h": "Display Icon",
+              "n": "displayIcon",
+              "r": false,
+              "sh": "URL to the buddy's display icon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "displayName",
-              "req": false,
-              "short": "Display name of the buddy",
-              "type": "`$STRING`"
+            "displayName": {
+              "a": true,
+              "h": "Display Name",
+              "n": "displayName",
+              "r": false,
+              "sh": "Display name of the buddy",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "fullIcon",
-              "req": false,
-              "short": "URL to the spray's full icon",
-              "type": "`$STRING`"
+            "fullIcon": {
+              "a": true,
+              "fo": "uri",
+              "h": "Full Icon",
+              "n": "fullIcon",
+              "r": false,
+              "sh": "URL to the spray's full icon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "fullTransparentIcon",
-              "req": false,
-              "short": "URL to the spray's full transparent icon",
-              "type": "`$STRING`"
+            "fullTransparentIcon": {
+              "a": true,
+              "fo": "uri",
+              "h": "Full Transparent Icon",
+              "n": "fullTransparentIcon",
+              "r": false,
+              "sh": "URL to the spray's full transparent icon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "hideIfNotOwned",
-              "req": false,
-              "short": "Whether the spray is hidden if not owned",
-              "type": "`$BOOLEAN`"
+            "hideIfNotOwned": {
+              "a": true,
+              "h": "Hide If Not Owned",
+              "n": "hideIfNotOwned",
+              "r": false,
+              "sh": "Whether the spray is hidden if not owned",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "isHiddenIfNotOwned",
-              "req": false,
-              "short": "Whether the buddy is hidden if not owned",
-              "type": "`$BOOLEAN`"
+            "isHiddenIfNotOwned": {
+              "a": true,
+              "h": "Is Hidden If Not Owned",
+              "n": "isHiddenIfNotOwned",
+              "r": false,
+              "sh": "Whether the buddy is hidden if not owned",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "isNullSpray",
-              "req": false,
-              "short": "Whether this is a null spray",
-              "type": "`$BOOLEAN`"
+            "isNullSpray": {
+              "a": true,
+              "h": "Is Null Spray",
+              "n": "isNullSpray",
+              "r": false,
+              "sh": "Whether this is a null spray",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "largeArt",
-              "req": false,
-              "short": "URL to the card's large art",
-              "type": "`$STRING`"
+            "largeArt": {
+              "a": true,
+              "fo": "uri",
+              "h": "Large Art",
+              "n": "largeArt",
+              "r": false,
+              "sh": "URL to the card's large art",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "levels",
-              "req": false,
-              "type": "`$ARRAY`"
+            "levels": {
+              "a": true,
+              "h": "Levels",
+              "n": "levels",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "smallArt",
-              "req": false,
-              "short": "URL to the card's small art",
-              "type": "`$STRING`"
+            "smallArt": {
+              "a": true,
+              "fo": "uri",
+              "h": "Small Art",
+              "n": "smallArt",
+              "r": false,
+              "sh": "URL to the card's small art",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "themeUuid",
-              "req": false,
-              "short": "UUID of the theme",
-              "type": "`$STRING`"
+            "themeUuid": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Theme Uuid",
+              "n": "themeUuid",
+              "r": false,
+              "sh": "UUID of the theme",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "uuid",
-              "req": false,
-              "short": "Unique identifier for the buddy",
-              "type": "`$STRING`"
+            "uuid": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Uuid",
+              "n": "uuid",
+              "r": false,
+              "sh": "Unique identifier for the buddy",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "wideArt",
-              "req": false,
-              "short": "URL to the card's wide art",
-              "type": "`$STRING`"
+            "wideArt": {
+              "a": true,
+              "fo": "uri",
+              "h": "Wide Art",
+              "n": "wideArt",
+              "r": false,
+              "sh": "URL to the card's wide art",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "cosmetic",
           "op": {
             "list": {
@@ -557,30 +665,35 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/buddies",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "en-US",
-                        "kind": "query",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en-US",
+                        "k": "query",
+                        "n": "language",
+                        "or": "language",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/buddies",
-                    "json": "{\"operationId\":\"getBuddies\",\"parameters\":[{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the buddy's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the buddy\",\"type\":\"string\"},\"isHiddenIfNotOwned\":{\"description\":\"Whether the buddy is hidden if not owned\",\"type\":\"boolean\"},\"levels\":{\"items\":{\"properties\":{\"assetPath\":{\"type\":\"string\"},\"charmLevel\":{\"type\":\"integer\"},\"displayIcon\":{\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"type\":\"string\"},\"hideIfNotOwned\":{\"type\":\"boolean\"},\"uuid\":{\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"themeUuid\":{\"description\":\"UUID of the theme\",\"format\":\"uuid\",\"type\":\"string\"},\"uuid\":{\"description\":\"Unique identifier for the buddy\",\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of buddies\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/buddies",
+                  "q": {
+                    "exist": [
+                      "language"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/buddies",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -588,41 +701,41 @@
                       "lit": "buddies"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/cards",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "en-US",
-                        "kind": "query",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en-US",
+                        "k": "query",
+                        "n": "language",
+                        "or": "language",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/cards",
-                    "json": "{\"operationId\":\"getCards\",\"parameters\":[{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the card's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the player card\",\"type\":\"string\"},\"isHiddenIfNotOwned\":{\"description\":\"Whether the card is hidden if not owned\",\"type\":\"boolean\"},\"largeArt\":{\"description\":\"URL to the card's large art\",\"format\":\"uri\",\"type\":\"string\"},\"smallArt\":{\"description\":\"URL to the card's small art\",\"format\":\"uri\",\"type\":\"string\"},\"themeUuid\":{\"description\":\"UUID of the theme\",\"format\":\"uuid\",\"type\":\"string\"},\"uuid\":{\"description\":\"Unique identifier for the player card\",\"format\":\"uuid\",\"type\":\"string\"},\"wideArt\":{\"description\":\"URL to the card's wide art\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of player cards\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/cards",
+                  "q": {
+                    "exist": [
+                      "language"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/cards",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -630,41 +743,41 @@
                       "lit": "cards"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/sprays",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "en-US",
-                        "kind": "query",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en-US",
+                        "k": "query",
+                        "n": "language",
+                        "or": "language",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/sprays",
-                    "json": "{\"operationId\":\"getSprays\",\"parameters\":[{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"animationGif\":{\"description\":\"URL to the spray's animation GIF\",\"format\":\"uri\",\"type\":\"string\"},\"animationPng\":{\"description\":\"URL to the spray's animation PNG\",\"format\":\"uri\",\"type\":\"string\"},\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"category\":{\"description\":\"Category of the spray\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the spray's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the spray\",\"type\":\"string\"},\"fullIcon\":{\"description\":\"URL to the spray's full icon\",\"format\":\"uri\",\"type\":\"string\"},\"fullTransparentIcon\":{\"description\":\"URL to the spray's full transparent icon\",\"format\":\"uri\",\"type\":\"string\"},\"hideIfNotOwned\":{\"description\":\"Whether the spray is hidden if not owned\",\"type\":\"boolean\"},\"isNullSpray\":{\"description\":\"Whether this is a null spray\",\"type\":\"boolean\"},\"levels\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"themeUuid\":{\"description\":\"UUID of the theme\",\"format\":\"uuid\",\"type\":\"string\"},\"uuid\":{\"description\":\"Unique identifier for the spray\",\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of sprays\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/sprays",
+                  "q": {
+                    "exist": [
+                      "language"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/sprays",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -672,12 +785,7 @@
                       "lit": "sprays"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -694,108 +802,122 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "allowsMatchTimeouts",
-              "req": false,
-              "short": "Whether match timeouts are allowed",
-              "type": "`$BOOLEAN`"
+          "fields": {
+            "allowsMatchTimeouts": {
+              "a": true,
+              "h": "Allows Match Timeouts",
+              "n": "allowsMatchTimeouts",
+              "r": false,
+              "sh": "Whether match timeouts are allowed",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "assetPath",
-              "req": false,
-              "short": "Asset path in game files",
-              "type": "`$STRING`"
+            "assetPath": {
+              "a": true,
+              "h": "Asset Path",
+              "n": "assetPath",
+              "r": false,
+              "sh": "Asset path in game files",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "displayIcon",
-              "req": false,
-              "short": "URL to the game mode's display icon",
-              "type": "`$STRING`"
+            "displayIcon": {
+              "a": true,
+              "fo": "uri",
+              "h": "Display Icon",
+              "n": "displayIcon",
+              "r": false,
+              "sh": "URL to the game mode's display icon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "displayName",
-              "req": false,
-              "short": "Display name of the game mode",
-              "type": "`$STRING`"
+            "displayName": {
+              "a": true,
+              "h": "Display Name",
+              "n": "displayName",
+              "r": false,
+              "sh": "Display name of the game mode",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "duration",
-              "req": false,
-              "short": "Duration of the game mode",
-              "type": "`$STRING`"
+            "duration": {
+              "a": true,
+              "h": "Duration",
+              "n": "duration",
+              "r": false,
+              "sh": "Duration of the game mode",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "economyType",
-              "req": false,
-              "short": "Type of economy system",
-              "type": "`$STRING`"
+            "economyType": {
+              "a": true,
+              "h": "Economy Type",
+              "n": "economyType",
+              "r": false,
+              "sh": "Type of economy system",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "gameFeatureOverrides",
-              "req": false,
-              "short": "Game feature overrides",
-              "type": "`$ARRAY`"
+            "gameFeatureOverrides": {
+              "a": true,
+              "h": "Game Feature Overrides",
+              "n": "gameFeatureOverrides",
+              "r": false,
+              "sh": "Game feature overrides",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "gameRuleBoolOverrides",
-              "req": false,
-              "short": "Game rule boolean overrides",
-              "type": "`$ARRAY`"
+            "gameRuleBoolOverrides": {
+              "a": true,
+              "h": "Game Rule Bool Overrides",
+              "n": "gameRuleBoolOverrides",
+              "r": false,
+              "sh": "Game rule boolean overrides",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "isMinimapHidden",
-              "req": false,
-              "short": "Whether the minimap is hidden",
-              "type": "`$BOOLEAN`"
+            "isMinimapHidden": {
+              "a": true,
+              "h": "Is Minimap Hidden",
+              "n": "isMinimapHidden",
+              "r": false,
+              "sh": "Whether the minimap is hidden",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "isTeamVoiceAllowed",
-              "req": false,
-              "short": "Whether team voice chat is allowed",
-              "type": "`$BOOLEAN`"
+            "isTeamVoiceAllowed": {
+              "a": true,
+              "h": "Is Team Voice Allowed",
+              "n": "isTeamVoiceAllowed",
+              "r": false,
+              "sh": "Whether team voice chat is allowed",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "orbCount",
-              "req": false,
-              "short": "Number of orbs in the game mode",
-              "type": "`$INTEGER`"
+            "orbCount": {
+              "a": true,
+              "h": "Orb Count",
+              "n": "orbCount",
+              "r": false,
+              "sh": "Number of orbs in the game mode",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "roundsPerHalf",
-              "req": false,
-              "short": "Number of rounds per half",
-              "type": "`$INTEGER`"
+            "roundsPerHalf": {
+              "a": true,
+              "h": "Rounds Per Half",
+              "n": "roundsPerHalf",
+              "r": false,
+              "sh": "Number of rounds per half",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "teamRoles",
-              "req": false,
-              "short": "Team roles in the game mode",
-              "type": "`$ARRAY`"
+            "teamRoles": {
+              "a": true,
+              "h": "Team Roles",
+              "n": "teamRoles",
+              "r": false,
+              "sh": "Team roles in the game mode",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "uuid",
-              "req": false,
-              "short": "Unique identifier for the game mode",
-              "type": "`$STRING`"
+            "uuid": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Uuid",
+              "n": "uuid",
+              "r": false,
+              "sh": "Unique identifier for the game mode",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "game_mode",
           "op": {
             "list": {
@@ -803,30 +925,35 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/gamemodes",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "en-US",
-                        "kind": "query",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en-US",
+                        "k": "query",
+                        "n": "language",
+                        "or": "language",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/gamemodes",
-                    "json": "{\"operationId\":\"getGameModes\",\"parameters\":[{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"allowsMatchTimeouts\":{\"description\":\"Whether match timeouts are allowed\",\"type\":\"boolean\"},\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the game mode's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the game mode\",\"type\":\"string\"},\"duration\":{\"description\":\"Duration of the game mode\",\"type\":\"string\"},\"economyType\":{\"description\":\"Type of economy system\",\"type\":\"string\"},\"gameFeatureOverrides\":{\"description\":\"Game feature overrides\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"gameRuleBoolOverrides\":{\"description\":\"Game rule boolean overrides\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"isMinimapHidden\":{\"description\":\"Whether the minimap is hidden\",\"type\":\"boolean\"},\"isTeamVoiceAllowed\":{\"description\":\"Whether team voice chat is allowed\",\"type\":\"boolean\"},\"orbCount\":{\"description\":\"Number of orbs in the game mode\",\"type\":\"integer\"},\"roundsPerHalf\":{\"description\":\"Number of rounds per half\",\"type\":\"integer\"},\"teamRoles\":{\"description\":\"Team roles in the game mode\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"uuid\":{\"description\":\"Unique identifier for the game mode\",\"format\":\"uuid\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of game modes\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/gamemodes",
+                  "q": {
+                    "exist": [
+                      "language"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/gamemodes",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -834,12 +961,7 @@
                       "lit": "gamemodes"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -856,123 +978,139 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "assetPath",
-              "req": false,
-              "short": "Asset path in game files",
-              "type": "`$STRING`"
+          "fields": {
+            "assetPath": {
+              "a": true,
+              "h": "Asset Path",
+              "n": "assetPath",
+              "r": false,
+              "sh": "Asset path in game files",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "callouts",
-              "req": false,
-              "type": "`$ARRAY`"
+            "callouts": {
+              "a": true,
+              "h": "Callouts",
+              "n": "callouts",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "coordinates",
-              "req": false,
-              "short": "Geographic coordinates of the map location",
-              "type": "`$STRING`"
+            "coordinates": {
+              "a": true,
+              "h": "Coordinates",
+              "n": "coordinates",
+              "r": false,
+              "sh": "Geographic coordinates of the map location",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "displayIcon",
-              "req": false,
-              "short": "URL to the map's display icon",
-              "type": "`$STRING`"
+            "displayIcon": {
+              "a": true,
+              "fo": "uri",
+              "h": "Display Icon",
+              "n": "displayIcon",
+              "r": false,
+              "sh": "URL to the map's display icon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "displayName",
-              "req": false,
-              "short": "Display name of the map",
-              "type": "`$STRING`"
+            "displayName": {
+              "a": true,
+              "h": "Display Name",
+              "n": "displayName",
+              "r": false,
+              "sh": "Display name of the map",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "listViewIcon",
-              "req": false,
-              "short": "URL to the map's list view icon",
-              "type": "`$STRING`"
+            "listViewIcon": {
+              "a": true,
+              "fo": "uri",
+              "h": "List View Icon",
+              "n": "listViewIcon",
+              "r": false,
+              "sh": "URL to the map's list view icon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "mapUrl",
-              "req": false,
-              "short": "URL to the map overview",
-              "type": "`$STRING`"
+            "mapUrl": {
+              "a": true,
+              "fo": "uri",
+              "h": "Map Url",
+              "n": "mapUrl",
+              "r": false,
+              "sh": "URL to the map overview",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "narrativeDescription",
-              "req": false,
-              "short": "Narrative description of the map",
-              "type": "`$STRING`"
+            "narrativeDescription": {
+              "a": true,
+              "h": "Narrative Description",
+              "n": "narrativeDescription",
+              "r": false,
+              "sh": "Narrative description of the map",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "splash",
-              "req": false,
-              "short": "URL to the map's splash image",
-              "type": "`$STRING`"
+            "splash": {
+              "a": true,
+              "fo": "uri",
+              "h": "Splash",
+              "n": "splash",
+              "r": false,
+              "sh": "URL to the map's splash image",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "tacticalDescription",
-              "req": false,
-              "short": "Tactical description of the map",
-              "type": "`$STRING`"
+            "tacticalDescription": {
+              "a": true,
+              "h": "Tactical Description",
+              "n": "tacticalDescription",
+              "r": false,
+              "sh": "Tactical description of the map",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "uuid",
-              "req": false,
-              "short": "Unique identifier for the map",
-              "type": "`$STRING`"
+            "uuid": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Uuid",
+              "n": "uuid",
+              "r": false,
+              "sh": "Unique identifier for the map",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "xMultiplier",
-              "req": false,
-              "short": "X coordinate multiplier",
-              "type": "`$NUMBER`"
+            "xMultiplier": {
+              "a": true,
+              "h": "X Multiplier",
+              "n": "xMultiplier",
+              "r": false,
+              "sh": "X coordinate multiplier",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "xScalarToAdd",
-              "req": false,
-              "short": "X scalar to add",
-              "type": "`$NUMBER`"
+            "xScalarToAdd": {
+              "a": true,
+              "h": "X Scalar To Add",
+              "n": "xScalarToAdd",
+              "r": false,
+              "sh": "X scalar to add",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "yMultiplier",
-              "req": false,
-              "short": "Y coordinate multiplier",
-              "type": "`$NUMBER`"
+            "yMultiplier": {
+              "a": true,
+              "h": "Y Multiplier",
+              "n": "yMultiplier",
+              "r": false,
+              "sh": "Y coordinate multiplier",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "yScalarToAdd",
-              "req": false,
-              "short": "Y scalar to add",
-              "type": "`$NUMBER`"
+            "yScalarToAdd": {
+              "a": true,
+              "h": "Y Scalar To Add",
+              "n": "yScalarToAdd",
+              "r": false,
+              "sh": "Y scalar to add",
+              "t": "`$NUMBER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -984,30 +1122,35 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/maps",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "en-US",
-                        "kind": "query",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en-US",
+                        "k": "query",
+                        "n": "language",
+                        "or": "language",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/maps",
-                    "json": "{\"operationId\":\"getMaps\",\"parameters\":[{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"callouts\":{\"items\":{\"properties\":{\"location\":{\"properties\":{\"x\":{\"type\":\"number\"},\"y\":{\"type\":\"number\"}},\"type\":\"object\"},\"regionName\":{\"type\":\"string\"},\"superRegionName\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"coordinates\":{\"description\":\"Geographic coordinates of the map location\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the map's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the map\",\"type\":\"string\"},\"listViewIcon\":{\"description\":\"URL to the map's list view icon\",\"format\":\"uri\",\"type\":\"string\"},\"mapUrl\":{\"description\":\"URL to the map overview\",\"format\":\"uri\",\"type\":\"string\"},\"narrativeDescription\":{\"description\":\"Narrative description of the map\",\"type\":\"string\"},\"splash\":{\"description\":\"URL to the map's splash image\",\"format\":\"uri\",\"type\":\"string\"},\"tacticalDescription\":{\"description\":\"Tactical description of the map\",\"type\":\"string\"},\"uuid\":{\"description\":\"Unique identifier for the map\",\"format\":\"uuid\",\"type\":\"string\"},\"xMultiplier\":{\"description\":\"X coordinate multiplier\",\"type\":\"number\"},\"xScalarToAdd\":{\"description\":\"X scalar to add\",\"type\":\"number\"},\"yMultiplier\":{\"description\":\"Y coordinate multiplier\",\"type\":\"number\"},\"yScalarToAdd\":{\"description\":\"Y scalar to add\",\"type\":\"number\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of maps\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/maps",
+                  "q": {
+                    "exist": [
+                      "language"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/maps",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -1015,12 +1158,7 @@
                       "lit": "maps"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1032,45 +1170,50 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/maps/{uuid}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "uuid",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "uuid",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "en-US",
-                        "kind": "query",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en-US",
+                        "k": "query",
+                        "n": "language",
+                        "or": "language",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/maps/{uuid}",
-                    "json": "{\"operationId\":\"getMapByUuid\",\"parameters\":[{\"description\":\"UUID of the map\",\"in\":\"path\",\"name\":\"uuid\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}},{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"callouts\":{\"items\":{\"properties\":{\"location\":{\"properties\":{\"x\":{\"type\":\"number\"},\"y\":{\"type\":\"number\"}},\"type\":\"object\"},\"regionName\":{\"type\":\"string\"},\"superRegionName\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"coordinates\":{\"description\":\"Geographic coordinates of the map location\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the map's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the map\",\"type\":\"string\"},\"listViewIcon\":{\"description\":\"URL to the map's list view icon\",\"format\":\"uri\",\"type\":\"string\"},\"mapUrl\":{\"description\":\"URL to the map overview\",\"format\":\"uri\",\"type\":\"string\"},\"narrativeDescription\":{\"description\":\"Narrative description of the map\",\"type\":\"string\"},\"splash\":{\"description\":\"URL to the map's splash image\",\"format\":\"uri\",\"type\":\"string\"},\"tacticalDescription\":{\"description\":\"Tactical description of the map\",\"type\":\"string\"},\"uuid\":{\"description\":\"Unique identifier for the map\",\"format\":\"uuid\",\"type\":\"string\"},\"xMultiplier\":{\"description\":\"X coordinate multiplier\",\"type\":\"number\"},\"xScalarToAdd\":{\"description\":\"X scalar to add\",\"type\":\"number\"},\"yMultiplier\":{\"description\":\"Y coordinate multiplier\",\"type\":\"number\"},\"yScalarToAdd\":{\"description\":\"Y scalar to add\",\"type\":\"number\"}},\"type\":\"object\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with map details\"},\"404\":{\"description\":\"Map not found\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/maps/{uuid}",
+                  "q": {
+                    "exist": [
+                      "id",
+                      "language"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/maps/{uuid}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "uuid": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -1081,13 +1224,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id",
-                      "language"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1104,85 +1241,96 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "assetPath",
-              "req": false,
-              "short": "Asset path in game files",
-              "type": "`$STRING`"
+          "fields": {
+            "assetPath": {
+              "a": true,
+              "h": "Asset Path",
+              "n": "assetPath",
+              "r": false,
+              "sh": "Asset path in game files",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "category",
-              "req": false,
-              "short": "Weapon category (e.g., Rifle, Pistol)",
-              "type": "`$STRING`"
+            "category": {
+              "a": true,
+              "h": "Category",
+              "n": "category",
+              "r": false,
+              "sh": "Weapon category (e.g., Rifle, Pistol)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "defaultSkinUuid",
-              "req": false,
-              "short": "UUID of the default skin",
-              "type": "`$STRING`"
+            "defaultSkinUuid": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Default Skin Uuid",
+              "n": "defaultSkinUuid",
+              "r": false,
+              "sh": "UUID of the default skin",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "displayIcon",
-              "req": false,
-              "short": "URL to the weapon's display icon",
-              "type": "`$STRING`"
+            "displayIcon": {
+              "a": true,
+              "fo": "uri",
+              "h": "Display Icon",
+              "n": "displayIcon",
+              "r": false,
+              "sh": "URL to the weapon's display icon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "displayName",
-              "req": false,
-              "short": "Display name of the weapon",
-              "type": "`$STRING`"
+            "displayName": {
+              "a": true,
+              "h": "Display Name",
+              "n": "displayName",
+              "r": false,
+              "sh": "Display name of the weapon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "killStreamIcon",
-              "req": false,
-              "short": "URL to the weapon's kill stream icon",
-              "type": "`$STRING`"
+            "killStreamIcon": {
+              "a": true,
+              "fo": "uri",
+              "h": "Kill Stream Icon",
+              "n": "killStreamIcon",
+              "r": false,
+              "sh": "URL to the weapon's kill stream icon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "shopData",
-              "req": false,
-              "type": "`$OBJECT`"
+            "shopData": {
+              "a": true,
+              "h": "Shop Data",
+              "n": "shopData",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "skins",
-              "req": false,
-              "type": "`$ARRAY`"
+            "skins": {
+              "a": true,
+              "h": "Skins",
+              "n": "skins",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "uuid",
-              "req": false,
-              "short": "Unique identifier for the weapon",
-              "type": "`$STRING`"
+            "uuid": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Uuid",
+              "n": "uuid",
+              "r": false,
+              "sh": "Unique identifier for the weapon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "weaponStats",
-              "req": false,
-              "type": "`$OBJECT`"
+            "weaponStats": {
+              "a": true,
+              "h": "Weapon Stats",
+              "n": "weaponStats",
+              "r": false,
+              "t": "`$OBJECT`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -1194,30 +1342,35 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/weapons",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "en-US",
-                        "kind": "query",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en-US",
+                        "k": "query",
+                        "n": "language",
+                        "or": "language",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/weapons",
-                    "json": "{\"operationId\":\"getWeapons\",\"parameters\":[{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"category\":{\"description\":\"Weapon category (e.g., Rifle, Pistol)\",\"type\":\"string\"},\"defaultSkinUuid\":{\"description\":\"UUID of the default skin\",\"format\":\"uuid\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the weapon's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the weapon\",\"type\":\"string\"},\"killStreamIcon\":{\"description\":\"URL to the weapon's kill stream icon\",\"format\":\"uri\",\"type\":\"string\"},\"shopData\":{\"properties\":{\"assetPath\":{\"type\":\"string\"},\"canBeTrashed\":{\"type\":\"boolean\"},\"category\":{\"type\":\"string\"},\"categoryText\":{\"type\":\"string\"},\"cost\":{\"type\":\"integer\"},\"gridPosition\":{\"type\":\"object\"},\"newImage\":{\"format\":\"uri\",\"type\":\"string\"},\"newImage2\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"skins\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"uuid\":{\"description\":\"Unique identifier for the weapon\",\"format\":\"uuid\",\"type\":\"string\"},\"weaponStats\":{\"properties\":{\"adsStats\":{\"type\":\"object\"},\"airBurstStats\":{\"type\":\"object\"},\"altFireType\":{\"type\":\"string\"},\"altShotgunStats\":{\"type\":\"object\"},\"damageRanges\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"equipTimeSeconds\":{\"type\":\"number\"},\"feature\":{\"type\":\"string\"},\"fireMode\":{\"type\":\"string\"},\"fireRate\":{\"type\":\"number\"},\"firstBulletAccuracy\":{\"type\":\"number\"},\"magazineSize\":{\"type\":\"integer\"},\"reloadTimeSeconds\":{\"type\":\"number\"},\"runSpeedMultiplier\":{\"type\":\"number\"},\"shotgunPelletCount\":{\"type\":\"integer\"},\"wallPenetration\":{\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of weapons\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/weapons",
+                  "q": {
+                    "exist": [
+                      "language"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/weapons",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -1225,12 +1378,7 @@
                       "lit": "weapons"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1242,45 +1390,50 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/weapons/{uuid}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "uuid",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "uuid",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "en-US",
-                        "kind": "query",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en-US",
+                        "k": "query",
+                        "n": "language",
+                        "or": "language",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/weapons/{uuid}",
-                    "json": "{\"operationId\":\"getWeaponByUuid\",\"parameters\":[{\"description\":\"UUID of the weapon\",\"in\":\"path\",\"name\":\"uuid\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}},{\"description\":\"Language code for localized content\",\"in\":\"query\",\"name\":\"language\",\"required\":false,\"schema\":{\"default\":\"en-US\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"assetPath\":{\"description\":\"Asset path in game files\",\"type\":\"string\"},\"category\":{\"description\":\"Weapon category (e.g., Rifle, Pistol)\",\"type\":\"string\"},\"defaultSkinUuid\":{\"description\":\"UUID of the default skin\",\"format\":\"uuid\",\"type\":\"string\"},\"displayIcon\":{\"description\":\"URL to the weapon's display icon\",\"format\":\"uri\",\"type\":\"string\"},\"displayName\":{\"description\":\"Display name of the weapon\",\"type\":\"string\"},\"killStreamIcon\":{\"description\":\"URL to the weapon's kill stream icon\",\"format\":\"uri\",\"type\":\"string\"},\"shopData\":{\"properties\":{\"assetPath\":{\"type\":\"string\"},\"canBeTrashed\":{\"type\":\"boolean\"},\"category\":{\"type\":\"string\"},\"categoryText\":{\"type\":\"string\"},\"cost\":{\"type\":\"integer\"},\"gridPosition\":{\"type\":\"object\"},\"newImage\":{\"format\":\"uri\",\"type\":\"string\"},\"newImage2\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"skins\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"uuid\":{\"description\":\"Unique identifier for the weapon\",\"format\":\"uuid\",\"type\":\"string\"},\"weaponStats\":{\"properties\":{\"adsStats\":{\"type\":\"object\"},\"airBurstStats\":{\"type\":\"object\"},\"altFireType\":{\"type\":\"string\"},\"altShotgunStats\":{\"type\":\"object\"},\"damageRanges\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"equipTimeSeconds\":{\"type\":\"number\"},\"feature\":{\"type\":\"string\"},\"fireMode\":{\"type\":\"string\"},\"fireRate\":{\"type\":\"number\"},\"firstBulletAccuracy\":{\"type\":\"number\"},\"magazineSize\":{\"type\":\"integer\"},\"reloadTimeSeconds\":{\"type\":\"number\"},\"runSpeedMultiplier\":{\"type\":\"number\"},\"shotgunPelletCount\":{\"type\":\"integer\"},\"wallPenetration\":{\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"},\"status\":{\"example\":200,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with weapon details\"},\"404\":{\"description\":\"Weapon not found\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/weapons/{uuid}",
+                  "q": {
+                    "exist": [
+                      "id",
+                      "language"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/weapons/{uuid}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "uuid": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -1291,13 +1444,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id",
-                      "language"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1726,13 +1873,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1742,19 +1889,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "agent_ref01",
                 "srcdatavar": "agent_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "agent01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1774,13 +1921,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1800,13 +1947,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1826,13 +1973,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1852,13 +1999,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1868,19 +2015,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "map_ref01",
                 "srcdatavar": "map_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "map01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1900,13 +2047,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1916,19 +2063,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "weapon_ref01",
                 "srcdatavar": "weapon_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "weapon01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

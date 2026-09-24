@@ -1,0 +1,263 @@
+# Entity: cosmetic
+
+main: kit: entity: cosmetic: {
+
+  alias: field: {}
+
+  fields: {
+    animationGif: {
+      fo: "uri"
+      h: "Animation Gif"
+      n: "animationGif"
+      r: false
+      sh: "URL to the spray's animation GIF"
+      t: "`$STRING`"
+    }
+    animationPng: {
+      fo: "uri"
+      h: "Animation Png"
+      n: "animationPng"
+      r: false
+      sh: "URL to the spray's animation PNG"
+      t: "`$STRING`"
+    }
+    assetPath: {
+      h: "Asset Path"
+      n: "assetPath"
+      r: false
+      sh: "Asset path in game files"
+      t: "`$STRING`"
+    }
+    category: {
+      h: "Category"
+      n: "category"
+      r: false
+      sh: "Category of the spray"
+      t: "`$STRING`"
+    }
+    displayIcon: {
+      fo: "uri"
+      h: "Display Icon"
+      n: "displayIcon"
+      r: false
+      sh: "URL to the buddy's display icon"
+      t: "`$STRING`"
+    }
+    displayName: {
+      h: "Display Name"
+      n: "displayName"
+      r: false
+      sh: "Display name of the buddy"
+      t: "`$STRING`"
+    }
+    fullIcon: {
+      fo: "uri"
+      h: "Full Icon"
+      n: "fullIcon"
+      r: false
+      sh: "URL to the spray's full icon"
+      t: "`$STRING`"
+    }
+    fullTransparentIcon: {
+      fo: "uri"
+      h: "Full Transparent Icon"
+      n: "fullTransparentIcon"
+      r: false
+      sh: "URL to the spray's full transparent icon"
+      t: "`$STRING`"
+    }
+    hideIfNotOwned: {
+      h: "Hide If Not Owned"
+      n: "hideIfNotOwned"
+      r: false
+      sh: "Whether the spray is hidden if not owned"
+      t: "`$BOOLEAN`"
+    }
+    isHiddenIfNotOwned: {
+      h: "Is Hidden If Not Owned"
+      n: "isHiddenIfNotOwned"
+      r: false
+      sh: "Whether the buddy is hidden if not owned"
+      t: "`$BOOLEAN`"
+    }
+    isNullSpray: {
+      h: "Is Null Spray"
+      n: "isNullSpray"
+      r: false
+      sh: "Whether this is a null spray"
+      t: "`$BOOLEAN`"
+    }
+    largeArt: {
+      fo: "uri"
+      h: "Large Art"
+      n: "largeArt"
+      r: false
+      sh: "URL to the card's large art"
+      t: "`$STRING`"
+    }
+    levels: {
+      h: "Levels"
+      n: "levels"
+      r: false
+      t: "`$ARRAY`"
+    }
+    smallArt: {
+      fo: "uri"
+      h: "Small Art"
+      n: "smallArt"
+      r: false
+      sh: "URL to the card's small art"
+      t: "`$STRING`"
+    }
+    themeUuid: {
+      fo: "uuid"
+      h: "Theme Uuid"
+      n: "themeUuid"
+      r: false
+      sh: "UUID of the theme"
+      t: "`$STRING`"
+    }
+    uuid: {
+      fo: "uuid"
+      h: "Uuid"
+      n: "uuid"
+      r: false
+      sh: "Unique identifier for the buddy"
+      t: "`$STRING`"
+    }
+    wideArt: {
+      fo: "uri"
+      h: "Wide Art"
+      n: "wideArt"
+      r: false
+      sh: "URL to the card's wide art"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "cosmetic"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /v1/buddies"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "en-US"
+                k: "query"
+                n: "language"
+                or: "language"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/buddies"
+          q: {
+            exist: [
+              "language"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "buddies"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /v1/cards"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "en-US"
+                k: "query"
+                n: "language"
+                or: "language"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/cards"
+          q: {
+            exist: [
+              "language"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "cards"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /v1/sprays"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "en-US"
+                k: "query"
+                n: "language"
+                or: "language"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/sprays"
+          q: {
+            exist: [
+              "language"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "sprays"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

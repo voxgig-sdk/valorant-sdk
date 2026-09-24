@@ -19,7 +19,6 @@ import type {
   CosmeticListMatch,
 } from '../ValorantTypes'
 
-// TODO: needs Entity superclass
 class CosmeticEntity extends ValorantEntityBase<Cosmetic> {
 
   constructor(client: ValorantSDK, entopts: any) {

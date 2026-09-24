@@ -96,116 +96,138 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "abilities",
+						"title": "Abilities",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "assetPath",
-						"short": "Asset path in game files",
+						"title": "Asset Path",
 						"type": "`$STRING`",
+						"short": "Asset path in game files",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "background",
-						"short": "URL to the agent's background image",
+						"title": "Background",
 						"type": "`$STRING`",
+						"short": "URL to the agent's background image",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "backgroundGradientColors",
-						"short": "Gradient colors for the agent's background",
+						"title": "Background Gradient Colors",
 						"type": "`$ARRAY`",
+						"short": "Gradient colors for the agent's background",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "bustPortrait",
-						"short": "URL to the agent's bust portrait",
+						"title": "Bust Portrait",
 						"type": "`$STRING`",
+						"short": "URL to the agent's bust portrait",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "characterTags",
-						"short": "Tags associated with the character",
+						"title": "Character Tags",
 						"type": "`$ARRAY`",
+						"short": "Tags associated with the character",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Description of the agent",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Description of the agent",
 					},
 					map[string]any{
 						"name": "developerName",
+						"title": "Developer Name",
+						"type": "`$STRING`",
 						"short": "Internal developer name",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "displayIcon",
-						"short": "URL to the agent's display icon",
+						"title": "Display Icon",
 						"type": "`$STRING`",
+						"short": "URL to the agent's display icon",
+						"format": "uri",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "displayIconSmall",
-						"short": "URL to the agent's small display icon",
+						"title": "Display Icon Small",
 						"type": "`$STRING`",
+						"short": "URL to the agent's small display icon",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "displayName",
+						"title": "Display Name",
+						"type": "`$STRING`",
 						"short": "Display name of the agent",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "fullPortrait",
-						"short": "URL to the agent's full portrait",
+						"title": "Full Portrait",
 						"type": "`$STRING`",
+						"short": "URL to the agent's full portrait",
+						"format": "uri",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "fullPortraitV2",
-						"short": "URL to the agent's full portrait version 2",
+						"title": "Full Portrait V2",
 						"type": "`$STRING`",
+						"short": "URL to the agent's full portrait version 2",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "isAvailableForTest",
-						"short": "Whether the agent is available for testing",
+						"title": "Is Available For Test",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the agent is available for testing",
 					},
 					map[string]any{
 						"name": "isBaseContent",
-						"short": "Whether the agent is base content",
+						"title": "Is Base Content",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the agent is base content",
 					},
 					map[string]any{
 						"name": "isFullPortraitRightFacing",
-						"short": "Whether the full portrait faces right",
+						"title": "Is Full Portrait Right Facing",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the full portrait faces right",
 					},
 					map[string]any{
 						"name": "isPlayableCharacter",
-						"short": "Whether the agent is playable",
+						"title": "Is Playable Character",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the agent is playable",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "killfeedPortrait",
-						"short": "URL to the agent's killfeed portrait",
+						"title": "Killfeed Portrait",
 						"type": "`$STRING`",
+						"short": "URL to the agent's killfeed portrait",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "role",
+						"title": "Role",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "uuid",
-						"short": "Unique identifier for the agent",
+						"title": "Uuid",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the agent",
+						"format": "uuid",
 					},
 					map[string]any{
 						"name": "voiceLine",
+						"title": "Voice Line",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -220,23 +242,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "is_playable_character",
-											"orig": "is_playable_character",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"example": "en-US",
-											"kind": "query",
-											"name": "language",
-											"orig": "language",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/agents",
@@ -248,19 +253,37 @@ func MakeConfig() map[string]any {
 										"lit": "agents",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"agents",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "is_playable_character",
+											"orig": "is_playable_character",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en-US",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"is_playable_character",
 										"language",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"v1",
-									"agents",
 								},
 							},
 						},
@@ -270,34 +293,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "uuid",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "en-US",
-											"kind": "query",
-											"name": "language",
-											"orig": "language",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/agents/{uuid}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"uuid": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "v1",
@@ -309,20 +307,45 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-										"language",
+								"parts": []any{
+									"v1",
+									"agents",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"uuid": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"v1",
-									"agents",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "uuid",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en-US",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+										"language",
+									},
 								},
 							},
 						},
@@ -336,23 +359,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "assetObjectName",
-						"short": "Asset object name",
+						"title": "Asset Object Name",
 						"type": "`$STRING`",
+						"short": "Asset object name",
 					},
 					map[string]any{
 						"name": "assetPath",
-						"short": "Asset path in game files",
+						"title": "Asset Path",
 						"type": "`$STRING`",
+						"short": "Asset path in game files",
 					},
 					map[string]any{
 						"name": "tiers",
+						"title": "Tiers",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "uuid",
-						"short": "Unique identifier for the competitive tier set",
+						"title": "Uuid",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the competitive tier set",
+						"format": "uuid",
 					},
 				},
 				"name": "competitive",
@@ -362,17 +389,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "en-US",
-											"kind": "query",
-											"name": "language",
-											"orig": "language",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/competitivetiers",
@@ -384,18 +400,30 @@ func MakeConfig() map[string]any {
 										"lit": "competitivetiers",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"parts": []any{
+									"v1",
+									"competitivetiers",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"v1",
-									"competitivetiers",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en-US",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"language",
+									},
 								},
 							},
 						},
@@ -408,98 +436,115 @@ func MakeConfig() map[string]any {
 			"cosmetic": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "uri",
 						"name": "animationGif",
-						"short": "URL to the spray's animation GIF",
+						"title": "Animation Gif",
 						"type": "`$STRING`",
+						"short": "URL to the spray's animation GIF",
+						"format": "uri",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "animationPng",
-						"short": "URL to the spray's animation PNG",
+						"title": "Animation Png",
 						"type": "`$STRING`",
+						"short": "URL to the spray's animation PNG",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "assetPath",
-						"short": "Asset path in game files",
+						"title": "Asset Path",
 						"type": "`$STRING`",
+						"short": "Asset path in game files",
 					},
 					map[string]any{
 						"name": "category",
-						"short": "Category of the spray",
+						"title": "Category",
 						"type": "`$STRING`",
+						"short": "Category of the spray",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "displayIcon",
-						"short": "URL to the buddy's display icon",
+						"title": "Display Icon",
 						"type": "`$STRING`",
+						"short": "URL to the buddy's display icon",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "displayName",
+						"title": "Display Name",
+						"type": "`$STRING`",
 						"short": "Display name of the buddy",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "fullIcon",
-						"short": "URL to the spray's full icon",
+						"title": "Full Icon",
 						"type": "`$STRING`",
+						"short": "URL to the spray's full icon",
+						"format": "uri",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "fullTransparentIcon",
-						"short": "URL to the spray's full transparent icon",
+						"title": "Full Transparent Icon",
 						"type": "`$STRING`",
+						"short": "URL to the spray's full transparent icon",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "hideIfNotOwned",
-						"short": "Whether the spray is hidden if not owned",
+						"title": "Hide If Not Owned",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the spray is hidden if not owned",
 					},
 					map[string]any{
 						"name": "isHiddenIfNotOwned",
-						"short": "Whether the buddy is hidden if not owned",
+						"title": "Is Hidden If Not Owned",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the buddy is hidden if not owned",
 					},
 					map[string]any{
 						"name": "isNullSpray",
-						"short": "Whether this is a null spray",
+						"title": "Is Null Spray",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this is a null spray",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "largeArt",
-						"short": "URL to the card's large art",
+						"title": "Large Art",
 						"type": "`$STRING`",
+						"short": "URL to the card's large art",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "levels",
+						"title": "Levels",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "smallArt",
+						"title": "Small Art",
+						"type": "`$STRING`",
 						"short": "URL to the card's small art",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uuid",
-						"name": "themeUuid",
-						"short": "UUID of the theme",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uuid",
-						"name": "uuid",
-						"short": "Unique identifier for the buddy",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"format": "uri",
-						"name": "wideArt",
-						"short": "URL to the card's wide art",
+					},
+					map[string]any{
+						"name": "themeUuid",
+						"title": "Theme Uuid",
 						"type": "`$STRING`",
+						"short": "UUID of the theme",
+						"format": "uuid",
+					},
+					map[string]any{
+						"name": "uuid",
+						"title": "Uuid",
+						"type": "`$STRING`",
+						"short": "Unique identifier for the buddy",
+						"format": "uuid",
+					},
+					map[string]any{
+						"name": "wideArt",
+						"title": "Wide Art",
+						"type": "`$STRING`",
+						"short": "URL to the card's wide art",
+						"format": "uri",
 					},
 				},
 				"name": "cosmetic",
@@ -509,17 +554,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "en-US",
-											"kind": "query",
-											"name": "language",
-											"orig": "language",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/buddies",
@@ -531,32 +565,33 @@ func MakeConfig() map[string]any {
 										"lit": "buddies",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"buddies",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en-US",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"language",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"v1",
-									"buddies",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "en-US",
-											"kind": "query",
-											"name": "language",
-											"orig": "language",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/cards",
@@ -568,32 +603,33 @@ func MakeConfig() map[string]any {
 										"lit": "cards",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"cards",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en-US",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"language",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"v1",
-									"cards",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "en-US",
-											"kind": "query",
-											"name": "language",
-											"orig": "language",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/sprays",
@@ -605,18 +641,30 @@ func MakeConfig() map[string]any {
 										"lit": "sprays",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"parts": []any{
+									"v1",
+									"sprays",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"v1",
-									"sprays",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en-US",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"language",
+									},
 								},
 							},
 						},
@@ -630,75 +678,89 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "allowsMatchTimeouts",
-						"short": "Whether match timeouts are allowed",
+						"title": "Allows Match Timeouts",
 						"type": "`$BOOLEAN`",
+						"short": "Whether match timeouts are allowed",
 					},
 					map[string]any{
 						"name": "assetPath",
-						"short": "Asset path in game files",
+						"title": "Asset Path",
 						"type": "`$STRING`",
+						"short": "Asset path in game files",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "displayIcon",
-						"short": "URL to the game mode's display icon",
+						"title": "Display Icon",
 						"type": "`$STRING`",
+						"short": "URL to the game mode's display icon",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "displayName",
-						"short": "Display name of the game mode",
+						"title": "Display Name",
 						"type": "`$STRING`",
+						"short": "Display name of the game mode",
 					},
 					map[string]any{
 						"name": "duration",
-						"short": "Duration of the game mode",
+						"title": "Duration",
 						"type": "`$STRING`",
+						"short": "Duration of the game mode",
 					},
 					map[string]any{
 						"name": "economyType",
-						"short": "Type of economy system",
+						"title": "Economy Type",
 						"type": "`$STRING`",
+						"short": "Type of economy system",
 					},
 					map[string]any{
 						"name": "gameFeatureOverrides",
-						"short": "Game feature overrides",
+						"title": "Game Feature Overrides",
 						"type": "`$ARRAY`",
+						"short": "Game feature overrides",
 					},
 					map[string]any{
 						"name": "gameRuleBoolOverrides",
-						"short": "Game rule boolean overrides",
+						"title": "Game Rule Bool Overrides",
 						"type": "`$ARRAY`",
+						"short": "Game rule boolean overrides",
 					},
 					map[string]any{
 						"name": "isMinimapHidden",
-						"short": "Whether the minimap is hidden",
+						"title": "Is Minimap Hidden",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the minimap is hidden",
 					},
 					map[string]any{
 						"name": "isTeamVoiceAllowed",
-						"short": "Whether team voice chat is allowed",
+						"title": "Is Team Voice Allowed",
 						"type": "`$BOOLEAN`",
+						"short": "Whether team voice chat is allowed",
 					},
 					map[string]any{
 						"name": "orbCount",
-						"short": "Number of orbs in the game mode",
+						"title": "Orb Count",
 						"type": "`$INTEGER`",
+						"short": "Number of orbs in the game mode",
 					},
 					map[string]any{
 						"name": "roundsPerHalf",
-						"short": "Number of rounds per half",
+						"title": "Rounds Per Half",
 						"type": "`$INTEGER`",
+						"short": "Number of rounds per half",
 					},
 					map[string]any{
 						"name": "teamRoles",
-						"short": "Team roles in the game mode",
+						"title": "Team Roles",
 						"type": "`$ARRAY`",
+						"short": "Team roles in the game mode",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "uuid",
-						"short": "Unique identifier for the game mode",
+						"title": "Uuid",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the game mode",
+						"format": "uuid",
 					},
 				},
 				"name": "game_mode",
@@ -708,17 +770,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "en-US",
-											"kind": "query",
-											"name": "language",
-											"orig": "language",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/gamemodes",
@@ -730,18 +781,30 @@ func MakeConfig() map[string]any {
 										"lit": "gamemodes",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"parts": []any{
+									"v1",
+									"gamemodes",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"v1",
-									"gamemodes",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en-US",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"language",
+									},
 								},
 							},
 						},
@@ -755,86 +818,102 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "assetPath",
-						"short": "Asset path in game files",
+						"title": "Asset Path",
 						"type": "`$STRING`",
+						"short": "Asset path in game files",
 					},
 					map[string]any{
 						"name": "callouts",
+						"title": "Callouts",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "coordinates",
-						"short": "Geographic coordinates of the map location",
+						"title": "Coordinates",
 						"type": "`$STRING`",
+						"short": "Geographic coordinates of the map location",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "displayIcon",
-						"short": "URL to the map's display icon",
+						"title": "Display Icon",
 						"type": "`$STRING`",
+						"short": "URL to the map's display icon",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "displayName",
-						"short": "Display name of the map",
+						"title": "Display Name",
 						"type": "`$STRING`",
+						"short": "Display name of the map",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "listViewIcon",
-						"short": "URL to the map's list view icon",
+						"title": "List View Icon",
 						"type": "`$STRING`",
+						"short": "URL to the map's list view icon",
+						"format": "uri",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "mapUrl",
-						"short": "URL to the map overview",
+						"title": "Map Url",
 						"type": "`$STRING`",
+						"short": "URL to the map overview",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "narrativeDescription",
-						"short": "Narrative description of the map",
+						"title": "Narrative Description",
 						"type": "`$STRING`",
+						"short": "Narrative description of the map",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "splash",
-						"short": "URL to the map's splash image",
+						"title": "Splash",
 						"type": "`$STRING`",
+						"short": "URL to the map's splash image",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "tacticalDescription",
-						"short": "Tactical description of the map",
+						"title": "Tactical Description",
 						"type": "`$STRING`",
+						"short": "Tactical description of the map",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "uuid",
-						"short": "Unique identifier for the map",
+						"title": "Uuid",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the map",
+						"format": "uuid",
 					},
 					map[string]any{
 						"name": "xMultiplier",
-						"short": "X coordinate multiplier",
+						"title": "X Multiplier",
 						"type": "`$NUMBER`",
+						"short": "X coordinate multiplier",
 					},
 					map[string]any{
 						"name": "xScalarToAdd",
-						"short": "X scalar to add",
+						"title": "X Scalar To Add",
 						"type": "`$NUMBER`",
+						"short": "X scalar to add",
 					},
 					map[string]any{
 						"name": "yMultiplier",
-						"short": "Y coordinate multiplier",
+						"title": "Y Multiplier",
 						"type": "`$NUMBER`",
+						"short": "Y coordinate multiplier",
 					},
 					map[string]any{
 						"name": "yScalarToAdd",
-						"short": "Y scalar to add",
+						"title": "Y Scalar To Add",
 						"type": "`$NUMBER`",
+						"short": "Y scalar to add",
 					},
 				},
 				"id": map[string]any{
@@ -848,17 +927,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "en-US",
-											"kind": "query",
-											"name": "language",
-											"orig": "language",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/maps",
@@ -870,18 +938,30 @@ func MakeConfig() map[string]any {
 										"lit": "maps",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"parts": []any{
+									"v1",
+									"maps",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"v1",
-									"maps",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en-US",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"language",
+									},
 								},
 							},
 						},
@@ -891,34 +971,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "uuid",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "en-US",
-											"kind": "query",
-											"name": "language",
-											"orig": "language",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/maps/{uuid}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"uuid": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "v1",
@@ -930,20 +985,45 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-										"language",
+								"parts": []any{
+									"v1",
+									"maps",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"uuid": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"v1",
-									"maps",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "uuid",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en-US",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+										"language",
+									},
 								},
 							},
 						},
@@ -957,57 +1037,68 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "assetPath",
-						"short": "Asset path in game files",
+						"title": "Asset Path",
 						"type": "`$STRING`",
+						"short": "Asset path in game files",
 					},
 					map[string]any{
 						"name": "category",
+						"title": "Category",
+						"type": "`$STRING`",
 						"short": "Weapon category (e.g., Rifle, Pistol)",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "defaultSkinUuid",
-						"short": "UUID of the default skin",
+						"title": "Default Skin Uuid",
 						"type": "`$STRING`",
+						"short": "UUID of the default skin",
+						"format": "uuid",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "displayIcon",
-						"short": "URL to the weapon's display icon",
+						"title": "Display Icon",
 						"type": "`$STRING`",
+						"short": "URL to the weapon's display icon",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "displayName",
-						"short": "Display name of the weapon",
+						"title": "Display Name",
 						"type": "`$STRING`",
+						"short": "Display name of the weapon",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "killStreamIcon",
-						"short": "URL to the weapon's kill stream icon",
+						"title": "Kill Stream Icon",
 						"type": "`$STRING`",
+						"short": "URL to the weapon's kill stream icon",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "shopData",
+						"title": "Shop Data",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "skins",
+						"title": "Skins",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "uuid",
-						"short": "Unique identifier for the weapon",
+						"title": "Uuid",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the weapon",
+						"format": "uuid",
 					},
 					map[string]any{
 						"name": "weaponStats",
+						"title": "Weapon Stats",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -1022,17 +1113,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "en-US",
-											"kind": "query",
-											"name": "language",
-											"orig": "language",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/weapons",
@@ -1044,18 +1124,30 @@ func MakeConfig() map[string]any {
 										"lit": "weapons",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"parts": []any{
+									"v1",
+									"weapons",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"v1",
-									"weapons",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en-US",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"language",
+									},
 								},
 							},
 						},
@@ -1065,34 +1157,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "uuid",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "en-US",
-											"kind": "query",
-											"name": "language",
-											"orig": "language",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/weapons/{uuid}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"uuid": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "v1",
@@ -1104,20 +1171,45 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-										"language",
+								"parts": []any{
+									"v1",
+									"weapons",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"uuid": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"v1",
-									"weapons",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "uuid",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en-US",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+										"language",
+									},
 								},
 							},
 						},

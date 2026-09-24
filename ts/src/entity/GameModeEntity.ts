@@ -19,7 +19,6 @@ import type {
   GameModeListMatch,
 } from '../ValorantTypes'
 
-// TODO: needs Entity superclass
 class GameModeEntity extends ValorantEntityBase<GameMode> {
 
   constructor(client: ValorantSDK, entopts: any) {

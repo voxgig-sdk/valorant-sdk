@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CompetitiveEntity = void 0;
 const ValorantEntityBase_1 = require("../ValorantEntityBase");
-// TODO: needs Entity superclass
 class CompetitiveEntity extends ValorantEntityBase_1.ValorantEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

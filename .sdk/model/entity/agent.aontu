@@ -1,0 +1,291 @@
+# Entity: agent
+
+main: kit: entity: agent: {
+
+  alias: field: {}
+
+  fields: {
+    abilities: {
+      h: "Abilities"
+      n: "abilities"
+      r: false
+      t: "`$ARRAY`"
+    }
+    assetPath: {
+      h: "Asset Path"
+      n: "assetPath"
+      r: false
+      sh: "Asset path in game files"
+      t: "`$STRING`"
+    }
+    background: {
+      fo: "uri"
+      h: "Background"
+      n: "background"
+      r: false
+      sh: "URL to the agent's background image"
+      t: "`$STRING`"
+    }
+    backgroundGradientColors: {
+      h: "Background Gradient Colors"
+      n: "backgroundGradientColors"
+      r: false
+      sh: "Gradient colors for the agent's background"
+      t: "`$ARRAY`"
+    }
+    bustPortrait: {
+      fo: "uri"
+      h: "Bust Portrait"
+      n: "bustPortrait"
+      r: false
+      sh: "URL to the agent's bust portrait"
+      t: "`$STRING`"
+    }
+    characterTags: {
+      h: "Character Tags"
+      n: "characterTags"
+      r: false
+      sh: "Tags associated with the character"
+      t: "`$ARRAY`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Description of the agent"
+      t: "`$STRING`"
+    }
+    developerName: {
+      h: "Developer Name"
+      n: "developerName"
+      r: false
+      sh: "Internal developer name"
+      t: "`$STRING`"
+    }
+    displayIcon: {
+      fo: "uri"
+      h: "Display Icon"
+      n: "displayIcon"
+      r: false
+      sh: "URL to the agent's display icon"
+      t: "`$STRING`"
+    }
+    displayIconSmall: {
+      fo: "uri"
+      h: "Display Icon Small"
+      n: "displayIconSmall"
+      r: false
+      sh: "URL to the agent's small display icon"
+      t: "`$STRING`"
+    }
+    displayName: {
+      h: "Display Name"
+      n: "displayName"
+      r: false
+      sh: "Display name of the agent"
+      t: "`$STRING`"
+    }
+    fullPortrait: {
+      fo: "uri"
+      h: "Full Portrait"
+      n: "fullPortrait"
+      r: false
+      sh: "URL to the agent's full portrait"
+      t: "`$STRING`"
+    }
+    fullPortraitV2: {
+      fo: "uri"
+      h: "Full Portrait V2"
+      n: "fullPortraitV2"
+      r: false
+      sh: "URL to the agent's full portrait version 2"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    isAvailableForTest: {
+      h: "Is Available For Test"
+      n: "isAvailableForTest"
+      r: false
+      sh: "Whether the agent is available for testing"
+      t: "`$BOOLEAN`"
+    }
+    isBaseContent: {
+      h: "Is Base Content"
+      n: "isBaseContent"
+      r: false
+      sh: "Whether the agent is base content"
+      t: "`$BOOLEAN`"
+    }
+    isFullPortraitRightFacing: {
+      h: "Is Full Portrait Right Facing"
+      n: "isFullPortraitRightFacing"
+      r: false
+      sh: "Whether the full portrait faces right"
+      t: "`$BOOLEAN`"
+    }
+    isPlayableCharacter: {
+      h: "Is Playable Character"
+      n: "isPlayableCharacter"
+      r: false
+      sh: "Whether the agent is playable"
+      t: "`$BOOLEAN`"
+    }
+    killfeedPortrait: {
+      fo: "uri"
+      h: "Killfeed Portrait"
+      n: "killfeedPortrait"
+      r: false
+      sh: "URL to the agent's killfeed portrait"
+      t: "`$STRING`"
+    }
+    role: {
+      h: "Role"
+      n: "role"
+      r: false
+      t: "`$OBJECT`"
+    }
+    uuid: {
+      fo: "uuid"
+      h: "Uuid"
+      n: "uuid"
+      r: false
+      sh: "Unique identifier for the agent"
+      t: "`$STRING`"
+    }
+    voiceLine: {
+      h: "Voice Line"
+      n: "voiceLine"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "agent"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /v1/agents"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "is_playable_character"
+                or: "is_playable_character"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "en-US"
+                k: "query"
+                n: "language"
+                or: "language"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/agents"
+          q: {
+            exist: [
+              "is_playable_character"
+              "language"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /v1/agents/{uuid}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "uuid"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "en-US"
+                k: "query"
+                n: "language"
+                or: "language"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/agents/{uuid}"
+          q: {
+            exist: [
+              "id"
+              "language"
+            ]
+          }
+          r: {
+            param: {
+              uuid: "id"
+            }
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "agents"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -154,116 +147,138 @@ class Config {
       "fields": [
         {
           "name": "abilities",
+          "title": "Abilities",
           "type": "`$ARRAY`"
         },
         {
           "name": "assetPath",
-          "short": "Asset path in game files",
-          "type": "`$STRING`"
+          "title": "Asset Path",
+          "type": "`$STRING`",
+          "short": "Asset path in game files"
         },
         {
-          "format": "uri",
           "name": "background",
+          "title": "Background",
+          "type": "`$STRING`",
           "short": "URL to the agent's background image",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "backgroundGradientColors",
-          "short": "Gradient colors for the agent's background",
-          "type": "`$ARRAY`"
+          "title": "Background Gradient Colors",
+          "type": "`$ARRAY`",
+          "short": "Gradient colors for the agent's background"
         },
         {
-          "format": "uri",
           "name": "bustPortrait",
+          "title": "Bust Portrait",
+          "type": "`$STRING`",
           "short": "URL to the agent's bust portrait",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "characterTags",
-          "short": "Tags associated with the character",
-          "type": "`$ARRAY`"
+          "title": "Character Tags",
+          "type": "`$ARRAY`",
+          "short": "Tags associated with the character"
         },
         {
           "name": "description",
-          "short": "Description of the agent",
-          "type": "`$STRING`"
+          "title": "Description",
+          "type": "`$STRING`",
+          "short": "Description of the agent"
         },
         {
           "name": "developerName",
-          "short": "Internal developer name",
-          "type": "`$STRING`"
+          "title": "Developer Name",
+          "type": "`$STRING`",
+          "short": "Internal developer name"
         },
         {
-          "format": "uri",
           "name": "displayIcon",
+          "title": "Display Icon",
+          "type": "`$STRING`",
           "short": "URL to the agent's display icon",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
-          "format": "uri",
           "name": "displayIconSmall",
+          "title": "Display Icon Small",
+          "type": "`$STRING`",
           "short": "URL to the agent's small display icon",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "displayName",
-          "short": "Display name of the agent",
-          "type": "`$STRING`"
+          "title": "Display Name",
+          "type": "`$STRING`",
+          "short": "Display name of the agent"
         },
         {
-          "format": "uri",
           "name": "fullPortrait",
+          "title": "Full Portrait",
+          "type": "`$STRING`",
           "short": "URL to the agent's full portrait",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
-          "format": "uri",
           "name": "fullPortraitV2",
+          "title": "Full Portrait V2",
+          "type": "`$STRING`",
           "short": "URL to the agent's full portrait version 2",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "id",
+          "title": "Id",
           "type": "`$STRING`"
         },
         {
           "name": "isAvailableForTest",
-          "short": "Whether the agent is available for testing",
-          "type": "`$BOOLEAN`"
+          "title": "Is Available For Test",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the agent is available for testing"
         },
         {
           "name": "isBaseContent",
-          "short": "Whether the agent is base content",
-          "type": "`$BOOLEAN`"
+          "title": "Is Base Content",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the agent is base content"
         },
         {
           "name": "isFullPortraitRightFacing",
-          "short": "Whether the full portrait faces right",
-          "type": "`$BOOLEAN`"
+          "title": "Is Full Portrait Right Facing",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the full portrait faces right"
         },
         {
           "name": "isPlayableCharacter",
-          "short": "Whether the agent is playable",
-          "type": "`$BOOLEAN`"
+          "title": "Is Playable Character",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the agent is playable"
         },
         {
-          "format": "uri",
           "name": "killfeedPortrait",
+          "title": "Killfeed Portrait",
+          "type": "`$STRING`",
           "short": "URL to the agent's killfeed portrait",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "role",
+          "title": "Role",
           "type": "`$OBJECT`"
         },
         {
-          "format": "uuid",
           "name": "uuid",
+          "title": "Uuid",
+          "type": "`$STRING`",
           "short": "Unique identifier for the agent",
-          "type": "`$STRING`"
+          "format": "uuid"
         },
         {
           "name": "voiceLine",
+          "title": "Voice Line",
           "type": "`$OBJECT`"
         }
       ],
@@ -278,23 +293,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "is_playable_character",
-                    "orig": "is_playable_character",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "example": "en-US",
-                    "kind": "query",
-                    "name": "language",
-                    "orig": "language",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/v1/agents",
@@ -306,20 +304,38 @@ class Config {
                   "lit": "agents"
                 }
               ],
+              "parts": [
+                "v1",
+                "agents"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.data`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "is_playable_character",
+                    "orig": "is_playable_character",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "en-US"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "is_playable_character",
                   "language"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.data`"
-              },
-              "parts": [
-                "v1",
-                "agents"
-              ]
+              }
             }
           ]
         },
@@ -328,34 +344,9 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "uuid",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "example": "en-US",
-                    "kind": "query",
-                    "name": "language",
-                    "orig": "language",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/v1/agents/{uuid}",
-              "rename": {
-                "param": {
-                  "uuid": "id"
-                }
-              },
               "segments": [
                 {
                   "lit": "v1"
@@ -367,21 +358,46 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id",
-                  "language"
-                ]
+              "parts": [
+                "v1",
+                "agents",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "uuid": "id"
+                }
               },
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "v1",
-                "agents",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "uuid",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "en-US"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id",
+                  "language"
+                ]
+              }
             }
           ]
         }
@@ -394,23 +410,27 @@ class Config {
       "fields": [
         {
           "name": "assetObjectName",
-          "short": "Asset object name",
-          "type": "`$STRING`"
+          "title": "Asset Object Name",
+          "type": "`$STRING`",
+          "short": "Asset object name"
         },
         {
           "name": "assetPath",
-          "short": "Asset path in game files",
-          "type": "`$STRING`"
+          "title": "Asset Path",
+          "type": "`$STRING`",
+          "short": "Asset path in game files"
         },
         {
           "name": "tiers",
+          "title": "Tiers",
           "type": "`$ARRAY`"
         },
         {
-          "format": "uuid",
           "name": "uuid",
+          "title": "Uuid",
+          "type": "`$STRING`",
           "short": "Unique identifier for the competitive tier set",
-          "type": "`$STRING`"
+          "format": "uuid"
         }
       ],
       "name": "competitive",
@@ -420,17 +440,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "en-US",
-                    "kind": "query",
-                    "name": "language",
-                    "orig": "language",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/v1/competitivetiers",
@@ -442,19 +451,31 @@ class Config {
                   "lit": "competitivetiers"
                 }
               ],
-              "select": {
-                "exist": [
-                  "language"
-                ]
-              },
+              "parts": [
+                "v1",
+                "competitivetiers"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "v1",
-                "competitivetiers"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "en-US"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "language"
+                ]
+              }
             }
           ]
         }
@@ -466,98 +487,115 @@ class Config {
     "cosmetic": {
       "fields": [
         {
-          "format": "uri",
           "name": "animationGif",
+          "title": "Animation Gif",
+          "type": "`$STRING`",
           "short": "URL to the spray's animation GIF",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
-          "format": "uri",
           "name": "animationPng",
+          "title": "Animation Png",
+          "type": "`$STRING`",
           "short": "URL to the spray's animation PNG",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "assetPath",
-          "short": "Asset path in game files",
-          "type": "`$STRING`"
+          "title": "Asset Path",
+          "type": "`$STRING`",
+          "short": "Asset path in game files"
         },
         {
           "name": "category",
-          "short": "Category of the spray",
-          "type": "`$STRING`"
+          "title": "Category",
+          "type": "`$STRING`",
+          "short": "Category of the spray"
         },
         {
-          "format": "uri",
           "name": "displayIcon",
+          "title": "Display Icon",
+          "type": "`$STRING`",
           "short": "URL to the buddy's display icon",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "displayName",
-          "short": "Display name of the buddy",
-          "type": "`$STRING`"
+          "title": "Display Name",
+          "type": "`$STRING`",
+          "short": "Display name of the buddy"
         },
         {
-          "format": "uri",
           "name": "fullIcon",
+          "title": "Full Icon",
+          "type": "`$STRING`",
           "short": "URL to the spray's full icon",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
-          "format": "uri",
           "name": "fullTransparentIcon",
+          "title": "Full Transparent Icon",
+          "type": "`$STRING`",
           "short": "URL to the spray's full transparent icon",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "hideIfNotOwned",
-          "short": "Whether the spray is hidden if not owned",
-          "type": "`$BOOLEAN`"
+          "title": "Hide If Not Owned",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the spray is hidden if not owned"
         },
         {
           "name": "isHiddenIfNotOwned",
-          "short": "Whether the buddy is hidden if not owned",
-          "type": "`$BOOLEAN`"
+          "title": "Is Hidden If Not Owned",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the buddy is hidden if not owned"
         },
         {
           "name": "isNullSpray",
-          "short": "Whether this is a null spray",
-          "type": "`$BOOLEAN`"
+          "title": "Is Null Spray",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this is a null spray"
         },
         {
-          "format": "uri",
           "name": "largeArt",
+          "title": "Large Art",
+          "type": "`$STRING`",
           "short": "URL to the card's large art",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "levels",
+          "title": "Levels",
           "type": "`$ARRAY`"
         },
         {
-          "format": "uri",
           "name": "smallArt",
+          "title": "Small Art",
+          "type": "`$STRING`",
           "short": "URL to the card's small art",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
-          "format": "uuid",
           "name": "themeUuid",
+          "title": "Theme Uuid",
+          "type": "`$STRING`",
           "short": "UUID of the theme",
-          "type": "`$STRING`"
+          "format": "uuid"
         },
         {
-          "format": "uuid",
           "name": "uuid",
+          "title": "Uuid",
+          "type": "`$STRING`",
           "short": "Unique identifier for the buddy",
-          "type": "`$STRING`"
+          "format": "uuid"
         },
         {
-          "format": "uri",
           "name": "wideArt",
+          "title": "Wide Art",
+          "type": "`$STRING`",
           "short": "URL to the card's wide art",
-          "type": "`$STRING`"
+          "format": "uri"
         }
       ],
       "name": "cosmetic",
@@ -567,17 +605,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "en-US",
-                    "kind": "query",
-                    "name": "language",
-                    "orig": "language",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/v1/buddies",
@@ -589,32 +616,33 @@ class Config {
                   "lit": "buddies"
                 }
               ],
-              "select": {
-                "exist": [
-                  "language"
-                ]
-              },
+              "parts": [
+                "v1",
+                "buddies"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "v1",
-                "buddies"
-              ]
-            },
-            {
               "args": {
                 "query": [
                   {
-                    "example": "en-US",
-                    "kind": "query",
                     "name": "language",
                     "orig": "language",
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "en-US"
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "language"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/v1/cards",
@@ -626,32 +654,33 @@ class Config {
                   "lit": "cards"
                 }
               ],
-              "select": {
-                "exist": [
-                  "language"
-                ]
-              },
+              "parts": [
+                "v1",
+                "cards"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "v1",
-                "cards"
-              ]
-            },
-            {
               "args": {
                 "query": [
                   {
-                    "example": "en-US",
-                    "kind": "query",
                     "name": "language",
                     "orig": "language",
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "en-US"
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "language"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/v1/sprays",
@@ -663,19 +692,31 @@ class Config {
                   "lit": "sprays"
                 }
               ],
-              "select": {
-                "exist": [
-                  "language"
-                ]
-              },
+              "parts": [
+                "v1",
+                "sprays"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "v1",
-                "sprays"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "en-US"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "language"
+                ]
+              }
             }
           ]
         }
@@ -688,75 +729,89 @@ class Config {
       "fields": [
         {
           "name": "allowsMatchTimeouts",
-          "short": "Whether match timeouts are allowed",
-          "type": "`$BOOLEAN`"
+          "title": "Allows Match Timeouts",
+          "type": "`$BOOLEAN`",
+          "short": "Whether match timeouts are allowed"
         },
         {
           "name": "assetPath",
-          "short": "Asset path in game files",
-          "type": "`$STRING`"
+          "title": "Asset Path",
+          "type": "`$STRING`",
+          "short": "Asset path in game files"
         },
         {
-          "format": "uri",
           "name": "displayIcon",
+          "title": "Display Icon",
+          "type": "`$STRING`",
           "short": "URL to the game mode's display icon",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "displayName",
-          "short": "Display name of the game mode",
-          "type": "`$STRING`"
+          "title": "Display Name",
+          "type": "`$STRING`",
+          "short": "Display name of the game mode"
         },
         {
           "name": "duration",
-          "short": "Duration of the game mode",
-          "type": "`$STRING`"
+          "title": "Duration",
+          "type": "`$STRING`",
+          "short": "Duration of the game mode"
         },
         {
           "name": "economyType",
-          "short": "Type of economy system",
-          "type": "`$STRING`"
+          "title": "Economy Type",
+          "type": "`$STRING`",
+          "short": "Type of economy system"
         },
         {
           "name": "gameFeatureOverrides",
-          "short": "Game feature overrides",
-          "type": "`$ARRAY`"
+          "title": "Game Feature Overrides",
+          "type": "`$ARRAY`",
+          "short": "Game feature overrides"
         },
         {
           "name": "gameRuleBoolOverrides",
-          "short": "Game rule boolean overrides",
-          "type": "`$ARRAY`"
+          "title": "Game Rule Bool Overrides",
+          "type": "`$ARRAY`",
+          "short": "Game rule boolean overrides"
         },
         {
           "name": "isMinimapHidden",
-          "short": "Whether the minimap is hidden",
-          "type": "`$BOOLEAN`"
+          "title": "Is Minimap Hidden",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the minimap is hidden"
         },
         {
           "name": "isTeamVoiceAllowed",
-          "short": "Whether team voice chat is allowed",
-          "type": "`$BOOLEAN`"
+          "title": "Is Team Voice Allowed",
+          "type": "`$BOOLEAN`",
+          "short": "Whether team voice chat is allowed"
         },
         {
           "name": "orbCount",
-          "short": "Number of orbs in the game mode",
-          "type": "`$INTEGER`"
+          "title": "Orb Count",
+          "type": "`$INTEGER`",
+          "short": "Number of orbs in the game mode"
         },
         {
           "name": "roundsPerHalf",
-          "short": "Number of rounds per half",
-          "type": "`$INTEGER`"
+          "title": "Rounds Per Half",
+          "type": "`$INTEGER`",
+          "short": "Number of rounds per half"
         },
         {
           "name": "teamRoles",
-          "short": "Team roles in the game mode",
-          "type": "`$ARRAY`"
+          "title": "Team Roles",
+          "type": "`$ARRAY`",
+          "short": "Team roles in the game mode"
         },
         {
-          "format": "uuid",
           "name": "uuid",
+          "title": "Uuid",
+          "type": "`$STRING`",
           "short": "Unique identifier for the game mode",
-          "type": "`$STRING`"
+          "format": "uuid"
         }
       ],
       "name": "game_mode",
@@ -766,17 +821,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "en-US",
-                    "kind": "query",
-                    "name": "language",
-                    "orig": "language",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/v1/gamemodes",
@@ -788,19 +832,31 @@ class Config {
                   "lit": "gamemodes"
                 }
               ],
-              "select": {
-                "exist": [
-                  "language"
-                ]
-              },
+              "parts": [
+                "v1",
+                "gamemodes"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "v1",
-                "gamemodes"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "en-US"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "language"
+                ]
+              }
             }
           ]
         }
@@ -813,86 +869,102 @@ class Config {
       "fields": [
         {
           "name": "assetPath",
-          "short": "Asset path in game files",
-          "type": "`$STRING`"
+          "title": "Asset Path",
+          "type": "`$STRING`",
+          "short": "Asset path in game files"
         },
         {
           "name": "callouts",
+          "title": "Callouts",
           "type": "`$ARRAY`"
         },
         {
           "name": "coordinates",
-          "short": "Geographic coordinates of the map location",
-          "type": "`$STRING`"
+          "title": "Coordinates",
+          "type": "`$STRING`",
+          "short": "Geographic coordinates of the map location"
         },
         {
-          "format": "uri",
           "name": "displayIcon",
+          "title": "Display Icon",
+          "type": "`$STRING`",
           "short": "URL to the map's display icon",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "displayName",
-          "short": "Display name of the map",
-          "type": "`$STRING`"
+          "title": "Display Name",
+          "type": "`$STRING`",
+          "short": "Display name of the map"
         },
         {
           "name": "id",
+          "title": "Id",
           "type": "`$STRING`"
         },
         {
-          "format": "uri",
           "name": "listViewIcon",
+          "title": "List View Icon",
+          "type": "`$STRING`",
           "short": "URL to the map's list view icon",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
-          "format": "uri",
           "name": "mapUrl",
+          "title": "Map Url",
+          "type": "`$STRING`",
           "short": "URL to the map overview",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "narrativeDescription",
-          "short": "Narrative description of the map",
-          "type": "`$STRING`"
+          "title": "Narrative Description",
+          "type": "`$STRING`",
+          "short": "Narrative description of the map"
         },
         {
-          "format": "uri",
           "name": "splash",
+          "title": "Splash",
+          "type": "`$STRING`",
           "short": "URL to the map's splash image",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "tacticalDescription",
-          "short": "Tactical description of the map",
-          "type": "`$STRING`"
+          "title": "Tactical Description",
+          "type": "`$STRING`",
+          "short": "Tactical description of the map"
         },
         {
-          "format": "uuid",
           "name": "uuid",
+          "title": "Uuid",
+          "type": "`$STRING`",
           "short": "Unique identifier for the map",
-          "type": "`$STRING`"
+          "format": "uuid"
         },
         {
           "name": "xMultiplier",
-          "short": "X coordinate multiplier",
-          "type": "`$NUMBER`"
+          "title": "X Multiplier",
+          "type": "`$NUMBER`",
+          "short": "X coordinate multiplier"
         },
         {
           "name": "xScalarToAdd",
-          "short": "X scalar to add",
-          "type": "`$NUMBER`"
+          "title": "X Scalar To Add",
+          "type": "`$NUMBER`",
+          "short": "X scalar to add"
         },
         {
           "name": "yMultiplier",
-          "short": "Y coordinate multiplier",
-          "type": "`$NUMBER`"
+          "title": "Y Multiplier",
+          "type": "`$NUMBER`",
+          "short": "Y coordinate multiplier"
         },
         {
           "name": "yScalarToAdd",
-          "short": "Y scalar to add",
-          "type": "`$NUMBER`"
+          "title": "Y Scalar To Add",
+          "type": "`$NUMBER`",
+          "short": "Y scalar to add"
         }
       ],
       "id": {
@@ -906,17 +978,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "en-US",
-                    "kind": "query",
-                    "name": "language",
-                    "orig": "language",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/v1/maps",
@@ -928,19 +989,31 @@ class Config {
                   "lit": "maps"
                 }
               ],
-              "select": {
-                "exist": [
-                  "language"
-                ]
-              },
+              "parts": [
+                "v1",
+                "maps"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "v1",
-                "maps"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "en-US"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "language"
+                ]
+              }
             }
           ]
         },
@@ -949,34 +1022,9 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "uuid",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "example": "en-US",
-                    "kind": "query",
-                    "name": "language",
-                    "orig": "language",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/v1/maps/{uuid}",
-              "rename": {
-                "param": {
-                  "uuid": "id"
-                }
-              },
               "segments": [
                 {
                   "lit": "v1"
@@ -988,21 +1036,46 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id",
-                  "language"
-                ]
+              "parts": [
+                "v1",
+                "maps",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "uuid": "id"
+                }
               },
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "v1",
-                "maps",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "uuid",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "en-US"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id",
+                  "language"
+                ]
+              }
             }
           ]
         }
@@ -1015,57 +1088,68 @@ class Config {
       "fields": [
         {
           "name": "assetPath",
-          "short": "Asset path in game files",
-          "type": "`$STRING`"
+          "title": "Asset Path",
+          "type": "`$STRING`",
+          "short": "Asset path in game files"
         },
         {
           "name": "category",
-          "short": "Weapon category (e.g., Rifle, Pistol)",
-          "type": "`$STRING`"
+          "title": "Category",
+          "type": "`$STRING`",
+          "short": "Weapon category (e.g., Rifle, Pistol)"
         },
         {
-          "format": "uuid",
           "name": "defaultSkinUuid",
+          "title": "Default Skin Uuid",
+          "type": "`$STRING`",
           "short": "UUID of the default skin",
-          "type": "`$STRING`"
+          "format": "uuid"
         },
         {
-          "format": "uri",
           "name": "displayIcon",
+          "title": "Display Icon",
+          "type": "`$STRING`",
           "short": "URL to the weapon's display icon",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "displayName",
-          "short": "Display name of the weapon",
-          "type": "`$STRING`"
+          "title": "Display Name",
+          "type": "`$STRING`",
+          "short": "Display name of the weapon"
         },
         {
           "name": "id",
+          "title": "Id",
           "type": "`$STRING`"
         },
         {
-          "format": "uri",
           "name": "killStreamIcon",
+          "title": "Kill Stream Icon",
+          "type": "`$STRING`",
           "short": "URL to the weapon's kill stream icon",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "shopData",
+          "title": "Shop Data",
           "type": "`$OBJECT`"
         },
         {
           "name": "skins",
+          "title": "Skins",
           "type": "`$ARRAY`"
         },
         {
-          "format": "uuid",
           "name": "uuid",
+          "title": "Uuid",
+          "type": "`$STRING`",
           "short": "Unique identifier for the weapon",
-          "type": "`$STRING`"
+          "format": "uuid"
         },
         {
           "name": "weaponStats",
+          "title": "Weapon Stats",
           "type": "`$OBJECT`"
         }
       ],
@@ -1080,17 +1164,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "en-US",
-                    "kind": "query",
-                    "name": "language",
-                    "orig": "language",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/v1/weapons",
@@ -1102,19 +1175,31 @@ class Config {
                   "lit": "weapons"
                 }
               ],
-              "select": {
-                "exist": [
-                  "language"
-                ]
-              },
+              "parts": [
+                "v1",
+                "weapons"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "v1",
-                "weapons"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "en-US"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "language"
+                ]
+              }
             }
           ]
         },
@@ -1123,34 +1208,9 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "uuid",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "example": "en-US",
-                    "kind": "query",
-                    "name": "language",
-                    "orig": "language",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/v1/weapons/{uuid}",
-              "rename": {
-                "param": {
-                  "uuid": "id"
-                }
-              },
               "segments": [
                 {
                   "lit": "v1"
@@ -1162,21 +1222,46 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id",
-                  "language"
-                ]
+              "parts": [
+                "v1",
+                "weapons",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "uuid": "id"
+                }
               },
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "v1",
-                "weapons",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "uuid",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "en-US"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id",
+                  "language"
+                ]
+              }
             }
           ]
         }

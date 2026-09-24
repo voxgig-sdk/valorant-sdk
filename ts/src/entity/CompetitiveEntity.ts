@@ -19,7 +19,6 @@ import type {
   CompetitiveListMatch,
 } from '../ValorantTypes'
 
-// TODO: needs Entity superclass
 class CompetitiveEntity extends ValorantEntityBase<Competitive> {
 
   constructor(client: ValorantSDK, entopts: any) {

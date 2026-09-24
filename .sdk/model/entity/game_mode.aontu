@@ -1,0 +1,159 @@
+# Entity: game_mode
+
+main: kit: entity: game_mode: {
+
+  alias: field: {}
+
+  fields: {
+    allowsMatchTimeouts: {
+      h: "Allows Match Timeouts"
+      n: "allowsMatchTimeouts"
+      r: false
+      sh: "Whether match timeouts are allowed"
+      t: "`$BOOLEAN`"
+    }
+    assetPath: {
+      h: "Asset Path"
+      n: "assetPath"
+      r: false
+      sh: "Asset path in game files"
+      t: "`$STRING`"
+    }
+    displayIcon: {
+      fo: "uri"
+      h: "Display Icon"
+      n: "displayIcon"
+      r: false
+      sh: "URL to the game mode's display icon"
+      t: "`$STRING`"
+    }
+    displayName: {
+      h: "Display Name"
+      n: "displayName"
+      r: false
+      sh: "Display name of the game mode"
+      t: "`$STRING`"
+    }
+    duration: {
+      h: "Duration"
+      n: "duration"
+      r: false
+      sh: "Duration of the game mode"
+      t: "`$STRING`"
+    }
+    economyType: {
+      h: "Economy Type"
+      n: "economyType"
+      r: false
+      sh: "Type of economy system"
+      t: "`$STRING`"
+    }
+    gameFeatureOverrides: {
+      h: "Game Feature Overrides"
+      n: "gameFeatureOverrides"
+      r: false
+      sh: "Game feature overrides"
+      t: "`$ARRAY`"
+    }
+    gameRuleBoolOverrides: {
+      h: "Game Rule Bool Overrides"
+      n: "gameRuleBoolOverrides"
+      r: false
+      sh: "Game rule boolean overrides"
+      t: "`$ARRAY`"
+    }
+    isMinimapHidden: {
+      h: "Is Minimap Hidden"
+      n: "isMinimapHidden"
+      r: false
+      sh: "Whether the minimap is hidden"
+      t: "`$BOOLEAN`"
+    }
+    isTeamVoiceAllowed: {
+      h: "Is Team Voice Allowed"
+      n: "isTeamVoiceAllowed"
+      r: false
+      sh: "Whether team voice chat is allowed"
+      t: "`$BOOLEAN`"
+    }
+    orbCount: {
+      h: "Orb Count"
+      n: "orbCount"
+      r: false
+      sh: "Number of orbs in the game mode"
+      t: "`$INTEGER`"
+    }
+    roundsPerHalf: {
+      h: "Rounds Per Half"
+      n: "roundsPerHalf"
+      r: false
+      sh: "Number of rounds per half"
+      t: "`$INTEGER`"
+    }
+    teamRoles: {
+      h: "Team Roles"
+      n: "teamRoles"
+      r: false
+      sh: "Team roles in the game mode"
+      t: "`$ARRAY`"
+    }
+    uuid: {
+      fo: "uuid"
+      h: "Uuid"
+      n: "uuid"
+      r: false
+      sh: "Unique identifier for the game mode"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "game_mode"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /v1/gamemodes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "en-US"
+                k: "query"
+                n: "language"
+                or: "language"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/gamemodes"
+          q: {
+            exist: [
+              "language"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "gamemodes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
