@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 ValorantUtility::setRegistrar(function (ValorantUtility $u): void {
     $u->clean = [ValorantClean::class, 'call'];
+    $u->clean_add = [ValorantClean::class, 'add'];
+    $u->clean_explain = [ValorantDone::class, 'clean_explain'];
     $u->done = [ValorantDone::class, 'call'];
     $u->make_error = [ValorantMakeError::class, 'call'];
     $u->feature_add = [ValorantFeatureAdd::class, 'call'];

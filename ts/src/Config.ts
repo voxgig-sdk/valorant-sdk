@@ -317,7 +317,7 @@ class Config {
                 "query": [
                   {
                     "name": "is_playable_character",
-                    "orig": "is_playable_character",
+                    "orig": "isPlayableCharacter",
                     "type": "`$BOOLEAN`",
                     "kind": "query"
                   },

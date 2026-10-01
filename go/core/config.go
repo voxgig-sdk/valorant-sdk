@@ -266,7 +266,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "is_playable_character",
-											"orig": "is_playable_character",
+											"orig": "isPlayableCharacter",
 											"type": "`$BOOLEAN`",
 											"kind": "query",
 										},

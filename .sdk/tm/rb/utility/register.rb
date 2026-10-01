@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 ValorantUtility.registrar = ->(u) {
   u.clean = ValorantUtilities::Clean
+  u.clean_add = ValorantUtilities::CleanAdd
+  u.clean_explain = ValorantUtilities::CleanExplain
   u.done = ValorantUtilities::Done
   u.make_error = ValorantUtilities::MakeError
   u.feature_add = ValorantUtilities::FeatureAdd

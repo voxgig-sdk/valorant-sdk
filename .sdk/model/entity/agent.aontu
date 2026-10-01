@@ -186,7 +186,7 @@ main: kit: entity: agent: {
               {
                 k: "query"
                 n: "is_playable_character"
-                or: "is_playable_character"
+                or: "isPlayableCharacter"
                 r: false
                 t: "`$BOOLEAN`"
               }
