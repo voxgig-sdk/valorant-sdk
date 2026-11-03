@@ -87,6 +87,7 @@ class Config {
             },
             "optspec": {
                 "clearTimer": "`$FUNCTION`",
+                "now": "`$FUNCTION`",
                 "setTimer": "`$FUNCTION`"
             },
             "strict": false,
@@ -194,11 +195,6 @@ class Config {
                     "format": "uri"
                 },
                 {
-                    "name": "id",
-                    "title": "Id",
-                    "type": "`$STRING`"
-                },
-                {
                     "name": "isAvailableForTest",
                     "title": "Is Available For Test",
                     "type": "`$BOOLEAN`",
@@ -248,7 +244,7 @@ class Config {
                 }
             ],
             "id": {
-                "field": "id",
+                "field": "uuid",
                 "name": "id"
             },
             "name": "agent",
@@ -295,11 +291,13 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "is_playable_character",
-                                    "language"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            },
+                            "alias": {
+                                "id": "uuid"
                             }
                         }
                     ]
@@ -359,9 +357,15 @@ class Config {
                             },
                             "select": {
                                 "exist": [
-                                    "id",
-                                    "language"
+                                    "id"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            },
+                            "alias": {
+                                "id": "uuid"
                             }
                         }
                     ]
@@ -436,10 +440,10 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "language"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -601,10 +605,10 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "language"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         },
                         {
@@ -639,10 +643,10 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "language"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         },
                         {
@@ -677,10 +681,10 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "language"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -817,10 +821,10 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "language"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -861,11 +865,6 @@ class Config {
                     "title": "Display Name",
                     "type": "`$STRING`",
                     "short": "Display name of the map"
-                },
-                {
-                    "name": "id",
-                    "title": "Id",
-                    "type": "`$STRING`"
                 },
                 {
                     "name": "listViewIcon",
@@ -933,7 +932,7 @@ class Config {
                 }
             ],
             "id": {
-                "field": "id",
+                "field": "uuid",
                 "name": "id"
             },
             "name": "map",
@@ -974,10 +973,13 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "language"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            },
+                            "alias": {
+                                "id": "uuid"
                             }
                         }
                     ]
@@ -1037,9 +1039,15 @@ class Config {
                             },
                             "select": {
                                 "exist": [
-                                    "id",
-                                    "language"
+                                    "id"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            },
+                            "alias": {
+                                "id": "uuid"
                             }
                         }
                     ]
@@ -1084,11 +1092,6 @@ class Config {
                     "short": "Display name of the weapon"
                 },
                 {
-                    "name": "id",
-                    "title": "Id",
-                    "type": "`$STRING`"
-                },
-                {
                     "name": "killStreamIcon",
                     "title": "Kill Stream Icon",
                     "type": "`$STRING`",
@@ -1119,7 +1122,7 @@ class Config {
                 }
             ],
             "id": {
-                "field": "id",
+                "field": "uuid",
                 "name": "id"
             },
             "name": "weapon",
@@ -1160,10 +1163,13 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "language"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            },
+                            "alias": {
+                                "id": "uuid"
                             }
                         }
                     ]
@@ -1223,9 +1229,15 @@ class Config {
                             },
                             "select": {
                                 "exist": [
-                                    "id",
-                                    "language"
+                                    "id"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            },
+                            "alias": {
+                                "id": "uuid"
                             }
                         }
                     ]

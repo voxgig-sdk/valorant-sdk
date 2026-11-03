@@ -15,7 +15,7 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/valorant-sdk/releases)), or from a
+release tag (`ts/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/valorant-sdk/tags)), or from a
 clone, which carries the compiled `dist/`:
 
 ```bash
@@ -47,18 +47,18 @@ resolves to entities, not raw records. Iterate them directly, and call
 const agents = await client.Agent().list()
 
 for (const agent of agents) {
-  console.log(agent)
+  console.log(agent.data())
 }
 ```
 
 ### 3. Load an agent
 
-`load()` returns the entity directly and throws on failure:
+`load()` returns the entity and throws on failure; `.data()` reads its record:
 
 ```ts
 try {
   const agent = await client.Agent().load({ id: 'example_id' })
-  console.log(agent)
+  console.log(agent.data())
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -72,14 +72,15 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 ```ts
 try {
   const cosmetics = await client.Cosmetic().list()
-  console.log(cosmetics)
+  console.log(cosmetics.map((item) => item.data()))
 } catch (err) {
   console.error('list failed:', err)
 }
 ```
 
 The low-level `direct()` method does **not** throw — it returns the
-value or an `Error`, so check the result before using it:
+result envelope. Branch on `ok`; on failure `status` holds the HTTP status
+(for error responses) and `err` holds the error:
 
 ```ts
 const result = await client.direct({
@@ -88,8 +89,8 @@ const result = await client.direct({
   params: { id: 'example_id' },
 })
 
-if (result instanceof Error) {
-  throw result
+if (!result.ok) {
+  console.error('request failed:', result.status, result.err)
 }
 ```
 
@@ -107,9 +108,6 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
-if (result instanceof Error) {
-  throw result
-}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -138,10 +136,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = ValorantSDK.test()
 
-const cosmetic = await client.Cosmetic().list()
-// cosmetic is the entity, populated with mock response data
-// — call cosmetic.data() for the record itself
-console.log(cosmetic)
+const cosmetics = await client.Cosmetic().list()
+// cosmetics is an array of Cosmetic entities, one per mock record
+console.log(cosmetics.map((cosmetic) => cosmetic.data()))
 ```
 
 You can also use the instance method:
@@ -261,8 +258,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria, and return it. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria, one per record. |
 | `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
 | `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
@@ -271,8 +268,8 @@ All entities share the same interface.
 
 #### Return values
 
-Entity operations resolve to the entity data directly — there is no
-result envelope:
+Entity operations resolve to the entity itself — there is no result
+envelope, and an entity's `data()` reads its record:
 
 - `load` resolves to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
@@ -329,7 +326,6 @@ The `prepare()` method returns:
 | `displayName` | Display name of the agent |
 | `fullPortrait` | URL to the agent's full portrait |
 | `fullPortraitV2` | URL to the agent's full portrait version 2 |
-| `id` |  |
 | `isAvailableForTest` | Whether the agent is available for testing |
 | `isBaseContent` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | Whether the full portrait faces right |
@@ -414,7 +410,6 @@ API path: `/v1/gamemodes`
 | `coordinates` | Geographic coordinates of the map location |
 | `displayIcon` | URL to the map's display icon |
 | `displayName` | Display name of the map |
-| `id` |  |
 | `listViewIcon` | URL to the map's list view icon |
 | `mapUrl` | URL to the map overview |
 | `narrativeDescription` | Narrative description of the map |
@@ -439,7 +434,6 @@ API path: `/v1/maps`
 | `defaultSkinUuid` | UUID of the default skin |
 | `displayIcon` | URL to the weapon's display icon |
 | `displayName` | Display name of the weapon |
-| `id` |  |
 | `killStreamIcon` | URL to the weapon's kill stream icon |
 | `shopData` |  |
 | `skins` |  |
@@ -483,7 +477,6 @@ Create an instance: `const agent = client.Agent()`
 | `displayName` | `string` | Display name of the agent |
 | `fullPortrait` | `string` | URL to the agent's full portrait |
 | `fullPortraitV2` | `string` | URL to the agent's full portrait version 2 |
-| `id` | `string` |  |
 | `isAvailableForTest` | `boolean` | Whether the agent is available for testing |
 | `isBaseContent` | `boolean` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `boolean` | Whether the full portrait faces right |
@@ -627,7 +620,6 @@ Create an instance: `const map = client.Map()`
 | `coordinates` | `string` | Geographic coordinates of the map location |
 | `displayIcon` | `string` | URL to the map's display icon |
 | `displayName` | `string` | Display name of the map |
-| `id` | `string` |  |
 | `listViewIcon` | `string` | URL to the map's list view icon |
 | `mapUrl` | `string` | URL to the map overview |
 | `narrativeDescription` | `string` | Narrative description of the map |
@@ -672,7 +664,6 @@ Create an instance: `const weapon = client.Weapon()`
 | `defaultSkinUuid` | `string` | UUID of the default skin |
 | `displayIcon` | `string` | URL to the weapon's display icon |
 | `displayName` | `string` | Display name of the weapon |
-| `id` | `string` |  |
 | `killStreamIcon` | `string` | URL to the weapon's kill stream icon |
 | `shopData` | `Record<string, any>` |  |
 | `skins` | `any[]` |  |

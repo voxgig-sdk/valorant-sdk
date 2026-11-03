@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -178,11 +179,6 @@ func MakeConfig() map[string]any {
 						"format": "uri",
 					},
 					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "isAvailableForTest",
 						"title": "Is Available For Test",
 						"type": "`$BOOLEAN`",
@@ -232,7 +228,7 @@ func MakeConfig() map[string]any {
 					},
 				},
 				"id": map[string]any{
-					"field": "id",
+					"field": "uuid",
 					"name": "id",
 				},
 				"name": "agent",
@@ -279,11 +275,13 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"is_playable_character",
-										"language",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+								"alias": map[string]any{
+									"id": "uuid",
 								},
 							},
 						},
@@ -344,8 +342,14 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"exist": []any{
 										"id",
-										"language",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+								"alias": map[string]any{
+									"id": "uuid",
 								},
 							},
 						},
@@ -420,10 +424,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -585,10 +589,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 							map[string]any{
@@ -623,10 +627,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 							map[string]any{
@@ -661,10 +665,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -801,10 +805,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -845,11 +849,6 @@ func MakeConfig() map[string]any {
 						"title": "Display Name",
 						"type": "`$STRING`",
 						"short": "Display name of the map",
-					},
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "listViewIcon",
@@ -917,7 +916,7 @@ func MakeConfig() map[string]any {
 					},
 				},
 				"id": map[string]any{
-					"field": "id",
+					"field": "uuid",
 					"name": "id",
 				},
 				"name": "map",
@@ -958,10 +957,13 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+								"alias": map[string]any{
+									"id": "uuid",
 								},
 							},
 						},
@@ -1022,8 +1024,14 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"exist": []any{
 										"id",
-										"language",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+								"alias": map[string]any{
+									"id": "uuid",
 								},
 							},
 						},
@@ -1068,11 +1076,6 @@ func MakeConfig() map[string]any {
 						"short": "Display name of the weapon",
 					},
 					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "killStreamIcon",
 						"title": "Kill Stream Icon",
 						"type": "`$STRING`",
@@ -1103,7 +1106,7 @@ func MakeConfig() map[string]any {
 					},
 				},
 				"id": map[string]any{
-					"field": "id",
+					"field": "uuid",
 					"name": "id",
 				},
 				"name": "weapon",
@@ -1144,10 +1147,13 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+								"alias": map[string]any{
+									"id": "uuid",
 								},
 							},
 						},
@@ -1208,8 +1214,14 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"exist": []any{
 										"id",
-										"language",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+								"alias": map[string]any{
+									"id": "uuid",
 								},
 							},
 						},

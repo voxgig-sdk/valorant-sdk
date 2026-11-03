@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -203,11 +204,6 @@ def make_config():
             "format": "uri",
           },
           {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-          },
-          {
             "name": "isAvailableForTest",
             "title": "Is Available For Test",
             "type": "`$BOOLEAN`",
@@ -257,7 +253,7 @@ def make_config():
           },
         ],
         "id": {
-          "field": "id",
+          "field": "uuid",
           "name": "id",
         },
         "name": "agent",
@@ -304,11 +300,13 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "is_playable_character",
-                    "language",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+                "alias": {
+                  "id": "uuid",
                 },
               },
             ],
@@ -369,8 +367,14 @@ def make_config():
                 "select": {
                   "exist": [
                     "id",
-                    "language",
                   ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+                "alias": {
+                  "id": "uuid",
                 },
               },
             ],
@@ -445,10 +449,10 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "language",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -610,10 +614,10 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "language",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
               {
@@ -648,10 +652,10 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "language",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
               {
@@ -686,10 +690,10 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "language",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -826,10 +830,10 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "language",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -870,11 +874,6 @@ def make_config():
             "title": "Display Name",
             "type": "`$STRING`",
             "short": "Display name of the map",
-          },
-          {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
           },
           {
             "name": "listViewIcon",
@@ -942,7 +941,7 @@ def make_config():
           },
         ],
         "id": {
-          "field": "id",
+          "field": "uuid",
           "name": "id",
         },
         "name": "map",
@@ -983,10 +982,13 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "language",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+                "alias": {
+                  "id": "uuid",
                 },
               },
             ],
@@ -1047,8 +1049,14 @@ def make_config():
                 "select": {
                   "exist": [
                     "id",
-                    "language",
                   ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+                "alias": {
+                  "id": "uuid",
                 },
               },
             ],
@@ -1093,11 +1101,6 @@ def make_config():
             "short": "Display name of the weapon",
           },
           {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-          },
-          {
             "name": "killStreamIcon",
             "title": "Kill Stream Icon",
             "type": "`$STRING`",
@@ -1128,7 +1131,7 @@ def make_config():
           },
         ],
         "id": {
-          "field": "id",
+          "field": "uuid",
           "name": "id",
         },
         "name": "weapon",
@@ -1169,10 +1172,13 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "language",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+                "alias": {
+                  "id": "uuid",
                 },
               },
             ],
@@ -1233,8 +1239,14 @@ def make_config():
                 "select": {
                   "exist": [
                     "id",
-                    "language",
                   ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+                "alias": {
+                  "id": "uuid",
                 },
               },
             ],

@@ -42,12 +42,6 @@ main: kit: entity: weapon: {
       sh: "Display name of the weapon"
       t: "`$STRING`"
     }
-    id: {
-      h: "Id"
-      n: "id"
-      r: false
-      t: "`$STRING`"
-    }
     killStreamIcon: {
       fo: "uri"
       h: "Kill Stream Icon"
@@ -85,7 +79,7 @@ main: kit: entity: weapon: {
   }
 
   id: {
-    field: "id"
+    field: "uuid"
     name: "id"
   }
 
@@ -114,10 +108,9 @@ main: kit: entity: weapon: {
           }
           m: "GET"
           o: "/v1/weapons"
-          q: {
-            exist: [
-              "language"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -169,13 +162,16 @@ main: kit: entity: weapon: {
           q: {
             exist: [
               "id"
-              "language"
             ]
           }
           r: {
             param: {
               uuid: "id"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

@@ -20,7 +20,6 @@
 ---@field displayName? string
 ---@field fullPortrait? string
 ---@field fullPortraitV2? string
----@field id? string
 ---@field isAvailableForTest? boolean
 ---@field isBaseContent? boolean
 ---@field isFullPortraitRightFacing? boolean
@@ -94,7 +93,6 @@
 ---@field coordinates? string
 ---@field displayIcon? string
 ---@field displayName? string
----@field id? string
 ---@field listViewIcon? string
 ---@field mapUrl? string
 ---@field narrativeDescription? string
@@ -119,7 +117,6 @@
 ---@field defaultSkinUuid? string
 ---@field displayIcon? string
 ---@field displayName? string
----@field id? string
 ---@field killStreamIcon? string
 ---@field shopData? table
 ---@field skins? table

@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { ValorantSDK, BaseFeature, stdutil } from '../../..'
+import { ValorantSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('CosmeticEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('cosmetic hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of ValorantSDK.test(offline).Cosmetic().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of ValorantSDK.test(offline).Cosmetic()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = ValorantSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Cosmetic().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of ValorantSDK.test().Cosmetic().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new ValorantSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Cosmetic().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Cosmetic().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = ValorantSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Cosmetic().list({"language":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.VALORANT_TEST_LIVE
@@ -51,7 +109,7 @@ describe('CosmeticEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"animationGif":{"a":true,"fo":"uri","h":"Animation Gif","n":"animationGif","r":false,"sh":"URL to the spray's animation GIF","t":"`$STRING`","key$":"animationGif","index$":0},"animationPng":{"a":true,"fo":"uri","h":"Animation Png","n":"animationPng","r":false,"sh":"URL to the spray's animation PNG","t":"`$STRING`","key$":"animationPng","index$":1},"assetPath":{"a":true,"h":"Asset Path","n":"assetPath","r":false,"sh":"Asset path in game files","t":"`$STRING`","key$":"assetPath","index$":2},"category":{"a":true,"h":"Category","n":"category","r":false,"sh":"Category of the spray","t":"`$STRING`","key$":"category","index$":3},"displayIcon":{"a":true,"fo":"uri","h":"Display Icon","n":"displayIcon","r":false,"sh":"URL to the buddy's display icon","t":"`$STRING`","key$":"displayIcon","index$":4},"displayName":{"a":true,"h":"Display Name","n":"displayName","r":false,"sh":"Display name of the buddy","t":"`$STRING`","key$":"displayName","index$":5},"fullIcon":{"a":true,"fo":"uri","h":"Full Icon","n":"fullIcon","r":false,"sh":"URL to the spray's full icon","t":"`$STRING`","key$":"fullIcon","index$":6},"fullTransparentIcon":{"a":true,"fo":"uri","h":"Full Transparent Icon","n":"fullTransparentIcon","r":false,"sh":"URL to the spray's full transparent icon","t":"`$STRING`","key$":"fullTransparentIcon","index$":7},"hideIfNotOwned":{"a":true,"h":"Hide If Not Owned","n":"hideIfNotOwned","r":false,"sh":"Whether the spray is hidden if not owned","t":"`$BOOLEAN`","key$":"hideIfNotOwned","index$":8},"isHiddenIfNotOwned":{"a":true,"h":"Is Hidden If Not Owned","n":"isHiddenIfNotOwned","r":false,"sh":"Whether the buddy is hidden if not owned","t":"`$BOOLEAN`","key$":"isHiddenIfNotOwned","index$":9},"isNullSpray":{"a":true,"h":"Is Null Spray","n":"isNullSpray","r":false,"sh":"Whether this is a null spray","t":"`$BOOLEAN`","key$":"isNullSpray","index$":10},"largeArt":{"a":true,"fo":"uri","h":"Large Art","n":"largeArt","r":false,"sh":"URL to the card's large art","t":"`$STRING`","key$":"largeArt","index$":11},"levels":{"a":true,"h":"Levels","n":"levels","r":false,"t":"`$ARRAY`","key$":"levels","index$":12},"smallArt":{"a":true,"fo":"uri","h":"Small Art","n":"smallArt","r":false,"sh":"URL to the card's small art","t":"`$STRING`","key$":"smallArt","index$":13},"themeUuid":{"a":true,"fo":"uuid","h":"Theme Uuid","n":"themeUuid","r":false,"sh":"UUID of the theme","t":"`$STRING`","key$":"themeUuid","index$":14},"uuid":{"a":true,"fo":"uuid","h":"Uuid","n":"uuid","r":false,"sh":"Unique identifier for the buddy","t":"`$STRING`","key$":"uuid","index$":15},"wideArt":{"a":true,"fo":"uri","h":"Wide Art","n":"wideArt","r":false,"sh":"URL to the card's wide art","t":"`$STRING`","key$":"wideArt","index$":16}},"name":"cosmetic","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /v1/buddies","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"en-US","k":"query","n":"language","or":"language","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/v1/buddies","q":{"exist":["language"]},"r":{},"s":[{"lit":"v1"},{"lit":"buddies"}],"t":{"req":"`reqdata`","res":"`body.data`"},"index$":0},{"a":true,"co":{"id":"GET /v1/cards","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"en-US","k":"query","n":"language","or":"language","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/v1/cards","q":{"exist":["language"]},"r":{},"s":[{"lit":"v1"},{"lit":"cards"}],"t":{"req":"`reqdata`","res":"`body.data`"},"index$":1},{"a":true,"co":{"id":"GET /v1/sprays","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"en-US","k":"query","n":"language","or":"language","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/v1/sprays","q":{"exist":["language"]},"r":{},"s":[{"lit":"v1"},{"lit":"sprays"}],"t":{"req":"`reqdata`","res":"`body.data`"},"index$":2}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"cosmetic","name__orig":"cosmetic","Name":"Cosmetic","name_":"cosmetic","name-":"cosmetic","NAME":"COSMETIC","index$":2}, {"active":true,"entity":"cosmetic","key$":"BasicCosmeticFlow","kind":"basic","name":"BasicCosmeticFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"cosmetic_ref01"}}],"index$":0}]}, 'Cosmetic', {"GET /v1/buddies":{"protocol":"http","parameters":[{"name":"language","in":"query","description":"Language code for localized content","required":false,"schema":{"type":"string","default":"en-US"},"index$":0}]},"GET /v1/cards":{"protocol":"http","parameters":[{"name":"language","in":"query","description":"Language code for localized content","required":false,"schema":{"type":"string","default":"en-US"},"index$":0}]},"GET /v1/sprays":{"protocol":"http","parameters":[{"name":"language","in":"query","description":"Language code for localized content","required":false,"schema":{"type":"string","default":"en-US"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"animationGif":{"a":true,"fo":"uri","h":"Animation Gif","n":"animationGif","r":false,"sh":"URL to the spray's animation GIF","t":"`$STRING`","key$":"animationGif","index$":0},"animationPng":{"a":true,"fo":"uri","h":"Animation Png","n":"animationPng","r":false,"sh":"URL to the spray's animation PNG","t":"`$STRING`","key$":"animationPng","index$":1},"assetPath":{"a":true,"h":"Asset Path","n":"assetPath","r":false,"sh":"Asset path in game files","t":"`$STRING`","key$":"assetPath","index$":2},"category":{"a":true,"h":"Category","n":"category","r":false,"sh":"Category of the spray","t":"`$STRING`","key$":"category","index$":3},"displayIcon":{"a":true,"fo":"uri","h":"Display Icon","n":"displayIcon","r":false,"sh":"URL to the buddy's display icon","t":"`$STRING`","key$":"displayIcon","index$":4},"displayName":{"a":true,"h":"Display Name","n":"displayName","r":false,"sh":"Display name of the buddy","t":"`$STRING`","key$":"displayName","index$":5},"fullIcon":{"a":true,"fo":"uri","h":"Full Icon","n":"fullIcon","r":false,"sh":"URL to the spray's full icon","t":"`$STRING`","key$":"fullIcon","index$":6},"fullTransparentIcon":{"a":true,"fo":"uri","h":"Full Transparent Icon","n":"fullTransparentIcon","r":false,"sh":"URL to the spray's full transparent icon","t":"`$STRING`","key$":"fullTransparentIcon","index$":7},"hideIfNotOwned":{"a":true,"h":"Hide If Not Owned","n":"hideIfNotOwned","r":false,"sh":"Whether the spray is hidden if not owned","t":"`$BOOLEAN`","key$":"hideIfNotOwned","index$":8},"isHiddenIfNotOwned":{"a":true,"h":"Is Hidden If Not Owned","n":"isHiddenIfNotOwned","r":false,"sh":"Whether the buddy is hidden if not owned","t":"`$BOOLEAN`","key$":"isHiddenIfNotOwned","index$":9},"isNullSpray":{"a":true,"h":"Is Null Spray","n":"isNullSpray","r":false,"sh":"Whether this is a null spray","t":"`$BOOLEAN`","key$":"isNullSpray","index$":10},"largeArt":{"a":true,"fo":"uri","h":"Large Art","n":"largeArt","r":false,"sh":"URL to the card's large art","t":"`$STRING`","key$":"largeArt","index$":11},"levels":{"a":true,"h":"Levels","n":"levels","r":false,"t":"`$ARRAY`","key$":"levels","index$":12},"smallArt":{"a":true,"fo":"uri","h":"Small Art","n":"smallArt","r":false,"sh":"URL to the card's small art","t":"`$STRING`","key$":"smallArt","index$":13},"themeUuid":{"a":true,"fo":"uuid","h":"Theme Uuid","n":"themeUuid","r":false,"sh":"UUID of the theme","t":"`$STRING`","key$":"themeUuid","index$":14},"uuid":{"a":true,"fo":"uuid","h":"Uuid","n":"uuid","r":false,"sh":"Unique identifier for the buddy","t":"`$STRING`","key$":"uuid","index$":15},"wideArt":{"a":true,"fo":"uri","h":"Wide Art","n":"wideArt","r":false,"sh":"URL to the card's wide art","t":"`$STRING`","key$":"wideArt","index$":16}},"name":"cosmetic","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /v1/buddies","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"en-US","k":"query","n":"language","or":"language","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/v1/buddies","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"v1"},{"lit":"buddies"}],"t":{"req":"`reqdata`","res":"`body.data`"},"index$":0},{"a":true,"co":{"id":"GET /v1/cards","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"en-US","k":"query","n":"language","or":"language","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/v1/cards","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"v1"},{"lit":"cards"}],"t":{"req":"`reqdata`","res":"`body.data`"},"index$":1},{"a":true,"co":{"id":"GET /v1/sprays","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"en-US","k":"query","n":"language","or":"language","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/v1/sprays","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"v1"},{"lit":"sprays"}],"t":{"req":"`reqdata`","res":"`body.data`"},"index$":2}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"cosmetic","name__orig":"cosmetic","Name":"Cosmetic","name_":"cosmetic","name-":"cosmetic","NAME":"COSMETIC","index$":2}, {"active":true,"entity":"cosmetic","key$":"BasicCosmeticFlow","kind":"basic","name":"BasicCosmeticFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"cosmetic_ref01"}}],"index$":0}]}, 'Cosmetic', {"GET /v1/buddies":{"protocol":"http","parameters":[{"name":"language","in":"query","description":"Language code for localized content","required":false,"schema":{"type":"string","default":"en-US"},"index$":0}]},"GET /v1/cards":{"protocol":"http","parameters":[{"name":"language","in":"query","description":"Language code for localized content","required":false,"schema":{"type":"string","default":"en-US"},"index$":0}]},"GET /v1/sprays":{"protocol":"http","parameters":[{"name":"language","in":"query","description":"Language code for localized content","required":false,"schema":{"type":"string","default":"en-US"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('CosmeticEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

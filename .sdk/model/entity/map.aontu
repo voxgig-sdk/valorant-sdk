@@ -40,12 +40,6 @@ main: kit: entity: map: {
       sh: "Display name of the map"
       t: "`$STRING`"
     }
-    id: {
-      h: "Id"
-      n: "id"
-      r: false
-      t: "`$STRING`"
-    }
     listViewIcon: {
       fo: "uri"
       h: "List View Icon"
@@ -123,7 +117,7 @@ main: kit: entity: map: {
   }
 
   id: {
-    field: "id"
+    field: "uuid"
     name: "id"
   }
 
@@ -152,10 +146,9 @@ main: kit: entity: map: {
           }
           m: "GET"
           o: "/v1/maps"
-          q: {
-            exist: [
-              "language"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -207,13 +200,16 @@ main: kit: entity: map: {
           q: {
             exist: [
               "id"
-              "language"
             ]
           }
           r: {
             param: {
               uuid: "id"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

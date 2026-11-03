@@ -132,10 +132,9 @@ main: kit: entity: game_mode: {
           }
           m: "GET"
           o: "/v1/gamemodes"
-          q: {
-            exist: [
-              "language"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

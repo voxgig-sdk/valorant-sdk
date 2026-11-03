@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { ValorantSDK, BaseFeature, stdutil } from '../../..'
+import { ValorantSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('CompetitiveEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('competitive hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of ValorantSDK.test(offline).Competitive().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of ValorantSDK.test(offline).Competitive()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = ValorantSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Competitive().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of ValorantSDK.test().Competitive().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new ValorantSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Competitive().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Competitive().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = ValorantSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Competitive().list({"language":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.VALORANT_TEST_LIVE
@@ -51,7 +109,7 @@ describe('CompetitiveEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"assetObjectName":{"a":true,"h":"Asset Object Name","n":"assetObjectName","r":false,"sh":"Asset object name","t":"`$STRING`","key$":"assetObjectName","index$":0},"assetPath":{"a":true,"h":"Asset Path","n":"assetPath","r":false,"sh":"Asset path in game files","t":"`$STRING`","key$":"assetPath","index$":1},"tiers":{"a":true,"h":"Tiers","n":"tiers","r":false,"t":"`$ARRAY`","key$":"tiers","index$":2},"uuid":{"a":true,"fo":"uuid","h":"Uuid","n":"uuid","r":false,"sh":"Unique identifier for the competitive tier set","t":"`$STRING`","key$":"uuid","index$":3}},"name":"competitive","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /v1/competitivetiers","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"en-US","k":"query","n":"language","or":"language","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/v1/competitivetiers","q":{"exist":["language"]},"r":{},"s":[{"lit":"v1"},{"lit":"competitivetiers"}],"t":{"req":"`reqdata`","res":"`body.data`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"competitive","name__orig":"competitive","Name":"Competitive","name_":"competitive","name-":"competitive","NAME":"COMPETITIVE","index$":1}, {"active":true,"entity":"competitive","key$":"BasicCompetitiveFlow","kind":"basic","name":"BasicCompetitiveFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"competitive_ref01"}}],"index$":0}]}, 'Competitive', {"GET /v1/competitivetiers":{"protocol":"http","parameters":[{"name":"language","in":"query","description":"Language code for localized content","required":false,"schema":{"type":"string","default":"en-US"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"assetObjectName":{"a":true,"h":"Asset Object Name","n":"assetObjectName","r":false,"sh":"Asset object name","t":"`$STRING`","key$":"assetObjectName","index$":0},"assetPath":{"a":true,"h":"Asset Path","n":"assetPath","r":false,"sh":"Asset path in game files","t":"`$STRING`","key$":"assetPath","index$":1},"tiers":{"a":true,"h":"Tiers","n":"tiers","r":false,"t":"`$ARRAY`","key$":"tiers","index$":2},"uuid":{"a":true,"fo":"uuid","h":"Uuid","n":"uuid","r":false,"sh":"Unique identifier for the competitive tier set","t":"`$STRING`","key$":"uuid","index$":3}},"name":"competitive","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /v1/competitivetiers","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"en-US","k":"query","n":"language","or":"language","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/v1/competitivetiers","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"v1"},{"lit":"competitivetiers"}],"t":{"req":"`reqdata`","res":"`body.data`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"competitive","name__orig":"competitive","Name":"Competitive","name_":"competitive","name-":"competitive","NAME":"COMPETITIVE","index$":1}, {"active":true,"entity":"competitive","key$":"BasicCompetitiveFlow","kind":"basic","name":"BasicCompetitiveFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"competitive_ref01"}}],"index$":0}]}, 'Competitive', {"GET /v1/competitivetiers":{"protocol":"http","parameters":[{"name":"language","in":"query","description":"Language code for localized content","required":false,"schema":{"type":"string","default":"en-US"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('CompetitiveEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

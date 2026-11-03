@@ -9,8 +9,39 @@ require_once __DIR__ . '/Runner.php';
 use PHPUnit\Framework\TestCase;
 use Voxgig\Struct\Struct as Vs;
 
+class AgentEntityTestFailHook extends ValorantBaseFeature
+{
+    public int $unexpected = 0;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->name = 'failhook';
+    }
+
+    public function init(ValorantContext $ctx, array $options): void
+    {
+    }
+
+    public function PreSpec(ValorantContext $ctx): void
+    {
+        throw new \RuntimeException('agent hook failed');
+    }
+
+    public function PreUnexpected(ValorantContext $ctx): void
+    {
+        $this->unexpected++;
+    }
+}
+
 class AgentEntityTest extends TestCase
 {
+    // main.kit.test.live.strict is true (the default is true): a live
+    // request that fails, or a live test missing an input it needs,
+    // fails the test.
+    // An account with no record for a test to read skips it either way.
+    private const LIVE_STRICT = true;
+
     public function test_create_instance(): void
     {
         $testsdk = ValorantSDK::test(null, null);
@@ -57,6 +88,125 @@ class AgentEntityTest extends TestCase
         }
     }
 
+    public function test_stream_error(): void
+    {
+        $offline = ["net" => ["offline" => true]];
+        $streamerr = null;
+        try {
+            iterator_to_array(ValorantSDK::test($offline, null)->Agent(null)
+                ->stream("list", null, null), false);
+        } catch (\Throwable $e) {
+            $streamerr = $e;
+        }
+        $this->assertNotNull($streamerr, 'the stream should raise the transport failure');
+        $this->assertStringContainsString('offline', $streamerr->getMessage());
+
+        iterator_to_array(ValorantSDK::test($offline, null)->Agent(null)
+            ->stream("list", null, ["ctrl" => ["throw" => false]]), false);
+
+        $cfg = ValorantConfig::shared_config();
+        if (isset($cfg["feature"]["rbac"])) {
+            $denied = ValorantSDK::test(null, ["feature" => ["rbac" => ["active" => true, "deny" => true]]]);
+            $denyerr = null;
+            try {
+                iterator_to_array($denied->Agent(null)->stream("list", null, null), false);
+            } catch (\Throwable $e) {
+                $denyerr = $e;
+            }
+            $this->assertSame('rbac_denied', $denyerr->sdk_code ?? null);
+        }
+    }
+
+    public function test_stream_ctrl(): void
+    {
+        $ctrl = ["explain" => []];
+        iterator_to_array(ValorantSDK::test(null, null)->Agent(null)
+            ->stream("list", null, ["ctrl" => $ctrl]), false);
+        $this->assertSame(["explain"], array_keys($ctrl));
+    }
+
+    public function test_unexpected(): void
+    {
+        $hook = new AgentEntityTestFailHook();
+        $client = new ValorantSDK(["feature" => ["test" => ["active" => true]], "extend" => [$hook]]);
+
+        $err = null;
+        try {
+            $client->Agent(null)->list(null, null);
+        } catch (\Throwable $e) {
+            $err = $e;
+        }
+        $this->assertNotNull($err, 'the throwing hook should fail the operation');
+        $this->assertStringContainsString('hook failed', $err->getMessage());
+        $this->assertGreaterThan(0, $hook->unexpected, 'PreUnexpected did not fire');
+
+        $fired = $hook->unexpected;
+        $this->assertNull($client->Agent(null)->list(null, ["throw" => false]));
+        $this->assertGreaterThan($fired, $hook->unexpected, 'PreUnexpected did not fire');
+    }
+
+    public function test_cost_commits_a_throwing_transport(): void
+    {
+        $cfg = ValorantConfig::shared_config();
+        if (!isset($cfg["feature"]["cost"])) {
+            $this->markTestSkipped('feature not present in this SDK: cost');
+        }
+        $client = new ValorantSDK([
+            "test" => ["active" => true],
+            "feature" => ["cost" => ["active" => true, "unit" => 1]],
+            "utility" => ["fetcher" => function ($ctx, $url, $fetchdef) {
+                throw new \RuntimeException('agent transport failed');
+            }],
+        ]);
+
+        $err = null;
+        try {
+            $client->Agent(null)->list(null, null);
+        } catch (\Throwable $e) {
+            $err = $e;
+        }
+        $this->assertInstanceOf(ValorantError::class, $err);
+        $this->assertStringContainsString('transport failed', $err->getMessage());
+
+        $client->Agent(null)->list(null, ["throw" => false]);
+        $this->assertSame(2, $client->_cost["total"]["calls"]);
+        $this->assertSame(2, $client->_cost["total"]["attempts"]);
+    }
+
+    public function test_validate_list_response(): void
+    {
+        $cfg = ValorantConfig::shared_config();
+        if (!isset($cfg["feature"]["validate"])) {
+            $this->markTestSkipped('feature not present in this SDK: validate');
+        }
+        $opts = ["feature" => ["validate" => ["active" => true, "request" => false, "response" => true]]];
+        $listed = ValorantSDK::test(['entity' => ['agent' => ['v1' => []]]], $opts)->Agent(null)->list(null, null);
+        $this->assertSame(['v1'], array_map(fn($ent) => $ent->data_get()['id'] ?? null, $listed));
+        $err = null;
+        try {
+            ValorantSDK::test(['entity' => ['agent' => ['v1' => ['assetPath' => 1]]]], $opts)->Agent(null)->list(null, null);
+        } catch (\Throwable $e) {
+            $err = $e;
+        }
+        $this->assertSame('validate_failed', $err->sdk_code ?? null);
+    }
+
+    public function test_validate(): void
+    {
+        $cfg = ValorantConfig::shared_config();
+        if (!isset($cfg["feature"]["validate"])) {
+            $this->markTestSkipped('feature not present in this SDK: validate');
+        }
+        $client = ValorantSDK::test(null, ["feature" => ["validate" => ["active" => true]]]);
+        $err = null;
+        try {
+            $client->Agent(null)->list(["is_playable_character" => 'x'], null);
+        } catch (\Throwable $e) {
+            $err = $e;
+        }
+        $this->assertSame('validate_failed', $err->sdk_code ?? null);
+    }
+
     public function test_basic_flow(): void
     {
         $setup = agent_basic_setup(null);
@@ -69,13 +219,11 @@ class AgentEntityTest extends TestCase
                 return;
             }
         }
-        // The basic flow consumes synthetic IDs from the fixture. In live mode
-        // without an *_ENTID env override, those IDs hit the live API and 4xx.
-        if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set VALORANT_TEST_AGENT_ENTID JSON to run live");
-            return;
-        }
         $client = $setup["client"];
+        if (!empty($setup["live"])) {
+            Runner::live_existing($setup, self::LIVE_STRICT, "agent",
+                fn() => $client->Agent(null)->list([], null));
+        }
 
         // Bootstrap entity data from existing test data.
         $agent_ref01_data_raw = Vs::items(Helpers::to_map(
@@ -94,12 +242,12 @@ class AgentEntityTest extends TestCase
 
         // LOAD
         $agent_ref01_match_dt0 = [
-            "id" => $agent_ref01_data["id"],
+            "id" => $agent_ref01_data["uuid"],
         ];
         $agent_ref01_data_dt0_loaded = $agent_ref01_ent->load($agent_ref01_match_dt0, null);
         $agent_ref01_data_dt0_load_result = Helpers::to_map(is_object($agent_ref01_data_dt0_loaded) && method_exists($agent_ref01_data_dt0_loaded, 'data_get') ? $agent_ref01_data_dt0_loaded->data_get() : $agent_ref01_data_dt0_loaded);
         $this->assertNotNull($agent_ref01_data_dt0_load_result);
-        $this->assertEquals($agent_ref01_data_dt0_load_result["id"], $agent_ref01_data["id"]);
+        $this->assertEquals($agent_ref01_data_dt0_load_result["uuid"], $agent_ref01_data["uuid"]);
 
     }
 }
@@ -112,6 +260,12 @@ function agent_basic_setup($extra)
     $entity_data_source = file_get_contents($entity_data_file);
     $entity_data = json_decode($entity_data_source, true);
 
+    foreach (($entity_data["existing"]["agent"] ?? []) as $rec_key => $rec) {
+        if (is_array($rec) && isset($rec["id"])) {
+            $entity_data["existing"]["agent"][$rec_key]["uuid"] = $rec["id"];
+        }
+    }
+
     $options = [];
     $options["entity"] = $entity_data["existing"];
 
@@ -123,9 +277,8 @@ function agent_basic_setup($extra)
         $idmap[$k] = strtoupper($k);
     }
 
-    // Detect ENTID env override before envOverride consumes it. When live
-    // mode is on without a real override, the basic test runs against synthetic
-    // IDs from the fixture and 4xx's. Surface this so the test can skip.
+    // Whether *_ENTID supplied the idmap, read before env_override consumes
+    // it: without it, the ids a live flow binds are the fixture's synthetic ones.
     $entid_env_raw = getenv("VALORANT_TEST_AGENT_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 

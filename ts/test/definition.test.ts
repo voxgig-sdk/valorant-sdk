@@ -17,12 +17,26 @@ const PLAN: any[] = [
     "args": [],
     "select": {
       "is_playable_character": "v1",
-      "language": "v1"
+      "language": "en-US"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "language",
       "isPlayableCharacter"
+    ],
+    "queryArgs": [
+      {
+        "name": "is_playable_character",
+        "wire": "isPlayableCharacter"
+      },
+      {
+        "name": "language",
+        "wire": "language"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -30,54 +44,54 @@ const PLAN: any[] = [
       "status": 200,
       "data": [
         {
-          "abilities": [
-            {
-              "description": "x",
-              "displayIcon": "x",
-              "displayName": "x",
-              "slot": "x"
-            }
+          "uuid": "x",
+          "displayName": "x",
+          "description": "x",
+          "developerName": "x",
+          "characterTags": [
+            "x"
           ],
-          "assetPath": "x",
+          "displayIcon": "x",
+          "displayIconSmall": "x",
+          "bustPortrait": "x",
+          "fullPortrait": "x",
+          "fullPortraitV2": "x",
+          "killfeedPortrait": "x",
           "background": "x",
           "backgroundGradientColors": [
             "x"
           ],
-          "bustPortrait": "x",
-          "characterTags": [
-            "x"
-          ],
-          "description": "x",
-          "developerName": "x",
-          "displayIcon": "x",
-          "displayIconSmall": "x",
-          "displayName": "x",
-          "fullPortrait": "x",
-          "fullPortraitV2": "x",
-          "isAvailableForTest": true,
-          "isBaseContent": true,
+          "assetPath": "x",
           "isFullPortraitRightFacing": true,
           "isPlayableCharacter": true,
-          "killfeedPortrait": "x",
+          "isAvailableForTest": true,
+          "isBaseContent": true,
           "role": {
-            "assetPath": "x",
+            "uuid": "x",
+            "displayName": "x",
             "description": "x",
             "displayIcon": "x",
-            "displayName": "x",
-            "uuid": "x"
+            "assetPath": "x"
           },
-          "uuid": "x",
+          "abilities": [
+            {
+              "slot": "x",
+              "displayName": "x",
+              "description": "x",
+              "displayIcon": "x"
+            }
+          ],
           "voiceLine": {
+            "minDuration": 1,
             "maxDuration": 1,
             "mediaList": [
               {}
-            ],
-            "minDuration": 1
+            ]
           }
         }
       ]
     },
-    "idField": "id"
+    "idField": "uuid"
   },
   {
     "entity": "agent",
@@ -93,11 +107,21 @@ const PLAN: any[] = [
       }
     ],
     "select": {
-      "language": "v1"
+      "language": "en-US"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "language"
+    ],
+    "queryArgs": [
+      {
+        "name": "language",
+        "wire": "language"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -127,30 +151,30 @@ const PLAN: any[] = [
         "isAvailableForTest": true,
         "isBaseContent": true,
         "role": {
-          "assetPath": "x",
+          "uuid": "x",
+          "displayName": "x",
           "description": "x",
           "displayIcon": "x",
-          "displayName": "x",
-          "uuid": "x"
+          "assetPath": "x"
         },
         "abilities": [
           {
-            "description": "x",
-            "displayIcon": "x",
+            "slot": "x",
             "displayName": "x",
-            "slot": "x"
+            "description": "x",
+            "displayIcon": "x"
           }
         ],
         "voiceLine": {
+          "minDuration": 1,
           "maxDuration": 1,
           "mediaList": [
             {}
-          ],
-          "minDuration": 1
+          ]
         }
       }
     },
-    "idField": "id"
+    "idField": "uuid"
   },
   {
     "entity": "competitive",
@@ -160,11 +184,21 @@ const PLAN: any[] = [
     "path": "/v1/competitivetiers",
     "args": [],
     "select": {
-      "language": "v1"
+      "language": "en-US"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "language"
+    ],
+    "queryArgs": [
+      {
+        "name": "language",
+        "wire": "language"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -172,23 +206,23 @@ const PLAN: any[] = [
       "status": 200,
       "data": [
         {
+          "uuid": "x",
           "assetObjectName": "x",
-          "assetPath": "x",
           "tiers": [
             {
-              "backgroundColor": "x",
-              "color": "x",
+              "tier": 1,
+              "tierName": "x",
               "division": "x",
               "divisionName": "x",
+              "color": "x",
+              "backgroundColor": "x",
+              "smallIcon": "x",
               "largeIcon": "x",
               "rankTriangleDownIcon": "x",
-              "rankTriangleUpIcon": "x",
-              "smallIcon": "x",
-              "tier": 1,
-              "tierName": "x"
+              "rankTriangleUpIcon": "x"
             }
           ],
-          "uuid": "x"
+          "assetPath": "x"
         }
       ]
     },
@@ -202,11 +236,21 @@ const PLAN: any[] = [
     "path": "/v1/gamemodes",
     "args": [],
     "select": {
-      "language": "v1"
+      "language": "en-US"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "language"
+    ],
+    "queryArgs": [
+      {
+        "name": "language",
+        "wire": "language"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -214,26 +258,26 @@ const PLAN: any[] = [
       "status": 200,
       "data": [
         {
-          "allowsMatchTimeouts": true,
-          "assetPath": "x",
-          "displayIcon": "x",
+          "uuid": "x",
           "displayName": "x",
           "duration": "x",
           "economyType": "x",
+          "allowsMatchTimeouts": true,
+          "isTeamVoiceAllowed": true,
+          "isMinimapHidden": true,
+          "orbCount": 1,
+          "roundsPerHalf": 1,
+          "teamRoles": [
+            "x"
+          ],
           "gameFeatureOverrides": [
             {}
           ],
           "gameRuleBoolOverrides": [
             {}
           ],
-          "isMinimapHidden": true,
-          "isTeamVoiceAllowed": true,
-          "orbCount": 1,
-          "roundsPerHalf": 1,
-          "teamRoles": [
-            "x"
-          ],
-          "uuid": "x"
+          "displayIcon": "x",
+          "assetPath": "x"
         }
       ]
     },
@@ -247,11 +291,21 @@ const PLAN: any[] = [
     "path": "/v1/maps",
     "args": [],
     "select": {
-      "language": "v1"
+      "language": "en-US"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "language"
+    ],
+    "queryArgs": [
+      {
+        "name": "language",
+        "wire": "language"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -259,34 +313,34 @@ const PLAN: any[] = [
       "status": 200,
       "data": [
         {
+          "uuid": "x",
+          "displayName": "x",
+          "narrativeDescription": "x",
+          "tacticalDescription": "x",
+          "coordinates": "x",
+          "displayIcon": "x",
+          "listViewIcon": "x",
+          "splash": "x",
           "assetPath": "x",
+          "mapUrl": "x",
+          "xMultiplier": 1,
+          "yMultiplier": 1,
+          "xScalarToAdd": 1,
+          "yScalarToAdd": 1,
           "callouts": [
             {
+              "regionName": "x",
+              "superRegionName": "x",
               "location": {
                 "x": 1,
                 "y": 1
-              },
-              "regionName": "x",
-              "superRegionName": "x"
+              }
             }
-          ],
-          "coordinates": "x",
-          "displayIcon": "x",
-          "displayName": "x",
-          "listViewIcon": "x",
-          "mapUrl": "x",
-          "narrativeDescription": "x",
-          "splash": "x",
-          "tacticalDescription": "x",
-          "uuid": "x",
-          "xMultiplier": 1,
-          "xScalarToAdd": 1,
-          "yMultiplier": 1,
-          "yScalarToAdd": 1
+          ]
         }
       ]
     },
-    "idField": "id"
+    "idField": "uuid"
   },
   {
     "entity": "map",
@@ -302,11 +356,21 @@ const PLAN: any[] = [
       }
     ],
     "select": {
-      "language": "v1"
+      "language": "en-US"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "language"
+    ],
+    "queryArgs": [
+      {
+        "name": "language",
+        "wire": "language"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -329,17 +393,17 @@ const PLAN: any[] = [
         "yScalarToAdd": 1,
         "callouts": [
           {
+            "regionName": "x",
+            "superRegionName": "x",
             "location": {
               "x": 1,
               "y": 1
-            },
-            "regionName": "x",
-            "superRegionName": "x"
+            }
           }
         ]
       }
     },
-    "idField": "id"
+    "idField": "uuid"
   },
   {
     "entity": "weapon",
@@ -349,11 +413,21 @@ const PLAN: any[] = [
     "path": "/v1/weapons",
     "args": [],
     "select": {
-      "language": "v1"
+      "language": "en-US"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "language"
+    ],
+    "queryArgs": [
+      {
+        "name": "language",
+        "wire": "language"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -361,49 +435,49 @@ const PLAN: any[] = [
       "status": 200,
       "data": [
         {
-          "assetPath": "x",
+          "uuid": "x",
+          "displayName": "x",
           "category": "x",
           "defaultSkinUuid": "x",
           "displayIcon": "x",
-          "displayName": "x",
           "killStreamIcon": "x",
+          "assetPath": "x",
+          "weaponStats": {
+            "fireRate": 1,
+            "magazineSize": 1,
+            "runSpeedMultiplier": 1,
+            "equipTimeSeconds": 1,
+            "reloadTimeSeconds": 1,
+            "firstBulletAccuracy": 1,
+            "shotgunPelletCount": 1,
+            "wallPenetration": "x",
+            "feature": "x",
+            "fireMode": "x",
+            "altFireType": "x",
+            "adsStats": {},
+            "altShotgunStats": {},
+            "airBurstStats": {},
+            "damageRanges": [
+              {}
+            ]
+          },
           "shopData": {
-            "assetPath": "x",
-            "canBeTrashed": true,
+            "cost": 1,
             "category": "x",
             "categoryText": "x",
-            "cost": 1,
             "gridPosition": {},
+            "canBeTrashed": true,
             "newImage": "x",
-            "newImage2": "x"
+            "newImage2": "x",
+            "assetPath": "x"
           },
           "skins": [
             {}
-          ],
-          "uuid": "x",
-          "weaponStats": {
-            "adsStats": {},
-            "airBurstStats": {},
-            "altFireType": "x",
-            "altShotgunStats": {},
-            "damageRanges": [
-              {}
-            ],
-            "equipTimeSeconds": 1,
-            "feature": "x",
-            "fireMode": "x",
-            "fireRate": 1,
-            "firstBulletAccuracy": 1,
-            "magazineSize": 1,
-            "reloadTimeSeconds": 1,
-            "runSpeedMultiplier": 1,
-            "shotgunPelletCount": 1,
-            "wallPenetration": "x"
-          }
+          ]
         }
       ]
     },
-    "idField": "id"
+    "idField": "uuid"
   },
   {
     "entity": "weapon",
@@ -419,11 +493,21 @@ const PLAN: any[] = [
       }
     ],
     "select": {
-      "language": "v1"
+      "language": "en-US"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "language"
+    ],
+    "queryArgs": [
+      {
+        "name": "language",
+        "wire": "language"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -438,40 +522,40 @@ const PLAN: any[] = [
         "killStreamIcon": "x",
         "assetPath": "x",
         "weaponStats": {
-          "adsStats": {},
-          "airBurstStats": {},
-          "altFireType": "x",
-          "altShotgunStats": {},
-          "damageRanges": [
-            {}
-          ],
+          "fireRate": 1,
+          "magazineSize": 1,
+          "runSpeedMultiplier": 1,
           "equipTimeSeconds": 1,
+          "reloadTimeSeconds": 1,
+          "firstBulletAccuracy": 1,
+          "shotgunPelletCount": 1,
+          "wallPenetration": "x",
           "feature": "x",
           "fireMode": "x",
-          "fireRate": 1,
-          "firstBulletAccuracy": 1,
-          "magazineSize": 1,
-          "reloadTimeSeconds": 1,
-          "runSpeedMultiplier": 1,
-          "shotgunPelletCount": 1,
-          "wallPenetration": "x"
+          "altFireType": "x",
+          "adsStats": {},
+          "altShotgunStats": {},
+          "airBurstStats": {},
+          "damageRanges": [
+            {}
+          ]
         },
         "shopData": {
-          "assetPath": "x",
-          "canBeTrashed": true,
+          "cost": 1,
           "category": "x",
           "categoryText": "x",
-          "cost": 1,
           "gridPosition": {},
+          "canBeTrashed": true,
           "newImage": "x",
-          "newImage2": "x"
+          "newImage2": "x",
+          "assetPath": "x"
         },
         "skins": [
           {}
         ]
       }
     },
-    "idField": "id"
+    "idField": "uuid"
   }
 ]
 

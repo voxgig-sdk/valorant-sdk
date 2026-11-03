@@ -79,6 +79,7 @@ module ValorantConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -186,11 +187,6 @@ module ValorantConfig
               "format" => "uri",
             },
             {
-              "name" => "id",
-              "title" => "Id",
-              "type" => "`$STRING`",
-            },
-            {
               "name" => "isAvailableForTest",
               "title" => "Is Available For Test",
               "type" => "`$BOOLEAN`",
@@ -240,7 +236,7 @@ module ValorantConfig
             },
           ],
           "id" => {
-            "field" => "id",
+            "field" => "uuid",
             "name" => "id",
           },
           "name" => "agent",
@@ -287,11 +283,13 @@ module ValorantConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "is_playable_character",
-                      "language",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
+                  "alias" => {
+                    "id" => "uuid",
                   },
                 },
               ],
@@ -352,8 +350,14 @@ module ValorantConfig
                   "select" => {
                     "exist" => [
                       "id",
-                      "language",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
+                  "alias" => {
+                    "id" => "uuid",
                   },
                 },
               ],
@@ -428,10 +432,10 @@ module ValorantConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "language",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -593,10 +597,10 @@ module ValorantConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "language",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
                 {
@@ -631,10 +635,10 @@ module ValorantConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "language",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
                 {
@@ -669,10 +673,10 @@ module ValorantConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "language",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -809,10 +813,10 @@ module ValorantConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "language",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -853,11 +857,6 @@ module ValorantConfig
               "title" => "Display Name",
               "type" => "`$STRING`",
               "short" => "Display name of the map",
-            },
-            {
-              "name" => "id",
-              "title" => "Id",
-              "type" => "`$STRING`",
             },
             {
               "name" => "listViewIcon",
@@ -925,7 +924,7 @@ module ValorantConfig
             },
           ],
           "id" => {
-            "field" => "id",
+            "field" => "uuid",
             "name" => "id",
           },
           "name" => "map",
@@ -966,10 +965,13 @@ module ValorantConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "language",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
+                  "alias" => {
+                    "id" => "uuid",
                   },
                 },
               ],
@@ -1030,8 +1032,14 @@ module ValorantConfig
                   "select" => {
                     "exist" => [
                       "id",
-                      "language",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
+                  "alias" => {
+                    "id" => "uuid",
                   },
                 },
               ],
@@ -1076,11 +1084,6 @@ module ValorantConfig
               "short" => "Display name of the weapon",
             },
             {
-              "name" => "id",
-              "title" => "Id",
-              "type" => "`$STRING`",
-            },
-            {
               "name" => "killStreamIcon",
               "title" => "Kill Stream Icon",
               "type" => "`$STRING`",
@@ -1111,7 +1114,7 @@ module ValorantConfig
             },
           ],
           "id" => {
-            "field" => "id",
+            "field" => "uuid",
             "name" => "id",
           },
           "name" => "weapon",
@@ -1152,10 +1155,13 @@ module ValorantConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "language",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
+                  "alias" => {
+                    "id" => "uuid",
                   },
                 },
               ],
@@ -1216,8 +1222,14 @@ module ValorantConfig
                   "select" => {
                     "exist" => [
                       "id",
-                      "language",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
+                  "alias" => {
+                    "id" => "uuid",
                   },
                 },
               ],

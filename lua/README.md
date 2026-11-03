@@ -12,7 +12,7 @@ It exposes the API as capitalised, semantic **Entities** — e.g. `client:Agent(
 
 ## Install
 This package is not yet published to LuaRocks. Install it from the
-GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/valorant-sdk/releases)),
+GitHub release tag (`lua/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/valorant-sdk/tags)),
 or add the source directory to your `LUA_PATH`:
 
 ```bash
@@ -35,24 +35,29 @@ local client = sdk.new()
 
 ### 2. List agent records
 
-Entity operations return `(value, err)`. For `list`, `value` is the
-array of records itself — iterate it directly (there is no wrapper).
+Entity operations return `(value, err)`. For `list`, `value` is an
+array of entities, one per record — iterate it directly (there is no
+wrapper), and read each record with `data_get()`.
 
 ```lua
 local agents, err = client:Agent():list()
 if err then error(err) end
 
 for _, item in ipairs(agents) do
-  print(item["id"])
+  local rec = item:data_get()
+  print(rec["uuid"])
 end
 ```
 
 ### 3. Load an agent
 
+`load` returns the entity; `data_get()` reads its record.
+
 ```lua
 local agent, err = client:Agent():load({ id = "example_id" })
 if err then error(err) end
-print(agent)
+local rec = agent:data_get()
+print(rec["uuid"])
 ```
 
 
@@ -121,7 +126,7 @@ Create a mock client for unit testing — no server required:
 local client = sdk.test()
 
 local result, err = client:Cosmetic():list()
--- result is the returned data; err is set on failure
+-- result is an array of entities, one per mock record; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -212,8 +217,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
+| `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria, and return it. |
+| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria, one per record. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -223,19 +228,19 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(value, err)`. The `value` is the operation's
-data **directly** — there is no wrapper:
+Entity operations return `(value, err)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` | the entity record (a `table`) |
-| `list` | an array (`table`) of entity records |
+| `load` | the entity, whose `data_get()` reads its record (a `table`) |
+| `list` | an array (`table`) of entities, one per record |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
     local agent, err = client:Agent():load({ id = "example_id" })
     if err then error(err) end
-    -- agent is the loaded record
+    -- agent is the loaded entity
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -259,7 +264,6 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `displayName` | Display name of the agent |
 | `fullPortrait` | URL to the agent's full portrait |
 | `fullPortraitV2` | URL to the agent's full portrait version 2 |
-| `id` |  |
 | `isAvailableForTest` | Whether the agent is available for testing |
 | `isBaseContent` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | Whether the full portrait faces right |
@@ -344,7 +348,6 @@ API path: `/v1/gamemodes`
 | `coordinates` | Geographic coordinates of the map location |
 | `displayIcon` | URL to the map's display icon |
 | `displayName` | Display name of the map |
-| `id` |  |
 | `listViewIcon` | URL to the map's list view icon |
 | `mapUrl` | URL to the map overview |
 | `narrativeDescription` | Narrative description of the map |
@@ -369,7 +372,6 @@ API path: `/v1/maps`
 | `defaultSkinUuid` | UUID of the default skin |
 | `displayIcon` | URL to the weapon's display icon |
 | `displayName` | Display name of the weapon |
-| `id` |  |
 | `killStreamIcon` | URL to the weapon's kill stream icon |
 | `shopData` |  |
 | `skins` |  |
@@ -413,7 +415,6 @@ Create an instance: `local agent = client:Agent(nil)`
 | `displayName` | `string` | Display name of the agent |
 | `fullPortrait` | `string` | URL to the agent's full portrait |
 | `fullPortraitV2` | `string` | URL to the agent's full portrait version 2 |
-| `id` | `string` |  |
 | `isAvailableForTest` | `boolean` | Whether the agent is available for testing |
 | `isBaseContent` | `boolean` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `boolean` | Whether the full portrait faces right |
@@ -557,7 +558,6 @@ Create an instance: `local map = client:Map(nil)`
 | `coordinates` | `string` | Geographic coordinates of the map location |
 | `displayIcon` | `string` | URL to the map's display icon |
 | `displayName` | `string` | Display name of the map |
-| `id` | `string` |  |
 | `listViewIcon` | `string` | URL to the map's list view icon |
 | `mapUrl` | `string` | URL to the map overview |
 | `narrativeDescription` | `string` | Narrative description of the map |
@@ -602,7 +602,6 @@ Create an instance: `local weapon = client:Weapon(nil)`
 | `defaultSkinUuid` | `string` | UUID of the default skin |
 | `displayIcon` | `string` | URL to the weapon's display icon |
 | `displayName` | `string` | Display name of the weapon |
-| `id` | `string` |  |
 | `killStreamIcon` | `string` | URL to the weapon's kill stream icon |
 | `shopData` | `table` |  |
 | `skins` | `table` |  |

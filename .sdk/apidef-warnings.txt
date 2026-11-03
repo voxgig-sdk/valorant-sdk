@@ -1,0 +1,12 @@
+{
+  point: "warning"
+  note: "Points GET /v1/buddies, GET /v1/cards and GET /v1/sprays on entity=cosmetic op=list have the same selector (exist: none), so only GET /v1/buddies is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "cosmetic"
+  op: "list"
+  points: [
+    "GET /v1/buddies"
+    "GET /v1/cards"
+    "GET /v1/sprays"
+  ]
+
+}

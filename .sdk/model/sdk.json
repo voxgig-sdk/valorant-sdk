@@ -206,13 +206,6 @@
               "sh": "URL to the agent's full portrait version 2",
               "t": "`$STRING`"
             },
-            "id": {
-              "a": true,
-              "h": "Id",
-              "n": "id",
-              "r": false,
-              "t": "`$STRING`"
-            },
             "isAvailableForTest": {
               "a": true,
               "h": "Is Available For Test",
@@ -279,7 +272,7 @@
             }
           },
           "id": {
-            "field": "id",
+            "field": "uuid",
             "name": "id"
           },
           "name": "agent",
@@ -319,13 +312,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/v1/agents",
-                  "q": {
-                    "exist": [
-                      "is_playable_character",
-                      "language"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "v1"
@@ -380,14 +372,17 @@
                   "o": "/v1/agents/{uuid}",
                   "q": {
                     "exist": [
-                      "id",
-                      "language"
+                      "id"
                     ]
                   },
                   "r": {
                     "param": {
                       "uuid": "id"
                     }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
                   },
                   "s": [
                     {
@@ -480,12 +475,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/v1/competitivetiers",
-                  "q": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "v1"
@@ -687,12 +682,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/v1/buddies",
-                  "q": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "v1"
@@ -729,12 +724,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/v1/cards",
-                  "q": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "v1"
@@ -771,12 +766,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/v1/sprays",
-                  "q": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "v1"
@@ -947,12 +942,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/v1/gamemodes",
-                  "q": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "v1"
@@ -1017,13 +1012,6 @@
               "n": "displayName",
               "r": false,
               "sh": "Display name of the map",
-              "t": "`$STRING`"
-            },
-            "id": {
-              "a": true,
-              "h": "Id",
-              "n": "id",
-              "r": false,
               "t": "`$STRING`"
             },
             "listViewIcon": {
@@ -1112,7 +1100,7 @@
             }
           },
           "id": {
-            "field": "id",
+            "field": "uuid",
             "name": "id"
           },
           "name": "map",
@@ -1144,12 +1132,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/v1/maps",
-                  "q": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "v1"
@@ -1204,14 +1192,17 @@
                   "o": "/v1/maps/{uuid}",
                   "q": {
                     "exist": [
-                      "id",
-                      "language"
+                      "id"
                     ]
                   },
                   "r": {
                     "param": {
                       "uuid": "id"
                     }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
                   },
                   "s": [
                     {
@@ -1284,13 +1275,6 @@
               "sh": "Display name of the weapon",
               "t": "`$STRING`"
             },
-            "id": {
-              "a": true,
-              "h": "Id",
-              "n": "id",
-              "r": false,
-              "t": "`$STRING`"
-            },
             "killStreamIcon": {
               "a": true,
               "fo": "uri",
@@ -1332,7 +1316,7 @@
             }
           },
           "id": {
-            "field": "id",
+            "field": "uuid",
             "name": "id"
           },
           "name": "weapon",
@@ -1364,12 +1348,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/v1/weapons",
-                  "q": {
-                    "exist": [
-                      "language"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "v1"
@@ -1424,14 +1408,17 @@
                   "o": "/v1/weapons/{uuid}",
                   "q": {
                     "exist": [
-                      "id",
-                      "language"
+                      "id"
                     ]
                   },
                   "r": {
                     "param": {
                       "uuid": "id"
                     }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
                   },
                   "s": [
                     {
@@ -1779,6 +1766,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -2113,7 +2101,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -2166,6 +2154,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -2396,7 +2389,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -2773,6 +2769,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

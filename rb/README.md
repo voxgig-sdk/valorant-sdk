@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/valorant-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/valorant-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = ValorantSDK.new
 
 ```ruby
 begin
-  # list returns an Array of Agent records — iterate directly.
+  # list returns an Array of Agent entities, one per record; data_get reads the record.
   agents = client.Agent.list
   agents.each do |item|
-    puts "#{item["id"]} #{item["abilities"]}"
+    record = item.data_get
+    puts "#{record["uuid"]} #{record["abilities"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -59,7 +60,7 @@ end
 begin
   # load returns the ENTITY — call data_get for the Agent record (raises on error).
   agent = client.Agent.load({ "id" => "example_id" })
-  puts agent
+  puts agent.data_get
 rescue => err
   warn "load failed: #{err}"
 end
@@ -140,10 +141,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = ValorantSDK.test
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-cosmetic = client.Cosmetic.list()
-puts cosmetic
+# list returns an Array of Cosmetic entities, one per mock record (raises on
+# error); data_get reads each record.
+cosmetics = client.Cosmetic.list()
+cosmetics.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -232,8 +233,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -243,9 +244,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `ValorantError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`ValorantError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -277,7 +279,6 @@ returns a result `Hash` with these keys:
 | `displayName` | Display name of the agent |
 | `fullPortrait` | URL to the agent's full portrait |
 | `fullPortraitV2` | URL to the agent's full portrait version 2 |
-| `id` |  |
 | `isAvailableForTest` | Whether the agent is available for testing |
 | `isBaseContent` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | Whether the full portrait faces right |
@@ -362,7 +363,6 @@ API path: `/v1/gamemodes`
 | `coordinates` | Geographic coordinates of the map location |
 | `displayIcon` | URL to the map's display icon |
 | `displayName` | Display name of the map |
-| `id` |  |
 | `listViewIcon` | URL to the map's list view icon |
 | `mapUrl` | URL to the map overview |
 | `narrativeDescription` | Narrative description of the map |
@@ -387,7 +387,6 @@ API path: `/v1/maps`
 | `defaultSkinUuid` | UUID of the default skin |
 | `displayIcon` | URL to the weapon's display icon |
 | `displayName` | Display name of the weapon |
-| `id` |  |
 | `killStreamIcon` | URL to the weapon's kill stream icon |
 | `shopData` |  |
 | `skins` |  |
@@ -431,7 +430,6 @@ Create an instance: `agent = client.Agent`
 | `displayName` | `String` | Display name of the agent |
 | `fullPortrait` | `String` | URL to the agent's full portrait |
 | `fullPortraitV2` | `String` | URL to the agent's full portrait version 2 |
-| `id` | `String` |  |
 | `isAvailableForTest` | `Boolean` | Whether the agent is available for testing |
 | `isBaseContent` | `Boolean` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `Boolean` | Whether the full portrait faces right |
@@ -451,8 +449,9 @@ agent = client.Agent.load({ "id" => "agent_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Agent records (raises on error).
+# list returns an Array of Agent entities, one per record (raises on error).
 agents = client.Agent.list
+agents.each { |item| puts item.data_get }
 ```
 
 
@@ -478,8 +477,9 @@ Create an instance: `competitive = client.Competitive`
 #### Example: List
 
 ```ruby
-# list returns an Array of Competitive records (raises on error).
+# list returns an Array of Competitive entities, one per record (raises on error).
 competitives = client.Competitive.list
+competitives.each { |item| puts item.data_get }
 ```
 
 
@@ -518,8 +518,9 @@ Create an instance: `cosmetic = client.Cosmetic`
 #### Example: List
 
 ```ruby
-# list returns an Array of Cosmetic records (raises on error).
+# list returns an Array of Cosmetic entities, one per record (raises on error).
 cosmetics = client.Cosmetic.list
+cosmetics.each { |item| puts item.data_get }
 ```
 
 
@@ -555,8 +556,9 @@ Create an instance: `game_mode = client.GameMode`
 #### Example: List
 
 ```ruby
-# list returns an Array of GameMode records (raises on error).
+# list returns an Array of GameMode entities, one per record (raises on error).
 game_modes = client.GameMode.list
+game_modes.each { |item| puts item.data_get }
 ```
 
 
@@ -580,7 +582,6 @@ Create an instance: `map = client.Map`
 | `coordinates` | `String` | Geographic coordinates of the map location |
 | `displayIcon` | `String` | URL to the map's display icon |
 | `displayName` | `String` | Display name of the map |
-| `id` | `String` |  |
 | `listViewIcon` | `String` | URL to the map's list view icon |
 | `mapUrl` | `String` | URL to the map overview |
 | `narrativeDescription` | `String` | Narrative description of the map |
@@ -602,8 +603,9 @@ map = client.Map.load({ "id" => "map_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Map records (raises on error).
+# list returns an Array of Map entities, one per record (raises on error).
 maps = client.Map.list
+maps.each { |item| puts item.data_get }
 ```
 
 
@@ -627,7 +629,6 @@ Create an instance: `weapon = client.Weapon`
 | `defaultSkinUuid` | `String` | UUID of the default skin |
 | `displayIcon` | `String` | URL to the weapon's display icon |
 | `displayName` | `String` | Display name of the weapon |
-| `id` | `String` |  |
 | `killStreamIcon` | `String` | URL to the weapon's kill stream icon |
 | `shopData` | `Hash` |  |
 | `skins` | `Array` |  |
@@ -644,8 +645,9 @@ weapon = client.Weapon.load({ "id" => "weapon_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Weapon records (raises on error).
+# list returns an Array of Weapon entities, one per record (raises on error).
 weapons = client.Weapon.list
+weapons.each { |item| puts item.data_get }
 ```
 
 ## Features

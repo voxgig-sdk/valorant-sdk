@@ -13,7 +13,12 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type ValorantEntity = core.ValorantEntity
+type ValorantEntityBase = core.ValorantEntityBase
+
+// Deprecated: use ValorantEntityBase.
+type ValorantEntity = core.ValorantEntityBase
+
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result
@@ -41,22 +46,22 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewAgentEntityFunc = func(client *core.ValorantSDK, entopts map[string]any) core.ValorantEntity {
+	core.NewAgentEntityFunc = func(client *core.ValorantSDK, entopts map[string]any) core.ValorantEntityBase {
 		return entity.NewAgentEntity(client, entopts)
 	}
-	core.NewCompetitiveEntityFunc = func(client *core.ValorantSDK, entopts map[string]any) core.ValorantEntity {
+	core.NewCompetitiveEntityFunc = func(client *core.ValorantSDK, entopts map[string]any) core.ValorantEntityBase {
 		return entity.NewCompetitiveEntity(client, entopts)
 	}
-	core.NewCosmeticEntityFunc = func(client *core.ValorantSDK, entopts map[string]any) core.ValorantEntity {
+	core.NewCosmeticEntityFunc = func(client *core.ValorantSDK, entopts map[string]any) core.ValorantEntityBase {
 		return entity.NewCosmeticEntity(client, entopts)
 	}
-	core.NewGameModeEntityFunc = func(client *core.ValorantSDK, entopts map[string]any) core.ValorantEntity {
+	core.NewGameModeEntityFunc = func(client *core.ValorantSDK, entopts map[string]any) core.ValorantEntityBase {
 		return entity.NewGameModeEntity(client, entopts)
 	}
-	core.NewMapEntityFunc = func(client *core.ValorantSDK, entopts map[string]any) core.ValorantEntity {
+	core.NewMapEntityFunc = func(client *core.ValorantSDK, entopts map[string]any) core.ValorantEntityBase {
 		return entity.NewMapEntity(client, entopts)
 	}
-	core.NewWeaponEntityFunc = func(client *core.ValorantSDK, entopts map[string]any) core.ValorantEntity {
+	core.NewWeaponEntityFunc = func(client *core.ValorantSDK, entopts map[string]any) core.ValorantEntityBase {
 		return entity.NewWeaponEntity(client, entopts)
 	}
 }

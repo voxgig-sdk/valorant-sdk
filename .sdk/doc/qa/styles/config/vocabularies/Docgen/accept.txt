@@ -350,7 +350,6 @@ initialiser
 [Ff][Uu][Ll][Ll]
 [Vv][Ee][Rr][Ss][Ii][Oo][Nn]
 [Vv]2
-[Ii][Dd]
 [Ww][Hh][Ee][Tt][Hh][Ee][Rr]
 [Ii][Ss]
 [Aa][Vv][Aa][Ii][Ll][Aa][Bb][Ll][Ee]
@@ -377,7 +376,6 @@ initialiser
 [Uu][Uu][Ii][Dd]
 [Vv][Oo][Ii][Cc][Ee]
 [Ll][Ii][Nn][Ee]
-[Ll][Aa][Nn][Gg][Uu][Aa][Gg][Ee]
 [Ii][Dd]
 [Oo][Bb][Jj][Ee][Cc][Tt]
 [Oo][Bb][Jj][Ee][Cc][Tt]

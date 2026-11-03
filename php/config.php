@@ -93,6 +93,7 @@ class ValorantConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -200,11 +201,6 @@ class ValorantConfig
               'format' => 'uri',
             ],
             [
-              'name' => 'id',
-              'title' => 'Id',
-              'type' => '`$STRING`',
-            ],
-            [
               'name' => 'isAvailableForTest',
               'title' => 'Is Available For Test',
               'type' => '`$BOOLEAN`',
@@ -254,7 +250,7 @@ class ValorantConfig
             ],
           ],
           'id' => [
-            'field' => 'id',
+            'field' => 'uuid',
             'name' => 'id',
           ],
           'name' => 'agent',
@@ -301,11 +297,13 @@ class ValorantConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'is_playable_character',
-                      'language',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                  'alias' => [
+                    'id' => 'uuid',
                   ],
                 ],
               ],
@@ -366,8 +364,14 @@ class ValorantConfig
                   'select' => [
                     'exist' => [
                       'id',
-                      'language',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                  'alias' => [
+                    'id' => 'uuid',
                   ],
                 ],
               ],
@@ -442,10 +446,10 @@ class ValorantConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'language',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -607,10 +611,10 @@ class ValorantConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'language',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
                 [
@@ -645,10 +649,10 @@ class ValorantConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'language',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
                 [
@@ -683,10 +687,10 @@ class ValorantConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'language',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -823,10 +827,10 @@ class ValorantConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'language',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -867,11 +871,6 @@ class ValorantConfig
               'title' => 'Display Name',
               'type' => '`$STRING`',
               'short' => 'Display name of the map',
-            ],
-            [
-              'name' => 'id',
-              'title' => 'Id',
-              'type' => '`$STRING`',
             ],
             [
               'name' => 'listViewIcon',
@@ -939,7 +938,7 @@ class ValorantConfig
             ],
           ],
           'id' => [
-            'field' => 'id',
+            'field' => 'uuid',
             'name' => 'id',
           ],
           'name' => 'map',
@@ -980,10 +979,13 @@ class ValorantConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'language',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                  'alias' => [
+                    'id' => 'uuid',
                   ],
                 ],
               ],
@@ -1044,8 +1046,14 @@ class ValorantConfig
                   'select' => [
                     'exist' => [
                       'id',
-                      'language',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                  'alias' => [
+                    'id' => 'uuid',
                   ],
                 ],
               ],
@@ -1090,11 +1098,6 @@ class ValorantConfig
               'short' => 'Display name of the weapon',
             ],
             [
-              'name' => 'id',
-              'title' => 'Id',
-              'type' => '`$STRING`',
-            ],
-            [
               'name' => 'killStreamIcon',
               'title' => 'Kill Stream Icon',
               'type' => '`$STRING`',
@@ -1125,7 +1128,7 @@ class ValorantConfig
             ],
           ],
           'id' => [
-            'field' => 'id',
+            'field' => 'uuid',
             'name' => 'id',
           ],
           'name' => 'weapon',
@@ -1166,10 +1169,13 @@ class ValorantConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'language',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                  'alias' => [
+                    'id' => 'uuid',
                   ],
                 ],
               ],
@@ -1230,8 +1236,14 @@ class ValorantConfig
                   'select' => [
                     'exist' => [
                       'id',
-                      'language',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
+                  'alias' => [
+                    'id' => 'uuid',
                   ],
                 ],
               ],

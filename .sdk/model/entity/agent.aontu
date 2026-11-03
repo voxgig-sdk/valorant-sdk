@@ -101,12 +101,6 @@ main: kit: entity: agent: {
       sh: "URL to the agent's full portrait version 2"
       t: "`$STRING`"
     }
-    id: {
-      h: "Id"
-      n: "id"
-      r: false
-      t: "`$STRING`"
-    }
     isAvailableForTest: {
       h: "Is Available For Test"
       n: "isAvailableForTest"
@@ -166,7 +160,7 @@ main: kit: entity: agent: {
   }
 
   id: {
-    field: "id"
+    field: "uuid"
     name: "id"
   }
 
@@ -202,11 +196,9 @@ main: kit: entity: agent: {
           }
           m: "GET"
           o: "/v1/agents"
-          q: {
-            exist: [
-              "is_playable_character"
-              "language"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -258,13 +250,16 @@ main: kit: entity: agent: {
           q: {
             exist: [
               "id"
-              "language"
             ]
           }
           r: {
             param: {
               uuid: "id"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

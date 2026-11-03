@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Map();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('map hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.ValorantSDK.test(offline).Map().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.ValorantSDK.test(offline).Map()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.ValorantSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Map().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.ValorantSDK.test().Map().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.ValorantSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Map().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Map().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.ValorantSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Map().list({ "language": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.VALORANT_TEST_LIVE;
         for (const op of ['list', 'load']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "assetPath": { "a": true, "h": "Asset Path", "n": "assetPath", "r": false, "sh": "Asset path in game files", "t": "`$STRING`", "key$": "assetPath", "index$": 0 }, "callouts": { "a": true, "h": "Callouts", "n": "callouts", "r": false, "t": "`$ARRAY`", "key$": "callouts", "index$": 1 }, "coordinates": { "a": true, "h": "Coordinates", "n": "coordinates", "r": false, "sh": "Geographic coordinates of the map location", "t": "`$STRING`", "key$": "coordinates", "index$": 2 }, "displayIcon": { "a": true, "fo": "uri", "h": "Display Icon", "n": "displayIcon", "r": false, "sh": "URL to the map's display icon", "t": "`$STRING`", "key$": "displayIcon", "index$": 3 }, "displayName": { "a": true, "h": "Display Name", "n": "displayName", "r": false, "sh": "Display name of the map", "t": "`$STRING`", "key$": "displayName", "index$": 4 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 5 }, "listViewIcon": { "a": true, "fo": "uri", "h": "List View Icon", "n": "listViewIcon", "r": false, "sh": "URL to the map's list view icon", "t": "`$STRING`", "key$": "listViewIcon", "index$": 6 }, "mapUrl": { "a": true, "fo": "uri", "h": "Map Url", "n": "mapUrl", "r": false, "sh": "URL to the map overview", "t": "`$STRING`", "key$": "mapUrl", "index$": 7 }, "narrativeDescription": { "a": true, "h": "Narrative Description", "n": "narrativeDescription", "r": false, "sh": "Narrative description of the map", "t": "`$STRING`", "key$": "narrativeDescription", "index$": 8 }, "splash": { "a": true, "fo": "uri", "h": "Splash", "n": "splash", "r": false, "sh": "URL to the map's splash image", "t": "`$STRING`", "key$": "splash", "index$": 9 }, "tacticalDescription": { "a": true, "h": "Tactical Description", "n": "tacticalDescription", "r": false, "sh": "Tactical description of the map", "t": "`$STRING`", "key$": "tacticalDescription", "index$": 10 }, "uuid": { "a": true, "fo": "uuid", "h": "Uuid", "n": "uuid", "r": false, "sh": "Unique identifier for the map", "t": "`$STRING`", "key$": "uuid", "index$": 11 }, "xMultiplier": { "a": true, "h": "X Multiplier", "n": "xMultiplier", "r": false, "sh": "X coordinate multiplier", "t": "`$NUMBER`", "key$": "xMultiplier", "index$": 12 }, "xScalarToAdd": { "a": true, "h": "X Scalar To Add", "n": "xScalarToAdd", "r": false, "sh": "X scalar to add", "t": "`$NUMBER`", "key$": "xScalarToAdd", "index$": 13 }, "yMultiplier": { "a": true, "h": "Y Multiplier", "n": "yMultiplier", "r": false, "sh": "Y coordinate multiplier", "t": "`$NUMBER`", "key$": "yMultiplier", "index$": 14 }, "yScalarToAdd": { "a": true, "h": "Y Scalar To Add", "n": "yScalarToAdd", "r": false, "sh": "Y scalar to add", "t": "`$NUMBER`", "key$": "yScalarToAdd", "index$": 15 } }, "id": { "field": "id", "name": "id" }, "name": "map", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /v1/maps", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "en-US", "k": "query", "n": "language", "or": "language", "r": false, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/v1/maps", "q": { "exist": ["language"] }, "r": {}, "s": [{ "lit": "v1" }, { "lit": "maps" }], "t": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /v1/maps/{uuid}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "uuid", "r": true, "t": "`$STRING`", "index$": 0 }], "query": [{ "a": true, "ex": "en-US", "k": "query", "n": "language", "or": "language", "r": false, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/v1/maps/{uuid}", "q": { "exist": ["id", "language"] }, "r": { "param": { "uuid": "id" } }, "s": [{ "lit": "v1" }, { "lit": "maps" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "map", "name__orig": "map", "Name": "Map", "name_": "map", "name-": "map", "NAME": "MAP", "index$": 4 }, { "active": true, "entity": "map", "key$": "BasicMapFlow", "kind": "basic", "name": "BasicMapFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "map_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "map_ref01", "srcdatavar": "map_ref01_data", "suffix": "_dt0" }, "m": { "id": "map01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-map_ref01" } }], "index$": 1 }] }, 'Map', { "GET /v1/maps": { "protocol": "http", "parameters": [{ "name": "language", "in": "query", "description": "Language code for localized content", "required": false, "schema": { "type": "string", "default": "en-US" }, "index$": 0 }] }, "GET /v1/maps/{uuid}": { "protocol": "http", "parameters": [{ "name": "uuid", "in": "path", "description": "UUID of the map", "required": true, "schema": { "type": "string", "format": "uuid" }, "index$": 0 }, { "name": "language", "in": "query", "description": "Language code for localized content", "required": false, "schema": { "type": "string", "default": "en-US" }, "index$": 1 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "assetPath": { "a": true, "h": "Asset Path", "n": "assetPath", "r": false, "sh": "Asset path in game files", "t": "`$STRING`", "key$": "assetPath", "index$": 0 }, "callouts": { "a": true, "h": "Callouts", "n": "callouts", "r": false, "t": "`$ARRAY`", "key$": "callouts", "index$": 1 }, "coordinates": { "a": true, "h": "Coordinates", "n": "coordinates", "r": false, "sh": "Geographic coordinates of the map location", "t": "`$STRING`", "key$": "coordinates", "index$": 2 }, "displayIcon": { "a": true, "fo": "uri", "h": "Display Icon", "n": "displayIcon", "r": false, "sh": "URL to the map's display icon", "t": "`$STRING`", "key$": "displayIcon", "index$": 3 }, "displayName": { "a": true, "h": "Display Name", "n": "displayName", "r": false, "sh": "Display name of the map", "t": "`$STRING`", "key$": "displayName", "index$": 4 }, "listViewIcon": { "a": true, "fo": "uri", "h": "List View Icon", "n": "listViewIcon", "r": false, "sh": "URL to the map's list view icon", "t": "`$STRING`", "key$": "listViewIcon", "index$": 5 }, "mapUrl": { "a": true, "fo": "uri", "h": "Map Url", "n": "mapUrl", "r": false, "sh": "URL to the map overview", "t": "`$STRING`", "key$": "mapUrl", "index$": 6 }, "narrativeDescription": { "a": true, "h": "Narrative Description", "n": "narrativeDescription", "r": false, "sh": "Narrative description of the map", "t": "`$STRING`", "key$": "narrativeDescription", "index$": 7 }, "splash": { "a": true, "fo": "uri", "h": "Splash", "n": "splash", "r": false, "sh": "URL to the map's splash image", "t": "`$STRING`", "key$": "splash", "index$": 8 }, "tacticalDescription": { "a": true, "h": "Tactical Description", "n": "tacticalDescription", "r": false, "sh": "Tactical description of the map", "t": "`$STRING`", "key$": "tacticalDescription", "index$": 9 }, "uuid": { "a": true, "fo": "uuid", "h": "Uuid", "n": "uuid", "r": false, "sh": "Unique identifier for the map", "t": "`$STRING`", "key$": "uuid", "index$": 10 }, "xMultiplier": { "a": true, "h": "X Multiplier", "n": "xMultiplier", "r": false, "sh": "X coordinate multiplier", "t": "`$NUMBER`", "key$": "xMultiplier", "index$": 11 }, "xScalarToAdd": { "a": true, "h": "X Scalar To Add", "n": "xScalarToAdd", "r": false, "sh": "X scalar to add", "t": "`$NUMBER`", "key$": "xScalarToAdd", "index$": 12 }, "yMultiplier": { "a": true, "h": "Y Multiplier", "n": "yMultiplier", "r": false, "sh": "Y coordinate multiplier", "t": "`$NUMBER`", "key$": "yMultiplier", "index$": 13 }, "yScalarToAdd": { "a": true, "h": "Y Scalar To Add", "n": "yScalarToAdd", "r": false, "sh": "Y scalar to add", "t": "`$NUMBER`", "key$": "yScalarToAdd", "index$": 14 } }, "id": { "field": "uuid", "name": "id" }, "name": "map", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /v1/maps", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "en-US", "k": "query", "n": "language", "or": "language", "r": false, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/v1/maps", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "v1" }, { "lit": "maps" }], "t": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /v1/maps/{uuid}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "uuid", "r": true, "t": "`$STRING`", "index$": 0 }], "query": [{ "a": true, "ex": "en-US", "k": "query", "n": "language", "or": "language", "r": false, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/v1/maps/{uuid}", "q": { "exist": ["id"] }, "r": { "param": { "uuid": "id" } }, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "v1" }, { "lit": "maps" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "map", "name__orig": "map", "Name": "Map", "name_": "map", "name-": "map", "NAME": "MAP", "index$": 4 }, { "active": true, "entity": "map", "key$": "BasicMapFlow", "kind": "basic", "name": "BasicMapFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "map_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "map_ref01", "srcdatavar": "map_ref01_data", "suffix": "_dt0" }, "m": { "id": "map01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-map_ref01" } }], "index$": 1, "route": "GET /v1/maps/{uuid}", "record": {} }] }, 'Map', { "GET /v1/maps": { "protocol": "http", "parameters": [{ "name": "language", "in": "query", "description": "Language code for localized content", "required": false, "schema": { "type": "string", "default": "en-US" }, "index$": 0 }] }, "GET /v1/maps/{uuid}": { "protocol": "http", "parameters": [{ "name": "uuid", "in": "path", "description": "UUID of the map", "required": true, "schema": { "type": "string", "format": "uuid" }, "index$": 0 }, { "name": "language", "in": "query", "description": "Language code for localized content", "required": false, "schema": { "type": "string", "default": "en-US" }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,11 +122,16 @@ const utility_1 = require("../../utility");
         const map_ref01_list = (await map_ref01_ent.list(map_ref01_match)).map((e) => e.data());
         // LOAD
         const map_ref01_match_dt0 = {};
-        map_ref01_match_dt0.id = map_ref01_data.id;
+        map_ref01_match_dt0.id = map_ref01_data.uuid;
         const map_ref01_data_dt0 = (await map_ref01_ent.load(map_ref01_match_dt0)).data();
-        (0, node_assert_1.default)(map_ref01_data_dt0.id === map_ref01_data.id);
+        (0, node_assert_1.default)(map_ref01_data_dt0.uuid === map_ref01_data.uuid);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null
@@ -89,6 +141,10 @@ function basicSetup(extra) {
     const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8');
     // TODO: need a xlang JSON parse utility in voxgig/struct with better error msgs
     const entityData = JSON.parse(entityDataSource);
+    for (const rec of Object.values(entityData.existing?.["map"] ?? {})) {
+        if (null != rec?.id)
+            rec.uuid = rec.id;
+    }
     options.entity = entityData.existing;
     let client = __1.ValorantSDK.test(options, extra);
     const struct = client.utility().struct;

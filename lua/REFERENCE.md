@@ -123,7 +123,6 @@ local agent = client:Agent(nil)
 | `displayName` | `string` | No | Display name of the agent |
 | `fullPortrait` | `string` | No | URL to the agent's full portrait |
 | `fullPortraitV2` | `string` | No | URL to the agent's full portrait version 2 |
-| `id` | `string` | No |  |
 | `isAvailableForTest` | `boolean` | No | Whether the agent is available for testing |
 | `isBaseContent` | `boolean` | No | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `boolean` | No | Whether the full portrait faces right |
@@ -137,7 +136,7 @@ local agent = client:Agent(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:Agent():list()
@@ -145,7 +144,7 @@ local results, err = client:Agent():list()
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Agent():load({ id = "agent_id" })
@@ -200,7 +199,7 @@ local competitive = client:Competitive(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:Competitive():list()
@@ -268,7 +267,7 @@ local cosmetic = client:Cosmetic(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:Cosmetic():list()
@@ -333,7 +332,7 @@ local game_mode = client:GameMode(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:GameMode():list()
@@ -384,7 +383,6 @@ local map = client:Map(nil)
 | `coordinates` | `string` | No | Geographic coordinates of the map location |
 | `displayIcon` | `string` | No | URL to the map's display icon |
 | `displayName` | `string` | No | Display name of the map |
-| `id` | `string` | No |  |
 | `listViewIcon` | `string` | No | URL to the map's list view icon |
 | `mapUrl` | `string` | No | URL to the map overview |
 | `narrativeDescription` | `string` | No | Narrative description of the map |
@@ -400,7 +398,7 @@ local map = client:Map(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:Map():list()
@@ -408,7 +406,7 @@ local results, err = client:Map():list()
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Map():load({ id = "map_id" })
@@ -459,7 +457,6 @@ local weapon = client:Weapon(nil)
 | `defaultSkinUuid` | `string` | No | UUID of the default skin |
 | `displayIcon` | `string` | No | URL to the weapon's display icon |
 | `displayName` | `string` | No | Display name of the weapon |
-| `id` | `string` | No |  |
 | `killStreamIcon` | `string` | No | URL to the weapon's kill stream icon |
 | `shopData` | `table` | No |  |
 | `skins` | `table` | No |  |
@@ -470,7 +467,7 @@ local weapon = client:Weapon(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:Weapon():list()
@@ -478,7 +475,7 @@ local results, err = client:Weapon():list()
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Weapon():load({ id = "weapon_id" })
@@ -671,6 +668,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

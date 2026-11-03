@@ -146,6 +146,14 @@ func (sdk *ValorantSDK) Prepare(fetchargs map[string]any) (map[string]any, error
 	if method == "" {
 		method = "GET"
 	}
+	method = strings.ToUpper(method)
+
+	allowMethodVal := vs.GetPath(options, []any{"allow", "method"})
+	if !Allowed(allowMethodVal, method) {
+		allowMethod, _ := allowMethodVal.(string)
+		return nil, ctx.MakeError("spec_method_allow",
+			"Method \""+method+"\" not allowed by SDK option allow.method value: \""+allowMethod+"\"")
+	}
 
 	params := ToMapAny(vs.GetProp(fetchargs, "params"))
 	if params == nil {
@@ -205,8 +213,7 @@ func (sdk *ValorantSDK) Direct(fetchargs map[string]any) (map[string]any, error)
 
 // Is this raw-access op permitted by the SDK's allow.op option?
 func (sdk *ValorantSDK) opAllowed(op string) bool {
-	allowOp, _ := vs.GetPath(sdk.options, []any{"allow", "op"}).(string)
-	return strings.Contains(allowOp, op)
+	return Allowed(vs.GetPath(sdk.options, []any{"allow", "op"}), op)
 }
 
 func (sdk *ValorantSDK) opDenied(op string) map[string]any {
@@ -278,20 +285,34 @@ func (sdk *ValorantSDK) rawRequest(fetchargs map[string]any) (map[string]any, er
 		noBody := status == 204 || status == 304 || contentLength == "0"
 
 		var jsonData any
+		var bodyErr error
 		if !noBody {
 			if jf := vs.GetProp(fm, "json"); jf != nil {
 				if f, ok := jf.(func() any); ok {
 					jsonData = f()
 				}
 			}
+			if unreadable, _ := vs.GetProp(fm, "unreadable").(bool); unreadable {
+				var failed error
+				if status < 200 || status >= 300 {
+					failed = ctx.MakeError("request_status",
+						fmt.Sprintf("request: %d: %v", status, vs.GetProp(fm, "statusText")))
+				}
+				bodyErr = UnreadableBody(ctx, status, headers, vs.GetProp(fm, "body"),
+					fetchdef["headers"], failed)
+			}
 		}
 
-		return map[string]any{
-			"ok":      status >= 200 && status < 300,
+		out := map[string]any{
+			"ok":      bodyErr == nil && status >= 200 && status < 300,
 			"status":  status,
 			"headers": headers,
 			"data":    jsonData,
-		}, nil
+		}
+		if bodyErr != nil {
+			out["err"] = sdk.cleanErr(ctx, bodyErr)
+		}
+		return out, nil
 	}
 
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
@@ -354,7 +375,7 @@ func (sdk *ValorantSDK) Graphql(
 // Agent returns a Agent entity bound to this client.
 // Idiomatic usage: client.Agent(nil).List(nil, nil) or
 // client.Agent(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *ValorantSDK) Agent(data map[string]any) ValorantEntity {
+func (sdk *ValorantSDK) Agent(data map[string]any) ValorantEntityBase {
 	return NewAgentEntityFunc(sdk, data)
 }
 
@@ -362,7 +383,7 @@ func (sdk *ValorantSDK) Agent(data map[string]any) ValorantEntity {
 // Competitive returns a Competitive entity bound to this client.
 // Idiomatic usage: client.Competitive(nil).List(nil, nil) or
 // client.Competitive(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *ValorantSDK) Competitive(data map[string]any) ValorantEntity {
+func (sdk *ValorantSDK) Competitive(data map[string]any) ValorantEntityBase {
 	return NewCompetitiveEntityFunc(sdk, data)
 }
 
@@ -370,7 +391,7 @@ func (sdk *ValorantSDK) Competitive(data map[string]any) ValorantEntity {
 // Cosmetic returns a Cosmetic entity bound to this client.
 // Idiomatic usage: client.Cosmetic(nil).List(nil, nil) or
 // client.Cosmetic(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *ValorantSDK) Cosmetic(data map[string]any) ValorantEntity {
+func (sdk *ValorantSDK) Cosmetic(data map[string]any) ValorantEntityBase {
 	return NewCosmeticEntityFunc(sdk, data)
 }
 
@@ -378,7 +399,7 @@ func (sdk *ValorantSDK) Cosmetic(data map[string]any) ValorantEntity {
 // GameMode returns a GameMode entity bound to this client.
 // Idiomatic usage: client.GameMode(nil).List(nil, nil) or
 // client.GameMode(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *ValorantSDK) GameMode(data map[string]any) ValorantEntity {
+func (sdk *ValorantSDK) GameMode(data map[string]any) ValorantEntityBase {
 	return NewGameModeEntityFunc(sdk, data)
 }
 
@@ -386,7 +407,7 @@ func (sdk *ValorantSDK) GameMode(data map[string]any) ValorantEntity {
 // Map returns a Map entity bound to this client.
 // Idiomatic usage: client.Map(nil).List(nil, nil) or
 // client.Map(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *ValorantSDK) Map(data map[string]any) ValorantEntity {
+func (sdk *ValorantSDK) Map(data map[string]any) ValorantEntityBase {
 	return NewMapEntityFunc(sdk, data)
 }
 
@@ -394,7 +415,7 @@ func (sdk *ValorantSDK) Map(data map[string]any) ValorantEntity {
 // Weapon returns a Weapon entity bound to this client.
 // Idiomatic usage: client.Weapon(nil).List(nil, nil) or
 // client.Weapon(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *ValorantSDK) Weapon(data map[string]any) ValorantEntity {
+func (sdk *ValorantSDK) Weapon(data map[string]any) ValorantEntityBase {
 	return NewWeaponEntityFunc(sdk, data)
 }
 

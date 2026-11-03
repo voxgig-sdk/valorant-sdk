@@ -120,7 +120,6 @@ agent = client.Agent()
 | `displayName` | `str` | No | Display name of the agent |
 | `fullPortrait` | `str` | No | URL to the agent's full portrait |
 | `fullPortraitV2` | `str` | No | URL to the agent's full portrait version 2 |
-| `id` | `str` | No |  |
 | `isAvailableForTest` | `bool` | No | Whether the agent is available for testing |
 | `isBaseContent` | `bool` | No | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `bool` | No | Whether the full portrait faces right |
@@ -132,19 +131,19 @@ agent = client.Agent()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[AgentEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Agent().list()
 for agent in results:
-    print(agent)
+    print(agent.data_get())
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> AgentEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Agent().load({"id": "agent_id"})
@@ -196,14 +195,14 @@ competitive = client.Competitive()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[CompetitiveEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Competitive().list()
 for competitive in results:
-    print(competitive)
+    print(competitive.data_get())
 ```
 
 ### Common Methods
@@ -265,14 +264,14 @@ cosmetic = client.Cosmetic()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[CosmeticEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Cosmetic().list()
 for cosmetic in results:
-    print(cosmetic)
+    print(cosmetic.data_get())
 ```
 
 ### Common Methods
@@ -331,14 +330,14 @@ game_mode = client.GameMode()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[GameModeEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.GameMode().list()
 for game_mode in results:
-    print(game_mode)
+    print(game_mode.data_get())
 ```
 
 ### Common Methods
@@ -385,7 +384,6 @@ map = client.Map()
 | `coordinates` | `str` | No | Geographic coordinates of the map location |
 | `displayIcon` | `str` | No | URL to the map's display icon |
 | `displayName` | `str` | No | Display name of the map |
-| `id` | `str` | No |  |
 | `listViewIcon` | `str` | No | URL to the map's list view icon |
 | `mapUrl` | `str` | No | URL to the map overview |
 | `narrativeDescription` | `str` | No | Narrative description of the map |
@@ -399,19 +397,19 @@ map = client.Map()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[MapEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Map().list()
 for map in results:
-    print(map)
+    print(map.data_get())
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> MapEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Map().load({"id": "map_id"})
@@ -461,7 +459,6 @@ weapon = client.Weapon()
 | `defaultSkinUuid` | `str` | No | UUID of the default skin |
 | `displayIcon` | `str` | No | URL to the weapon's display icon |
 | `displayName` | `str` | No | Display name of the weapon |
-| `id` | `str` | No |  |
 | `killStreamIcon` | `str` | No | URL to the weapon's kill stream icon |
 | `shopData` | `dict` | No |  |
 | `skins` | `list` | No |  |
@@ -470,19 +467,19 @@ weapon = client.Weapon()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[WeaponEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Weapon().list()
 for weapon in results:
-    print(weapon)
+    print(weapon.data_get())
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> WeaponEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Weapon().load({"id": "weapon_id"})
@@ -674,6 +671,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

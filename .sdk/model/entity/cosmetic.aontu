@@ -160,10 +160,9 @@ main: kit: entity: cosmetic: {
           }
           m: "GET"
           o: "/v1/buddies"
-          q: {
-            exist: [
-              "language"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -198,10 +197,9 @@ main: kit: entity: cosmetic: {
           }
           m: "GET"
           o: "/v1/cards"
-          q: {
-            exist: [
-              "language"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -236,10 +234,9 @@ main: kit: entity: cosmetic: {
           }
           m: "GET"
           o: "/v1/sprays"
-          q: {
-            exist: [
-              "language"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

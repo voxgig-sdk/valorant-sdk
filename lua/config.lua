@@ -67,6 +67,7 @@ local function make_config()
         },
         ["optspec"] = {
           ["clearTimer"] = "`$FUNCTION`",
+          ["now"] = "`$FUNCTION`",
           ["setTimer"] = "`$FUNCTION`",
         },
         ["strict"] = false,
@@ -174,11 +175,6 @@ local function make_config()
             ["format"] = "uri",
           },
           {
-            ["name"] = "id",
-            ["title"] = "Id",
-            ["type"] = "`$STRING`",
-          },
-          {
             ["name"] = "isAvailableForTest",
             ["title"] = "Is Available For Test",
             ["type"] = "`$BOOLEAN`",
@@ -228,7 +224,7 @@ local function make_config()
           },
         },
         ["id"] = {
-          ["field"] = "id",
+          ["field"] = "uuid",
           ["name"] = "id",
         },
         ["name"] = "agent",
@@ -275,11 +271,13 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "is_playable_character",
-                    "language",
-                  },
+                ["select"] = {},
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
+                },
+                ["alias"] = {
+                  ["id"] = "uuid",
                 },
               },
             },
@@ -340,8 +338,14 @@ local function make_config()
                 ["select"] = {
                   ["exist"] = {
                     "id",
-                    "language",
                   },
+                },
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
+                },
+                ["alias"] = {
+                  ["id"] = "uuid",
                 },
               },
             },
@@ -416,10 +420,10 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "language",
-                  },
+                ["select"] = {},
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -581,10 +585,10 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "language",
-                  },
+                ["select"] = {},
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
               {
@@ -619,10 +623,10 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "language",
-                  },
+                ["select"] = {},
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
               {
@@ -657,10 +661,10 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "language",
-                  },
+                ["select"] = {},
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -797,10 +801,10 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "language",
-                  },
+                ["select"] = {},
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -841,11 +845,6 @@ local function make_config()
             ["title"] = "Display Name",
             ["type"] = "`$STRING`",
             ["short"] = "Display name of the map",
-          },
-          {
-            ["name"] = "id",
-            ["title"] = "Id",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "listViewIcon",
@@ -913,7 +912,7 @@ local function make_config()
           },
         },
         ["id"] = {
-          ["field"] = "id",
+          ["field"] = "uuid",
           ["name"] = "id",
         },
         ["name"] = "map",
@@ -954,10 +953,13 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "language",
-                  },
+                ["select"] = {},
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
+                },
+                ["alias"] = {
+                  ["id"] = "uuid",
                 },
               },
             },
@@ -1018,8 +1020,14 @@ local function make_config()
                 ["select"] = {
                   ["exist"] = {
                     "id",
-                    "language",
                   },
+                },
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
+                },
+                ["alias"] = {
+                  ["id"] = "uuid",
                 },
               },
             },
@@ -1064,11 +1072,6 @@ local function make_config()
             ["short"] = "Display name of the weapon",
           },
           {
-            ["name"] = "id",
-            ["title"] = "Id",
-            ["type"] = "`$STRING`",
-          },
-          {
             ["name"] = "killStreamIcon",
             ["title"] = "Kill Stream Icon",
             ["type"] = "`$STRING`",
@@ -1099,7 +1102,7 @@ local function make_config()
           },
         },
         ["id"] = {
-          ["field"] = "id",
+          ["field"] = "uuid",
           ["name"] = "id",
         },
         ["name"] = "weapon",
@@ -1140,10 +1143,13 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "language",
-                  },
+                ["select"] = {},
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
+                },
+                ["alias"] = {
+                  ["id"] = "uuid",
                 },
               },
             },
@@ -1204,8 +1210,14 @@ local function make_config()
                 ["select"] = {
                   ["exist"] = {
                     "id",
-                    "language",
                   },
+                },
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
+                },
+                ["alias"] = {
+                  ["id"] = "uuid",
                 },
               },
             },

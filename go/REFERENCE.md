@@ -47,27 +47,27 @@ client := sdk.TestSDK(testopts, sdkopts)
 
 ### Instance Methods
 
-#### `Agent(data map[string]any) ValorantEntity`
+#### `Agent(data map[string]any) ValorantEntityBase`
 
 Create a new `Agent` entity instance. Pass `nil` for no initial data.
 
-#### `Competitive(data map[string]any) ValorantEntity`
+#### `Competitive(data map[string]any) ValorantEntityBase`
 
 Create a new `Competitive` entity instance. Pass `nil` for no initial data.
 
-#### `Cosmetic(data map[string]any) ValorantEntity`
+#### `Cosmetic(data map[string]any) ValorantEntityBase`
 
 Create a new `Cosmetic` entity instance. Pass `nil` for no initial data.
 
-#### `GameMode(data map[string]any) ValorantEntity`
+#### `GameMode(data map[string]any) ValorantEntityBase`
 
 Create a new `GameMode` entity instance. Pass `nil` for no initial data.
 
-#### `Map(data map[string]any) ValorantEntity`
+#### `Map(data map[string]any) ValorantEntityBase`
 
 Create a new `Map` entity instance. Pass `nil` for no initial data.
 
-#### `Weapon(data map[string]any) ValorantEntity`
+#### `Weapon(data map[string]any) ValorantEntityBase`
 
 Create a new `Weapon` entity instance. Pass `nil` for no initial data.
 
@@ -131,7 +131,6 @@ fmt.Println(agent.GetName()) // "agent"
 | `displayName` | `string` | No | Display name of the agent |
 | `fullPortrait` | `string` | No | URL to the agent's full portrait |
 | `fullPortraitV2` | `string` | No | URL to the agent's full portrait version 2 |
-| `id` | `string` | No |  |
 | `isAvailableForTest` | `bool` | No | Whether the agent is available for testing |
 | `isBaseContent` | `bool` | No | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `bool` | No | Whether the full portrait faces right |
@@ -145,26 +144,28 @@ fmt.Println(agent.GetName()) // "agent"
 
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
 
 ```go
 results, err := client.Agent(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(results)
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
 
 ```go
 result, err := client.Agent(nil).Load(map[string]any{"id": "agent_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data())
 ```
 
 ### Common Methods
@@ -183,6 +184,14 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 Create a new `AgentEntity` instance with the same client and
 options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
 
 #### `GetName() string`
 
@@ -211,14 +220,16 @@ fmt.Println(competitive.GetName()) // "competitive"
 
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
 
 ```go
 results, err := client.Competitive(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(results)
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ### Common Methods
@@ -237,6 +248,14 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 Create a new `CompetitiveEntity` instance with the same client and
 options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
 
 #### `GetName() string`
 
@@ -278,14 +297,16 @@ fmt.Println(cosmetic.GetName()) // "cosmetic"
 
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
 
 ```go
 results, err := client.Cosmetic(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(results)
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ### Common Methods
@@ -304,6 +325,14 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 Create a new `CosmeticEntity` instance with the same client and
 options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
 
 #### `GetName() string`
 
@@ -342,14 +371,16 @@ fmt.Println(gameMode.GetName()) // "game_mode"
 
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
 
 ```go
 results, err := client.GameMode(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(results)
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ### Common Methods
@@ -368,6 +399,14 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 Create a new `GameModeEntity` instance with the same client and
 options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
 
 #### `GetName() string`
 
@@ -392,7 +431,6 @@ fmt.Println(map_.GetName()) // "map"
 | `coordinates` | `string` | No | Geographic coordinates of the map location |
 | `displayIcon` | `string` | No | URL to the map's display icon |
 | `displayName` | `string` | No | Display name of the map |
-| `id` | `string` | No |  |
 | `listViewIcon` | `string` | No | URL to the map's list view icon |
 | `mapUrl` | `string` | No | URL to the map overview |
 | `narrativeDescription` | `string` | No | Narrative description of the map |
@@ -408,26 +446,28 @@ fmt.Println(map_.GetName()) // "map"
 
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
 
 ```go
 results, err := client.Map(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(results)
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
 
 ```go
 result, err := client.Map(nil).Load(map[string]any{"id": "map_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data())
 ```
 
 ### Common Methods
@@ -446,6 +486,14 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 Create a new `MapEntity` instance with the same client and
 options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
 
 #### `GetName() string`
 
@@ -470,7 +518,6 @@ fmt.Println(weapon.GetName()) // "weapon"
 | `defaultSkinUuid` | `string` | No | UUID of the default skin |
 | `displayIcon` | `string` | No | URL to the weapon's display icon |
 | `displayName` | `string` | No | Display name of the weapon |
-| `id` | `string` | No |  |
 | `killStreamIcon` | `string` | No | URL to the weapon's kill stream icon |
 | `shopData` | `map[string]any` | No |  |
 | `skins` | `[]any` | No |  |
@@ -481,26 +528,28 @@ fmt.Println(weapon.GetName()) // "weapon"
 
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
 
 ```go
 results, err := client.Weapon(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(results)
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
 
 ```go
 result, err := client.Weapon(nil).Load(map[string]any{"id": "weapon_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data())
 ```
 
 ### Common Methods
@@ -519,6 +568,14 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 Create a new `WeaponEntity` instance with the same client and
 options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
 
 #### `GetName() string`
 
@@ -684,6 +741,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

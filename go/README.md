@@ -16,7 +16,7 @@ go get github.com/voxgig-sdk/valorant-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Releases](https://github.com/voxgig-sdk/valorant-sdk/releases) for the available versions.
+release tag — see [Tags](https://github.com/voxgig-sdk/valorant-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
@@ -35,9 +35,10 @@ loading a specific record.
 ### Quickstart
 
 A complete program: create a client, then call the entity operations.
-Each operation returns `(value, error)` — the value is the data itself
-(there is no `{ok, data}` wrapper), so check `err` and use the value
-directly.
+Each operation returns `(value, error)` — the value is the entity, and for
+`List` a `[]any` of entities, one per record (there is no `{ok, data}`
+wrapper), so check `err` and read a record through the entity's
+`Data()`.
 
 ```go
 package main
@@ -50,21 +51,21 @@ import (
 func main() {
     client := sdk.New()
 
-    // List agent records — the value is the array of records itself.
+    // List agent records — the value is a []any of entities, one per record.
     agents, err := client.Agent(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
     for _, item := range agents.([]any) {
-        fmt.Println(item)
+        fmt.Println(item.(sdk.Entity).Data())
     }
 
-    // Load a single agent — the value is the loaded record.
+    // Load a single agent — the value is the entity; Data() reads its record.
     agent, err := client.Agent(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(agent)
+    fmt.Println(agent.(sdk.Entity).Data())
 }
 ```
 
@@ -144,13 +145,16 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-cosmetic, err := client.Cosmetic(nil).List(
+cosmetics, err := client.Cosmetic(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(cosmetic) // the returned mock data
+// A []any of entities, one per mock record.
+for _, item := range cosmetics.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ### Use a custom fetch function
@@ -227,21 +231,21 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Agent` | `(data map[string]any) ValorantEntity` | Create an Agent entity instance. |
-| `Competitive` | `(data map[string]any) ValorantEntity` | Create a Competitive entity instance. |
-| `Cosmetic` | `(data map[string]any) ValorantEntity` | Create a Cosmetic entity instance. |
-| `GameMode` | `(data map[string]any) ValorantEntity` | Create a GameMode entity instance. |
-| `Map` | `(data map[string]any) ValorantEntity` | Create a Map entity instance. |
-| `Weapon` | `(data map[string]any) ValorantEntity` | Create a Weapon entity instance. |
+| `Agent` | `(data map[string]any) ValorantEntityBase` | Create an Agent entity instance. |
+| `Competitive` | `(data map[string]any) ValorantEntityBase` | Create a Competitive entity instance. |
+| `Cosmetic` | `(data map[string]any) ValorantEntityBase` | Create a Cosmetic entity instance. |
+| `GameMode` | `(data map[string]any) ValorantEntityBase` | Create a GameMode entity instance. |
+| `Map` | `(data map[string]any) ValorantEntityBase` | Create a Map entity instance. |
+| `Weapon` | `(data map[string]any) ValorantEntityBase` | Create a Weapon entity instance. |
 
-### Entity interface (ValorantEntity)
+### Entity interface (ValorantEntityBase)
 
-All entities implement the `ValorantEntity` interface.
+All entities implement the `ValorantEntityBase` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
+| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria, and return it. |
+| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria, one per record. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -249,21 +253,21 @@ All entities implement the `ValorantEntity` interface.
 
 ### Result shape
 
-Entity operations return `(value, error)`. The `value` is the
-operation's data **directly** — there is no wrapper:
+Entity operations return `(value, error)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` | the entity record (`map[string]any`) |
-| `List` | a `[]any` of entity records |
+| `Load` | the entity, whose `Data()` reads its record (`map[string]any`) |
+| `List` | a `[]any` of entities, one per record |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    agent, err := client.Agent(nil).List(map[string]any{/* fields */}, nil)
+    agent, err := client.Agent(nil).List(nil, nil)
     if err != nil { /* handle */ }
-    // agent is the returned record
+    // agent is a []any of entities, one per record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -287,7 +291,6 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"displayName"` | Display name of the agent |
 | `"fullPortrait"` | URL to the agent's full portrait |
 | `"fullPortraitV2"` | URL to the agent's full portrait version 2 |
-| `"id"` |  |
 | `"isAvailableForTest"` | Whether the agent is available for testing |
 | `"isBaseContent"` | Whether the agent is base content |
 | `"isFullPortraitRightFacing"` | Whether the full portrait faces right |
@@ -372,7 +375,6 @@ API path: `/v1/gamemodes`
 | `"coordinates"` | Geographic coordinates of the map location |
 | `"displayIcon"` | URL to the map's display icon |
 | `"displayName"` | Display name of the map |
-| `"id"` |  |
 | `"listViewIcon"` | URL to the map's list view icon |
 | `"mapUrl"` | URL to the map overview |
 | `"narrativeDescription"` | Narrative description of the map |
@@ -397,7 +399,6 @@ API path: `/v1/maps`
 | `"defaultSkinUuid"` | UUID of the default skin |
 | `"displayIcon"` | URL to the weapon's display icon |
 | `"displayName"` | Display name of the weapon |
-| `"id"` |  |
 | `"killStreamIcon"` | URL to the weapon's kill stream icon |
 | `"shopData"` |  |
 | `"skins"` |  |
@@ -441,7 +442,6 @@ Create an instance: `agent := client.Agent(nil)`
 | `displayName` | `string` | Display name of the agent |
 | `fullPortrait` | `string` | URL to the agent's full portrait |
 | `fullPortraitV2` | `string` | URL to the agent's full portrait version 2 |
-| `id` | `string` |  |
 | `isAvailableForTest` | `bool` | Whether the agent is available for testing |
 | `isBaseContent` | `bool` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `bool` | Whether the full portrait faces right |
@@ -458,7 +458,7 @@ agent, err := client.Agent(nil).Load(map[string]any{"id": "agent_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(agent) // the loaded record
+fmt.Println(agent.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -468,7 +468,10 @@ agents, err := client.Agent(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(agents) // the array of records
+// A []any of entities, one per record.
+for _, item := range agents.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -498,7 +501,10 @@ competitives, err := client.Competitive(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(competitives) // the array of records
+// A []any of entities, one per record.
+for _, item := range competitives.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -541,7 +547,10 @@ cosmetics, err := client.Cosmetic(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(cosmetics) // the array of records
+// A []any of entities, one per record.
+for _, item := range cosmetics.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -581,7 +590,10 @@ gameModes, err := client.GameMode(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(gameModes) // the array of records
+// A []any of entities, one per record.
+for _, item := range gameModes.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -605,7 +617,6 @@ Create an instance: `map_ := client.Map(nil)`
 | `coordinates` | `string` | Geographic coordinates of the map location |
 | `displayIcon` | `string` | URL to the map's display icon |
 | `displayName` | `string` | Display name of the map |
-| `id` | `string` |  |
 | `listViewIcon` | `string` | URL to the map's list view icon |
 | `mapUrl` | `string` | URL to the map overview |
 | `narrativeDescription` | `string` | Narrative description of the map |
@@ -624,7 +635,7 @@ map_, err := client.Map(nil).Load(map[string]any{"id": "map_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(map_) // the loaded record
+fmt.Println(map_.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -634,7 +645,10 @@ map_s, err := client.Map(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(map_s) // the array of records
+// A []any of entities, one per record.
+for _, item := range map_s.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -658,7 +672,6 @@ Create an instance: `weapon := client.Weapon(nil)`
 | `defaultSkinUuid` | `string` | UUID of the default skin |
 | `displayIcon` | `string` | URL to the weapon's display icon |
 | `displayName` | `string` | Display name of the weapon |
-| `id` | `string` |  |
 | `killStreamIcon` | `string` | URL to the weapon's kill stream icon |
 | `shopData` | `map[string]any` |  |
 | `skins` | `[]any` |  |
@@ -672,7 +685,7 @@ weapon, err := client.Weapon(nil).Load(map[string]any{"id": "weapon_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(weapon) // the loaded record
+fmt.Println(weapon.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -682,7 +695,10 @@ weapons, err := client.Weapon(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(weapons) // the array of records
+// A []any of entities, one per record.
+for _, item := range weapons.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ## Features
@@ -819,7 +835,9 @@ The Go SDK uses `map[string]any` throughout rather than typed structs.
 This mirrors the dynamic nature of the API and keeps the SDK
 flexible — no code generation is needed when the API schema changes.
 
-Use `core.ToMapAny()` to safely cast results and nested data.
+An operation returns the entity, and its `Data()` returns the record. Use
+`core.ToMapAny()` to safely cast that record, or data nested in it, to
+`map[string]any`: it returns `nil` for anything else, an entity included.
 
 ### Package structure
 

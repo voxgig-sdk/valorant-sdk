@@ -147,8 +147,10 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs.headers` | `object` | Request headers (merged with defaults). |
 | `fetchargs.body` | `any` | Request body (objects are JSON-serialized). |
 | `fetchargs.ctrl` | `object` | Control options (e.g. `{ explain: true }`). |
+| `fetchargs.ctrl.signal` | `AbortSignal` | Aborts the request in flight: `ok` is then `false` and `err.code` is `request_aborted`. |
 
-**Returns:** `Promise<{ ok, status, headers, data } | Error>`
+**Returns:** `Promise<{ ok, status, headers, data }>`. On a failure
+`ok` is `false` and `err` holds the error.
 
 #### `prepare(fetchargs?: object)`
 
@@ -162,6 +164,15 @@ same parameters as `direct()`.
 Alias for `ValorantSDK.test()`.
 
 **Returns:** `ValorantSDK` instance in test mode.
+
+#### Cancelling a call
+
+Every entity operation takes an optional `ctrl` object after its match or
+data, and an `AbortSignal` in `ctrl.signal` cancels the request in flight.
+The operation then rejects with an error whose `code` is
+`request_aborted` and whose `cause` is the signal's reason. A request
+whose signal has already aborted is not sent. `stream()` takes the signal
+as `callopts.signal`, and ends when it aborts.
 
 
 ---
@@ -189,7 +200,6 @@ const agent = client.Agent()
 | `displayName` | `string` | No | Display name of the agent |
 | `fullPortrait` | `string` | No | URL to the agent's full portrait |
 | `fullPortraitV2` | `string` | No | URL to the agent's full portrait version 2 |
-| `id` | `string` | No |  |
 | `isAvailableForTest` | `boolean` | No | Whether the agent is available for testing |
 | `isBaseContent` | `boolean` | No | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `boolean` | No | Whether the full portrait faces right |
@@ -203,7 +213,7 @@ const agent = client.Agent()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Agent().list()
@@ -211,7 +221,7 @@ const results = await client.Agent().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Agent().load({ id: 'agent_id' })
@@ -264,7 +274,7 @@ const competitive = client.Competitive()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Competitive().list()
@@ -330,7 +340,7 @@ const cosmetic = client.Cosmetic()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Cosmetic().list()
@@ -393,7 +403,7 @@ const game_mode = client.GameMode()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.GameMode().list()
@@ -442,7 +452,6 @@ const map = client.Map()
 | `coordinates` | `string` | No | Geographic coordinates of the map location |
 | `displayIcon` | `string` | No | URL to the map's display icon |
 | `displayName` | `string` | No | Display name of the map |
-| `id` | `string` | No |  |
 | `listViewIcon` | `string` | No | URL to the map's list view icon |
 | `mapUrl` | `string` | No | URL to the map overview |
 | `narrativeDescription` | `string` | No | Narrative description of the map |
@@ -458,7 +467,7 @@ const map = client.Map()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Map().list()
@@ -466,7 +475,7 @@ const results = await client.Map().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Map().load({ id: 'map_id' })
@@ -515,7 +524,6 @@ const weapon = client.Weapon()
 | `defaultSkinUuid` | `string` | No | UUID of the default skin |
 | `displayIcon` | `string` | No | URL to the weapon's display icon |
 | `displayName` | `string` | No | Display name of the weapon |
-| `id` | `string` | No |  |
 | `killStreamIcon` | `string` | No | URL to the weapon's kill stream icon |
 | `shopData` | `Record<string, any>` | No |  |
 | `skins` | `any[]` | No |  |
@@ -526,7 +534,7 @@ const weapon = client.Weapon()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Weapon().list()
@@ -534,7 +542,7 @@ const results = await client.Weapon().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Weapon().load({ id: 'weapon_id' })
@@ -725,6 +733,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

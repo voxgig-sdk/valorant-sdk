@@ -3,5 +3,45 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Asset object name",
+      "Asset path in game files",
+      "Category of the spray",
+      "Display name of the game mode",
+      "Display name of the map",
+      "Display name of the weapon",
+      "Duration of the game mode",
+      "Geographic coordinates of the map location",
+      "Gradient colors for the agent&#39;s background",
+      "Production server",
+      "Successful response with agent details",
+      "Successful response with competitive tier information",
+      "Successful response with list of agents",
+      "Successful response with list of buddies",
+      "Successful response with list of game modes",
+      "Successful response with list of maps",
+      "Successful response with list of player cards",
+      "Successful response with list of sprays",
+      "Successful response with list of weapons",
+      "Successful response with map details",
+      "Successful response with weapon details",
+      "Tags associated with the character",
+      "The Valorant API provides extensive data related to in-game items, assets, and other game features, sourced directly from the Valorant game files. This API automatically updates with each game patch, ensuring accurate and up-to-date information for developers and fans alike.",
+      "URL to the agent&#39;s background image",
+      "URL to the agent&#39;s bust portrait",
+      "URL to the buddy&#39;s display icon",
+      "URL to the game mode&#39;s display icon",
+      "URL to the map&#39;s display icon",
+      "URL to the map&#39;s list view icon",
+      "URL to the spray&#39;s animation GIF",
+      "URL to the spray&#39;s animation PNG",
+      "URL to the weapon&#39;s display icon",
+      "UUID of the default skin",
+      "Unique identifier for the competitive tier set",
+      "Weapon category (for example, Rifle, Pistol)",
+      "Whether match timeouts are allowed"
+    ]
+  }
 }

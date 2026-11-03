@@ -125,7 +125,6 @@ $agent = $client->Agent();
 | `displayName` | `string` | No | Display name of the agent |
 | `fullPortrait` | `string` | No | URL to the agent's full portrait |
 | `fullPortraitV2` | `string` | No | URL to the agent's full portrait version 2 |
-| `id` | `string` | No |  |
 | `isAvailableForTest` | `bool` | No | Whether the agent is available for testing |
 | `isBaseContent` | `bool` | No | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `bool` | No | Whether the full portrait faces right |
@@ -139,7 +138,7 @@ $agent = $client->Agent();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
 $results = $client->Agent()->list();
@@ -147,7 +146,7 @@ $results = $client->Agent()->list();
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->Agent()->load(["id" => "agent_id"]);
@@ -202,7 +201,7 @@ $competitive = $client->Competitive();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
 $results = $client->Competitive()->list();
@@ -270,7 +269,7 @@ $cosmetic = $client->Cosmetic();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
 $results = $client->Cosmetic()->list();
@@ -335,7 +334,7 @@ $game_mode = $client->GameMode();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
 $results = $client->GameMode()->list();
@@ -386,7 +385,6 @@ $map = $client->Map();
 | `coordinates` | `string` | No | Geographic coordinates of the map location |
 | `displayIcon` | `string` | No | URL to the map's display icon |
 | `displayName` | `string` | No | Display name of the map |
-| `id` | `string` | No |  |
 | `listViewIcon` | `string` | No | URL to the map's list view icon |
 | `mapUrl` | `string` | No | URL to the map overview |
 | `narrativeDescription` | `string` | No | Narrative description of the map |
@@ -402,7 +400,7 @@ $map = $client->Map();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
 $results = $client->Map()->list();
@@ -410,7 +408,7 @@ $results = $client->Map()->list();
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->Map()->load(["id" => "map_id"]);
@@ -461,7 +459,6 @@ $weapon = $client->Weapon();
 | `defaultSkinUuid` | `string` | No | UUID of the default skin |
 | `displayIcon` | `string` | No | URL to the weapon's display icon |
 | `displayName` | `string` | No | Display name of the weapon |
-| `id` | `string` | No |  |
 | `killStreamIcon` | `string` | No | URL to the weapon's kill stream icon |
 | `shopData` | `array` | No |  |
 | `skins` | `array` | No |  |
@@ -472,7 +469,7 @@ $weapon = $client->Weapon();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
 $results = $client->Weapon()->list();
@@ -480,7 +477,7 @@ $results = $client->Weapon()->list();
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria. Throws on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
 $result = $client->Weapon()->load(["id" => "weapon_id"]);
@@ -673,6 +670,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

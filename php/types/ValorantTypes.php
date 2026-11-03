@@ -28,7 +28,6 @@ class Agent
     public ?string $displayName = null;
     public ?string $fullPortrait = null;
     public ?string $fullPortraitV2 = null;
-    public ?string $id = null;
     public ?bool $isAvailableForTest = null;
     public ?bool $isBaseContent = null;
     public ?bool $isFullPortraitRightFacing = null;
@@ -129,7 +128,6 @@ class Map
     public ?string $coordinates = null;
     public ?string $displayIcon = null;
     public ?string $displayName = null;
-    public ?string $id = null;
     public ?string $listViewIcon = null;
     public ?string $mapUrl = null;
     public ?string $narrativeDescription = null;
@@ -163,7 +161,6 @@ class Weapon
     public ?string $defaultSkinUuid = null;
     public ?string $displayIcon = null;
     public ?string $displayName = null;
-    public ?string $id = null;
     public ?string $killStreamIcon = null;
     public ?array $shopData = null;
     public ?array $skins = null;

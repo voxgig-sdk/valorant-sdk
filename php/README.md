@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/valorant-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/valorant-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -44,7 +44,7 @@ try {
     $agents = $client->Agent()->list();
     foreach ($agents as $record) {
         $item = $record->data_get();
-        echo $item["id"] . " " . $item["abilities"] . "\n";
+        echo $item["uuid"] . " " . $item["abilities"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -241,8 +241,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
+| `load` | `($reqmatch, $ctrl): mixed` | Load a single entity by match criteria, and return it. |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -252,9 +252,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -287,7 +287,6 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `displayName` | Display name of the agent |
 | `fullPortrait` | URL to the agent's full portrait |
 | `fullPortraitV2` | URL to the agent's full portrait version 2 |
-| `id` |  |
 | `isAvailableForTest` | Whether the agent is available for testing |
 | `isBaseContent` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | Whether the full portrait faces right |
@@ -372,7 +371,6 @@ API path: `/v1/gamemodes`
 | `coordinates` | Geographic coordinates of the map location |
 | `displayIcon` | URL to the map's display icon |
 | `displayName` | Display name of the map |
-| `id` |  |
 | `listViewIcon` | URL to the map's list view icon |
 | `mapUrl` | URL to the map overview |
 | `narrativeDescription` | Narrative description of the map |
@@ -397,7 +395,6 @@ API path: `/v1/maps`
 | `defaultSkinUuid` | UUID of the default skin |
 | `displayIcon` | URL to the weapon's display icon |
 | `displayName` | Display name of the weapon |
-| `id` |  |
 | `killStreamIcon` | URL to the weapon's kill stream icon |
 | `shopData` |  |
 | `skins` |  |
@@ -441,7 +438,6 @@ Create an instance: `$agent = $client->Agent();`
 | `displayName` | `string` | Display name of the agent |
 | `fullPortrait` | `string` | URL to the agent's full portrait |
 | `fullPortraitV2` | `string` | URL to the agent's full portrait version 2 |
-| `id` | `string` |  |
 | `isAvailableForTest` | `bool` | Whether the agent is available for testing |
 | `isBaseContent` | `bool` | Whether the agent is base content |
 | `isFullPortraitRightFacing` | `bool` | Whether the full portrait faces right |
@@ -461,7 +457,7 @@ $agent = $client->Agent()->load(["id" => "agent_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Agent records (throws on error).
+// list() returns an array of Agent entities, one per record (throws on error).
 $agents = $client->Agent()->list();
 ```
 
@@ -488,7 +484,7 @@ Create an instance: `$competitive = $client->Competitive();`
 #### Example: List
 
 ```php
-// list() returns an array of Competitive records (throws on error).
+// list() returns an array of Competitive entities, one per record (throws on error).
 $competitives = $client->Competitive()->list();
 ```
 
@@ -528,7 +524,7 @@ Create an instance: `$cosmetic = $client->Cosmetic();`
 #### Example: List
 
 ```php
-// list() returns an array of Cosmetic records (throws on error).
+// list() returns an array of Cosmetic entities, one per record (throws on error).
 $cosmetics = $client->Cosmetic()->list();
 ```
 
@@ -565,7 +561,7 @@ Create an instance: `$game_mode = $client->GameMode();`
 #### Example: List
 
 ```php
-// list() returns an array of GameMode records (throws on error).
+// list() returns an array of GameMode entities, one per record (throws on error).
 $game_modes = $client->GameMode()->list();
 ```
 
@@ -590,7 +586,6 @@ Create an instance: `$map = $client->Map();`
 | `coordinates` | `string` | Geographic coordinates of the map location |
 | `displayIcon` | `string` | URL to the map's display icon |
 | `displayName` | `string` | Display name of the map |
-| `id` | `string` |  |
 | `listViewIcon` | `string` | URL to the map's list view icon |
 | `mapUrl` | `string` | URL to the map overview |
 | `narrativeDescription` | `string` | Narrative description of the map |
@@ -612,7 +607,7 @@ $map = $client->Map()->load(["id" => "map_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Map records (throws on error).
+// list() returns an array of Map entities, one per record (throws on error).
 $maps = $client->Map()->list();
 ```
 
@@ -637,7 +632,6 @@ Create an instance: `$weapon = $client->Weapon();`
 | `defaultSkinUuid` | `string` | UUID of the default skin |
 | `displayIcon` | `string` | URL to the weapon's display icon |
 | `displayName` | `string` | Display name of the weapon |
-| `id` | `string` |  |
 | `killStreamIcon` | `string` | URL to the weapon's kill stream icon |
 | `shopData` | `array` |  |
 | `skins` | `array` |  |
@@ -654,7 +648,7 @@ $weapon = $client->Weapon()->load(["id" => "weapon_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Weapon records (throws on error).
+// list() returns an array of Weapon entities, one per record (throws on error).
 $weapons = $client->Weapon()->list();
 ```
 
